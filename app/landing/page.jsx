@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import HeroSection from './hero-section';
+import GetStartedSection from './get-started-section';
 import AboutSection from './about-section';
 import CompaniesSection from './companies-section';
 import { gsap } from 'gsap';
@@ -54,6 +55,7 @@ export default function LandingPage() {
       {/* <div ref={wrapper} className="smooth-wrapper"> */}
         {/* <div ref={content} className="smooth-content min-h-screen"> */}
           <HeroSection />
+          <GetStartedSection />
           <AboutSection />
           <CompaniesSection />
           

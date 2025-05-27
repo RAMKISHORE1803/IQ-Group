@@ -79,7 +79,7 @@ export default function HeroCarousel() {
   }, [activeSlide]);
 
   return (
-    <div className="relative bg-gradient-to-r from-[#010A4E] to-[#041174] w-full h-screen overflow-hidden">
+    <div className="relative bg-gradient-to-r from-[#0719A1] to-[#0520F1] w-full h-screen overflow-hidden">
       <Swiper
         modules={[Autoplay, Pagination, Navigation, EffectFade]}
         effect="fade"
@@ -119,11 +119,11 @@ export default function HeroCarousel() {
               {/* Content half (bottom on mobile, left on desktop) */}
               <div className="w-full md:w-1/2 h-2/3 md:h-full flex flex-col justify-center items-start px-4 text-left order-2 md:order-1">
                 <div className="max-w-xl ml-0 md:ml-auto md:mr-0 md:pr-8 lg:pr-16">
-                  <h1 className="text-white font-semibold text-4xl md:text-6xl leading-tight">
+                  <h1 className="text-[#fbfbfb] font-semibold text-4xl md:text-6xl leading-tight">
                     {slide.headline}
                   </h1>
                   
-                  <p className="mt-4 text-gray-200 text-lg md:text-xl max-w-2xl">
+                  <p className="mt-4 text-[#fbfbfb] text-lg md:text-xl max-w-2xl">
                     {slide.subtext}
                   </p>
                   
@@ -131,7 +131,7 @@ export default function HeroCarousel() {
                   {slide.animatedStats && (
                     <div className="mt-8 flex flex-wrap justify-start gap-8">
                       {slide.animatedStats.map((stat, i) => (
-                        <div key={i} className="text-white text-left">
+                        <div key={i} className="text-[#fbfbfb] text-left">
                           <div className="text-3xl md:text-5xl font-bold">
                             {activeSlide === 3 && isAnimationStarted ? (
                               <CountUp 
@@ -178,7 +178,7 @@ export default function HeroCarousel() {
                   {/* CTA Button */}
                   <Link
                     href={slide.ctaLink}
-                    className="mt-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors duration-300 inline-block font-medium"
+                    className="mt-6 bg-[#fbfbfb] hover:bg-gray-200 text-[#000000] px-6 py-3 rounded-lg transition-colors duration-300 inline-block font-medium"
                   >
                     {slide.ctaText}
                   </Link>
@@ -216,13 +216,13 @@ export default function HeroCarousel() {
       {/* Custom styling for the swiper component */}
       <style jsx global>{`
         .hero-swiper {
-          --swiper-theme-color: #ffffff;
+          --swiper-theme-color: #010A4E;
           --swiper-navigation-size: 24px;
         }
         
         .hero-swiper .swiper-button-next,
         .hero-swiper .swiper-button-prev {
-          background-color: rgba(0, 0, 0, 0.3);
+          background-color: rgba(1, 10, 78, 0.3);
           width: 50px;
           height: 50px;
           border-radius: 50%;
@@ -234,7 +234,7 @@ export default function HeroCarousel() {
         
         .hero-swiper .swiper-button-next:hover,
         .hero-swiper .swiper-button-prev:hover {
-          background-color: rgba(0, 0, 0, 0.5);
+          background-color: rgba(1, 10, 78, 0.5);
         }
         
         .hero-swiper .swiper-pagination {
@@ -244,12 +244,12 @@ export default function HeroCarousel() {
         .hero-swiper .swiper-pagination-bullet {
           width: 10px;
           height: 10px;
-          background: rgba(255, 255, 255, 0.7);
+          background: rgba(1, 10, 78, 0.7);
           opacity: 0.7;
         }
         
         .hero-swiper .swiper-pagination-bullet-active {
-          background: white;
+          background: #010A4E;
           opacity: 1;
         }
         
