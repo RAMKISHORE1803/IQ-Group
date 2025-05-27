@@ -56,7 +56,7 @@ export default function AboutSection() {
         start: "top bottom-=50",
         end: "bottom center+=100",
         markers: false,
-        scrub: 0,
+        scrub: window.innerWidth < 768 ? 0 : 0.5,
         onUpdate: (self) => {
           // Use progress to control the animations
           imageAnim.progress(self.progress);

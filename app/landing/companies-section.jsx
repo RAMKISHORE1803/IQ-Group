@@ -186,6 +186,142 @@ const MobileCard = ({ company }) => {
   );
 };
 
+// Mobile view component
+const MobileView = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px 0px" });
+  
+  const handlePrev = () => {
+    setActiveIndex(prev => (prev === 0 ? allCompanies.length - 1 : prev - 1));
+  };
+  
+  const handleNext = () => {
+    setActiveIndex((prev) => (prev === allCompanies.length - 1 ? 0 : prev + 1));
+  };
+
+  // Heading animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { 
+        duration: 0.8,
+        staggerChildren: 0.2
+      }
+    }
+  };
+  
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.8 }
+    }
+  };
+
+  return (
+    <motion.section 
+      ref={sectionRef}
+      className="bg-gradient-to-r from-[#010A4E] to-[#041174] text-white min-h-screen relative"
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+      variants={containerVariants}
+    >
+      {/* Top section with heading and description */}
+      <div className="px-6 py-12">
+        <motion.div className="border-b border-white/30 pb-6 mb-8" variants={itemVariants}>
+          <motion.h2 className="text-3xl font-light mb-6" variants={itemVariants}>
+            Our Companies
+          </motion.h2>
+          <motion.p className="text-gray-300 text-sm leading-relaxed" variants={itemVariants}>
+            With a rich history of global trading we are able to deliver in a diverse range 
+            of sectors that match our expertise. We invest in and leverage the knowledge of our 
+            world-class teams who have experience spanning the entire commodity cycle.
+          </motion.p>
+        </motion.div>
+      </div>
+      
+      {/* Cards carousel */}
+      <motion.div className="relative px-6 pb-24" variants={itemVariants}>
+        <div className="overflow-hidden relative">
+          <div 
+            className="flex transition-all duration-500 ease-out"
+            style={{ 
+              transform: `translateX(-${activeIndex * 85}%)`,
+              width: `${allCompanies.length * 100}%`
+            }}
+          >
+            {allCompanies.map((company, index) => (
+              <div 
+                key={company.id} 
+                className="w-[85%] flex-shrink-0 pr-4"
+                style={{ opacity: index === activeIndex ? 1 : index === (activeIndex + 1) % allCompanies.length ? 1 : 0.3 }}
+              >
+                <div className="bg-gray-900">
+                  <div className="relative h-[50vh]">
+                    <Image
+                      src={company.image}
+                      alt={company.name}
+                      fill
+                      className="object-cover"
+                      priority={index === activeIndex || index === (activeIndex + 1) % allCompanies.length}
+                    />
+                    <div className="absolute bottom-3 left-3 bg-black/70 py-1 px-3 rounded-sm">
+                      <span className="text-xs font-medium text-gray-300">
+                        {company.category}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="p-4 bg-[#010A4E]">
+                    <h3 className="text-xl font-medium text-white mb-2">
+                      {company.name}
+                    </h3>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        {/* Navigation controls */}
+        <div className="flex items-center justify-between mt-12 mb-4">
+          {/* Left arrow */}
+          <button 
+            onClick={handlePrev}
+            className="w-12 h-12 rounded-full border border-gray-700 flex items-center justify-center transition-colors hover:border-white"
+            aria-label="Previous card"
+          >
+            <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          
+          {/* Progress bar */}
+          <div className="flex-1 mx-6 relative h-[2px] bg-gray-800">
+            <div 
+              className="absolute top-0 left-0 h-full bg-white transition-all duration-300 ease-out"
+              style={{ width: `${((activeIndex + 1) / allCompanies.length) * 100}%` }}
+            ></div>
+          </div>
+          
+          {/* Right arrow */}
+          <button 
+            onClick={handleNext}
+            className="w-12 h-12 rounded-full border border-gray-700 flex items-center justify-center transition-colors hover:border-white"
+            aria-label="Next card"
+          >
+            <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      </motion.div>
+    </motion.section>
+  );
+};
+
 export default function CompaniesSection() {
   const sectionRef = useRef(null);
   const containerRef = useRef(null);
@@ -345,67 +481,9 @@ export default function CompaniesSection() {
     }
   };
 
-  // Mobile Carousel View
+  // Mobile view
   if (isMobile) {
-    return (
-      <section className="bg-[#000] relative">
-        <motion.h2 
-          className="text-4xl font-bold text-white text-center pt-4 pb-2 absolute top-0 left-0 right-0 z-20 backdrop-blur-sm bg-black/30"
-          initial="hidden"
-          animate="visible"
-          variants={headingVariants}
-        >
-          Our Companies
-        </motion.h2>
-        
-        <Swiper
-          modules={[Pagination, EffectFade]}
-          pagination={{
-            clickable: true,
-            dynamicBullets: true,
-            renderBullet: function (index, className) {
-              return `<span class="${className} w-2.5 h-2.5"></span>`;
-            },
-          }}
-          effect="fade"
-          fadeEffect={{ crossFade: true }}
-          speed={800}
-          spaceBetween={0}
-          slidesPerView={1}
-          className="h-[100vh] w-full companies-swiper"
-        >
-          {allCompanies.map(company => (
-            <SwiperSlide key={company.id} className="w-full h-full">
-              <MobileCard company={company} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-        
-        <style jsx global>{`
-          .companies-swiper {
-            --swiper-theme-color: #ffffff;
-            --swiper-pagination-color: #ffffff;
-            --swiper-pagination-bullet-inactive-color: #ffffff80;
-            --swiper-pagination-bullet-inactive-opacity: 0.5;
-            --swiper-pagination-bullet-size: 10px;
-            --swiper-pagination-bullet-horizontal-gap: 6px;
-          }
-          
-          .companies-swiper .swiper-pagination {
-            bottom: 30px !important;
-          }
-          
-          .companies-swiper .swiper-pagination-bullet {
-            transition: all 0.3s ease;
-          }
-          
-          .companies-swiper .swiper-pagination-bullet-active {
-            transform: scale(1.2);
-            background: white;
-          }
-        `}</style>
-      </section>
-    );
+    return <MobileView />;
   }
 
   // Desktop View - Keep your existing implementation
