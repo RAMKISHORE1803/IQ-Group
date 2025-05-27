@@ -22,7 +22,7 @@ export default function Home() {
       content: content.current,
       smooth: 1.5, // How long (in seconds) it takes to "catch up" to the native scroll position
       effects: true, // Enables the effects like smooth scrolling
-      smoothTouch: 0.1, // Much shorter smooth time for touch devices (default is NO smoothing for touch devices)
+      smoothTouch: false, // Much shorter smooth time for touch devices (default is NO smoothing for touch devices)
     });
 
     // Clean up on component unmount

@@ -12,7 +12,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Orbital - Connect Your World",
+  title: "IQ Group - Powering Innovation, Delivering Excellence",
   description: "Build, track, and manage your projects with a seamless platform designed for modern teams",
 };
 

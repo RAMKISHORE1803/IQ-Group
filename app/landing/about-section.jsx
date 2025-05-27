@@ -32,21 +32,21 @@ export default function AboutSection() {
       }
 
       // Set initial state
-      gsap.set(imageContainer, { x: 0 });
-      gsap.set(content, { x: 0 });
+      gsap.set(imageContainer, { x: window.innerWidth < 768 ? 450 : 0 });
+      gsap.set(content, { x: window.innerWidth < 768 ? -450 : 0 });
       
       // Create separate animations for each element for better control
       const imageAnim = gsap.to(imageContainer, {
-        x: window.innerWidth < 768 ? -5 : -40,
+        x: window.innerWidth < 768 ? 0 : -40,
         ease: "power2.out",
-        duration: 10,
+        duration: window.innerWidth <768 ? 2 : 10,
         paused: true
       });
       
       const contentAnim = gsap.to(content, {
-        x: window.innerWidth < 768 ? 5 : 40,
+        x: window.innerWidth < 768 ? 0 : 40,
         ease: "power2.out",
-        duration: 10,
+        duration: window.innerWidth <768 ? 2 : 10,
         paused: true
       });
       
@@ -56,7 +56,7 @@ export default function AboutSection() {
         start: "top bottom-=50",
         end: "bottom center+=100",
         markers: false,
-        scrub: 0.5,
+        scrub: 0,
         onUpdate: (self) => {
           // Use progress to control the animations
           imageAnim.progress(self.progress);
@@ -81,6 +81,7 @@ export default function AboutSection() {
   }, []);
 
   return (
+    <>
     <section 
       
       className="py-[20px] md:py-32 min-h-screen overflow-hidden bg-gradient-to-r from-[#010A4E] to-[#041174]"
@@ -119,5 +120,14 @@ export default function AboutSection() {
         </div>
       </div>
     </section>
+    {/* <div 
+        
+        className="h-[200vh]" 
+        style={{ 
+          position: 'relative',
+          zIndex: 0
+        }}
+      /> */}
+    </>
   );
 } 

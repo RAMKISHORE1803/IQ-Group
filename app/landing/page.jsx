@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import Hero from './hero';
 import AboutSection from './about-section';
+import CompaniesSection from './companies-section';
 import { gsap } from 'gsap';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -54,6 +55,7 @@ export default function LandingPage() {
         {/* <div ref={content} className="smooth-content min-h-screen"> */}
           <Hero />
           <AboutSection />
+          <CompaniesSection />
           
         {/* </div> */}
       {/* </div> */}
