@@ -51,21 +51,41 @@ export default function AboutSection() {
       });
       
       // Create scroll trigger
-      const st = ScrollTrigger.create({
-        trigger: section,
-        start: "top bottom-=50",
-        end: "bottom center+=100",
-        markers: false,
-        scrub: window.innerWidth < 768 ? 0 : 0.5,
-        onUpdate: (self) => {
-          // Use progress to control the animations
-          imageAnim.progress(self.progress);
-          contentAnim.progress(self.progress);
-          console.log("ScrollTrigger progress:", self.progress);
-        }
-      });
+      if (window.innerWidth < 768) {
+        // Mobile view - NO reverse
+        ScrollTrigger.create({
+          trigger: section,
+          start: "top bottom-=50",
+          end: "bottom center+=100",
+          markers: false,
+          onEnter: () => {
+            imageAnim.play();
+            contentAnim.play();
+          },
+          onLeaveBack: () => {
+            // Do nothing: animation won't reverse
+          }
+        });
+      } else {
+        // Desktop view - ALLOW reverse via scrub
+        imageAnim.progress(0).pause();
+        contentAnim.progress(0).pause();
       
-      console.log("ScrollTrigger created:", st);
+        ScrollTrigger.create({
+          trigger: section,
+          start: "top bottom-=50",
+          end: "bottom center+=100",
+          markers: false,
+          scrub: 0.5, // Smooth scrub for reverse effect
+          onUpdate: (self) => {
+            imageAnim.progress(self.progress);
+            contentAnim.progress(self.progress);
+          }
+        });
+      }
+      
+      
+     
       
       return () => {
         console.log("Cleaning up ScrollTrigger");
