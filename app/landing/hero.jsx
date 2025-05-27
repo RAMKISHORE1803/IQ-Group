@@ -33,15 +33,15 @@ export default function Hero() {
           <div className="max-w-3xl">
             {/* Primary heading */}
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 text-white">
-              DELIVERING COMMODITY
-              <span className="block">WORLDWIDE</span>
+            Trusted by Global Manufacturers.
+              <span className="block">Powered by Proven Logistics.</span>
             </h1>
             
             {/* Secondary text */}
             <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl font-light leading-relaxed">
-              An Organisation that bridges the gap between Global Raw material manufacturers and End Users
+            We enable raw material movement from source to industry—efficiently, reliably, worldwide.
+
             </p>
-            
             {/* Custom animated button */}
             <div 
               className="relative inline-block"
@@ -61,7 +61,7 @@ export default function Hero() {
                       isHovered ? "-translate-x-6" : "translate-x-0"
                     )}
                   >
-                    Request Quotation
+                    Contact Us
                   </span>
                   <ArrowRight 
                     className={cn(

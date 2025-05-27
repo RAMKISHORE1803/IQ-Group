@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import Hero from './hero';
+import HeroSection from './hero-section';
 import AboutSection from './about-section';
 import CompaniesSection from './companies-section';
 import { gsap } from 'gsap';
@@ -53,7 +53,7 @@ export default function LandingPage() {
     <main className="bg-black text-white">
       {/* <div ref={wrapper} className="smooth-wrapper"> */}
         {/* <div ref={content} className="smooth-content min-h-screen"> */}
-          <Hero />
+          <HeroSection />
           <AboutSection />
           <CompaniesSection />
           

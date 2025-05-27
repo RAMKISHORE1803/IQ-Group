@@ -131,8 +131,8 @@ export default function AboutSection() {
               POWERING INNOVATION. DELIVERING EXCELLENCE.
             </p>
             <p className="text-lg md:text-xl text-gray-200 font-light leading-relaxed">
-              At IQ Group, we don't just supply raw materials we fuel global innovation. With decades of expertise and a footprint that spans continents, we connect industry leaders to a trusted network of world-class suppliers. Our mission is simple: to turn bold ideas into tangible outcomes by delivering high quality raw materials that drive performance, precision, and progress.
-            </p>
+            IQ Group sources and supplies Ferro Alloys, Noble Alloys, Minerals, Metals, Ores, Chemicals, and Carbon Materials globally—setting unmatched benchmarks in integrity and ethics. With our headquarters in Mumbai and an international operations office in China, we serve steel, foundries, refractory, chemical, ceramic, paints, tyres, aerospace, glass, automobile, textile, and battery industries.            </p>
+            <p className="text-lg md:text-xl text-gray-200 font-light leading-relaxed">Our commitment to quality ensures you receive top-grade materials reliably and on time.</p>
             <button className="mt-6 border border-sky-400 text-sky-300 hover:bg-sky-900/30 hover:border-sky-300 rounded-md px-6 py-3 transition-all duration-300">
               Learn More
             </button>
