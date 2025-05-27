@@ -12,7 +12,7 @@ export default function Hero() {
   return (
     <div className="relative w-full h-screen overflow-hidden">
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#010A4E] via-[#041174] to-white z-0"></div>
+      
       
       {/* Background image with overlay */}
       <div className="absolute inset-0 z-0 opacity-30">
@@ -24,6 +24,7 @@ export default function Hero() {
           className="object-cover"
           sizes="100vw"
         />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#010A4E] via-[#041174] to-white z-0 opacity-50"></div>
       </div>
       
       {/* Content container */}

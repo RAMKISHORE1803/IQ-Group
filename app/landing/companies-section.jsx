@@ -1,10 +1,17 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
-import { motion ,useInView } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, EffectFade } from 'swiper/modules';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-fade';
 
 // Company data - First set
 const companies = [
@@ -89,21 +96,28 @@ const companiesThirdSet = [
   }
 ];
 
-// Flip Card Component
+// Combine all companies into one array for mobile carousel
+const allCompanies = [
+  ...companies,
+  ...companiesSecondSet,
+  ...companiesThirdSet
+];
+
+// Flip Card Component (for desktop)
 const FlipCard = ({ company }) => {
   return (
     <div className="flip-card w-full h-[420px] perspective-1000">
-      <div className="flip-card-inner relative w-full h-full transition-transform duration-700 transform-style-3d shadow-xl rounded-xl">
+      <div className="flip-card-inner relative w-full h-full transition-transform duration-700 transform-style-3d shadow-xl">
         {/* Front */}
-        <div className="flip-card-front absolute w-full h-full backface-hidden bg-gray-900 rounded-xl overflow-hidden">
+        <div className="flip-card-front absolute w-full h-full backface-hidden bg-gray-900 overflow-hidden">
           <div className="relative w-full h-full">
             <Image
               src={company.image}
               alt={company.name}
               fill
-              className="object-cover rounded-xl opacity-80"
+              className="object-cover  opacity-80"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent rounded-xl"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent "></div>
             <div className="absolute bottom-0 left-0 p-6 text-white">
               <h3 className="text-xl md:text-2xl font-bold mb-2">{company.name}</h3>
               <p className="text-sky-300 font-light text-sm md:text-base">{company.category}</p>
@@ -112,7 +126,7 @@ const FlipCard = ({ company }) => {
         </div>
         
         {/* Back */}
-        <div className="flip-card-back absolute w-full h-full backface-hidden bg-gradient-to-br from-[#041174] to-[#010A4E] rounded-xl rotate-y-180 p-6 text-white">
+        <div className="flip-card-back absolute w-full h-full backface-hidden bg-gradient-to-br from-[#041174] to-[#010A4E]  rotate-y-180 p-6 text-white">
           <h3 className="text-xl md:text-2xl font-bold mb-3">{company.name}</h3>
           <p className="text-sky-300 font-light text-sm md:text-base mb-4">{company.category}</p>
           <div>
@@ -133,6 +147,45 @@ const FlipCard = ({ company }) => {
   );
 };
 
+// Mobile Card Component
+const MobileCard = ({ company }) => {
+  return (
+    <div className="relative w-full h-[90vh]">
+      {/* Background Image with Gradient Overlay */}
+      <div className="absolute inset-0 z-0">
+        <Image 
+          src={company.image} 
+          alt={company.name}
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+      </div>
+      
+      {/* Content Overlay */}
+      <div className="absolute inset-x-0 bottom-0 z-10 p-8 pb-20">
+        <h3 className="text-4xl font-bold text-white mb-2 tracking-tight">
+          {company.name}
+        </h3>
+        <p className="text-lg text-sky-300 mb-6">
+          {company.category}
+        </p>
+        
+        {/* Discover More Button */}
+        <button className="group flex items-center">
+          <div className="backdrop-blur-md bg-white/10 border border-white/20 px-6 py-3 rounded-full inline-flex items-center transition-all duration-300 hover:bg-white/20">
+            <span className="text-white text-sm font-medium mr-2">Discover More</span>
+            <svg className="w-5 h-5 text-white transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </div>
+        </button>
+      </div>
+    </div>
+  );
+};
+
 export default function CompaniesSection() {
   const sectionRef = useRef(null);
   const containerRef = useRef(null);
@@ -140,36 +193,25 @@ export default function CompaniesSection() {
   const secondCardsContainerRef = useRef(null);
   const thirdCardsContainerRef = useRef(null);
   const headingRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
 
-  const isHeadingInView = useInView(headingRef, { once: true, margin: "-100px 0px" });
-  const isFirstDivInView = useInView(firstCardsContainerRef, { once: false, margin: "-100px 0px" });
-  const headingVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { 
-        duration: 0.8, 
-        ease: "easeOut",
-        delay: 0.2
-      }
-    }
-  };
-  const firstDivVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { 
-        duration: 0.8, 
-        ease: "easeOut",
-        delay: 0.2
-      }
-    }
-    
-  };
+  // Check if device is mobile
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkIfMobile();
+    window.addEventListener('resize', checkIfMobile);
+    
+    return () => {
+      window.removeEventListener('resize', checkIfMobile);
+    };
+  }, []);
+
+  // Desktop animations setup - only run if not mobile
+  useEffect(() => {
+    if (typeof window === 'undefined' || isMobile) return;
     
     gsap.registerPlugin(ScrollTrigger);
     
@@ -186,8 +228,6 @@ export default function CompaniesSection() {
         console.error("Missing elements for animation");
         return;
       }
-
-      
 
       // Pin the container while scrolling with more space
       ScrollTrigger.create({
@@ -231,12 +271,12 @@ export default function CompaniesSection() {
           opacity: 0,
           y: -100,
           scale: 0.9,
-          duration: 1
+          duration: 0.3,
         })
         .to(secondCardsContainer, {
           y: 0,
           opacity: 1,
-          duration: 1
+          duration: 0.3
         }, "<");
       
       // Second animation: Second set to Third set transition
@@ -256,12 +296,12 @@ export default function CompaniesSection() {
           opacity: 0,
           y: -100,
           scale: 0.9,
-          duration: 1
+          duration: 0.3
         })
         .to(thirdCardsContainer, {
           y: 0,
           opacity: 1,
-          duration: 1
+          duration: 0.3
         }, "<");
       
       console.log("All animations set up");
@@ -274,12 +314,105 @@ export default function CompaniesSection() {
     return () => {
       clearTimeout(timer);
     };
-  }, []);
+  }, [isMobile]);
 
+  const isHeadingInView = useInView(headingRef, { once: true, margin: "-100px 0px" });
+  const isFirstDivInView = useInView(firstCardsContainerRef, { once: false, margin: "-100px 0px" });
+  
+  const headingVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        duration: 0.8, 
+        ease: "easeOut",
+        delay: 0.2
+      }
+    }
+  };
+  
+  const firstDivVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        duration: 0.8, 
+        ease: "easeOut",
+        delay: 0.2
+      }
+    }
+  };
+
+  // Mobile Carousel View
+  if (isMobile) {
+    return (
+      <section className="bg-[#000] relative">
+        <motion.h2 
+          className="text-4xl font-bold text-white text-center pt-4 pb-2 absolute top-0 left-0 right-0 z-20 backdrop-blur-sm bg-black/30"
+          initial="hidden"
+          animate="visible"
+          variants={headingVariants}
+        >
+          Our Companies
+        </motion.h2>
+        
+        <Swiper
+          modules={[Pagination, EffectFade]}
+          pagination={{
+            clickable: true,
+            dynamicBullets: true,
+            renderBullet: function (index, className) {
+              return `<span class="${className} w-2.5 h-2.5"></span>`;
+            },
+          }}
+          effect="fade"
+          fadeEffect={{ crossFade: true }}
+          speed={800}
+          spaceBetween={0}
+          slidesPerView={1}
+          className="h-[100vh] w-full companies-swiper"
+        >
+          {allCompanies.map(company => (
+            <SwiperSlide key={company.id} className="w-full h-full">
+              <MobileCard company={company} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+        
+        <style jsx global>{`
+          .companies-swiper {
+            --swiper-theme-color: #ffffff;
+            --swiper-pagination-color: #ffffff;
+            --swiper-pagination-bullet-inactive-color: #ffffff80;
+            --swiper-pagination-bullet-inactive-opacity: 0.5;
+            --swiper-pagination-bullet-size: 10px;
+            --swiper-pagination-bullet-horizontal-gap: 6px;
+          }
+          
+          .companies-swiper .swiper-pagination {
+            bottom: 30px !important;
+          }
+          
+          .companies-swiper .swiper-pagination-bullet {
+            transition: all 0.3s ease;
+          }
+          
+          .companies-swiper .swiper-pagination-bullet-active {
+            transform: scale(1.2);
+            background: white;
+          }
+        `}</style>
+      </section>
+    );
+  }
+
+  // Desktop View - Keep your existing implementation
   return (
     <section 
       ref={sectionRef}
-      className="py-[5px] md:py-32 bg-gradient-to-r from-[#010A4E] to-[#041174] relative min-h-[400vh]"
+      className="py-[5px] md:py-32 bg-[#fbfbfb] from-[#010A4E] to-[#041174] relative min-h-[400vh]"
       id="companies-section"
     >
       {/* This container will be pinned */}
@@ -289,7 +422,7 @@ export default function CompaniesSection() {
       >
         <div className="container mx-auto px-6 md:px-12">
           <motion.h2 ref={headingRef}
-            className="text-4xl md:text-5xl font-bold text-white text-center mb-16"
+            className="text-4xl md:text-5xl font-bold text-[#041174] text-center mb-16"
             initial="hidden"
             animate={isHeadingInView ? "visible" : "hidden"}
             variants={headingVariants}>
@@ -299,7 +432,6 @@ export default function CompaniesSection() {
           <div className="relative h-[600px]">
             {/* First set of cards */}
             <div 
-
               ref={firstCardsContainerRef}
               className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto absolute top-0 left-0 right-0 z-1"
               initial="hidden"
