@@ -6,6 +6,8 @@ module.exports = {
     './components/**/*.{js,jsx}',
     './app/**/*.{js,jsx}',
     './lib/**/*.{js,jsx}',
+    './iq/components/**/*.{js,jsx}',
+    './iq/app/**/*.{js,jsx}',
   ],
   theme: {
     container: {
@@ -16,6 +18,18 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ['var(--font-geist-sans)'],
+        mono: ['var(--font-geist-mono)'],
+        serif: ['var(--font-merriweather)'],
+        times: ['Times New Roman', 'Times', 'serif'],
+        arial: ['Arial', 'Helvetica', 'sans-serif'],
+        georgia: ['Georgia', 'Times New Roman', 'Times', 'serif'],
+        verdana: ['Verdana', 'Geneva', 'sans-serif'],
+        lato: ['var(--font-lato)'],
+        onest: ['var(--font-onest)'],
+        'open-sans': ['var(--font-open-sans)'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
 
 // Dynamically import the HeroCarousel component to reduce initial load time
-const HeroCarousel = dynamic(() => import('@/components/hero/HeroCarousel'), {
+const HeroCarousel = dynamic(() => import('../../components/hero/HeroCarousel'), {
   ssr: true,
   loading: () => <HeroLoading />
 });

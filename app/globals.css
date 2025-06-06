@@ -1,13 +1,36 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @custom-variant dark (&:is(.dark *));
+
+/* 
+  FONT SETUP IN GLOBAL CSS:
+  1. Define font variables in the theme or :root section
+  2. Create utility classes for each font
+  3. Use the font-family property with the variables
+*/
+
+/* Font family definitions for system fonts */
+:root {
+  --font-times-new-roman: 'Times New Roman', Times, serif;
+  --font-arial: Arial, Helvetica, sans-serif;
+  --font-georgia: Georgia, 'Times New Roman', Times, serif;
+  --font-verdana: Verdana, Geneva, sans-serif;
+}
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-merriweather);
+  --font-times: var(--font-times-new-roman);
+  --font-lato: var(--font-lato);
+  --font-onest: var(--font-onest);
+  --font-open-sans: var(--font-open-sans);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -119,6 +142,34 @@
   body {
     @apply bg-background text-foreground;
   }
+  .font-serif {
+    font-family: var(--font-merriweather);
+  }
+  
+  /* System font utility classes */
+  .font-times {
+    font-family: var(--font-times-new-roman);
+  }
+  .font-arial {
+    font-family: var(--font-arial);
+  }
+  .font-georgia {
+    font-family: var(--font-georgia);
+  }
+  .font-verdana {
+    font-family: var(--font-verdana);
+  }
+  
+  /* Google font utility classes */
+  .font-lato {
+    font-family: var(--font-lato);
+  }
+  .font-onest {
+    font-family: var(--font-onest);
+  }
+  .font-open-sans {
+    font-family: var(--font-open-sans);
+  }
 }
 
 /* Additional global styles */
@@ -210,4 +261,86 @@ a {
     )
     rgb(var(--background-start-rgb));
   }
+}
+
+/* Utility classes for using fonts */
+/* Google Fonts (imported via next/font) */
+.text-serif {
+  font-family: var(--font-merriweather);
+}
+
+.heading-serif {
+  font-family: var(--font-merriweather);
+  font-weight: 700;
+}
+
+/* Lato font utility classes */
+.text-lato {
+  font-family: var(--font-lato);
+}
+
+.heading-lato {
+  font-family: var(--font-lato);
+  font-weight: 700;
+}
+
+/* Onest font utility classes */
+.text-onest {
+  font-family: var(--font-onest);
+}
+
+.heading-onest {
+  font-family: var(--font-onest);
+  font-weight: 700;
+}
+
+/* Open Sans font utility classes */
+.text-open-sans {
+  font-family: var(--font-open-sans);
+}
+
+.heading-open-sans {
+  font-family: var(--font-open-sans);
+  font-weight: 700;
+}
+
+/* System Fonts */
+.text-times {
+  font-family: var(--font-times-new-roman);
+}
+
+.heading-times {
+  font-family: var(--font-times-new-roman);
+  font-weight: bold;
+}
+
+/* Font size utility classes */
+.text-xs { font-size: 0.75rem; }
+.text-sm { font-size: 0.875rem; }
+.text-base { font-size: 1rem; }
+.text-lg { font-size: 1.125rem; }
+.text-xl { font-size: 1.25rem; }
+.text-2xl { font-size: 1.5rem; }
+.text-3xl { font-size: 1.875rem; }
+.text-4xl { font-size: 2.25rem; }
+
+/* Font weight utility classes */
+.font-light { font-weight: 300; }
+.font-normal { font-weight: 400; }
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+.font-extrabold { font-weight: 800; }
+
+/* Global Presence Slide Styles */
+.stat-card {
+  @apply flex flex-col items-center justify-center p-4 bg-black/30 backdrop-blur-sm rounded-lg border border-blue-500/30;
+}
+
+.stat-card span:first-child {
+  @apply block mb-1 font-lato;
+}
+
+.stat-card span:last-child {
+  @apply block text-center font-open-sans;
 }

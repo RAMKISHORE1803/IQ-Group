@@ -4,7 +4,8 @@ import { useEffect, useRef } from 'react';
 import HeroSection from './hero-section';
 import GetStartedSection from './get-started-section';
 import AboutSection from './about-section';
-import CompaniesSection from './companies-section';
+// import CompaniesSection from './companies-section';
+import CompanySection from './company-section';
 import { gsap } from 'gsap';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -55,10 +56,10 @@ export default function LandingPage() {
       {/* <div ref={wrapper} className="smooth-wrapper"> */}
         {/* <div ref={content} className="smooth-content min-h-screen"> */}
           <HeroSection />
-          <GetStartedSection />
+          {/* <GetStartedSection /> */}
           <AboutSection />
-          <CompaniesSection />
-          
+          {/* <CompaniesSection /> */}
+          <CompanySection />
         {/* </div> */}
       {/* </div> */}
     </main>

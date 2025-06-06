@@ -7,6 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import CountUp from 'react-countup';
 import { PLACEHOLDER_URLS } from './placeholders';
+import GlobalPresenceSlide from './GlobalPresenceSlide';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -14,12 +15,30 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import 'swiper/css/effect-fade';
 
+// SlideRevealText component for text reveal animation
+const SlideRevealText = ({ text, className, startAnimation = false, delay = 0, duration = 800 }) => {
+  return (
+    <div className="overflow-hidden relative">
+      <div
+        className={`${className} transition-transform whitespace-pre-wrap`}
+        style={{
+          clipPath: startAnimation ? 'inset(0 0 0 0)' : 'inset(0 100% 0 0)',
+          transition: `clip-path ${duration}ms ease-out ${delay}ms`,
+          willChange: 'clip-path'
+        }}
+      >
+        {text}
+      </div>
+    </div>
+  );
+};
+
 // Slide data
 const slides = [
   {
     ariaLabel: 'Core Mission & Global Scale',
-    background: PLACEHOLDER_URLS.portVideo, // Video
-    isVideo: true,
+    background: PLACEHOLDER_URLS.port, // Video
+    isVideo: false,
     headline: 'Trusted by Global Manufacturers. Powered by Proven Logistics.',
     subtext: 'We enable raw material movement from source to industry—efficiently, reliably, worldwide.',
     ctaText: 'Get a Quote',
@@ -49,7 +68,7 @@ const slides = [
     ]
   },
   {
-    ariaLabel: 'Global Footprint & Animated Stats',
+    ariaLabel:'Operating in 20+ Countries. Serving 15+ Industries.',
     background: PLACEHOLDER_URLS.worldMap,
     isVideo: false,
     headline: 'Operating in 20+ Countries. Serving 15+ Industries.',
@@ -57,16 +76,22 @@ const slides = [
     ctaText: 'View Our Global Presence',
     ctaLink: '/global-presence',
     animatedStats: [
-      { label: 'Countries', value: 20, suffix: '+' },
-      { label: 'Industries', value: 15, suffix: '+' },
-      { label: 'Tons Delivered', value: 100000, suffix: 'K+' }
+      { value: 20, suffix: '+', label: 'Countries' },
+      { value: 15, suffix: '+', label: 'Industries' },
+      { value: 100000, suffix: 'K+', label: 'Tons Delivered' }
     ]
-  }
+  },
+  // {
+  //   ariaLabel: 'Global Footprint & Animated Stats',
+  //   isCustomComponent: true,
+  //   component: GlobalPresenceSlide
+  // }
 ];
 
 export default function HeroCarousel() {
   const [activeSlide, setActiveSlide] = useState(0);
   const [isAnimationStarted, setIsAnimationStarted] = useState(false);
+  const [slideAnimationStates, setSlideAnimationStates] = useState(Array(slides.length).fill(false));
   const swiperRef = useRef(null);
 
   // Handle animation start for counters
@@ -76,10 +101,15 @@ export default function HeroCarousel() {
     } else {
       setIsAnimationStarted(false);
     }
+    
+    // Trigger text reveal animation for the active slide
+    const newAnimationStates = Array(slides.length).fill(false);
+    newAnimationStates[activeSlide] = true;
+    setSlideAnimationStates(newAnimationStates);
   }, [activeSlide]);
 
   return (
-    <div className="relative bg-gradient-to-r from-[#0719A1] to-[#0520F1] w-full h-screen overflow-hidden">
+    <div className="relative bg-[#fbfbfb] text-times-new-roman from-[#0719A1] to-[#0520F1] w-full h-screen overflow-hidden">
       <Swiper
         modules={[Autoplay, Pagination, Navigation, EffectFade]}
         effect="fade"
@@ -114,101 +144,127 @@ export default function HeroCarousel() {
             aria-roledescription="slide"
             className="relative w-full h-full"
           >
-            {/* Responsive two-half layout container */}
-            <div className="flex flex-col md:flex-row w-full h-full relative">
-              {/* Content half (bottom on mobile, left on desktop) */}
-              <div className="w-full md:w-1/2 h-2/3 md:h-full flex flex-col justify-center items-start px-4 text-left order-2 md:order-1">
-                <div className="max-w-xl ml-0 md:ml-auto md:mr-0 md:pr-8 lg:pr-16">
-                  <h1 className="text-[#fbfbfb] font-semibold text-4xl md:text-6xl leading-tight">
-                    {slide.headline}
-                  </h1>
-                  
-                  <p className="mt-4 text-[#fbfbfb] text-lg md:text-xl max-w-2xl">
-                    {slide.subtext}
-                  </p>
-                  
-                  {/* Animated Stats (for Slide 4) */}
-                  {slide.animatedStats && (
-                    <div className="mt-8 flex flex-wrap justify-start gap-8">
-                      {slide.animatedStats.map((stat, i) => (
-                        <div key={i} className="text-[#fbfbfb] text-left">
-                          <div className="text-3xl md:text-5xl font-bold">
-                            {activeSlide === 3 && isAnimationStarted ? (
-                              <CountUp 
-                                start={0} 
-                                end={stat.value} 
-                                duration={2.5} 
-                                separator="," 
-                                suffix={stat.suffix || ''}
+            {slide.isCustomComponent ? (
+              <slide.component />
+            ) : (
+              /* Responsive two-half layout container */
+              <div className="flex flex-col md:flex-row w-full h-full relative">
+                {/* Content half (bottom on mobile, left on desktop) */}
+                <div className="w-full md:w-1/2 h-2/3 md:h-full flex flex-col justify-center items-start px-4 text-left order-2 md:order-1">
+                  <div className="max-w-xl ml-0 md:ml-auto md:mr-0 md:pr-8 lg:pr-16">
+                    <SlideRevealText
+                      text={slide.headline}
+                      className="text-[#5790E1] text-lato font-semibold text-4xl md:text-[80px] leading-tight"
+                      startAnimation={slideAnimationStates[idx]}
+                      delay={0}
+                    />
+                    
+                    <div className="mt-4">
+                      <SlideRevealText
+                        text={slide.subtext}
+                        className="text-[#121212] text-onest font-light text-lg md:text-[40px] max-w-2xl"
+                        startAnimation={slideAnimationStates[idx]}
+                        delay={200}
+                      />
+                    </div>
+                    
+                    {/* Animated Stats (for Slide 4) */}
+                    {slide.animatedStats && (
+                      <div className="mt-8 flex flex-wrap justify-start gap-8">
+                        {slide.animatedStats.map((stat, i) => (
+                          <div key={i} className="text-[#000000] text-left">
+                            <div className="text-3xl md:text-5xl font-bold">
+                              {activeSlide === 3 && isAnimationStarted ? (
+                                <CountUp 
+                                  start={0} 
+                                  end={stat.value} 
+                                  duration={2.5} 
+                                  separator="," 
+                                  suffix={stat.suffix || ''}
+                                />
+                              ) : (
+                                <span>{stat.value}{stat.suffix || ''}</span>
+                              )}
+                            </div>
+                            <div className="text-sm text-onest font-light md:text-[20px] text-black mt-2">
+                              <SlideRevealText
+                                text={stat.label}
+                                className="block"
+                                startAnimation={slideAnimationStates[idx] && activeSlide === 3}
+                                delay={400 + i * 100}
                               />
-                            ) : (
-                              <span>{stat.value}{stat.suffix || ''}</span>
-                            )}
+                            </div>
                           </div>
-                          <div className="text-sm md:text-base mt-2">{stat.label}</div>
-                        </div>
-                      ))}
+                        ))}
+                      </div>
+                    )}
+                    
+                    {/* Supplemental Logos (for Slide 3) */}
+                    {slide.supplementalLogos && (
+                      <div className="mt-8 flex flex-wrap justify-start gap-8">
+                        {slide.supplementalLogos.map((logo, i) => (
+                          <div 
+                            key={i} 
+                            className="w-16 h-16 md:w-20 md:h-20 opacity-75 hover:opacity-100 transition-opacity"
+                            style={{ 
+                              animationDelay: `${i * 0.3}s`,
+                              animation: activeSlide === 2 ? 'fadeIn 0.5s ease-in-out forwards' : 'none'
+                            }}
+                          >
+                            <Image 
+                              src={logo.src} 
+                              alt={logo.alt}
+                              width={80} 
+                              height={80}
+                              className="w-full h-full object-contain"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                    
+                    {/* CTA Button */}
+                    <div className="mt-6 md:mt-[48px]">
+                      <Link
+                        href={slide.ctaLink}
+                        className="bg-[#5790E1] hover:bg-gray-200 text-[#fbfbfb] hover:text-[#121212] px-6 py-3  transition-colors duration-300 inline-block font-medium"
+                      >
+                        <SlideRevealText
+                          text={slide.ctaText}
+                          className="block md:text-[20px] font-onest font-light"
+                          startAnimation={slideAnimationStates[idx]}
+                          delay={300}
+                        />
+                      </Link>
                     </div>
+                  </div>
+                </div>
+                
+                {/* Media half (top on mobile, right on desktop) */}
+                <div className="w-full md:w-1/2 h-1/3 md:h-full relative order-1 md:order-2">
+                  {/* Background Content - Video or Image */}
+                  {slide.isVideo ? (
+                    <video
+                      src={slide.background}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="absolute inset-0 w-full h-full object-cover"
+                      preload="metadata"
+                    />
+                  ) : (
+                    <div
+                      className="absolute inset-0 w-full h-full bg-cover object-contain bg-center"
+                      style={{ backgroundImage: `url(${slide.background})` }}
+                    />
                   )}
                   
-                  {/* Supplemental Logos (for Slide 3) */}
-                  {slide.supplementalLogos && (
-                    <div className="mt-8 flex flex-wrap justify-start gap-8">
-                      {slide.supplementalLogos.map((logo, i) => (
-                        <div 
-                          key={i} 
-                          className="w-16 h-16 md:w-20 md:h-20 opacity-75 hover:opacity-100 transition-opacity"
-                          style={{ 
-                            animationDelay: `${i * 0.3}s`,
-                            animation: activeSlide === 2 ? 'fadeIn 0.5s ease-in-out forwards' : 'none'
-                          }}
-                        >
-                          <Image 
-                            src={logo.src} 
-                            alt={logo.alt}
-                            width={80} 
-                            height={80}
-                            className="w-full h-full object-contain"
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                  
-                  {/* CTA Button */}
-                  <Link
-                    href={slide.ctaLink}
-                    className="mt-6 bg-[#fbfbfb] hover:bg-gray-200 text-[#000000] px-6 py-3 rounded-lg transition-colors duration-300 inline-block font-medium"
-                  >
-                    {slide.ctaText}
-                  </Link>
+                  {/* Dark overlay gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-transparent" />
                 </div>
               </div>
-              
-              {/* Media half (top on mobile, right on desktop) */}
-              <div className="w-full md:w-1/2 h-1/3 md:h-full relative order-1 md:order-2">
-                {/* Background Content - Video or Image */}
-                {slide.isVideo ? (
-                  <video
-                    src={slide.background}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="absolute inset-0 w-full h-full object-cover"
-                    preload="metadata"
-                  />
-                ) : (
-                  <div
-                    className="absolute inset-0 w-full h-full bg-cover bg-center"
-                    style={{ backgroundImage: `url(${slide.background})` }}
-                  />
-                )}
-                
-                {/* Dark overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-transparent" />
-              </div>
-            </div>
+            )}
           </SwiperSlide>
         ))}
       </Swiper>
@@ -278,6 +334,18 @@ export default function HeroCarousel() {
         @keyframes fadeIn {
           0% { opacity: 0; transform: translateY(20px); }
           100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Stat card styling */
+        .stat-card {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+          transform: translateY(-5px);
         }
       `}</style>
     </div>

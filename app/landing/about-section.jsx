@@ -46,7 +46,7 @@ export default function AboutSection() {
       const contentAnim = gsap.to(content, {
         x: window.innerWidth < 768 ? 0 : 40,
         ease: "power2.out",
-        duration: window.innerWidth <768 ? 2 : 10,
+        duration: window.innerWidth <768 ? 1 : 10,
         paused: true
       });
       
@@ -104,17 +104,17 @@ export default function AboutSection() {
     <>
     <section 
       
-      className="py-[20px] md:py-32 min-h-screen overflow-hidden bg-gradient-to-r from-[#010A4E] to-[#041174]"
-      id="about-section"
+      className="py-[20px] md:py-32 min-h-screen overflow-hidden bg-[#fbfbfb] from-[#010A4E] to-[#041174]"
+      id="about"
     >
       <div className="container mx-auto px-4 md:px-8 lg:px-12">
         <div ref={sectionRef} className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
           <div 
             ref={imageContainerRef} 
-            className="relative h-[350px] sm:h-[400px] md:h-[450px] lg:h-[500px] w-full rounded-xl overflow-hidden"
+            className="relative h-[350px] sm:h-[400px] md:ml-[40px] md:h-[450px] lg:h-[500px] w-full rounded-xl overflow-hidden"
           >
             <Image
-              src="https://images.unsplash.com/photo-1639322537228-f710d846310a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80"
+              src="https://images.unsplash.com/photo-1661103391619-46e3175b3152?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Fiber optic network"
               fill
               className="object-cover rounded-xl"
@@ -124,15 +124,16 @@ export default function AboutSection() {
           </div>
           
           <div ref={contentRef} className="text-white space-y-6">
-            <h2 className="text-3xl md:text-5xl font-bold">
+            <h2 className="text-3xl text-lato text-[#5790E1] font-bold md:text-[36px] font-bold">
               IQ GROUP
             </h2>
-            <p className="text-xl md:text-2xl font-light text-sky-300 mb-6">
+            <p className=" text-onest md:text-2xl font-light text-sky-300 mb-6">
               POWERING INNOVATION. DELIVERING EXCELLENCE.
             </p>
-            <p className="text-lg md:text-xl text-gray-200 font-light leading-relaxed">
-            IQ Group sources and supplies Ferro Alloys, Noble Alloys, Minerals, Metals, Ores, Chemicals, and Carbon Materials globally—setting unmatched benchmarks in integrity and ethics. With our headquarters in Mumbai and an international operations office in China, we serve steel, foundries, refractory, chemical, ceramic, paints, tyres, aerospace, glass, automobile, textile, and battery industries.            </p>
-            <p className="text-lg md:text-xl text-gray-200 font-light leading-relaxed">Our commitment to quality ensures you receive top-grade materials reliably and on time.</p>
+            <p className="  text-[#1E3157] text-onest font-light md:text-[32px] ">
+            IQ Group powers industries with premium raw materials—from alloys to minerals—delivered with precision, integrity, and speed. Global reach, Mumbai roots. 
+            </p>
+            <p className=" md:text-[18px] text-[#1E3157] font-light leading-relaxed">Trusted by steel, aerospace, ceramics, batteries, and more.</p>
             <button className="mt-6 border border-sky-400 text-sky-300 hover:bg-sky-900/30 hover:border-sky-300 rounded-md px-6 py-3 transition-all duration-300">
               Learn More
             </button>
