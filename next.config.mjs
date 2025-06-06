@@ -4,7 +4,7 @@ const nextConfig = {
     domains: [
       'images.unsplash.com',
       'via.placeholder.com',
-      'storage.googleapis.com'
+      'images.pexels.com'
     ],
   },
 };

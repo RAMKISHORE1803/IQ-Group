@@ -33,6 +33,22 @@ const SlideRevealText = ({ text, className, startAnimation = false, delay = 0, d
   );
 };
 
+// Button reveal animation component
+const ButtonReveal = ({ children, startAnimation = false, delay = 0, duration = 800 }) => {
+  return (
+    <div 
+      className="overflow-hidden relative inline-block"
+      style={{
+        clipPath: startAnimation ? 'inset(0 0 0 0)' : 'inset(0 100% 0 0)',
+        transition: `clip-path ${duration}ms ease-out ${delay}ms`,
+        willChange: 'clip-path'
+      }}
+    >
+      {children}
+    </div>
+  );
+};
+
 // Slide data
 const slides = [
   {
@@ -150,11 +166,11 @@ export default function HeroCarousel() {
               /* Responsive two-half layout container */
               <div className="flex flex-col md:flex-row w-full h-full relative">
                 {/* Content half (bottom on mobile, left on desktop) */}
-                <div className="w-full md:w-1/2 h-2/3 md:h-full flex flex-col justify-center items-start px-4 text-left order-2 md:order-1">
-                  <div className="max-w-xl ml-0 md:ml-auto md:mr-0 md:pr-8 lg:pr-16">
+                <div className="w-full md:w-1/2 h-2/3 md:h-full flex flex-col justify-start md:justify-center items-start px-4 text-left order-2 md:order-1">
+                  <div className="max-w-xl ml-0 mt-10 md:mt-0 flex flex-col items-start  gap-4 md:block  md:ml-auto md:mr-0 md:pr-8 lg:pr-16">
                     <SlideRevealText
                       text={slide.headline}
-                      className="text-[#5790E1] text-lato font-semibold text-4xl md:text-[80px] leading-tight"
+                      className="text-[#333] text-lato font-semibold text-[42px] md:text-[36px] leading-tight"
                       startAnimation={slideAnimationStates[idx]}
                       delay={0}
                     />
@@ -162,7 +178,7 @@ export default function HeroCarousel() {
                     <div className="mt-4">
                       <SlideRevealText
                         text={slide.subtext}
-                        className="text-[#121212] text-onest font-light text-lg md:text-[40px] max-w-2xl"
+                        className="text-[#121212] text-onest font-light text-[18px] md:text-[20px] max-w-2xl"
                         startAnimation={slideAnimationStates[idx]}
                         delay={200}
                       />
@@ -172,7 +188,7 @@ export default function HeroCarousel() {
                     {slide.animatedStats && (
                       <div className="mt-8 flex flex-wrap justify-start gap-8">
                         {slide.animatedStats.map((stat, i) => (
-                          <div key={i} className="text-[#000000] text-left">
+                          <div key={i} className="text-[#1E3157] text-opacity-50 text-onest font-semibold text-left">
                             <div className="text-3xl md:text-5xl font-bold">
                               {activeSlide === 3 && isAnimationStarted ? (
                                 <CountUp 
@@ -225,17 +241,18 @@ export default function HeroCarousel() {
                     
                     {/* CTA Button */}
                     <div className="mt-6 md:mt-[48px]">
-                      <Link
-                        href={slide.ctaLink}
-                        className="bg-[#5790E1] hover:bg-gray-200 text-[#fbfbfb] hover:text-[#121212] px-6 py-3  transition-colors duration-300 inline-block font-medium"
+                      <ButtonReveal
+                        startAnimation={slideAnimationStates[idx]}
+                        delay={300}
+                        duration={800}
                       >
-                        <SlideRevealText
-                          text={slide.ctaText}
-                          className="block md:text-[20px] font-onest font-light"
-                          startAnimation={slideAnimationStates[idx]}
-                          delay={300}
-                        />
-                      </Link>
+                        <Link
+                          href={slide.ctaLink}
+                          className="bg-[#333] hover:bg-gray-200 text-[#fbfbfb] hover:text-[#121212] px-6 py-3 transition-colors duration-300 inline-block font-medium md:text-[20px] font-onest font-light"
+                        >
+                          {slide.ctaText}
+                        </Link>
+                      </ButtonReveal>
                     </div>
                   </div>
                 </div>
