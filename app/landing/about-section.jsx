@@ -134,7 +134,7 @@ export default function AboutSection() {
             IQ Group powers industries with premium raw materials—from alloys to minerals—delivered with precision, integrity, and speed. Global reach, Mumbai roots. 
             </p>
             <p className=" md:text-[18px] text-[#1E3157] font-light leading-relaxed">Trusted by steel, aerospace, ceramics, batteries, and more.</p>
-            <button className="mt-6 border border-sky-400 text-sky-300 hover:bg-sky-900/30 hover:border-sky-300 rounded-md px-6 py-3 transition-all duration-300">
+            <button className="mt-6 border bg-black text-[#fbfbfb] hover:bg-[#fbfbfb] hover:border-[#000000] hover:text-[#000000]  px-6 py-3 transition-all duration-300">
               Learn More
             </button>
           </div>

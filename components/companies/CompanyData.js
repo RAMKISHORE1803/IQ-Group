@@ -13,7 +13,7 @@ export const companies = [
     name: 'IQ Minerals & Metals',
     category: 'Minerals and Metals',
     description: 'Global supplier of premium minerals and metals for various industrial applications.',
-    image: 'https://images.unsplash.com/photo-1605559911160-e31bfb0875b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80',
+    image: 'https://images.pexels.com/photos/1267338/pexels-photo-1267338.jpeg?auto=compress&cs=tinysrgb&w=800&h=1200',
     commodities: ['Precious Metals', 'Base Metals', 'Industrial Minerals', 'Rare Earth Elements']
   },
   {
@@ -21,7 +21,7 @@ export const companies = [
     name: 'IQ Coal & Coke',
     category: 'Carbon Materials',
     description: 'Specialized in high-quality carbon materials for energy and metallurgical industries.',
-    image: 'https://images.unsplash.com/photo-1617770187085-acfdcaa932f2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+    image: 'https://www.iqgroup.in/image/banner/carbon.jpg',
     commodities: ['Metallurgical Coal', 'Thermal Coal', 'Petroleum Coke', 'Carbon Additives']
   }
 ];
@@ -33,7 +33,7 @@ export const companiesSecondSet = [
     name: 'IQ Ferro Alloys',
     category: 'Ferro Alloys',
     description: 'Leading supplier of high-quality ferro alloys for steel manufacturing and various industrial applications.',
-    image: 'https://images.unsplash.com/photo-1615811361523-6bd03d7748e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80',
+    image: 'https://images.pexels.com/photos/2760243/pexels-photo-2760243.jpeg?auto=compress&cs=tinysrgb&w=800&h=1200',
     commodities: ['Ferro Silicon', 'Ferro Manganese', 'Silico Manganese', 'Ferro Chrome']
   },
   {
@@ -41,7 +41,7 @@ export const companiesSecondSet = [
     name: 'IQ Noble Alloys',
     category: 'Noble Alloys',
     description: 'Specialized in manufacturing and supplying premium noble alloys for advanced technological applications.',
-    image: 'https://images.unsplash.com/photo-1594737959857-b9ee1667af9f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80',
+    image: 'https://www.iqgroup.in/image/banner/nobel.jpg',
     commodities: ['Titanium Alloys', 'Nickel Alloys', 'Cobalt Alloys', 'Platinum Group Metals']
   },
   {
@@ -49,7 +49,7 @@ export const companiesSecondSet = [
     name: 'IQ Green Energy',
     category: 'Renewable Energy Solutions',
     description: 'Providing sustainable energy solutions with cutting-edge technology and innovative designs.',
-    image: 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80',
+    image: 'https://images.pexels.com/photos/2800832/pexels-photo-2800832.jpeg?auto=compress&cs=tinysrgb&w=800&h=1200',
     commodities: [
       'UE 42 plus / 5.1 KW',
       'UE 42 / 4.2 KW',
@@ -68,7 +68,7 @@ export const companiesThirdSet = [
     name: 'IQ Angel Investments',
     category: 'Venture Capital',
     description: 'We are a venture intended to promote investments in various types of businesses at their beginning or developmental stage. We look for ventures with dedication and desire to develop extraordinary value in the concerned industry.',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80',
+    image: 'https://www.iqgroup.in/image/banner/angel.jpg',
     commodities: ['Early Stage Startups', 'Growth Capital', 'Strategic Investments', 'Business Development']
   },
   {
@@ -76,7 +76,7 @@ export const companiesThirdSet = [
     name: 'Dab WorldWide',
     category: 'Marketing & Innovation',
     description: 'We are an exclusive innovative product marketing company that achieves marketing supremacy for various startups, who have amazing innovative ideas and products.',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+    image: 'https://www.iqgroup.in/image/banner/dab-worldwide.jpg',
     commodities: ['Product Marketing', 'Brand Strategy', 'Market Research', 'Digital Campaigns', 'Growth Hacking']
   }
 ];

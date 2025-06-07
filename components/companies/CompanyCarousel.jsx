@@ -3,53 +3,171 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { Pause, Play, ChevronLeft, ChevronRight } from 'lucide-react';
-import CompanyCard from './CompanyCard';
+import { allCompanies } from './CompanyData';
 
-// Company data
-const companies = [
-  {
-    id: 1,
-    name: 'IQ Ferro Alloys',
-    color: '#5790E1',
-    description: 'Leading provider in specialized industrial solutions'
-  },
-  {
-    id: 2,
-    name: 'IQ Green Energy',
-    color: '#1E3157',
-    description: 'Renewable energy and sustainable solutions'
-  },
-  {
-    id: 3,
-    name: 'IQ Mineral & Metals',
-    color: '#000000',
-    description: 'Premium quality minerals and metal products'
-  },
-  {
-    id: 4,
-    name: 'IQ Trading',
-    color: '#5790E1',
-    description: 'Global trading and supply chain solutions'
-  },
-  {
-    id: 5,
-    name: 'IQ Shipping',
-    color: '#1E3157',
-    description: 'International shipping and logistics services'
-  },
-  {
-    id: 6,
-    name: 'IQ Logistics',
-    color: '#000000',
-    description: 'End-to-end logistics and distribution'
-  },
-  {
-    id: 7,
-    name: 'IQ Resources',
-    color: '#5790E1',
-    description: 'Resource management and raw materials'
-  },
-];
+// Company Card Component
+function CompanyCard({ company, isCenter, position, scale, xOffset, yOffset, onClick }) {
+  // State for mobile detection and hover
+  const [isMobile, setIsMobile] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  
+  // Detect mobile screen on client side
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    
+    // Initial check
+    checkMobile();
+    
+    // Listen for resize events
+    window.addEventListener('resize', checkMobile);
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Determine if this card should show hover effects
+  // On desktop, all cards can have hover effects; on mobile, only center card
+  const canShowHoverEffects = !isMobile || isCenter;
+  const showHoverContent = isHovered && canShowHoverEffects;
+  
+  return (
+    <div
+      className="absolute cursor-pointer transition-all duration-500 ease-out"
+      style={{
+        transform: `translateX(${xOffset}px) translateY(${yOffset}px) scale(${isHovered && canShowHoverEffects ? scale * 1.02 : scale})`,
+        width: isMobile 
+          ? (isCenter ? '320px' : '280px')
+          : (isCenter ? '380px' : '340px'),
+        height: isMobile 
+          ? (isCenter ? '506px' : '480px')
+          : (isCenter ? '506px' : '440px'),
+        zIndex: isHovered ? 20 : isCenter ? 10 : 5 - Math.abs(position),
+        opacity: Math.abs(position) <= 2 ? 1 : 0.7,
+      }}
+      onClick={onClick}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Main Card Container */}
+      <div className="relative w-full h-full overflow-hidden shadow-2xl">
+        
+        {/* Dynamic Background */}
+        <div className="absolute inset-0 transition-all duration-700">
+          {/* Show gradient background when hovered and hover effects are allowed */}
+          {showHoverContent ? (
+            <div className="absolute inset-0 bg-gradient-to-br from-gray-200 via-gray-100 to-gray-200"></div>
+          ) : (
+            <div className="absolute inset-0">
+              <img 
+                src={company.image} 
+                alt={`${company.name} Background`} 
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black/40"></div>
+              
+              {/* Animated Light Streaks */}
+              {/* <div className="absolute inset-0 overflow-hidden">
+                
+                <div className="absolute -top-10 -left-10 w-full h-full">
+                  <div className="absolute w-1 h-full bg-gradient-to-b from-transparent via-white/40 to-transparent transform rotate-12 translate-x-20"></div>
+                  <div className="absolute w-1 h-full bg-gradient-to-b from-transparent via-yellow-300/30 to-transparent transform rotate-12 translate-x-32"></div>
+                  <div className="absolute w-1 h-full bg-gradient-to-b from-transparent via-pink-300/30 to-transparent transform rotate-12 translate-x-44"></div>
+                  <div className="absolute w-1 h-full bg-gradient-to-b from-transparent via-blue-300/40 to-transparent transform rotate-12 translate-x-56"></div>
+                  <div className="absolute w-1 h-full bg-gradient-to-b from-transparent via-green-300/30 to-transparent transform rotate-12 translate-x-68"></div>
+                  <div className="absolute w-1 h-full bg-gradient-to-b from-transparent via-purple-300/30 to-transparent transform rotate-12 translate-x-80"></div>
+                  <div className="absolute w-1 h-full bg-gradient-to-b from-transparent via-teal-300/40 to-transparent transform rotate-12 translate-x-92"></div>
+                  <div className="absolute w-1 h-full bg-gradient-to-b from-transparent via-orange-300/30 to-transparent transform rotate-12 translate-x-104"></div>
+                </div>
+                
+                
+                <div className="absolute -top-10 -right-10 w-full h-full">
+                  <div className="absolute w-1 h-full bg-gradient-to-b from-transparent via-cyan-300/30 to-transparent transform -rotate-12 -translate-x-20"></div>
+                  <div className="absolute w-1 h-full bg-gradient-to-b from-transparent via-indigo-300/30 to-transparent transform -rotate-12 -translate-x-32"></div>
+                  <div className="absolute w-1 h-full bg-gradient-to-b from-transparent via-rose-300/30 to-transparent transform -rotate-12 -translate-x-44"></div>
+                </div>
+              </div> */}
+            </div>
+          )}
+        </div>
+        
+        {/* Top Label - Company Name */}
+        <div className="absolute top-6 left-6 z-10">
+          <div className="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full">
+            <span className="text-white text-xs font-medium tracking-wider">
+              {company.name.toUpperCase()}
+            </span>
+          </div>
+        </div>
+        
+        {/* Bottom Glassy Content Area */}
+        <div className={`absolute bottom-0 left-0 right-0 transition-all duration-500 ${
+          showHoverContent ? 'h-5/6' : 'h-2/5'
+        }`}>
+          <div className="h-full bg-white/90 backdrop-blur-md border-t border-white/20 p-6 flex flex-col">
+            
+            {/* Article/Company Label */}
+            {/* <div className="mb-4">
+              <span className="text-gray-500 text-xs font-medium tracking-wider">
+                {showHoverContent ? 'COMPANY' : company.category.toUpperCase()} • MAY 16, 2025
+              </span>
+            </div> */}
+            
+            {/* Main Content */}
+            <div className="flex-1">
+              {!showHoverContent ? (
+                // Default State - Products
+                <>
+                  <h3 className="text-gray-900 text-xl font-semibold mb-4 leading-tight">
+                    {company.name}
+                  </h3>
+                  <div className="text-gray-600 text-sm leading-relaxed">
+                    <p className="mb-4">
+                      {company.description.substring(0, 80)}...
+                    </p>
+                    <div className="space-y-2">
+                      {company.commodities.slice(0, 4).map((product, index) => (
+                        <div key={index} className="text-gray-500 text-sm flex items-center">
+                          <div className="w-2 h-2 bg-blue-400 rounded-full mr-3 flex-shrink-0"></div>
+                          {product}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </>
+              ) : (
+                // Hover State - Company Description
+                <>
+                  <h2 className="text-gray-900 text-2xl font-bold mb-6 leading-tight">
+                    {company.name}
+                  </h2>
+                  <p className="text-gray-600 text-base leading-relaxed mb-8">
+                    {company.description}
+                  </p>
+                  
+                  {/* Learn More Button */}
+                  <button 
+                    className="inline-flex items-center px-8 py-4 bg-[#5790E1] text-white text-sm font-semibold  hover:bg-[#4a7bc8] transition-all duration-200 shadow-lg hover:shadow-xl"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      // Handle learn more click
+                    }}
+                  >
+                    LEARN MORE
+                    <svg className="ml-3 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </button>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function CompanyCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -79,11 +197,11 @@ export default function CompanyCarousel() {
 
   // Navigation functions
   const nextSlide = () => {
-    setActiveIndex((prevIndex) => (prevIndex + 1) % companies.length);
+    setActiveIndex((prevIndex) => (prevIndex + 1) % allCompanies.length);
   };
 
   const prevSlide = () => {
-    setActiveIndex((prevIndex) => (prevIndex - 1 + companies.length) % companies.length);
+    setActiveIndex((prevIndex) => (prevIndex - 1 + allCompanies.length) % allCompanies.length);
   };
   
   // Toggle pause/play
@@ -117,9 +235,9 @@ export default function CompanyCarousel() {
   const getVisibleCards = () => {
     let cards = [];
     for (let i = -halfVisibleCards; i <= halfVisibleCards; i++) {
-      const index = (activeIndex + i + companies.length) % companies.length;
+      const index = (activeIndex + i + allCompanies.length) % allCompanies.length;
       cards.push({
-        ...companies[index],
+        ...allCompanies[index],
         position: i
       });
     }
@@ -147,20 +265,45 @@ export default function CompanyCarousel() {
     }
   };
 
+  // Calculate horizontal spacing based on screen size
+  const getHorizontalSpacing = (position) => {
+    if (windowWidth < 640) {
+      // Mobile spacing
+      return position * 120;
+    } else if (windowWidth < 1024) {
+      // Tablet spacing
+      return position * 280;
+    } else {
+      // Desktop spacing - increased gap between cards
+      if (position === -1 || position === 1) {
+        // Increase spacing for adjacent cards
+        // You can adjust this value (380) to change the distance between center and adjacent cards
+        return position * 336; // Try increasing this to 420 or 450 for more spacing
+      } else if (position === -2 || position === 2) {
+        // Spacing for outer cards
+        // You can adjust this value (320) to change the distance between adjacent and outer cards
+        return position * 315;
+      } else {
+        // Center card (position === 0)
+        return 0;
+      }
+    }
+  };
+
   const visibleCards = getVisibleCards();
 
   return (
-    <section className="bg-[#fbfbfb] py-16 md:py-24">
+    <section className="bg-[#fbfbfb] pt-16 md:pt-24 md:pb-16">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#000000] mb-4 font-onest">Our Companies</h2>
-          <p className="text-lg text-gray-700 max-w-3xl mx-auto font-light font-onest">
+          <h2 className="text-[28px] md:text-[18px] font-bold text-[#000000] mb-4 text-lato font-lato font-bold">EXPLORE OUR COMPANIES</h2>
+          <p className="text-[20px] text-gray-700 max-w-[1000px] mx-auto md:text-[32px] font-light font-onest">
             Explore our specialized divisions working together to deliver excellence in global logistics and material supply.
           </p>
         </div>
 
         <div 
-          className="relative max-w-6xl mx-auto my-8  md:overflow-visible"
+          className="relative max-w-7xl mx-auto my-8 md:overflow-visible"
           ref={carouselRef}
           onTouchStart={handleDragStart}
           onTouchEnd={handleDragEnd}
@@ -168,21 +311,17 @@ export default function CompanyCarousel() {
           onMouseUp={handleDragEnd}
         >
           {/* Cards */}
-          <div className="flex justify-center items-center h-[350px] relative touch-none">
+          <div className="flex justify-center items-center h-[600px] relative touch-none">
             {visibleCards.map((company) => {
               // Calculate scale based on position
               const isCenter = company.position === 0;
-              const scale = isCenter ? 1 : company.position === -1 || company.position === 1 ? 0.7 : 0.85;
+              const scale = isCenter ? 1 : company.position === -1 || company.position === 1 ? 0.75 : 0.85;
               
-              // Vertical position to create arc effect
-              const yOffset = isCenter ? 0 : company.position === -1 || company.position === 1 ? 30 : 15;
+              // Vertical position to create arc effect - adjusted for larger cards
+              const yOffset = isCenter ? 0 : company.position === -1 || company.position === 1 ? 40 : 20;
               
-              // Horizontal position
-              const xOffset = company.position * (
-                windowWidth < 640 
-                  ? 100 // Show partial cards on mobile by reducing offset distance
-                  : windowWidth < 1024 ? 250 : 300
-              );
+              // Horizontal position - using the function for increased spacing
+              const xOffset = getHorizontalSpacing(company.position);
               
               return (
                 <CompanyCard
@@ -195,9 +334,9 @@ export default function CompanyCarousel() {
                   yOffset={yOffset}
                   onClick={() => {
                     if (company.position < 0) {
-                      setActiveIndex((activeIndex - company.position) % companies.length);
+                      setActiveIndex((activeIndex - company.position) % allCompanies.length);
                     } else if (company.position > 0) {
-                      setActiveIndex((activeIndex + company.position) % companies.length);
+                      setActiveIndex((activeIndex + company.position) % allCompanies.length);
                     }
                   }}
                 />
@@ -210,32 +349,32 @@ export default function CompanyCarousel() {
             {/* Pause/Play Button */}
             <button
               onClick={togglePause}
-              className="w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center text-gray-700 hover:bg-gray-100 transition-colors z-20"
+              className="w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center text-gray-700 hover:bg-gray-100 transition-colors z-20"
               aria-label={isPaused ? "Play slideshow" : "Pause slideshow"}
             >
-              {isPaused ? <Play size={18} /> : <Pause size={18} />}
+              {isPaused ? <Play size={20} /> : <Pause size={20} />}
             </button>
             
             {/* Previous Button */}
             <button 
               onClick={prevSlide}
-              className="w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center text-gray-700 hover:bg-gray-100 transition-colors z-20"
+              className="w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center text-gray-700 hover:bg-gray-100 transition-colors z-20"
               aria-label="Previous slide"
             >
-              <ChevronLeft size={18} />
+              <ChevronLeft size={20} />
             </button>
             
             {/* Next Button */}
             <button 
               onClick={nextSlide}
-              className="w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center text-gray-700 hover:bg-gray-100 transition-colors z-20"
+              className="w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center text-gray-700 hover:bg-gray-100 transition-colors z-20"
               aria-label="Next slide"
             >
-              <ChevronRight size={18} />
+              <ChevronRight size={20} />
             </button>
           </div>
         </div>
       </div>
     </section>
   );
-} 
+}
