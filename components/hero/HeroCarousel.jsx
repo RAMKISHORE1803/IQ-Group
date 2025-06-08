@@ -170,7 +170,7 @@ export default function HeroCarousel() {
                   <div className="max-w-xl ml-0 mt-10 md:mt-0 flex flex-col items-start  gap-4 md:block  md:ml-auto md:mr-0 md:pr-8 lg:pr-16">
                     <SlideRevealText
                       text={slide.headline}
-                      className="text-[#333] text-lato font-semibold text-[42px] md:text-[36px] leading-tight"
+                      className="text-[#000000] text-lato font-semibold text-[42px] md:text-[42px] leading-tight"
                       startAnimation={slideAnimationStates[idx]}
                       delay={0}
                     />
@@ -248,7 +248,7 @@ export default function HeroCarousel() {
                       >
                         <Link
                           href={slide.ctaLink}
-                          className="bg-[#333] hover:bg-gray-200 text-[#fbfbfb] hover:text-[#121212] px-6 py-3 transition-colors duration-300 inline-block font-medium md:text-[20px] font-onest font-light"
+                          className="bg-black/90 hover:bg-gray-200 text-[#fbfbfb] hover:text-[#121212] px-6 py-3 transition-colors duration-300 inline-block font-medium md:text-[18px] font-onest font-light"
                         >
                           {slide.ctaText}
                         </Link>
@@ -289,13 +289,13 @@ export default function HeroCarousel() {
       {/* Custom styling for the swiper component */}
       <style jsx global>{`
         .hero-swiper {
-          --swiper-theme-color: #010A4E;
+          --swiper-theme-color:rgb(17, 17, 18);
           --swiper-navigation-size: 24px;
         }
         
         .hero-swiper .swiper-button-next,
         .hero-swiper .swiper-button-prev {
-          background-color: rgba(1, 10, 78, 0.3);
+          background-color: rgba(17, 18, 21, 0.3);
           width: 50px;
           height: 50px;
           border-radius: 50%;
@@ -307,7 +307,7 @@ export default function HeroCarousel() {
         
         .hero-swiper .swiper-button-next:hover,
         .hero-swiper .swiper-button-prev:hover {
-          background-color: rgba(1, 10, 78, 0.5);
+          background-color: rgba(11, 11, 11, 0.5);
         }
         
         .hero-swiper .swiper-pagination {

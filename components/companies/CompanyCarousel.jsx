@@ -38,11 +38,11 @@ function CompanyCard({ company, isCenter, position, scale, xOffset, yOffset, onC
       style={{
         transform: `translateX(${xOffset}px) translateY(${yOffset}px) scale(${isHovered && canShowHoverEffects ? scale * 1.02 : scale})`,
         width: isMobile 
-          ? (isCenter ? '320px' : '280px')
-          : (isCenter ? '380px' : '340px'),
+          ? (isCenter ? '285px' : '252px')
+          : (isCenter ? '338px' : '310px'),
         height: isMobile 
-          ? (isCenter ? '506px' : '480px')
-          : (isCenter ? '506px' : '440px'),
+          ? (isCenter ? '450px' : '400px')
+          : (isCenter ? '450px' : '400px'),
         zIndex: isHovered ? 20 : isCenter ? 10 : 5 - Math.abs(position),
         opacity: Math.abs(position) <= 2 ? 1 : 0.7,
       }}
@@ -56,9 +56,7 @@ function CompanyCard({ company, isCenter, position, scale, xOffset, yOffset, onC
         {/* Dynamic Background */}
         <div className="absolute inset-0 transition-all duration-700">
           {/* Show gradient background when hovered and hover effects are allowed */}
-          {showHoverContent ? (
-            <div className="absolute inset-0 bg-gradient-to-br from-gray-200 via-gray-100 to-gray-200"></div>
-          ) : (
+          
             <div className="absolute inset-0">
               <img 
                 src={company.image} 
@@ -89,7 +87,7 @@ function CompanyCard({ company, isCenter, position, scale, xOffset, yOffset, onC
                 </div>
               </div> */}
             </div>
-          )}
+          
         </div>
         
         {/* Top Label - Company Name */}
@@ -273,11 +271,11 @@ export default function CompanyCarousel() {
       if (position === -1 || position === 1) {
         // Increase spacing for adjacent cards
         // You can adjust this value (380) to change the distance between center and adjacent cards
-        return position * 336; // Try increasing this to 420 or 450 for more spacing
+        return position * 330; // Try increasing this to 420 or 450 for more spacing
       } else if (position === -2 || position === 2) {
         // Spacing for outer cards
         // You can adjust this value (320) to change the distance between adjacent and outer cards
-        return position * 315;
+        return position * 305;
       } else {
         // Center card (position === 0)
         return 0;
