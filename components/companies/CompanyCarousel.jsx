@@ -102,68 +102,63 @@ function CompanyCard({ company, isCenter, position, scale, xOffset, yOffset, onC
         </div>
         
         {/* Bottom Glassy Content Area */}
-        <div className={`absolute bottom-0 left-0 right-0 transition-all duration-500 ${
-          showHoverContent ? 'h-5/6' : 'h-2/5'
-        }`}>
-          <div className="h-full bg-white/90 backdrop-blur-md border-t border-white/20 p-6 flex flex-col">
-            
-            {/* Article/Company Label */}
-            {/* <div className="mb-4">
-              <span className="text-gray-500 text-xs font-medium tracking-wider">
-                {showHoverContent ? 'COMPANY' : company.category.toUpperCase()} • MAY 16, 2025
-              </span>
-            </div> */}
-            
-            {/* Main Content */}
-            <div className="flex-1">
-              {!showHoverContent ? (
-                // Default State - Products
-                <>
-                  <h3 className="text-gray-900 text-xl font-semibold mb-4 leading-tight">
-                    {company.name}
-                  </h3>
-                  <div className="text-gray-600 text-sm leading-relaxed">
-                    <p className="mb-4">
-                      {company.description.substring(0, 80)}...
-                    </p>
-                    <div className="space-y-2">
-                      {company.commodities.slice(0, 4).map((product, index) => (
-                        <div key={index} className="text-gray-500 text-sm flex items-center">
-                          <div className="w-2 h-2 bg-blue-400 rounded-full mr-3 flex-shrink-0"></div>
-                          {product}
-                        </div>
-                      ))}
+        {isCenter && (
+          <div className={`absolute bottom-0 left-0 right-0 transition-all duration-500 ${
+            showHoverContent ? 'h-5/6' : 'h-2/5'
+          }`}>
+            <div className="h-full bg-white/90 backdrop-blur-md border-t border-white/20 p-6 flex flex-col">
+              
+              {/* Main Content */}
+              <div className="flex-1">
+                {!showHoverContent ? (
+                  // Default State - Products
+                  <>
+                    <h3 className="text-gray-900 text-xl font-semibold mb-4 leading-tight">
+                      {company.name}
+                    </h3>
+                    <div className="text-gray-600 text-sm leading-relaxed">
+                      <p className="mb-4">
+                        {company.description.substring(0, 80)}...
+                      </p>
+                      <div className="space-y-2">
+                        {company.commodities.slice(0, 4).map((product, index) => (
+                          <div key={index} className="text-gray-500 text-sm flex items-center">
+                            <div className="w-2 h-2 bg-blue-400 rounded-full mr-3 flex-shrink-0"></div>
+                            {product}
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                </>
-              ) : (
-                // Hover State - Company Description
-                <>
-                  <h2 className="text-gray-900 text-2xl font-bold mb-6 leading-tight">
-                    {company.name}
-                  </h2>
-                  <p className="text-gray-600 text-base leading-relaxed mb-8">
-                    {company.description}
-                  </p>
-                  
-                  {/* Learn More Button */}
-                  <button 
-                    className="inline-flex items-center px-8 py-4 bg-[#5790E1] text-white text-sm font-semibold  hover:bg-[#4a7bc8] transition-all duration-200 shadow-lg hover:shadow-xl"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      // Handle learn more click
-                    }}
-                  >
-                    LEARN MORE
-                    <svg className="ml-3 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </button>
-                </>
-              )}
+                  </>
+                ) : (
+                  // Hover State - Company Description
+                  <>
+                    <h2 className="text-gray-900 text-2xl font-bold mb-6 leading-tight">
+                      {company.name}
+                    </h2>
+                    <p className="text-gray-600 text-base leading-relaxed mb-8">
+                      {company.description}
+                    </p>
+                    
+                    {/* Learn More Button */}
+                    <button 
+                      className="inline-flex items-center px-8 py-4 bg-[#5790E1] text-white text-sm font-semibold  hover:bg-[#4a7bc8] transition-all duration-200 shadow-lg hover:shadow-xl"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        // Handle learn more click
+                      }}
+                    >
+                      LEARN MORE
+                      <svg className="ml-3 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </button>
+                  </>
+                )}
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

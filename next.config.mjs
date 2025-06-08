@@ -4,7 +4,8 @@ const nextConfig = {
     domains: [
       'images.unsplash.com',
       'via.placeholder.com',
-      'images.pexels.com'
+      'images.pexels.com',
+      'www.iqgroup.in'
     ],
   },
 };

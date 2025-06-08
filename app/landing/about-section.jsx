@@ -124,16 +124,16 @@ export default function AboutSection() {
           </div>
           
           <div ref={contentRef} className="text-white space-y-6">
-            <h2 className="text-3xl text-lato text-[#5790E1] font-bold md:text-[36px] font-bold">
+            <h2 className="text-[32px] text-lato text-[#000] font-bold md:text-[38px] font-bold">
               IQ GROUP
             </h2>
-            <p className=" text-onest md:text-2xl font-light text-sky-300 mb-6">
+            <p className=" text-onest md:text-[32] font-light text-[#333] mb-6">
               POWERING INNOVATION. DELIVERING EXCELLENCE.
             </p>
-            <p className="  text-[#1E3157] text-onest font-light md:text-[32px] ">
+            <p className="  text-gray-700 text-onest font-light md:text-[28px] ">
             IQ Group powers industries with premium raw materials—from alloys to minerals—delivered with precision, integrity, and speed. Global reach, Mumbai roots. 
             </p>
-            <p className=" md:text-[18px] text-[#1E3157] font-light leading-relaxed">Trusted by steel, aerospace, ceramics, batteries, and more.</p>
+            <p className=" md:text-[28px] text-[#1E3157] font-onest font-light leading-relaxed">Trusted by steel, aerospace, ceramics, batteries, and more.</p>
             <button className="mt-6 border bg-black text-[#fbfbfb] hover:bg-[#fbfbfb] hover:border-[#000000] hover:text-[#000000]  px-6 py-3 transition-all duration-300">
               Learn More
             </button>

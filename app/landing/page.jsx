@@ -7,7 +7,9 @@ import CompanySection from './company-section';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import GlobalConstructionPlatform from './globalMap';
-
+import MobileView from '@/components/companies/MobileView';
+import IndustriesSection from './industries-section';
+import {allCompanies} from '@/components/companies/CompanyData';
 // Utility function for debouncing
 const debounce = (func, wait) => {
   let timeout;
@@ -26,158 +28,134 @@ const isMobile = () => {
 }
 
 export default function LandingPage() {
-  const companyRef = useRef(null);
-  const globalMapRef = useRef(null);
-  const containerRef = useRef(null);
+  const globalMapWrapperRef = useRef(null);
+  const globalMapContentRef = useRef(null);
 
   useEffect(() => {
-    // Need to ensure we're in the browser
     if (typeof window === 'undefined') return;
-
-    // Register ScrollTrigger plugin only
+    
     gsap.registerPlugin(ScrollTrigger);
 
-    // Set up the curtain reveal effect
     const setupCurtainReveal = () => {
-      if (!companyRef.current || !globalMapRef.current || !containerRef.current) return;
+      if (!globalMapWrapperRef.current || !globalMapContentRef.current) return;
 
-      // Reset any existing ScrollTriggers for this container
-      ScrollTrigger.getAll().forEach(st => {
-        if (st.vars.trigger === containerRef.current) {
-          st.kill();
-        }
-      });
-      
-      // Reset any transforms before setting up new animation
-      gsap.set([companyRef.current, globalMapRef.current], {
+      // Clear existing triggers
+      ScrollTrigger.getAll().forEach(st => st.kill());
+
+      // Reset any previous animations
+      gsap.set([globalMapWrapperRef.current, globalMapContentRef.current], {
         clearProps: "all"
       });
-      
-      // Initial setup
-      gsap.set(containerRef.current, {
+
+      // Set up wrapper - acts as a viewport window during animation only
+      gsap.set(globalMapWrapperRef.current, {
+        overflow: 'hidden',
         position: 'relative',
-        overflow: 'visible',
-        height:"140vh",
-        backgroundColor: '#fbfbfb'
-      });
-      
-      gsap.set(globalMapRef.current, {
-        position: 'absolute',
-        top: isMobile() ? "33%" : "30%",
-        left: 0,
-        width: '100%',
-        height: "100vh",
-        zIndex: 2,
-        backgroundColor: 'white',
-        overflow: 'hidden'
-      });
-      
-      gsap.set(companyRef.current, {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        overflowY:'hidden',
-        zIndex: 3,
-        backgroundColor: 'white'
+        height: '100vh' // Fixed height only during reveal
       });
 
-      // Create the curtain animation
-        gsap.to(companyRef.current, {
-          yPercent: -100,
-          ease: "none",
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "center 30%",
-            end: "bottom  10%",
-            scrub: 1,
-            pin: true,
-            anticipatePin: 1,
-            duration:4,
-            markers: true,
-            invalidateOnRefresh: true,
-            pinSpacing: true,
-            onLeave: () => {
-              // Make global map scrollable after animation
-              gsap.set(globalMapRef.current, {
-                position: 'relative',
-                top: isMobile() ? "33%" : "33%",
-                height: 'auto',
-                minHeight: '100vh',
-                overflow: 'visible',
-                overflowY: 'auto',
-                pointerEvents: 'auto' // Enable interactions
-              });
+      // Set initial position - content starts just above the viewport
+      gsap.set(globalMapContentRef.current, {
+        y: '-50vh', // Start 50vh above the container
+        willChange: 'transform'
+      });
 
-              // Ensure the container allows scrolling
-              gsap.set(containerRef.current, {
-                height: 'auto',
-                minHeight: '130vh',
-                overflow: 'visible'
-              });
-            },
-            onEnterBack: () => {
-              // Reset global map to initial state when scrolling back
-              gsap.set(globalMapRef.current, {
-                position: 'absolute',
-                top: isMobile() ? "33%" : "30%",
-                height: "100vh",
-                overflow: 'hidden'
-              });
-
-              // Reset container
-              gsap.set(containerRef.current, {
-                height: "140vh",
-                overflow: 'visible'
-              });
-            }
+      // Create the reveal animation
+      gsap.to(globalMapContentRef.current, {
+        y: 0, // Slide to natural position
+        ease: "none",
+        scrollTrigger: {
+          trigger: globalMapWrapperRef.current,
+          start: "top 80%",    
+          end: "top 20%",      
+          scrub: 1,
+          markers: false,
+          invalidateOnRefresh: true,
+          
+          onLeave: () => {
+            console.log("Animation complete - releasing container constraints");
+            
+            // ✅ CRITICAL: Release all height/overflow constraints
+            gsap.set(globalMapWrapperRef.current, {
+              height: 'auto',
+              overflow: 'visible',
+              position: 'static' // Return to normal document flow
+            });
+            
+            // ✅ Reset content transform to prevent any positioning issues
+            gsap.set(globalMapContentRef.current, {
+              y: 0,
+              transform: 'none',
+              willChange: 'auto'
+            });
+            
+            // ✅ Force ScrollTrigger to recalculate everything
+            ScrollTrigger.refresh(true);
+          },
+          
+          onEnterBack: () => {
+            console.log("Re-entering animation area - restoring constraints");
+            
+            // Reset to animation state
+            gsap.set(globalMapWrapperRef.current, {
+              height: '100vh',
+              overflow: 'hidden',
+              position: 'relative'
+            });
+            
+            gsap.set(globalMapContentRef.current, {
+              willChange: 'transform'
+            });
+            
+            ScrollTrigger.refresh(true);
           }
-        });
-      };
+        }
+      });
+    };
 
-    // Initial setup with a small delay to ensure DOM is ready
     const initTimeout = setTimeout(setupCurtainReveal, 100);
-
-    // Handle window resize with custom debounce
-    const handleResize = debounce(setupCurtainReveal, 250);
-
+    const handleResize = debounce(() => {
+      // Recalculate on resize
+      setupCurtainReveal();
+    }, 250);
+    
     window.addEventListener('resize', handleResize);
 
-    // Clean up
     return () => {
       clearTimeout(initTimeout);
       window.removeEventListener('resize', handleResize);
-      ScrollTrigger.getAll().forEach(trigger => {
-        if (trigger.vars.trigger === containerRef.current) {
-          trigger.kill();
-        }
-      });
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, []);
 
   return (
     <div className="bg-white">
       <main className="relative">
+        {/* Normal scrolling sections - these scroll naturally */}
         <HeroSection />
         <AboutSection />
+        <CompanySection />
         
-        {/* ✅ CLEAN STRUCTURE - No Tailwind positioning conflicts */}
-        <div ref={containerRef}>
-          {/* Global Map - Background content */}
-          <div ref={globalMapRef}>
+        {/* GlobalMap wrapper - with proper containment */}
+        <div ref={globalMapWrapperRef} className="relative">
+          {/* GlobalMap content - this slides down into view */}
+          <div className=' md:block hidden h-[10vh] bg-[#fbfbfb]'></div>
+          <div ref={globalMapContentRef} className="will-change-transform">
             <GlobalConstructionPlatform />
-            <CompanySection/>
-            <div className='min-h-[20vh] bg-[#000000]'></div>
-          </div>
-          
-          {/* Company Section - Curtain that slides up */}
-          <div ref={companyRef} className='overflow-hidden'>
-            <CompanySection />
-            <div className='h-20 bg-gray-100'></div>
           </div>
         </div>
+        
+        {/* ✅ PROOF: Sections after GlobalMap work perfectly! */}
+        <div className="min-h-[70vh] bg-orange-500  text-white text-4xl">
+          <IndustriesSection/>
+        </div>
+        {/* <div className="h-screen bg-pink-500 flex items-center justify-center text-white text-4xl">
+          After GlobalMap Section 2
+        </div>
+        <div className="h-screen bg-indigo-500 flex items-center justify-center text-white text-4xl">
+          Final Section
+        </div> */}
       </main>
     </div>
   );
-} 
+}

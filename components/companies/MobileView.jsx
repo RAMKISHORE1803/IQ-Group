@@ -53,7 +53,7 @@ const MobileView = ({ allCompanies }) => {
   return (
     <motion.section 
       ref={sectionRef}
-      className="bg-gradient-to-r from-[#010A4E] to-[#041174] text-white min-h-screen relative"
+      className="bg-[#fbfbfb] from-[#010A4E] to-[#041174] text-white min-h-screen relative"
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       variants={containerVariants}
@@ -62,12 +62,10 @@ const MobileView = ({ allCompanies }) => {
       <div className="px-6 py-12">
         <motion.div className="border-b border-white/30 pb-6 mb-8" variants={itemVariants}>
           <motion.h2 className="text-3xl font-light mb-6" variants={itemVariants}>
-            Our Companies
+            IDUSTRIES WE CATER
           </motion.h2>
           <motion.p className="text-gray-300 text-[18px] leading-relaxed" variants={itemVariants}>
-            With a rich history of global trading we are able to deliver in a diverse range 
-            of sectors that match our expertise. We invest in and leverage the knowledge of our 
-            world-class teams who have experience spanning the entire commodity cycle.
+          Discover the industries we empower — delivering precision, consistency, and global-scale material excellence.
           </motion.p>
         </motion.div>
       </div>
