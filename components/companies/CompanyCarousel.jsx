@@ -38,10 +38,10 @@ function CompanyCard({ company, isCenter, position, scale, xOffset, yOffset, onC
       style={{
         transform: `translateX(${xOffset}px) translateY(${yOffset}px) scale(${isHovered && canShowHoverEffects ? scale * 1.02 : scale})`,
         width: isMobile 
-          ? (isCenter ? '285px' : '252px')
+          ? (isCenter ? '253px' : '222px')
           : (isCenter ? '338px' : '310px'),
         height: isMobile 
-          ? (isCenter ? '450px' : '400px')
+          ? (isCenter ? '400px' : '350px')
           : (isCenter ? '450px' : '400px'),
         zIndex: isHovered ? 20 : isCenter ? 10 : 5 - Math.abs(position),
         opacity: Math.abs(position) <= 2 ? 1 : 0.7,
