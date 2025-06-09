@@ -10,6 +10,9 @@ import GlobalConstructionPlatform from './globalMap';
 import MobileView from '@/components/companies/MobileView';
 import IndustriesSection from './industries-section';
 import {allCompanies} from '@/components/companies/CompanyData';
+import QualitySection from './qualitySection';          
+import DTREHeroCarousel from './dtreHero';
+import BCGCareersSection from './careerSection';
 // Utility function for debouncing
 const debounce = (func, wait) => {
   let timeout;
@@ -129,11 +132,13 @@ export default function LandingPage() {
   }, []);
 
   return (
-    <div className="bg-white">
+    <div className="bg-[#fbfbfb]">
       <main className="relative">
         {/* Normal scrolling sections - these scroll naturally */}
-        <HeroSection />
+        <DTREHeroCarousel />
+        {/* <HeroSection /> */}
         <AboutSection />
+        <QualitySection />
         <CompanySection />
         
         {/* GlobalMap wrapper - with proper containment */}
@@ -149,6 +154,7 @@ export default function LandingPage() {
         <div className="min-h-[70vh] bg-orange-500  text-white text-4xl">
           <IndustriesSection/>
         </div>
+        <BCGCareersSection />
         {/* <div className="h-screen bg-pink-500 flex items-center justify-center text-white text-4xl">
           After GlobalMap Section 2
         </div>

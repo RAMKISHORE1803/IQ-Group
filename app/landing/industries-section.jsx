@@ -121,7 +121,7 @@ const IndustriesSection = () => {
   const extendedSectors = [...sectors, ...sectors];
 
   return (
-    <div className=" text-black bg-[#fbfbfb] min-h-[85vh] py-12 px-4 md:px-8">
+    <div className=" text-black bg-[#fbfbfb] min-h-[85vh] py-12 px-4 md:mb-12 md:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8 md:mb-[64px]">

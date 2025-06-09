@@ -102,7 +102,7 @@ function CompanyCard({ company, isCenter, position, scale, xOffset, yOffset, onC
         {/* Bottom Glassy Content Area */}
         {isCenter && (
           <div className={`absolute bottom-0 left-0 right-0 transition-all duration-500 ${
-            showHoverContent ? 'h-5/6' : 'h-2/5'
+            showHoverContent ? isMobile ? 'h-1' : 'h-5/6' : isMobile ? 'h-2/5' : 'h-2/5'
           }`}>
             <div className="h-full bg-white/90 backdrop-blur-md border-t border-white/20 p-6 flex flex-col">
               
