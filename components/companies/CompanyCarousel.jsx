@@ -14,22 +14,25 @@ function CompanyCard({ company, isCenter, position, scale, xOffset, yOffset, onC
   // Detect mobile screen on client side
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 640);
+      if (typeof window !== 'undefined') {
+        setIsMobile(window.innerWidth < 640);
+      }
     };
     
     // Initial check
     checkMobile();
     
     // Listen for resize events
-    window.addEventListener('resize', checkMobile);
-    
-    // Cleanup
-    return () => window.removeEventListener('resize', checkMobile);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', checkMobile);
+      
+      // Cleanup
+      return () => window.removeEventListener('resize', checkMobile);
+    }
   }, []);
 
-  // Determine if this card should show hover effects
-  // On desktop, all cards can have hover effects; on mobile, only center card
-  const canShowHoverEffects = !isMobile || isCenter;
+  // Only allow hover effects on the center card
+  const canShowHoverEffects = isCenter;
   
   return (
     <div
@@ -46,13 +49,13 @@ function CompanyCard({ company, isCenter, position, scale, xOffset, yOffset, onC
         opacity: Math.abs(position) <= 2 ? 1 : 0.7,
       }}
       onClick={onClick}
-      onMouseEnter={() => setIsHovered(true)}
+      onMouseEnter={() => canShowHoverEffects && setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Main Card Container - Insight Style */}
       <motion.div 
         className="relative w-full h-full bg-cover bg-center bg-no-repeat overflow-hidden group"
-        whileHover={{ scale: isMobile ? 1 : 1.02 }}
+        whileHover={canShowHoverEffects ? { scale: 1.02 } : {}}
         transition={{ duration: 0.3, ease: "easeOut" }}
       >
         {/* Background Image */}
@@ -81,7 +84,7 @@ function CompanyCard({ company, isCenter, position, scale, xOffset, yOffset, onC
             top: "auto",
             height: "120px"
           }}
-          whileHover={isMobile ? {} : { 
+          whileHover={canShowHoverEffects ? { 
             top: "0px",
             bottom: "0px",
             left: "0px",
@@ -90,7 +93,7 @@ function CompanyCard({ company, isCenter, position, scale, xOffset, yOffset, onC
             borderRadius: "0px",
             zIndex: 50,
             opacity: 1
-          }}
+          } : {}}
           transition={{ 
             duration: 0.4, 
             ease: [0.4, 0, 0.2, 1],
@@ -102,35 +105,37 @@ function CompanyCard({ company, isCenter, position, scale, xOffset, yOffset, onC
             <p className="text-xs text-gray-600 font-medium mb-1">
               COMPANY
             </p>
-            <h3 className="font-lato font-light text-[30px] line-clamp-2 group-hover:line-clamp-none text-ellipsis overflow-hidden text-black leading-tight transition-all duration-300">
+            <h3 className={`font-lato font-light text-[30px] ${canShowHoverEffects ? "group-hover:line-clamp-none" : ""} line-clamp-2 text-ellipsis overflow-hidden text-black leading-tight transition-all duration-300`}>
               {company.name}
             </h3>
           </div>
           
-          {/* Expanded content - only visible on hover for desktop */}
-          <motion.div
-            className="px-4 pb-4 opacity-0 group-hover:opacity-100"
-            initial={{ opacity: 0, y: 20 }}
-            whileHover={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.1 }}
-          >
-            <p className="text-gray-800 text-[16px] font-onest font-light leading-relaxed mb-4">
-              {company.description}
-            </p>
-            
-            <div className="space-y-2 mb-4">
-              {company.commodities.slice(0, 4).map((product, index) => (
-                <div key={index} className="text-gray-700 text-sm flex items-center">
-                  <div className="w-2 h-2 bg-green-400 rounded-full mr-3 flex-shrink-0"></div>
-                  {product}
-                </div>
-              ))}
-            </div>
-            
-            <button className="inline-flex items-center text-[16px] font-medium text-green-600 hover:text-green-700 transition-colors">
-              → Learn More
-            </button>
-          </motion.div>
+          {/* Expanded content - only visible on hover for center card */}
+          {canShowHoverEffects && (
+            <motion.div
+              className="px-4 pb-4 opacity-0 group-hover:opacity-100"
+              initial={{ opacity: 0, y: 20 }}
+              whileHover={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
+            >
+              <p className="text-gray-800 text-[16px] font-onest font-light leading-relaxed mb-4">
+                {company.description}
+              </p>
+              
+              <div className="space-y-2 mb-4">
+                {company.commodities.slice(0, 4).map((product, index) => (
+                  <div key={index} className="text-gray-700 text-sm flex items-center">
+                    <div className="w-2 h-2 bg-green-400 rounded-full mr-3 flex-shrink-0"></div>
+                    {product}
+                  </div>
+                ))}
+              </div>
+              
+              <button className="inline-flex items-center text-[16px] font-medium text-green-600 hover:text-green-700 transition-colors">
+                → Learn More
+              </button>
+            </motion.div>
+          )}
         </motion.div>
       </motion.div>
     </div>
@@ -147,6 +152,8 @@ export default function CompanyCarousel() {
 
   // Update window width on client side
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     setWindowWidth(window.innerWidth);
     const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);
@@ -235,6 +242,15 @@ export default function CompanyCarousel() {
 
   // Calculate horizontal spacing based on screen size
   const getHorizontalSpacing = (position) => {
+    // Default fallback for server-side rendering
+    if (typeof window === 'undefined' || windowWidth === 0) {
+      // Return reasonable defaults based on position
+      if (position === 0) return 0;
+      if (position === -1 || position === 1) return position * 300;
+      if (position === -2 || position === 2) return position * 280;
+      return position * 250;
+    }
+
     if (windowWidth < 640) {
       // Mobile spacing
       return position * 120;
@@ -246,11 +262,11 @@ export default function CompanyCarousel() {
       if (position === -1 || position === 1) {
         // Increase spacing for adjacent cards
         // You can adjust this value (380) to change the distance between center and adjacent cards
-        return windowWidth < 1280 ? position * 300 : position * 330; // Try increasing this to 420 or 450 for more spacing
+        return windowWidth < 1280 ? position * 266 : position * 310; // Try increasing this to 420 or 450 for more spacing
       } else if (position === -2 || position === 2) {
         // Spacing for outer cards
         // You can adjust this value (320) to change the distance between adjacent and outer cards
-        return windowWidth < 1280 ? position * 280 : position * 305;
+        return windowWidth < 1280 ? position * 250 : position * 298;
       } else {
         // Center card (position === 0)
         return 0;
@@ -259,13 +275,36 @@ export default function CompanyCarousel() {
   };
 
   const visibleCards = getVisibleCards();
+  const fadeInUp = {
+    hidden: {
+      opacity: 0,
+      y: 30
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const staggerContainer = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.2 // 0.2s delay between each child animation
+      }
+    }
+  };
 
   return (
     <section className="bg-[#fbfbfb] min-h-[320px] overflow-hidden sm:overflow-hidden md:min-h-[100vh] pt-16 md:overflow-hidden md:pt-24 md:pb-16">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-[28px] md:text-[18px] font-bold text-[#000000] mb-4 text-lato font-lato font-bold">EXPLORE OUR COMPANIES</h2>
-          <p className="text-[20px] text-gray-700 max-w-[1000px] mx-auto md:text-[32px] font-light font-onest">
+          <h2 className="company-title text-[28px] md:text-[18px] text-[#324390] font-bold mb-4 text-lato font-lato font-bold">EXPLORE OUR COMPANIES</h2>
+          <p className="company-description text-[20px] text-gray-900 max-w-[1000px] mx-auto md:text-[32px] font-light font-onest">
             Explore our specialized divisions working together to deliver excellence in global logistics and material supply.
           </p>
         </div>
@@ -283,10 +322,16 @@ export default function CompanyCarousel() {
             {visibleCards.map((company) => {
               // Calculate scale based on position
               const isCenter = company.position === 0;
-              const scale = isCenter ? 1 : company.position === -1 || company.position === 1 ? 0.75 : 0.85;
+              const scale = isCenter 
+                ? (typeof window !== 'undefined' && window.innerWidth < 1280) ? 0.88 : 1 
+                : company.position === -1 || company.position === 1 
+                  ? (typeof window !== 'undefined' && window.innerWidth < 1280) ? 0.65 : 0.81 
+                  : company.position === -2 || company.position === 2 
+                    ? (typeof window !== 'undefined' && window.innerWidth < 1280) ? 0.75 : 0.9 
+                    : 0.85;
               
               // Vertical position to create arc effect - adjusted for larger cards
-              const yOffset = isCenter ? 0 : company.position === -1 || company.position === 1 ? 40 : 20;
+              const yOffset = isCenter ? 0 : company.position === -1 || company.position === 1 ? 0 : 0;
               
               // Horizontal position - using the function for increased spacing
               const xOffset = getHorizontalSpacing(company.position);

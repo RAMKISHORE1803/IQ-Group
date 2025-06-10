@@ -124,7 +124,7 @@ export default function AboutSection() {
           </div>
           
           <div ref={contentRef} className="text-white space-y-6 md:pr-0 md:min-w-[370px] lg:min-w-[550px] lg:pr-[10px] lg:pr-[5px] ">
-            <h2 className="text-[32px] text-[#2D4BD2] text-lato text-[#000] font-bold sm:text-[34px] md:text-[38px] lg:text-[42px] font-bold">
+            <h2 className="text-[32px] text-[#324390] text-lato text-[#000] font-bold sm:text-[34px] md:text-[38px] lg:text-[42px] font-bold">
               IQ GROUP
             </h2>
             <p className=" text-onest text-[#5790E1] sm:text-[20px] md:text-[16px] lg:text-[22px] font-light text-[#333] mb-6 md:pr-30  lg:pr-[100px]">
@@ -134,7 +134,7 @@ export default function AboutSection() {
             IQ Group powers industries with premium raw materials from alloys to minerals delivered with precision, integrity, and speed. Global reach, Mumbai roots. 
             </p>
             <p className="sm:text-[24px] md:text-[17px] lg:text-[21px] xl:text-[25px]  text-[#1E3157] font-onest font-light leading-relaxed">Trusted by steel, aerospace, ceramics, batteries, and more.</p>
-            <button className="mt-6 border bg-[#2D4BD2] text-[#fbfbfb] hover:bg-[#fbfbfb] border-2 border-[#2D4BD2] hover:border-[#2D4BD2] hover:text-[#2D4BD2]  px-6 py-3 transition-all duration-300">
+            <button className="mt-6 border bg-[#324390] text-[#fbfbfb] hover:bg-[#fbfbfb] border-2 border-[#2D4BD2] hover:border-[#2D4BD2] hover:text-[#2D4BD2]  px-6 py-3 transition-all duration-300">
               Learn More
             </button>
           </div>

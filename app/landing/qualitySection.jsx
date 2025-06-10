@@ -149,7 +149,7 @@ export default function QualitySection() {
             <p className="  text-gray-700 text-onest font-light md:text-[20px] lg:text-[24px] xl:text-[28px] ">
             ISO 9001:2008 certified, we uphold uncompromising quality—ensuring every stage, from sourcing to delivery, meets the highest standards of precision, consistency, and continual improvement.            </p>
             {/* <p className=" md:text-[28px] text-[#1E3157] font-onest font-light leading-relaxed">Trusted by steel, aerospace, ceramics, batteries, and more.</p> */}
-            <button className="mt-6 border bg-[#2546DA] text-[#fbfbfb] hover:bg-[#fbfbfb] hover:border-[#000000] hover:text-[#000000]  px-6 py-3 transition-all duration-300">
+            <button className="mt-6 border bg-[#324390] text-[#fbfbfb] hover:bg-[#fbfbfb] hover:border-[#203663] hover:text-[#324390]  px-6 py-3 transition-all duration-300">
               Learn More
             </button>
           </div>

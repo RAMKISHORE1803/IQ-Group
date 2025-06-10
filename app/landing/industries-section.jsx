@@ -124,11 +124,11 @@ const IndustriesSection = () => {
     <div className=" text-black bg-[#fbfbfb] min-h-[85vh] py-12 px-4 md:mb-12 md:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="mb-8 md:mb-[64px]">
+        <div className="mb-8 md:mb-[64px]  lg:mb-[80px]">
           <div className="md:flex md:justify-between md:items-start">
-            <h2 className="text-[20px] md:text-5xl text-center font-light mb-4 md:mb-0 font-lato font-bold text-[#1E3157]">Industries We Serve</h2>
+            <h2 className="text-[20px] md:text-5xl lg:text-[42px] text-center font-light mb-4 md:mb-0 font-lato font-bold text-[#1E3157]">INDUSTRIES WE SERVE</h2>
             <div className="md:max-w-lg md:ml-8">
-              <p className="text-gray-700 text-[18px] md:text-[20px] text-center md:text-left font-onest font-light ">
+              <p className="text-gray-700 text-[18px] md:text-[20px] xl:text-[22px] lg:min-w-[550px] text-center md:text-left font-onest lg:leading-[28px] font-light ">
               Discover the industries we empower delivering precision, consistency, and global-scale material excellence.
               </p>
             </div>
@@ -136,7 +136,7 @@ const IndustriesSection = () => {
         </div>
 
         {/* Desktop View */}
-        <div className="hidden md:block relative">
+        <div className="hidden md:block relative lg:mb-[40px]">
           <div 
             className="flex gap-6 overflow-hidden"
             onMouseEnter={handleMouseEnter}
@@ -176,17 +176,17 @@ const IndustriesSection = () => {
           <div className="absolute right-0 bottom-0 md:bottom-[-80px] flex gap-3 mb-4 mr-4">
             <button 
               onClick={prevSlide}
-              className="p-3 text-gray-700 rounded-full bg-white shadow-md hover:text-black transition-colors"
+              className="p-3 text-[#1E3157] rounded-full bg-white shadow-md hover:text-black transition-colors"
               aria-label="Previous"
             >
-              <ChevronLeft size={32} />
+              <ChevronLeft  size={32} />
             </button>
             <button 
               onClick={nextSlide}
-              className="p-3 text-gray-700  rounded-full bg-white shadow-md hover:text-black transition-colors"
+              className="p-3 text-[#1E3157]  rounded-full bg-white shadow-md hover:text-black transition-colors"
               aria-label="Next"
             >
-              <ChevronRight size={32} />
+              <ChevronRight  size={32} />
             </button>
           </div>
         </div>

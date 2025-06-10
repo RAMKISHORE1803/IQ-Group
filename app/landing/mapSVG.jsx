@@ -10,8 +10,8 @@ const countryData = {
         projects: '47 Projects to date',
         color: '#8B5CF6',
 
-        popupX: 95, // 58% from left of SVG
-    popupY: 110
+        popupX: window.innerWidth < 1280 ? 101 : 96, // 58% from left of SVG
+    popupY: window.innerWidth < 1280 ? 120 : 127
      },
 
      CN: {
@@ -22,8 +22,8 @@ const countryData = {
         projects: '47 Projects to date',
         color: '#8B5CF6',
 
-        popupX: 100, // 58% from left of SVG
-    popupY: 105
+        popupX: window.innerWidth < 1280 ? 105 : 100, // 58% from left of SVG
+    popupY: window.innerWidth < 1280 ? 117 : 120
      },
     }
    
@@ -74,7 +74,7 @@ export default function Map(){
             {/* Close Button */}
             <button 
               onClick={closePopup} 
-              className="absolute top-4 right-4 w-8 h-8 bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors duration-200"
+              className="absolute top-4 right-4 w-8 h-8 bg-black hover:bg-gray-200 flex items-center justify-center transition-colors duration-200"
               style={{ borderRadius: '50%' }}
             >
               ×

@@ -3,6 +3,8 @@ import { Merriweather } from "next/font/google";
 import { Lato, Open_Sans } from "next/font/google";
 import { Onest } from "next/font/google";
 import "./globals.css";
+import IQGroupNavbar from "../components/navbar";
+import IQGroupFooter from "./landing/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,9 +40,6 @@ const onest = Onest({
   subsets: ["latin"],
 });
 
-// Note: Times New Roman is a system font, so we don't need to import it from next/font
-// It's defined in globals.css and tailwind.config.js
-
 export const metadata = {
   title: "IQ Group - Powering Innovation, Delivering Excellence",
   description: "Build, track, and manage your projects with a seamless platform designed for modern teams",
@@ -52,8 +51,33 @@ export default function RootLayout({ children }) {
       <body
         suppressHydrationWarning={true}
         className={`${geistSans.variable} ${geistMono.variable} ${merriweather.variable} ${lato.variable} ${openSans.variable} ${onest.variable} antialiased`}
+        style={{ 
+          margin: 0, 
+          padding: 0,
+          minHeight: '100vh',
+          display: 'flex',
+          flexDirection: 'column'
+        }}
       >
-        {children}
+        {/* Navbar */}
+        <header className="relative z-50">
+          <IQGroupNavbar />
+        </header>
+        
+        {/* Main content */}
+        <main className="relative flex-1">
+          {children}
+        </main>
+        
+        {/* Clear separator for debugging */}
+       
+        
+          
+          
+          
+          
+          
+        
       </body>
     </html>
   );

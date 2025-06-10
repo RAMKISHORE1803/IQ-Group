@@ -36,6 +36,7 @@ const GlobalConstructionPlatform = () => {
   };
   return (
     <div className="min-h-[100vh] bg-[#000000] text-[#fbfbfb] font-sans">
+      <div className='h-[10vh] bg-[#000000]'></div>
       
         
         <div className="p-8 lg:p-16">

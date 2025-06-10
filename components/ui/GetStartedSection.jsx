@@ -14,19 +14,19 @@ export default function GetStartedSection() {
             Take the first step towards transforming your business with our innovative solutions.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link 
-              href="/contact" 
+          <Link
+            href="/contact"
               className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl transition shadow-md"
             >
               Contact Us
-            </Link>
-            <Link 
+          </Link>
+          <Link
               href="/company/divisions" 
               className="bg-white border border-gray-300 hover:border-gray-400 px-8 py-3 rounded-xl transition shadow-md"
             >
               Explore Solutions
-            </Link>
-          </div>
+          </Link>
+            </div>
         </div>
       </div>
     </section>
