@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -9,111 +9,107 @@ export default function QualitySection() {
   const sectionRef = useRef(null);
   const imageContainerRef = useRef(null);
   const contentRef = useRef(null);
+  const [windowWidth, setWindowWidth] = useState(0);
 
   useEffect(() => {
-    // Need to ensure we're in the browser
-    if (typeof window === 'undefined') return;
-    
     // Register GSAP plugins
     gsap.registerPlugin(ScrollTrigger);
     
-    // Small timeout to ensure the DOM is fully rendered
-    const timer = setTimeout(() => {
-      console.log("Setting up ScrollTrigger for About Section");
-      
-      // Get the elements
-      const section = sectionRef.current;
-      const imageContainer = imageContainerRef.current;
-      const content = contentRef.current;
-      
-      if (!section || !imageContainer || !content) {
-        console.error("Missing elements for animation");
-        return;
-      }
-
-      // Set initial state - modified for desktop to start from opposite positions
-      if (window.innerWidth < 768) {
-        // Mobile view - keep original positioning
-        gsap.set(imageContainer, { x: 450 });
-        gsap.set(content, { x: -450 });
-      }
-      else if (window.innerWidth < 1024) {
-        // Desktop view - reverse initial positions
-        gsap.set(imageContainer, { x: 100 }); // Start from right
-        gsap.set(content, { x: -200 }); // Start from left
-      }
-      else if (window.innerWidth < 1280) {
-        // Desktop view - reverse initial positions
-        gsap.set(imageContainer, { x: 100 }); // Start from right
-        gsap.set(content, { x: -150 }); // Start from left
-      }
-       else {
-        // Desktop view - reverse initial positions
-        gsap.set(imageContainer, { x: 100 }); // Start from right
-        gsap.set(content, { x: -100 }); // Start from left
-      }
-      
-      // Create separate animations for each element for better control
-      const imageAnim = gsap.to(imageContainer, {
-        x:  window.innerWidth < 1280 ? window.innerWidth < 1024 ? 20 : 50 : 0, // Move to center position
-        ease: "power2.out",
-        duration: window.innerWidth < 768 ? 1 : 10,
-        paused: true
-      });
-      
-      const contentAnim = gsap.to(content, {
-        x: window.innerWidth < 1280 ? window.innerWidth <1024 ? window.innerWidth <  768 ? 0 : -100 : -100 : 0, // Move to center position
-        ease: "power2.out",
-        duration: window.innerWidth < 768 ? 2 : 10,
-        paused: true
-      });
-      
-      // Create scroll trigger
-      if (window.innerWidth < 768) {
-        // Mobile view - NO reverse
-        ScrollTrigger.create({
-          trigger: section,
-          start: "top bottom-=50",
-          end: "bottom center+=100",
-          markers: false,
-          onEnter: () => {
-            imageAnim.play();
-            contentAnim.play();
-          },
-          onLeaveBack: () => {
-            // Do nothing: animation won't reverse
-          }
-        });
-      } else {
-        // Desktop view - ALLOW reverse via scrub
-        imageAnim.progress(0).pause();
-        contentAnim.progress(0).pause();
-      
-        const st = ScrollTrigger.create({
-          trigger: section,
-          start: "top bottom-=50",
-          end: "bottom center+=100",
-          markers: false,
-          scrub: 0.5, // Smooth scrub for reverse effect
-          onUpdate: (self) => {
-            imageAnim.progress(self.progress);
-            contentAnim.progress(self.progress);
-          }
-        });
-      }
-      
-      return () => {
-        console.log("Cleaning up ScrollTrigger");
-        imageAnim.kill();
-        contentAnim.kill();
-        ScrollTrigger.getAll().forEach(st => st.kill());
-      };
-    }, 500);
+    if (typeof window === 'undefined') return;
     
+    // Set initial window width
+    setWindowWidth(window.innerWidth);
+    
+    // Handle resize
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    
+    // Cleanup
     return () => {
-      clearTimeout(timer);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
+  
+  useEffect(() => {
+    if (typeof window === 'undefined' || !windowWidth) return;
+    
+    const imageContainer = imageContainerRef.current;
+    const content = contentRef.current;
+    
+    if (!imageContainer || !content || !sectionRef.current) return;
+    
+    // Create the animation
+    const getAnimationSettings = () => {
+      if (windowWidth < 768) {
+        return {
+          duration: 1,
+          startPosition: 20
+        };
+      }
+      else if (windowWidth < 1024) {
+        return {
+          duration: 3,
+          startPosition: 50
+        };
+      }
+      else if (windowWidth < 1280) {
+        return {
+          duration: 5,
+          startPosition: 50
+        };
+      }
+      else {
+        return {
+          duration: 10,
+          startPosition: 0
+        };
+      }
+    };
+    
+    const settings = getAnimationSettings();
+    
+    // Animation timeline
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: true,
+      }
+    });
+    
+    // Add animations
+    tl.to(imageContainer, {
+      x: settings.startPosition,
+      opacity: 1,
+      duration: windowWidth < 768 ? 1 : 10,
+      ease: 'none'
+    })
+    .to(content, {
+      x: windowWidth < 1280 ? windowWidth <1024 ? windowWidth < 768 ? 0 : -100 : -100 : 0,
+      opacity: 1,
+      duration: windowWidth < 768 ? 2 : 10,
+      ease: 'none'
+    }, '<');
+    
+    // Mobile setup
+    if (windowWidth < 768) {
+      // Mobile specific animation adjustments
+      gsap.set(content, { opacity: 0 });
+      gsap.set(imageContainer, { opacity: 0 });
+    }
+    
+    // Clean up
+    return () => {
+      if (tl.scrollTrigger) {
+        tl.scrollTrigger.kill();
+      }
+      tl.kill();
+    };
+  }, [windowWidth]); // Depend on windowWidth instead of checking it directly
 
   return (
     <>

@@ -191,7 +191,7 @@ const IQGroupNavbar = () => {
 
         {/* Submenu - Slides over the main menu from right to left */}
         {activeSubmenu && (
-          <div className={`absolute top-0 left-0 bg-[#1E5AA9] text-white w-80 h-full transition-transform duration-300 ease-in-out ${
+          <div className={`absolute top-0 left-0 bg-[#203663] text-white w-80 h-full transition-transform duration-300 ease-in-out ${
             activeSubmenu ? 'translate-x-0' : 'translate-x-full'
           }`}>
             {/* Back Header */}
@@ -213,12 +213,12 @@ const IQGroupNavbar = () => {
             </div>
 
             {/* Submenu Items - Scrollable */}
-            <div className="py-8 overflow-y-auto h-[calc(100vh-140px)]">
+            <div className="py-8 overflow-y-auto bg-[#203663] h-[calc(100vh-140px)]">
               {activeSubmenu.items.map((item, index) => (
                 <div key={index}>
                   <button
                     onClick={() => handleSubmenuItemClick(item)}
-                    className="w-full px-6 py-4 text-left hover:bg-blue-600 transition-colors"
+                    className="w-full px-6 py-4  text-left hover:bg-blue-600 transition-colors"
                   >
                     <span className="text-xl font-light">{item.title}</span>
                   </button>

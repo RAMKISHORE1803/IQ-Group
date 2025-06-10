@@ -1,7 +1,10 @@
-import React from "react";
-import { useState, useRef } from "react";
+'use client';
 
-const countryData = {
+import React from "react";
+import { useState, useRef, useEffect } from "react";
+
+// Initialize with default values for server-side rendering
+const defaultCountryData = {
     IN: {
         title: 'INDIA',
         established: '2003 Established in Africa',
@@ -9,9 +12,9 @@ const countryData = {
         workValue: 'US$8.9bn Work to date',
         projects: '47 Projects to date',
         color: '#8B5CF6',
-
-        popupX: window.innerWidth < 1280 ? 101 : 96, // 58% from left of SVG
-    popupY: window.innerWidth < 1280 ? 120 : 127
+        
+        popupX: 96, // Default value for server-side rendering
+        popupY: 127 // Default value for server-side rendering
      },
 
      CN: {
@@ -21,18 +24,36 @@ const countryData = {
         workValue: 'US$8.9bn Work to date',
         projects: '47 Projects to date',
         color: '#8B5CF6',
-
-        popupX: window.innerWidth < 1280 ? 105 : 100, // 58% from left of SVG
-    popupY: window.innerWidth < 1280 ? 117 : 120
+        
+        popupX: 100, // Default value for server-side rendering
+        popupY: 120 // Default value for server-side rendering
      },
     }
    
 
 
 export default function Map(){
-    
+    const [countryData, setCountryData] = useState(defaultCountryData);
     const [selectedCountry, setSelectedCountry] = useState(null);
     const [popupPosition, setPopupPosition] = useState({ x: 0, y: 0 });
+    
+    // Update countryData with client-side values after component mounts
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            setCountryData({
+                IN: {
+                    ...defaultCountryData.IN,
+                    popupX: window.innerWidth < 1280 ? 101 : 96,
+                    popupY: window.innerWidth < 1280 ? 120 : 127
+                },
+                CN: {
+                    ...defaultCountryData.CN,
+                    popupX: window.innerWidth < 1280 ? 105 : 100,
+                    popupY: window.innerWidth < 1280 ? 117 : 120
+                }
+            });
+        }
+    }, []);
     
     const handleCountryClick = (countryId, event) => {
         const mapContainer = event.currentTarget.closest('.map-container');
