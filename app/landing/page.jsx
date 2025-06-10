@@ -13,6 +13,8 @@ import {allCompanies} from '@/components/companies/CompanyData';
 import QualitySection from './qualitySection';          
 import DTREHeroCarousel from './dtreHero';
 import BCGCareersSection from './careerSection';
+import InsightsSection from './insight-section';
+import BusinessStatistics from './BusinessStatistics';
 // Utility function for debouncing
 const debounce = (func, wait) => {
   let timeout;
@@ -155,6 +157,8 @@ export default function LandingPage() {
           <IndustriesSection/>
         </div>
         <BCGCareersSection />
+        <InsightsSection/>
+        <BusinessStatistics/>
         {/* <div className="h-screen bg-pink-500 flex items-center justify-center text-white text-4xl">
           After GlobalMap Section 2
         </div>

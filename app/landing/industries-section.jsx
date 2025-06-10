@@ -126,7 +126,7 @@ const IndustriesSection = () => {
         {/* Header */}
         <div className="mb-8 md:mb-[64px]">
           <div className="md:flex md:justify-between md:items-start">
-            <h2 className="text-[20px] md:text-5xl text-center font-light mb-4 md:mb-0 font-lato font-bold text-[#000]">INDUSTRIES WE SERVE</h2>
+            <h2 className="text-[20px] md:text-5xl text-center font-light mb-4 md:mb-0 font-lato font-bold text-[#1E3157]">Industries We Serve</h2>
             <div className="md:max-w-lg md:ml-8">
               <p className="text-gray-700 text-[18px] md:text-[20px] text-center md:text-left font-onest font-light ">
               Discover the industries we empower delivering precision, consistency, and global-scale material excellence.

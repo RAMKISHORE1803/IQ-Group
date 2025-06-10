@@ -6,7 +6,7 @@ export default function BCGCareersSection() {
     <div className="w-full flex flex-col md:flex-row-reverse md:flex-between">
       {/* Left Content Section */}
       
-      <div className="flex-1 bg-[#fbfbfb] md:bg-[#121212] flex items-center px-[20px] py-8 sm:px-[30px] md:px-[40px] lg:px-[60px] xl:px-[110px] md:py-10 lg:py-12 xl:py-16 order-1 lg:order-1">
+      <div className="flex-1 bg-[#fbfbfb] md:bg-[#1E3157] flex items-center px-[20px] py-8 sm:px-[30px] md:px-[40px] lg:px-[60px] xl:px-[110px] md:py-10 lg:py-12 xl:py-16 order-1 lg:order-1">
         <div className="w-full max-w-xl mx-auto md:mx-0">
           {/* Header Label */}
           <div className="text-sm md:text-base font-onest font-medium text-white tracking-wider mb-4 md:mb-5 lg:mb-6">
@@ -14,7 +14,7 @@ export default function BCGCareersSection() {
           </div>
           
           {/* Main Heading */}
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-lato font-bold text-[#121212] md:text-white/80 leading-tight mb-4 sm:mb-5 md:mb-6 lg:mb-8">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-lato font-bold text-[#121212] md:text-white leading-tight mb-4 sm:mb-5 md:mb-6 lg:mb-8">
             Go Beyond the Expected
           </h1>
           

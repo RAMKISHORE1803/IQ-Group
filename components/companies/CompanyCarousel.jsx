@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { motion, useAnimation } from 'framer-motion';
+import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 import { Pause, Play, ChevronLeft, ChevronRight } from 'lucide-react';
 import { allCompanies } from './CompanyData';
 
@@ -30,7 +30,6 @@ function CompanyCard({ company, isCenter, position, scale, xOffset, yOffset, onC
   // Determine if this card should show hover effects
   // On desktop, all cards can have hover effects; on mobile, only center card
   const canShowHoverEffects = !isMobile || isCenter;
-  const showHoverContent = isHovered && canShowHoverEffects;
   
   return (
     <div
@@ -50,114 +49,90 @@ function CompanyCard({ company, isCenter, position, scale, xOffset, yOffset, onC
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Main Card Container */}
-      <div className="relative w-full h-full overflow-hidden shadow-2xl">
+      {/* Main Card Container - Insight Style */}
+      <motion.div 
+        className="relative w-full h-full bg-cover bg-center bg-no-repeat overflow-hidden group"
+        whileHover={{ scale: isMobile ? 1 : 1.02 }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+      >
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center" 
+          style={{ backgroundImage: `url(${company.image})` }}
+        />
         
-        {/* Dynamic Background */}
-        <div className="absolute inset-0 transition-all duration-700">
-          {/* Show gradient background when hovered and hover effects are allowed */}
-          
-            <div className="absolute inset-0">
-              <img 
-                src={company.image} 
-                alt={`${company.name} Background`} 
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-black/40"></div>
-              
-              {/* Animated Light Streaks */}
-              {/* <div className="absolute inset-0 overflow-hidden">
-                
-                <div className="absolute -top-10 -left-10 w-full h-full">
-                  <div className="absolute w-1 h-full bg-gradient-to-b from-transparent via-white/40 to-transparent transform rotate-12 translate-x-20"></div>
-                  <div className="absolute w-1 h-full bg-gradient-to-b from-transparent via-yellow-300/30 to-transparent transform rotate-12 translate-x-32"></div>
-                  <div className="absolute w-1 h-full bg-gradient-to-b from-transparent via-pink-300/30 to-transparent transform rotate-12 translate-x-44"></div>
-                  <div className="absolute w-1 h-full bg-gradient-to-b from-transparent via-blue-300/40 to-transparent transform rotate-12 translate-x-56"></div>
-                  <div className="absolute w-1 h-full bg-gradient-to-b from-transparent via-green-300/30 to-transparent transform rotate-12 translate-x-68"></div>
-                  <div className="absolute w-1 h-full bg-gradient-to-b from-transparent via-purple-300/30 to-transparent transform rotate-12 translate-x-80"></div>
-                  <div className="absolute w-1 h-full bg-gradient-to-b from-transparent via-teal-300/40 to-transparent transform rotate-12 translate-x-92"></div>
-                  <div className="absolute w-1 h-full bg-gradient-to-b from-transparent via-orange-300/30 to-transparent transform rotate-12 translate-x-104"></div>
-                </div>
-                
-                
-                <div className="absolute -top-10 -right-10 w-full h-full">
-                  <div className="absolute w-1 h-full bg-gradient-to-b from-transparent via-cyan-300/30 to-transparent transform -rotate-12 -translate-x-20"></div>
-                  <div className="absolute w-1 h-full bg-gradient-to-b from-transparent via-indigo-300/30 to-transparent transform -rotate-12 -translate-x-32"></div>
-                  <div className="absolute w-1 h-full bg-gradient-to-b from-transparent via-rose-300/30 to-transparent transform -rotate-12 -translate-x-44"></div>
-                </div>
-              </div> */}
-            </div>
-          
+        {/* Dark overlay for better text readability */}
+        <div className="absolute inset-0 bg-black opacity-20" />
+        
+        {/* Category Label */}
+        <div className="absolute top-4 left-4 z-20">
+          <span className="bg-black bg-opacity-60 text-white text-xs font-medium px-3 py-1.5 rounded-full">
+            {company.category.toUpperCase()}
+          </span>
         </div>
         
-        {/* Top Label - Company Name */}
-        <div className="absolute top-6 left-6 z-10">
-          <div className="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full">
-            <span className="text-white text-xs font-medium tracking-wider">
-              {company.name.toUpperCase()}
-            </span>
+        {/* Floating Glassy overlay - small at bottom, full card on hover */}
+        <motion.div
+          className="absolute bg-white/70 bg-opacity-40 backdrop-blur-md rounded-lg overflow-hidden"
+          initial={{ 
+            bottom: "16px",
+            left: "16px",
+            right: "16px",
+            top: "auto",
+            height: "120px"
+          }}
+          whileHover={isMobile ? {} : { 
+            top: "0px",
+            bottom: "0px",
+            left: "0px",
+            right: "0px",
+            height: "100%",
+            borderRadius: "0px",
+            zIndex: 50,
+            opacity: 1
+          }}
+          transition={{ 
+            duration: 0.4, 
+            ease: [0.4, 0, 0.2, 1],
+            type: "tween"
+          }}
+        >
+          {/* Default content - always visible */}
+          <div className="relative z-10 p-4">
+            <p className="text-xs text-gray-600 font-medium mb-1">
+              COMPANY
+            </p>
+            <h3 className="font-lato font-light text-[30px] line-clamp-2 group-hover:line-clamp-none text-ellipsis overflow-hidden text-black leading-tight transition-all duration-300">
+              {company.name}
+            </h3>
           </div>
-        </div>
-        
-        {/* Bottom Glassy Content Area */}
-        {isCenter && (
-          <div className={`absolute bottom-0 left-0 right-0 transition-all duration-500 ${
-            showHoverContent ? isMobile ? 'h-1' : 'h-5/6' : isMobile ? 'h-2/5' : 'h-2/5'
-          }`}>
-            <div className="h-full bg-white/90 backdrop-blur-md border-t border-white/20 p-6 flex flex-col">
-              
-              {/* Main Content */}
-              <div className="flex-1">
-                {!showHoverContent ? (
-                  // Default State - Products
-                  <>
-                    <h3 className="text-gray-900 text-xl font-semibold mb-4 leading-tight">
-                      {company.name}
-                    </h3>
-                    <div className="text-gray-600 text-sm leading-relaxed">
-                      <p className="mb-4">
-                        {company.description.substring(0, 80)}...
-                      </p>
-                      <div className="space-y-2">
-                        {company.commodities.slice(0, 4).map((product, index) => (
-                          <div key={index} className="text-gray-500 text-sm flex items-center">
-                            <div className="w-2 h-2 bg-blue-400 rounded-full mr-3 flex-shrink-0"></div>
-                            {product}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </>
-                ) : (
-                  // Hover State - Company Description
-                  <>
-                    <h2 className="text-gray-900 text-2xl font-bold mb-6 leading-tight">
-                      {company.name}
-                    </h2>
-                    <p className="text-gray-600 text-base leading-relaxed mb-8">
-                      {company.description}
-                    </p>
-                    
-                    {/* Learn More Button */}
-                    <button 
-                      className="inline-flex items-center px-8 py-4 bg-[#5790E1] text-white text-sm font-semibold  hover:bg-[#4a7bc8] transition-all duration-200 shadow-lg hover:shadow-xl"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        // Handle learn more click
-                      }}
-                    >
-                      LEARN MORE
-                      <svg className="ml-3 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </button>
-                  </>
-                )}
-              </div>
+          
+          {/* Expanded content - only visible on hover for desktop */}
+          <motion.div
+            className="px-4 pb-4 opacity-0 group-hover:opacity-100"
+            initial={{ opacity: 0, y: 20 }}
+            whileHover={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: 0.1 }}
+          >
+            <p className="text-gray-800 text-[16px] font-onest font-light leading-relaxed mb-4">
+              {company.description}
+            </p>
+            
+            <div className="space-y-2 mb-4">
+              {company.commodities.slice(0, 4).map((product, index) => (
+                <div key={index} className="text-gray-700 text-sm flex items-center">
+                  <div className="w-2 h-2 bg-green-400 rounded-full mr-3 flex-shrink-0"></div>
+                  {product}
+                </div>
+              ))}
             </div>
-          </div>
-        )}
-      </div>
+            
+            <button className="inline-flex items-center text-[16px] font-medium text-green-600 hover:text-green-700 transition-colors">
+              → Learn More
+            </button>
+          </motion.div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 }
@@ -271,11 +246,11 @@ export default function CompanyCarousel() {
       if (position === -1 || position === 1) {
         // Increase spacing for adjacent cards
         // You can adjust this value (380) to change the distance between center and adjacent cards
-        return position * 330; // Try increasing this to 420 or 450 for more spacing
+        return windowWidth < 1280 ? position * 300 : position * 330; // Try increasing this to 420 or 450 for more spacing
       } else if (position === -2 || position === 2) {
         // Spacing for outer cards
         // You can adjust this value (320) to change the distance between adjacent and outer cards
-        return position * 305;
+        return windowWidth < 1280 ? position * 280 : position * 305;
       } else {
         // Center card (position === 0)
         return 0;
@@ -286,7 +261,7 @@ export default function CompanyCarousel() {
   const visibleCards = getVisibleCards();
 
   return (
-    <section className="bg-[#fbfbfb] min-h-[100vh] pt-16 md:pt-24 md:pb-16">
+    <section className="bg-[#fbfbfb] min-h-[320px] overflow-hidden sm:overflow-hidden md:min-h-[100vh] pt-16 md:overflow-hidden md:pt-24 md:pb-16">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-[28px] md:text-[18px] font-bold text-[#000000] mb-4 text-lato font-lato font-bold">EXPLORE OUR COMPANIES</h2>
@@ -304,7 +279,7 @@ export default function CompanyCarousel() {
           onMouseUp={handleDragEnd}
         >
           {/* Cards */}
-          <div className="flex justify-center items-center h-[600px] relative touch-none">
+          <div className="flex justify-center items-center h-[340px] md:h-[600px] relative touch-none">
             {visibleCards.map((company) => {
               // Calculate scale based on position
               const isCenter = company.position === 0;

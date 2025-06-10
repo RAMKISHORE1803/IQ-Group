@@ -36,7 +36,18 @@ export default function QualitySection() {
         // Mobile view - keep original positioning
         gsap.set(imageContainer, { x: 450 });
         gsap.set(content, { x: -450 });
-      } else {
+      }
+      else if (window.innerWidth < 1024) {
+        // Desktop view - reverse initial positions
+        gsap.set(imageContainer, { x: 100 }); // Start from right
+        gsap.set(content, { x: -200 }); // Start from left
+      }
+      else if (window.innerWidth < 1280) {
+        // Desktop view - reverse initial positions
+        gsap.set(imageContainer, { x: 100 }); // Start from right
+        gsap.set(content, { x: -150 }); // Start from left
+      }
+       else {
         // Desktop view - reverse initial positions
         gsap.set(imageContainer, { x: 100 }); // Start from right
         gsap.set(content, { x: -100 }); // Start from left
@@ -44,14 +55,14 @@ export default function QualitySection() {
       
       // Create separate animations for each element for better control
       const imageAnim = gsap.to(imageContainer, {
-        x: 0, // Move to center position
+        x:  window.innerWidth < 1280 ? window.innerWidth < 1024 ? 20 : 50 : 0, // Move to center position
         ease: "power2.out",
         duration: window.innerWidth < 768 ? 1 : 10,
         paused: true
       });
       
       const contentAnim = gsap.to(content, {
-        x: 0, // Move to center position
+        x: window.innerWidth < 1280 ? window.innerWidth <1024 ? window.innerWidth <  768 ? 0 : -100 : -100 : 0, // Move to center position
         ease: "power2.out",
         duration: window.innerWidth < 768 ? 2 : 10,
         paused: true
@@ -128,24 +139,24 @@ export default function QualitySection() {
             <div className="absolute inset-0 bg-gradient-to-tr from-[#010A4E]/70 to-transparent rounded-xl"></div>
           </div>
 
-          <div ref={contentRef} className="text-white space-y-6 md:pl-[50px]">
-            <h2 className="text-[32px] text-lato text-[#000]  font-bold md:text-[38px] font-bold">
+          <div ref={contentRef} className="text-white space-y-6 md:min-w-[450px] lg:min-w-[550px] md:pl-[50px]">
+            <h2 className="text-[32px] text-lato text-[#3B54C4]  font-bold md:text-[38px] font-bold">
               QUALITY POLICY
             </h2>
             {/* <p className=" text-onest md:text-[32] font-light text-[#333] mb-6">
               POWERING INNOVATION. DELIVERING EXCELLENCE.
             </p> */}
-            <p className="  text-gray-700 text-onest font-light md:text-[28px] ">
+            <p className="  text-gray-700 text-onest font-light md:text-[20px] lg:text-[24px] xl:text-[28px] ">
             ISO 9001:2008 certified, we uphold uncompromising quality—ensuring every stage, from sourcing to delivery, meets the highest standards of precision, consistency, and continual improvement.            </p>
             {/* <p className=" md:text-[28px] text-[#1E3157] font-onest font-light leading-relaxed">Trusted by steel, aerospace, ceramics, batteries, and more.</p> */}
-            <button className="mt-6 border bg-black text-[#fbfbfb] hover:bg-[#fbfbfb] hover:border-[#000000] hover:text-[#000000]  px-6 py-3 transition-all duration-300">
+            <button className="mt-6 border bg-[#2546DA] text-[#fbfbfb] hover:bg-[#fbfbfb] hover:border-[#000000] hover:text-[#000000]  px-6 py-3 transition-all duration-300">
               Learn More
             </button>
           </div>
 
           <div 
             ref={imageContainerRef} 
-            className="relative h-[350px] sm:h-[400px] md:mr-[40px] md:h-[450px] lg:h-[500px] w-full rounded-xl overflow-hidden"
+            className="relative h-[350px] hidden md:block sm:h-[400px] md:mr-[40px] md:h-[450px] lg:h-[500px] w-full rounded-xl overflow-hidden"
           >
             <Image
               src="https://www.iqgroup.in/image/certificate/2.jpg"

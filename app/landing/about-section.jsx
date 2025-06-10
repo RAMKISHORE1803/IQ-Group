@@ -107,11 +107,11 @@ export default function AboutSection() {
       className="py-[20px] md:py-32 min-h-screen overflow-hidden bg-[#fbfbfb] from-[#010A4E] to-[#041174]"
       id="about"
     >
-      <div className="container mx-auto px-4 md:px-8 lg:px-12">
-        <div ref={sectionRef} className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+      <div className="container mx-auto px-4 md:pl-4 lg:pl-0 lg:pr-12 xl:pl-[40px]">
+        <div ref={sectionRef} className="grid grid-cols-1 md:grid-cols-2 lg:ml-[0px] lg:pl-[0px] xl:ml-[50px] gap-8 md:gap-12 items-center">
           <div 
             ref={imageContainerRef} 
-            className="relative h-[350px] sm:h-[400px] md:ml-[40px] md:h-[450px] lg:h-[500px] w-full rounded-xl overflow-hidden"
+            className="relative h-[350px] md:pl-[10px] sm:h-[400px] lg:ml-[0px] lg:min-w-[550px] xl:min-w-[580px] xl:pl-[100px] md:h-[450px] lg:h-[500px] w-full rounded-xl overflow-hidden"
           >
             <Image
               src="https://images.unsplash.com/photo-1661103391619-46e3175b3152?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -123,18 +123,18 @@ export default function AboutSection() {
             <div className="absolute inset-0 bg-gradient-to-tr from-[#010A4E]/70 to-transparent rounded-xl"></div>
           </div>
           
-          <div ref={contentRef} className="text-white space-y-6">
-            <h2 className="text-[32px] text-lato text-[#000] font-bold md:text-[38px] font-bold">
+          <div ref={contentRef} className="text-white space-y-6 md:pr-0 md:min-w-[370px] lg:min-w-[550px] lg:pr-[10px] lg:pr-[5px] ">
+            <h2 className="text-[32px] text-[#2D4BD2] text-lato text-[#000] font-bold sm:text-[34px] md:text-[38px] lg:text-[42px] font-bold">
               IQ GROUP
             </h2>
-            <p className=" text-onest md:text-[32] font-light text-[#333] mb-6">
+            <p className=" text-onest text-[#5790E1] sm:text-[20px] md:text-[16px] lg:text-[22px] font-light text-[#333] mb-6 md:pr-30  lg:pr-[100px]">
               POWERING INNOVATION. DELIVERING EXCELLENCE.
             </p>
-            <p className="  text-gray-700 text-onest font-light md:text-[28px] ">
-            IQ Group powers industries with premium raw materials—from alloys to minerals—delivered with precision, integrity, and speed. Global reach, Mumbai roots. 
+            <p className="  text-gray-700 text-onest font-light sm:text-[24px] md:text-[18px] md:pr-0 lg:text-[20px] md:pr-[5px] xl:text-[25px] lg:pr-[0px] ">
+            IQ Group powers industries with premium raw materials from alloys to minerals delivered with precision, integrity, and speed. Global reach, Mumbai roots. 
             </p>
-            <p className=" md:text-[28px] text-[#1E3157] font-onest font-light leading-relaxed">Trusted by steel, aerospace, ceramics, batteries, and more.</p>
-            <button className="mt-6 border bg-black text-[#fbfbfb] hover:bg-[#fbfbfb] hover:border-[#000000] hover:text-[#000000]  px-6 py-3 transition-all duration-300">
+            <p className="sm:text-[24px] md:text-[17px] lg:text-[21px] xl:text-[25px]  text-[#1E3157] font-onest font-light leading-relaxed">Trusted by steel, aerospace, ceramics, batteries, and more.</p>
+            <button className="mt-6 border bg-[#2D4BD2] text-[#fbfbfb] hover:bg-[#fbfbfb] border-2 border-[#2D4BD2] hover:border-[#2D4BD2] hover:text-[#2D4BD2]  px-6 py-3 transition-all duration-300">
               Learn More
             </button>
           </div>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 
 const PLACEHOLDER_URLS = {
-  port: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1920&h=1080&fit=crop',
+  port: 'https://media.licdn.com/dms/image/v2/C4D1BAQFN_lQKMzY9XA/company-background_10000/company-background_10000/0/1623414945016/iq_minerals__metals_cover?e=1750100400&v=beta&t=jh-i_1hYqRCefzD3CZ-nesAVACJJjU2TKkszSQ6XFqc',
   isoCert: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=1920&h=1080&fit=crop',
   divisions: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1920&h=1080&fit=crop',
   worldMap: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1920&h=1080&fit=crop',
