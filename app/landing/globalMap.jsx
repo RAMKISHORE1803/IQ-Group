@@ -43,13 +43,11 @@ const GlobalConstructionPlatform = () => {
         {/* Header */}
         <div className="flex justify-between items-start mb-8">
           <div className="max-w-lg">
-            <h1 className="text-4xl lg:text-5xl font-regular font-lato mb-6">
-              Global construction platform
+            <h1 className="text-4xl lg:text-5xl font-light font-onest mb-6">
+              GLOBAL CONSTRUCTION PLATFORM
             </h1>
             <p className="text-gray-200 text-lg font-onest font-light leading-relaxed mb-8">
-              With almost 2,800 people globally, we have a mobile workforce that 
-              collaborates to share knowledge and apply world's best practice across 
-              our projects.
+            With over 20 years of industry leadership, we have established a robust international network that bridges the gap between premium raw material sources and diverse industrial applications worldwide.
             </p>
             <p className="text-gray-400 text-base">
               Click the map to discover more about our locations across the world.
@@ -71,17 +69,17 @@ const GlobalConstructionPlatform = () => {
           <div className="lg:col-span-1">
             <div className="bg-[#5790E1] text-black p-8 space-y-6">
               <div>
-                <div className="text-3xl font-light">4 continents</div>
+                <div className="text-3xl font-light">12 Industries</div>
               </div>
               <hr className="border-black opacity-20" />
               
               <div>
-                <div className="text-3xl font-light">6 countries</div>
+                <div className="text-[28px] font-light ">20+Countries</div>
               </div>
               <hr className="border-black opacity-20" />
               
               <div>
-                <div className="text-3xl font-light">2,700+ people</div>
+                <div className="text-3xl font-light">2 Decades</div>
               </div>
               <hr className="border-black opacity-20" />
               

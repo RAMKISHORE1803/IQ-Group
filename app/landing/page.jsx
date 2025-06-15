@@ -239,7 +239,7 @@ export default function LandingPage() {
 
   return (
     <div className="bg-[#fbfbfb] z-[2]">
-      <main className="relative pt-[2.5vh]">
+      <main className="relative ">
         {/* Normal scrolling sections */}
         <DTREHeroCarousel />
         <AboutSection />

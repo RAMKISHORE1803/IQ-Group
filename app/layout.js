@@ -5,6 +5,7 @@ import { Onest } from "next/font/google";
 import "./globals.css";
 import IQGroupNavbar from "../components/navbar";
 import IQGroupFooter from "./landing/footer";
+import NavbarNew from "../components/NavbarNew";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -61,7 +62,7 @@ export default function RootLayout({ children }) {
       >
         {/* Navbar */}
         <header className="relative z-50">
-          <IQGroupNavbar />
+          <NavbarNew />
         </header>
         
         {/* Main content */}
