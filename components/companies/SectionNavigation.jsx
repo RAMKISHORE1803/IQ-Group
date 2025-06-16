@@ -12,7 +12,7 @@ import { gsap } from 'gsap';
 const SectionNavigation = ({
   links = [],
   title = "IN THIS SECTION",
-  className = ''
+  className = 'bg-[#fbfbfb]'
 }) => {
   if (links.length === 0) return null;
   
@@ -65,7 +65,7 @@ const SectionNavigation = ({
   }, [links]);
   
   return (
-    <div ref={containerRef} className={`bg-white py-8 px-4 md:px-8 lg:px-24 ${className}`}>
+    <div ref={containerRef} className={`py-8 px-4 md:px-8 lg:px-24 ${className}`}>
       <div className="max-w-7xl mx-auto">
         <div className="mb-4">
           <p ref={titleRef} className="text-sm uppercase tracking-wider font-lato text-gray-500">{title}</p>

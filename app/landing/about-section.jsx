@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
+import Link from 'next/link';
 export default function AboutSection() {
   const sectionRef = useRef(null);
   const imageContainerRef = useRef(null);
@@ -134,9 +134,11 @@ export default function AboutSection() {
             IQ Group powers industries with premium raw materials from alloys to minerals delivered with precision, integrity, and speed. Global reach, Mumbai roots. 
             </p>
             <p className="sm:text-[24px] md:text-[17px] lg:text-[21px] xl:text-[25px]  text-[#1E3157] font-onest font-light leading-relaxed">Trusted by steel, aerospace, ceramics, batteries, and more.</p>
+            <Link href="/about">
             <button className="mt-6 border bg-[#324390] text-[#fbfbfb] hover:bg-[#fbfbfb] border-2 border-[#2D4BD2] hover:border-[#2D4BD2] hover:text-[#2D4BD2]  px-6 py-3 transition-all duration-300">
               Learn More
             </button>
+            </Link>
           </div>
         </div>
       </div>

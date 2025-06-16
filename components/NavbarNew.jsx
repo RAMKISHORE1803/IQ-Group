@@ -59,10 +59,11 @@ const NavbarNew = () => {
       path: '/about',
       megaMenu: 'about',
       dropdown: [
-        { name: 'Company Overview', path: '/about/overview' },
-        { name: 'Leadership Team', path: '/about/leadership' },
-        { name: 'Our History', path: '/about/history' },
-        { name: 'Global Presence', path: '/about/presence' }
+        { name: 'What We Do', path: '/about#what-we-do' },
+        { name: 'How We Do', path: '/about#how-we-do' },
+        { name: 'Our Values', path: '/about#our-values' },
+        { name: 'Leadership Team', path: '/about#leadership' },
+        { name: 'Global Presence', path: '/about#office-locations' }
       ]
     },
     {
@@ -470,7 +471,7 @@ const NavbarNew = () => {
 function getDescriptionForSection(section) {
   switch (section) {
     case 'about':
-      return 'Learn about our company history, leadership team, and our global presence as we continue to grow and innovate.';
+      return 'Learn about what we do, our approach, core values, leadership team, and our global presence across key markets worldwide.';
     case 'companies':
       return 'Explore our diverse portfolio of specialized companies delivering excellence in materials, energy, and investments worldwide.';
     case 'industries':
