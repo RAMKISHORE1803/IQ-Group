@@ -33,10 +33,10 @@ export default function LandingPage() {
   const scrollTriggersRef = useRef([]); // Track our specific triggers
   const footerAnimationWrapperRef = useRef(null);
   const footerRef = useRef(null);
-  
+
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    
+
     gsap.registerPlugin(ScrollTrigger);
 
     const setupCurtainReveal = () => {
@@ -163,7 +163,7 @@ export default function LandingPage() {
             willChange: 'auto'
           });
           
-          ScrollTrigger.refresh();
+      ScrollTrigger.refresh();
         },
         
         onEnterBack: () => {
@@ -218,7 +218,7 @@ export default function LandingPage() {
       setupIndustriesAnimation();
       setupFooterReveal();
     }, 100);
-    
+
     const handleResize = debounce(() => {
       setupCurtainReveal();
       setupIndustriesAnimation();
@@ -242,15 +242,15 @@ export default function LandingPage() {
       <main className="relative ">
         {/* Normal scrolling sections */}
         <DTREHeroCarousel />
-        <AboutSection />
+          <AboutSection />
         <QualitySection />
-        <CompanySection />
+          <CompanySection />
         
         {/* GlobalMap wrapper */}
         <div ref={globalMapWrapperRef} className="relative">
           <div className='md:block hidden h-[10vh] bg-[#fbfbfb]'></div>
           <div ref={globalMapContentRef} className="will-change-transform">
-            <GlobalConstructionPlatform />
+          <GlobalConstructionPlatform />
           </div>
         </div>
         
@@ -272,7 +272,7 @@ export default function LandingPage() {
 
         {/* Clear ending point */}
         
-      </main>
+    </main>
     </div>
   );
-}
+} 
