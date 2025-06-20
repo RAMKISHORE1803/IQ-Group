@@ -31,7 +31,7 @@ const FontDemo = () => {
             <p className="font-bold mb-4 font-times">This is bold text using Times New Roman.</p>
             <p className="italic mb-4 font-times">This is italic text using Times New Roman.</p>
             <p className="text-lg mb-4 text-times">Using text-times utility class.</p>
-            <p className="heading-times mb-4">Using heading-times utility class.</p>
+            <p className="heading-times mb-4">Using heading-times utility classes.</p>
           </div>
           
           <div className="p-6 border rounded-lg">
