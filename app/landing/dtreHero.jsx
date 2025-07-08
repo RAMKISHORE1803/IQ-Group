@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 import Image from 'next/image';
 
+// Use regular img tag for local images to avoid Next.js optimization issues with deployment
 const PLACEHOLDER_URLS = {
-  port: '/images/HeroSection/2.jpg',
+  port: 'https://www.iqgroup.in/image/slider-lg-a.jpg',
   isoCert: 'https://assets.lummi.ai/assets/QmcJJ4gnTTpemnMCgVmHxLDpJNDBYVQt6gHn6zYx9FFFMS?auto=format&w=1500',
-  divisions: '/images/HeroSection/3.jpg',
+  divisions: 'https://www.iqgroup.in/image/slider-lg-b.jpg',
   worldMap: 'https://assets.lummi.ai/assets/QmV4d5AEniBPRQUDLkRm6ftBmVEx9jBrULQCtTeNaUp2Ra?auto=format&w=1500',
   logoFerro: 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=60&h=40&fit=crop',
   logoGreen: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=60&h=40&fit=crop',
@@ -142,16 +143,11 @@ export default function DTREHeroCarousel() {
     >
       {/* Background Image/Video with Overlay */}
       <div className="absolute inset-0">
-        <div className="relative w-full h-full">
-          <Image
-            src={currentSlideData.background}
-            alt={currentSlideData.ariaLabel}
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover transition-all duration-1000"
-          />
-        </div>
+        <img
+          src={currentSlideData.background}
+          alt={currentSlideData.ariaLabel}
+          className="w-full h-full object-cover transition-all duration-1000"
+        />
         <div className='absolute inset-0 bg-black/46'></div>
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-white/10"></div>
       </div>
