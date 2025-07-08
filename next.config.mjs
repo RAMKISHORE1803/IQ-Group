@@ -5,7 +5,8 @@ const nextConfig = {
       'images.unsplash.com',
       'via.placeholder.com',
       'images.pexels.com',
-      'www.iqgroup.in'
+      'www.iqgroup.in',
+      'assets.lummi.ai'
     ],
   },
 };

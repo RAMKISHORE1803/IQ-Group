@@ -4,9 +4,9 @@ import Image from 'next/image';
 
 const PLACEHOLDER_URLS = {
   port: '/images/HeroSection/2.jpg',
-  isoCert: '/images/HeroSection/1.jpg',
+  isoCert: 'https://assets.lummi.ai/assets/QmcJJ4gnTTpemnMCgVmHxLDpJNDBYVQt6gHn6zYx9FFFMS?auto=format&w=1500',
   divisions: '/images/HeroSection/3.jpg',
-  worldMap: '/images/HeroSection/2.jpg',
+  worldMap: 'https://assets.lummi.ai/assets/QmV4d5AEniBPRQUDLkRm6ftBmVEx9jBrULQCtTeNaUp2Ra?auto=format&w=1500',
   logoFerro: 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=60&h=40&fit=crop',
   logoGreen: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=60&h=40&fit=crop',
   logoMineral: 'https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=60&h=40&fit=crop'
