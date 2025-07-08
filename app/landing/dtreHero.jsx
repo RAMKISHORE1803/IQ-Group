@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 
 const PLACEHOLDER_URLS = {
-  port: 'https://media.licdn.com/dms/image/v2/C4D1BAQFN_lQKMzY9XA/company-background_10000/company-background_10000/0/1623414945016/iq_minerals__metals_cover?e=1750100400&v=beta&t=jh-i_1hYqRCefzD3CZ-nesAVACJJjU2TKkszSQ6XFqc',
+  port: '/images/HeroSection/2.jpg',
   isoCert: 'https://assets.lummi.ai/assets/QmcJJ4gnTTpemnMCgVmHxLDpJNDBYVQt6gHn6zYx9FFFMS?auto=format&w=1500',
-  divisions: 'https://videos.openai.com/vg-assets/assets%2Ftask_01jxcgnpe9fxd9fxxbgkxh5ttb%2F1749545701_img_2.webp?st=2025-06-10T07%3A19%3A38Z&se=2025-06-16T08%3A19%3A38Z&sks=b&skt=2025-06-10T07%3A19%3A38Z&ske=2025-06-16T08%3A19%3A38Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=8ebb0df1-a278-4e2e-9c20-f2d373479b3a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=R8HMia7pzgXkfx0sVEpCuU2V3fQAZatNMR6N60ZHONE%3D&az=oaivgprodscus',
+  divisions: '/images/HeroSection/3.jpg',
   worldMap: 'https://assets.lummi.ai/assets/QmV4d5AEniBPRQUDLkRm6ftBmVEx9jBrULQCtTeNaUp2Ra?auto=format&w=1500',
   logoFerro: 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=60&h=40&fit=crop',
   logoGreen: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=60&h=40&fit=crop',
@@ -38,11 +38,6 @@ const slides = [
     subtext: 'Explore how each IQ Group company delivers excellence in its niche.',
     ctaText: 'Discover Our Companies',
     ctaLink: '/our-companies',
-    supplementalLogos: [
-      { src: PLACEHOLDER_URLS.logoFerro, alt: 'IQ Ferro Alloys' },
-      { src: PLACEHOLDER_URLS.logoGreen, alt: 'IQ Green Energy' },
-      { src: PLACEHOLDER_URLS.logoMineral, alt: 'IQ Mineral & Metals' }
-    ]
   },
   {
     ariaLabel: 'Operating in 20+ Countries. Serving 15+ Industries.',
@@ -50,7 +45,7 @@ const slides = [
     isVideo: false,
     headline: 'Operating in 20+ Countries. Serving 15+ Industries.',
     subtext: 'Our global network and local expertise keep your supply chain agile.',
-    ctaText: 'View Our Global Presence',
+    
     ctaLink: '/global-presence',
     animatedStats: [
       { value: 20, suffix: '+', label: 'Countries' },
@@ -151,15 +146,15 @@ export default function DTREHeroCarousel() {
           alt={currentSlideData.ariaLabel}
           className="w-full h-full object-cover transition-all duration-1000"
         />
-        <div className='absolute inset-0 bg-black/30'></div>
+        <div className='absolute inset-0 bg-black/46'></div>
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-white/10"></div>
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 max-w-7xl mx-auto md:mt-[-100px] px-6 lg:px-8 w-full">
-        <div className="max-w-3xl pt-20 md:pt-0">
+      <div className="relative z-10  mx-auto md:mt-[-100px] px-6 lg:px-8 w-full">
+        <div className="max-w-3xl pt-20 lg:max-w-[800px] md:pl-[20px] md:pt-0">
           {/* Headline */}
-          <h1 className="text-[30px] sm:text-[40px] md:text-[50px] lg:text-[60px] xl:text-[65px] font-lato font-bold text-white leading-tight mb-4 md:mb-6">
+          <h1 className="text-[30px] sm:text-[40px] md:text-[50px] lg:text-[50px] lg:leading-[1.05] xl:text-[55px] font-lato font-bold text-white leading-tight mb-4 md:mb-6">
             {currentSlideData.headline}
           </h1>
 
@@ -169,13 +164,13 @@ export default function DTREHeroCarousel() {
           </p>
 
           {/* CTA Button */}
-          <button 
+          {currentSlideData.ctaText && <button 
             className="inline-flex items-center gap-2 md:gap-3 bg-[#203663] border-1 border-[#203663] hover:bg-[#fbfbfb] hover:text-[#203663] text-white px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-onest font-light transition-all duration-300 transform "
             onClick={() => console.log(`Navigate to: ${currentSlideData.ctaLink}`)}
           >
             <ExternalLink size={16} className="md:w-5 md:h-5" />
             {currentSlideData.ctaText}
-          </button>
+          </button>}
 
           {/* Supplemental Logos */}
           {currentSlideData.supplementalLogos && (
@@ -228,7 +223,7 @@ export default function DTREHeroCarousel() {
 
       {/* Progress Indicators */}
       <div className="absolute bottom-0 left-0 right-0 z-20 mb-20 md:mb-0">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 pb-6 md:pb-8">
+        <div className="max-w-7xl md:max-w-full md:px-[0px] mx-auto px-6 lg:px-8 pb-6 md:pb-8">
           {/* Desktop: Full progress indicators */}
           <div className="hidden md:grid grid-cols-4 gap-8">
             {slides.map((slide, index) => {
