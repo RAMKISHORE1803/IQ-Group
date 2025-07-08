@@ -245,10 +245,7 @@ const NavbarNew = () => {
                   height={125}
                   priority
                 />
-                {/* <div className="w-10 h-10 bg-white text-[#203663] flex items-center justify-center font-bold text-lg rounded">
-                  IQ
-                </div>*/}
-                {/* <span className="text-xl font-bold tracking-wide text-white">IQ GROUP</span>  */}
+                
               </div>
             </Link>
 
