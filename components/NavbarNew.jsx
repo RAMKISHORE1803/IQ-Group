@@ -239,7 +239,7 @@ const NavbarNew = () => {
             <Link href="/" className="flex items-center">
               <div className="flex items-center space-x-3 md:pt-[24px] ">
                 <Image 
-                  src="/images/iqLogo.png" 
+                  src="https://www.iqgroup.in/image/iql.png" 
                   alt="IQ Group" 
                   width={140} 
                   height={125}
