@@ -238,7 +238,7 @@ const NavbarNew = () => {
             {/* Logo */}
             <Link href="/" className="flex items-center">
               <div className="flex items-center space-x-3 md:pt-[24px] ">
-                <Image src="/images/iqLogo.png" alt="IQ Group" width={140} height={140} />
+                <Image src="/images/iqLogo.png" alt="IQ Group" width={140} height={125} />
                 {/* <div className="w-10 h-10 bg-white text-[#203663] flex items-center justify-center font-bold text-lg rounded">
                   IQ
                 </div>*/}
