@@ -11,22 +11,46 @@ const NavbarNew = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [hoveredItem, setHoveredItem] = useState(null);
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   
   const navRef = useRef(null);
   const dropdownRef = useRef(null);
   const timeoutRef = useRef(null);
+  const lastScrollY = useRef(0);
+  const ticking = useRef(false);
 
-  // Handle scroll effect for navbar background
+  // Handle scroll effect for navbar background and visibility
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
+      const currentScrollY = window.scrollY;
+      
+      if (!ticking.current) {
+        window.requestAnimationFrame(() => {
+          // Update background based on scroll position
+          if (currentScrollY > 10) {
+            setIsScrolled(true);
+          } else {
+            setIsScrolled(false);
+          }
+          
+          // Hide/show based on scroll direction
+          if (currentScrollY > lastScrollY.current && currentScrollY > 150) {
+            // Scrolling down & past threshold - hide navbar
+            setIsVisible(false);
+          } else {
+            // Scrolling up or at top - show navbar
+            setIsVisible(true);
+          }
+          
+          lastScrollY.current = currentScrollY;
+          ticking.current = false;
+        });
+        
+        ticking.current = true;
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   
@@ -231,6 +255,10 @@ const NavbarNew = () => {
           isScrolled 
             ? 'bg-[#203663] shadow-md' 
             : hoveredItem ? 'bg-[#203663] shadow-md' : 'bg-transparent'
+        } ${
+          isVisible 
+            ? 'transform translate-y-0' 
+            : 'transform -translate-y-full'
         }`}
       >
         <div className="container mx-auto px-4 lg:px-8 xl:px-12">
