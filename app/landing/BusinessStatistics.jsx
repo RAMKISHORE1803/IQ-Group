@@ -68,7 +68,7 @@ const BusinessStatistics = () => {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
         style={{
-          backgroundImage: 'url(/images/market/1.webp)'
+          backgroundImage: 'url(https://www.multiplex.global/media/2djh40is/18213.jpg?width=2060&height=1374&v=1dad1e29da48570)'
         }}
       />
       
