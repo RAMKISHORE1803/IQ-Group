@@ -247,14 +247,19 @@ export default function LandingPage() {
           <CompanySection />
         
         {/* GlobalMap wrapper */}
-        <div ref={globalMapWrapperRef} className="relative">
-          <div className='md:block hidden h-[20vh] bg-[#000]'></div>
+        <div ref={globalMapWrapperRef} className="relative hidden md:block">
+          <div className='md:block hidden h-[15vh] bg-[#000]'></div>
           <div ref={globalMapContentRef} className="will-change-transform">
           <GlobalConstructionPlatform />
-          <div className='md:block hidden h-[20vh] bg-[#000]'></div>
+          <div className='md:block hidden h-[10vh] bg-[#000]'></div>
           </div>
           
         </div>
+
+       <div className='md:hidden block '>
+        <GlobalConstructionPlatform />
+        <div className='h-[10vh]'></div>
+       </div>
         
         {/* Industries section */}
         <div ref={industriesRef} className="min-h-[70vh] xl:min-h-[100vh] bg-[#fbfbfb] text-white text-4xl">
@@ -266,7 +271,7 @@ export default function LandingPage() {
         
         {/* Footer with curtain reveal - separate from industries section */}
         <div ref={footerAnimationWrapperRef} className="relative">
-          <div className='md:block hidden h-[10vh] bg-[#fbfbfb]'></div>
+          <div className='md:block hidden h-[0.1vh] bg-[#fbfbfb]'></div>
           <div ref={footerRef} className="will-change-transform">
             <IQGroupFooter/>    
           </div>

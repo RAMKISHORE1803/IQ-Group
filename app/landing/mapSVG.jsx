@@ -40,18 +40,27 @@ export default function Map(){
     // Update countryData with client-side values after component mounts
     useEffect(() => {
         if (typeof window !== 'undefined') {
-            setCountryData({
-                IN: {
-                    ...defaultCountryData.IN,
-                    popupX: window.innerWidth < 1280 ? 101 : 96,
-                    popupY: window.innerWidth < 1280 ? 120 : 127
-                },
-                CN: {
-                    ...defaultCountryData.CN,
-                    popupX: window.innerWidth < 1280 ? 105 : 100,
-                    popupY: window.innerWidth < 1280 ? 117 : 120
-                }
-            });
+            const updateCountryData = () => {
+                setCountryData({
+                    IN: {
+                        ...defaultCountryData.IN,
+                        popupX: window.innerWidth < 768 ? 110 : window.innerWidth < 1280 ? 101 : 96,
+                        popupY: window.innerWidth < 768 ? 110 : window.innerWidth < 1280 ? 120 : 127
+                    },
+                    CN: {
+                        ...defaultCountryData.CN,
+                        popupX: window.innerWidth < 768 ? 115 : window.innerWidth < 1280 ? 105 : 100,
+                        popupY: window.innerWidth < 768 ? 110 : window.innerWidth < 1280 ? 117 : 120
+                    }
+                });
+            };
+            
+            // Set initial values
+            updateCountryData();
+            
+            // Add resize listener for responsive behavior
+            window.addEventListener('resize', updateCountryData);
+            return () => window.removeEventListener('resize', updateCountryData);
         }
     }, []);
     
@@ -68,7 +77,12 @@ export default function Map(){
         const x = svgRect.left - mapContainer.getBoundingClientRect().left + (svgRect.width * countryInfo.popupX / 100);
         const y = svgRect.top - mapContainer.getBoundingClientRect().top + (svgRect.height * countryInfo.popupY / 100);
         
-        setPopupPosition({ x, y });
+        // Adjust position for mobile
+        const isMobile = window.innerWidth < 768;
+        const adjustedX = isMobile ? Math.min(Math.max(x, 150), mapContainer.clientWidth - 150) : x;
+        const adjustedY = isMobile ? Math.min(Math.max(y, 100), mapContainer.clientHeight - 100) : y;
+        
+        setPopupPosition({ x: adjustedX, y: adjustedY });
         setSelectedCountry(countryId);
       };
       
@@ -81,15 +95,17 @@ export default function Map(){
         if (!selectedCountry) return null;
         
         const data = countryData[selectedCountry];
+        const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
         
         return (
           <div
-            className="absolute z-50 bg-white shadow-2xl p-6 min-w-80"
+            className="absolute z-50 bg-white shadow-2xl p-4 md:p-6 min-w-[250px] md:min-w-80"
             style={{
               left: `${popupPosition.x}px`,
               top: `${popupPosition.y}px`,
-              transform: 'translate(-50%, -100%)', // Center horizontally, position above
-              borderRadius: '0px' // NO ROUNDED CORNERS
+              transform: isMobile ? 'translate(-50%, -100%)' : 'translate(-50%, -100%)', // Center horizontally, position above
+              borderRadius: '0px', // NO ROUNDED CORNERS
+              maxWidth: isMobile ? 'calc(100vw - 40px)' : 'auto'
             }}
           >
             {/* Close Button */}
@@ -147,27 +163,35 @@ export default function Map(){
 
       
     return(
-        <div className="map-container w-full h-full bg-[#000] md:pt-[3px] rounded flex items-center justify-center ">
+        <div className="map-container w-full h-full bg-[#000] md:pt-[3px] rounded flex items-center justify-center overflow-hidden">
             <style jsx>
             {
                 `#IN{
                     fill:#5790E1;
                 }
-                    #CN{
+                #CN{
                     fill:#5790E1;
-                    }
+                }
                    
-                
                 .country-clickable {
                     cursor: pointer;
                     transition: fill 0.3s ease;
-                  }`
+                }
+                
+                @media (max-width: 768px) {
+                    .map-svg {
+                        height: 100% !important;
+                        width: auto !important;
+                        max-width: 100%;
+                        transform: scale(0.9);
+                    }
+                }`
                   
             }
         </style>
         
               <svg
-              className=""
+              className="map-svg"
               fill="#1E3157"
                viewBox="0 0 1009.6727 665.96301"
                width="100%"

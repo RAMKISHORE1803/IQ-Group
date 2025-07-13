@@ -9,6 +9,7 @@ import HowWeDoSection from '@/components/about/HowWeDoSection';
 import OurValuesSection from '@/components/about/OurValuesSection';
 import LeadershipSection from '@/components/about/LeadershipSection';
 import OfficeLocationsSection from '@/components/about/OfficeLocationsSection';
+import SectionNavigation from '@/components/companies/SectionNavigation';
 
 // Register GSAP plugins
 if (typeof window !== 'undefined') {
@@ -65,16 +66,20 @@ export default function AboutPage() {
     <div className="about-page bg-white">
       {/* Hero Section */}
       <HeroSection 
-        title="About IQ Group"
+        
         subtitle="Powering industries with premium raw materials delivered with precision, integrity, and speed. Global reach, Mumbai roots."
-        backgroundImage="https://images.unsplash.com/photo-1661103391619-46e3175b3152?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        backgroundImage="https://www.multiplex.global/media/5zvnll30/banner-image-transit-city-crane-can-updated-1.jpg?rxy=0.5497647007080969,0.340893470790378&width=3840&height=1640&v=1dad1e2acf2fa70"
         sideText="ABOUT US"
         navTitle="ABOUT"
         sectionLinks={sectionLinks}
       />
+     
+        
+    
 
       {/* Main Content */}
       <div className="relative z-20 bg-white">
+      <SectionNavigation links={sectionLinks} title="IN THIS SECTION" />
         {/* What We Do Section */}
         <WhatWeDoSection />
         

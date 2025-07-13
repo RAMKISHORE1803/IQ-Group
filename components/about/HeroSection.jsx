@@ -22,12 +22,12 @@ if (typeof window !== 'undefined') {
  * @param {Array} props.sectionLinks - Array of section links for "In This Section" navigation
  */
 const HeroSection = ({ 
-  title = "About IQ Group", 
+  title = "", 
   subtitle = "Powering industries with premium raw materials delivered with precision, integrity, and speed.",
   backgroundImage = "https://images.unsplash.com/photo-1661103391619-46e3175b3152?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   overlayColor = "rgba(0, 0, 0, 0.7)",
   sideText,
-  navTitle = "ABOUT",
+  navTitle = "",
   sectionLinks = []
 }) => {
   const heroRef = useRef(null);
@@ -150,12 +150,12 @@ const HeroSection = ({
     <>
       <section 
         ref={heroRef} 
-        className="relative w-full h-[100svh] md:h-screen"
+        className="relative w-full h-[100svh] md:h-screen lg:max-h-[90vh] bg-white overflow-hidden"
       >
         {/* Fixed Background Image */}
         <div 
           ref={backgroundRef}
-          className="fixed inset-0 w-full h-[100svh] md:h-screen bg-cover bg-center z-0"
+          className="fixed inset-0 w-full  md:h-screen bg-cover bg-center z-0"
           style={{ 
             backgroundImage: `url(${backgroundImage})`,
             backgroundAttachment: isMobile ? 'scroll' : 'fixed',
@@ -183,30 +183,30 @@ const HeroSection = ({
         </div>
 
         {/* Side Bar and Text (Vertical) - Desktop only */}
-        <div className="absolute left-0 top-0 h-full flex items-center z-10">
+        <div className="absolute left-[150px] top-0 h-full flex items-center z-10">
           {/* Vertical white bar */}
           <div 
             ref={sideBarRef} 
-            className="w-[3px] hidden md:block bg-white absolute bottom-0 left-8 md:left-12"
+            className="w-[1px] hidden md:block bg-white absolute bottom-0 left-8 md:left-12"
           ></div>
           {/* Vertical text */}
           <div 
             ref={sideTextRef}
-            className="hidden md:block absolute bottom-[10%] left-8 md:left-12 transform -translate-x-1/2 origin-bottom-left rotate-[-90deg] text-white text-sm tracking-widest"
+            className="hidden md:block absolute bottom-[23%] left-8 md:left-12 transform -translate-x-1/2 origin-bottom-left rotate-[-90deg] text-white font-bold   lg:text-[20px] tracking-widest"
           >
-            {displaySideText}
+            <span className="uppercase">{displaySideText}</span>
           </div>
         </div>
 
         {/* Content positioned at bottom */}
         <div 
           ref={contentRef}
-          className="hero-content relative z-10 h-[100svh] md:h-screen flex flex-col justify-end pb-12 md:pb-4 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32"
+          className="hero-content relative z-10 h-[100svh] md:h-screen lg:left-[180px] flex flex-col justify-end pb-12 md:pb-4 px-4 sm:px-8 md:px-16 lg:pb-[90px] lg:px-24 xl:px-32"
         >
           <div className="max-w-5xl mb-8 md:mb-16 lg:mb-24">
             <h1 
               ref={titleRef}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-lato text-white mb-4 md:mb-8 leading-tight"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-lato text-white mb-4 md:mb-8 leading-tight uppercase"
             >
               {title}
             </h1>
@@ -215,7 +215,7 @@ const HeroSection = ({
                 ref={subtitleRef}
                 className="mt-4 md:mt-6 lg:mt-12"
               >
-                <h2 className="text-[16px] leading-[26px] md:leading-tight md:text-2xl lg:text-[26px] lg:leading-[36px] font-light font-onest text-white">
+                <h2 className="text-[16px] leading-[26px] md:leading-tight lg:leading-normal md:text-2xl lg:text-[45px]  lg:max-w-4xl font-bold font-lato text-white">
                   {subtitle}
                 </h2>
               </div>
@@ -228,9 +228,7 @@ const HeroSection = ({
       </section>
       
       {/* Section Navigation */}
-      {sectionLinks.length > 0 && (
-        <SectionNavigation links={sectionLinks} title="IN THIS SECTION" />
-      )}
+      
     </>
   );
 };
