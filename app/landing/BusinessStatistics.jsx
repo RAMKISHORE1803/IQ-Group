@@ -2,8 +2,18 @@ import React, { useEffect, useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 
 const BusinessStatistics = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, threshold: 0.3 });
+  // Multiple refs for different sections
+  const mainSectionRef = useRef(null);
+  const titleRef = useRef(null);
+  const descriptionRef = useRef(null);
+  const chartRef = useRef(null);
+  const statsRef = useRef(null);
+  
+  // Multiple inView states for different sections
+  const isTitleInView = useInView(titleRef, { once: true, threshold: 0.3 });
+  const isDescriptionInView = useInView(descriptionRef, { once: true, threshold: 0.3 });
+  const isChartInView = useInView(chartRef, { once: true, threshold: 0.3 });
+  const isStatsInView = useInView(statsRef, { once: true, threshold: 0.3 });
   
   const [animatedValues, setAnimatedValues] = useState({
     revenue2024: 0,
@@ -13,9 +23,9 @@ const BusinessStatistics = () => {
     globalPartnerships: 0
   });
 
-  // Animate numbers when section comes into view
+  // Animate numbers when stats section comes into view
   useEffect(() => {
-    if (!isInView) return;
+    if (!isStatsInView) return;
     
     const duration = 2500; // 2.5 seconds
     const steps = 60;
@@ -50,30 +60,30 @@ const BusinessStatistics = () => {
     }, stepDuration);
 
     return () => clearInterval(interval);
-  }, [isInView]);
+  }, [isStatsInView]);
 
   return (
-    <div ref={ref} className="relative w-full  bg-[#1E3157] overflow-hidden lg:min-h-[140vh]" style={{ minHeight: '140vh' }}>
+    <div ref={mainSectionRef} className="relative w-full bg-[#000] overflow-hidden lg:min-h-[140vh]" style={{ minHeight: '140vh' }}>
       {/* Background Image */}
-      {/* <div 
+      <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
         style={{
-          backgroundImage: 'url(https://images.unsplash.com/photo-1565793298595-6a879b1d9492?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80)'
+          backgroundImage: 'url(/images/market/1.webp)'
         }}
-      /> */}
+      />
       
       {/* Content Container */}
       <div className="relative z-10 w-full px-6 md:px-8 lg:px-12 py-12 md:py-16 lg:py-20">
         <div className="max-w-7xl mx-auto">
           
           {/* Top Section - Title and Description */}
-          <div className="grid grid-cols-12 gap-8 lg:gap-16 mb-12 lg:mb-[150px]">
+          <div className="grid grid-cols-12 gap-8 lg:gap-16 mb-12 lg:mb-[68px]">
             {/* Title - Left */}
-            <div className="col-span-12 lg:col-span-3">
+            <div ref={titleRef} className="col-span-12 lg:col-span-3">
               <motion.h2 
                 className="text-[32px] md:text-[52px] xl:text-[70px] font-light font-lato text-white mb-6 lg:mb-0"
                 initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
+                animate={isTitleInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.8 }}
               >
                 Market strength
@@ -81,14 +91,14 @@ const BusinessStatistics = () => {
             </div>
             
             {/* Description - Right */}
-            <div className="col-span-12 lg:col-span-9 lg:pl-[150px]">
+            <div ref={descriptionRef} className="col-span-12 lg:col-span-9 lg:pl-[150px]">
               <motion.div 
                 className="space-y-6 lg:space-y-8 text-gray-300 leading-relaxed"
                 initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
+                animate={isDescriptionInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                <p className="text-[20px] md:text-[32px] font-onest font-light leading-relaxed">
+                <p className="text-[20px] md:text-[27px] font-onest font-light leading-relaxed">
                 IQ Group powers global innovation by connecting businesses to premium raw materials. With trusted partners worldwide, we align interests, ensure quality, and turn bold ideas into reality through unmatched market reach.                </p>
                 
                 {/* <p className="text-xs md:text-sm text-blue-400">
@@ -102,11 +112,11 @@ const BusinessStatistics = () => {
           <div className="grid grid-cols-12 gap-8 lg:gap-16 items-center">
             
             {/* Left Section - Donut Chart */}
-            <div className="col-span-12 lg:col-span-6 flex justify-center mb-12 lg:mb-0">
+            <div ref={chartRef} className="col-span-12 lg:col-span-6 flex justify-center mb-12 lg:mb-0">
               <motion.div 
                 className="relative"
                 initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
+                animate={isChartInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
                 transition={{ duration: 1, delay: 0.3 }}
               >
                 <svg width="500" height="500" viewBox="0 0 600 560" className="w-[390px] md:w-[530px] lg:w-[600px] h-[390px] md:h-[530px] lg:h-[600px]">
@@ -122,42 +132,42 @@ const BusinessStatistics = () => {
                       className="fill-gray-300" 
                       d="M306.3,280.3V106.8c94.4,0,170.1,73.1,173.4,167.5l-173.4,6.1Z"
                       initial={{ pathLength: 0 }}
-                      animate={{ pathLength: 1 }}
+                      animate={isChartInView ? { pathLength: 1 } : { pathLength: 0 }}
                       transition={{ duration: 3, delay: 0.5 }}
                     />
                     <motion.path 
                       className="fill-gray-400" 
                       d="M306.3,280.3l173.4-6.1c3.2,91.5-64.3,169.1-155.3,178.6l-18.1-172.6Z"
                       initial={{ pathLength: 0 }}
-                      animate={{ pathLength: 1 }}
+                      animate={isChartInView ? { pathLength: 1 } : { pathLength: 0 }}
                       transition={{ duration: 3, delay: 0.6 }}
                     />
                     <motion.path 
                       className="fill-gray-500" 
                       d="M306.3,280.3l18.1,172.6c-25.5,2.7-47.3.4-71.8-7.5l53.6-165Z"
                       initial={{ pathLength: 0 }}
-                      animate={{ pathLength: 1 }}
+                      animate={isChartInView ? { pathLength: 1 } : { pathLength: 0 }}
                       transition={{ duration: 3, delay: 0.7 }}
                     />
                     <motion.path 
                       className="fill-gray-600" 
                       d="M306.3,280.3l-53.6,165c-84.3-27.4-134.5-114.4-116.1-201.1l169.7,36.1Z"
                       initial={{ pathLength: 0 }}
-                      animate={{ pathLength: 1 }}
+                      animate={isChartInView ? { pathLength: 1 } : { pathLength: 0 }}
                       transition={{ duration: 3, delay: 0.8 }}
                     />
                     <motion.path 
                       className="fill-gray-200" 
                       d="M306.3,280.3l-169.7-36.1c16-75.5,74.9-128.4,151.6-136.5l18.1,172.6Z"
                       initial={{ pathLength: 0 }}
-                      animate={{ pathLength: 1 }}
+                      animate={isChartInView ? { pathLength: 1 } : { pathLength: 0 }}
                       transition={{ duration: 3, delay: 0.9 }}
                     />
                     <motion.path 
                       className="fill-white" 
                       d="M306.3,280.3l-18.1-172.6c5.6-.6,9.5-.8,15.1-.9l3,173.5Z"
                       initial={{ pathLength: 0 }}
-                      animate={{ pathLength: 1 }}
+                      animate={isChartInView ? { pathLength: 1 } : { pathLength: 0 }}
                       transition={{ duration: 3, delay: 1.0 }}
                     />
                   </g>
@@ -166,7 +176,7 @@ const BusinessStatistics = () => {
                   <g id="pointers" className="stroke-white stroke-1 fill-white">
                     <motion.g
                       initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
+                      animate={isChartInView ? { opacity: 1 } : { opacity: 0 }}
                       transition={{ duration: 0.8, delay: 1.2 }}
                     >
                       <circle cx="410.2" cy="183.5" r="3"/>
@@ -175,7 +185,7 @@ const BusinessStatistics = () => {
                     
                     <motion.g
                       initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
+                      animate={isChartInView ? { opacity: 1 } : { opacity: 0 }}
                       transition={{ duration: 0.8, delay: 1.3 }}
                     >
                       <circle cx="415.6" cy="378.7" r="3"/>
@@ -184,7 +194,7 @@ const BusinessStatistics = () => {
                     
                     <motion.g
                       initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
+                      animate={isChartInView ? { opacity: 1 } : { opacity: 0 }}
                       transition={{ duration: 0.8, delay: 1.4 }}
                     >
                       <circle cx="288.8" cy="427" r="3"/>
@@ -193,7 +203,7 @@ const BusinessStatistics = () => {
                     
                     <motion.g
                       initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
+                      animate={isChartInView ? { opacity: 1 } : { opacity: 0 }}
                       transition={{ duration: 0.8, delay: 1.5 }}
                     >
                       <circle cx="178" cy="357" r="3"/>
@@ -202,7 +212,7 @@ const BusinessStatistics = () => {
                     
                     <motion.g
                       initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
+                      animate={isChartInView ? { opacity: 1 } : { opacity: 0 }}
                       transition={{ duration: 0.8, delay: 1.6 }}
                     >
                       <circle cx="205" cy="167" r="3"/>
@@ -211,7 +221,7 @@ const BusinessStatistics = () => {
                     
                     <motion.g
                       initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
+                      animate={isChartInView ? { opacity: 1 } : { opacity: 0 }}
                       transition={{ duration: 0.8, delay: 1.7 }}
                     >
                       <circle cx="300" cy="120" r="3"/>
@@ -223,7 +233,7 @@ const BusinessStatistics = () => {
                   <g id="text" className="fill-white">
                     <motion.g
                       initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
+                      animate={isChartInView ? { opacity: 1 } : { opacity: 0 }}
                       transition={{ duration: 0.5, delay: 1.8 }}
                     >
                       <text x="489" y="128" className="text-xs md:text-sm font-medium">Ferro Alloys</text>
@@ -232,7 +242,7 @@ const BusinessStatistics = () => {
                     
                     <motion.g
                       initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
+                      animate={isChartInView ? { opacity: 1 } : { opacity: 0 }}
                       transition={{ duration: 0.5, delay: 1.9 }}
                     >
                       <text x="479" y="428" className="text-xs md:text-sm font-medium">Steel Industry</text>
@@ -241,7 +251,7 @@ const BusinessStatistics = () => {
                     
                     <motion.g
                       initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
+                      animate={isChartInView ? { opacity: 1 } : { opacity: 0 }}
                       transition={{ duration: 0.5, delay: 2.0 }}
                     >
                       <text x="220" y="485" className="text-xs md:text-sm font-medium text-center" textAnchor="middle">Chemicals</text>
@@ -250,7 +260,7 @@ const BusinessStatistics = () => {
                     
                     <motion.g
                       initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
+                      animate={isChartInView ? { opacity: 1 } : { opacity: 0 }}
                       transition={{ duration: 0.5, delay: 2.1 }}
                     >
                       <text x="50" y="380" className="text-xs md:text-sm font-medium">Minerals &</text>
@@ -260,7 +270,7 @@ const BusinessStatistics = () => {
                     
                     <motion.g
                       initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
+                      animate={isChartInView ? { opacity: 1 } : { opacity: 0 }}
                       transition={{ duration: 0.5, delay: 2.2 }}
                     >
                       <text x="60" y="123" className="text-xs md:text-sm font-medium">Carbon &</text>
@@ -270,7 +280,7 @@ const BusinessStatistics = () => {
                     
                     <motion.g
                       initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
+                      animate={isChartInView ? { opacity: 1 } : { opacity: 0 }}
                       transition={{ duration: 0.5, delay: 2.3 }}
                     >
                       <text x="220" y="47" className="text-xs md:text-sm font-medium text-center" textAnchor="middle">Raw Materials</text>
@@ -282,7 +292,7 @@ const BusinessStatistics = () => {
                   {/* Center Label */}
                   <motion.g
                     initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
+                    animate={isChartInView ? { opacity: 1 } : { opacity: 0 }}
                     transition={{ duration: 0.5, delay: 1.0 }}
                   >
                     <text x="306" y="270" fill='white' className="text-white text-[24px] md:text-lg font-light text-center leading-relaxed" textAnchor="middle">Global Market</text>
@@ -293,14 +303,14 @@ const BusinessStatistics = () => {
             </div>
 
             {/* Right Section - Statistics Grid (Responsive) */}
-            <div className="col-span-12 lg:col-span-6">
+            <div ref={statsRef} className="col-span-12 lg:col-span-6">
               {/* Desktop: 3x2 Grid, Tablet: 2x3 Grid, Mobile: 1 Column */}
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-12">
                 {/* 2024 Revenue */}
                 <motion.div 
                   className="text-center xl:text-center md:text-left text-left pb-6 border-b border-gray-600"
                   initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  animate={isStatsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                   transition={{ duration: 0.8, delay: 0.6 }}
                 >
                   <div className="text-3xl md:text-4xl xl:text-5xl font-bold text-white mb-3">
@@ -313,7 +323,7 @@ const BusinessStatistics = () => {
                 <motion.div 
                   className="text-center xl:text-center md:text-left text-left pb-6 border-b border-gray-600"
                   initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  animate={isStatsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                   transition={{ duration: 0.8, delay: 0.7 }}
                 >
                   <div className="text-3xl md:text-4xl xl:text-5xl font-bold text-white mb-3">
@@ -326,7 +336,7 @@ const BusinessStatistics = () => {
                 {/* <motion.div 
                   className="text-center xl:text-center md:text-left text-left pb-6 border-b border-gray-600"
                   initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  animate={isStatsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                   transition={{ duration: 0.8, delay: 0.8 }}
                 >
                   <div className="text-3xl md:text-4xl xl:text-5xl font-bold text-white mb-3">
@@ -339,7 +349,7 @@ const BusinessStatistics = () => {
                 <motion.div 
                   className="text-center xl:text-center md:text-left text-left pb-6 border-b border-gray-600"
                   initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  animate={isStatsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                   transition={{ duration: 0.8, delay: 0.9 }}
                 >
                   <div className="text-3xl md:text-4xl xl:text-5xl font-bold text-white mb-3">
@@ -352,7 +362,7 @@ const BusinessStatistics = () => {
                 <motion.div 
                   className="text-center xl:text-center md:text-left text-left pb-6 border-b border-gray-600"
                   initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  animate={isStatsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                   transition={{ duration: 0.8, delay: 1.0 }}
                 >
                   <div className="text-3xl md:text-4xl xl:text-5xl font-bold text-white mb-3">

@@ -12,12 +12,29 @@ const NavbarNew = () => {
   const [hoveredItem, setHoveredItem] = useState(null);
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
   
   const navRef = useRef(null);
   const dropdownRef = useRef(null);
   const timeoutRef = useRef(null);
   const lastScrollY = useRef(0);
   const ticking = useRef(false);
+
+  // Check if mobile on mount and window resize
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    
+    // Initial check
+    checkIfMobile();
+    
+    // Add event listener
+    window.addEventListener('resize', checkIfMobile);
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', checkIfMobile);
+  }, []);
 
   // Handle scroll effect for navbar background and visibility
   useEffect(() => {
@@ -239,41 +256,135 @@ const NavbarNew = () => {
   // All nav items for mobile menu
   const allNavItems = [...mainNavItems, ...rightNavItems];
 
+  // Find hovered item's position for dropdown arrow alignment
+  const getHoveredItemPosition = () => {
+    const allItems = [...mainNavItems, ...rightNavItems];
+    const item = allItems.find(item => item.megaMenu === hoveredItem);
+    
+    if (!item || !navRef.current) return 50;
+    
+    // Find the DOM element for the hovered item
+    const navItems = navRef.current.querySelectorAll('.nav-item');
+    let hoveredElement = null;
+    
+    navItems.forEach((navItem) => {
+      if (navItem.dataset.megaMenu === item.megaMenu) {
+        hoveredElement = navItem;
+      }
+    });
+    
+    if (!hoveredElement) return 50;
+    
+    // Calculate the center position of the hovered element
+    const rect = hoveredElement.getBoundingClientRect();
+    const navRect = navRef.current.getBoundingClientRect();
+    
+    // Return position as percentage of navbar width
+    return ((rect.left + rect.width / 2) - navRect.left) / navRect.width * 100;
+  };
+
+  // Add global styles for 3D animations
+  const globalStyles = `
+    .perspective-500 {
+      perspective: 500px;
+    }
+    
+    .transform-style-3d {
+      transform-style: preserve-3d;
+      transition: transform 0.5s;
+    }
+    
+    .rotate-x-180 {
+      transform: rotateX(180deg);
+    }
+    
+    .backface-hidden {
+      backface-visibility: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .front-face {
+      transform: rotateX(0deg);
+      backface-visibility: hidden;
+    }
+    
+    .back-face {
+      transform: rotateX(180deg);
+      backface-visibility: hidden;
+    }
+    
+    @keyframes summersault {
+      0% { transform: rotateX(0deg); }
+      100% { transform: rotateX(360deg); }
+    }
+    
+    .nav-item-text:hover {
+      animation: summersault 0.6s ease forwards;
+      animation-iteration-count: 1;
+    }
+    
+    .dropdown-arrow {
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-bottom: 8px solid white;
+      position: absolute;
+      top: -8px;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .dropdown-animation {
+      animation: fadeIn 0.3s ease forwards;
+    }
+  `;
+
   return (
     <>
-      {/* Top Banner for Resources - Fixed to top */}
-      <div className="bg-[#203663] fixed top-0 w-full z-50 text-white text-center py-1 text-sm">
-        <Link href={resourcesItem.path} className="hover:underline">
-          Discover our Resources →
-        </Link>
-      </div>
+      {/* Top Banner for Resources - Fixed to top, hidden on mobile */}
+      {!isMobile && (
+        <div className="bg-[#0e3364] fixed top-0 w-full z-50 text-white text-center py-1 text-sm">
+          <Link href={resourcesItem.path} className="hover:underline">
+            Discover our Resources →
+          </Link>
+        </div>
+      )}
       
       {/* Main Navbar */}
       <header
         ref={navRef}
-        className={`fixed top-[28px] md:min-h-[106px] left-0 w-full z-40 transition-all duration-300 ${
-          isScrolled 
-            ? 'bg-[#203663] shadow-md' 
-            : hoveredItem ? 'bg-[#203663] shadow-md' : 'bg-transparent'
-        } ${
-          isVisible 
-            ? 'transform translate-y-0' 
-            : 'transform -translate-y-full'
-        }`}
+        className={`fixed ${!isMobile ? 'top-[28px]' : 'top-0'} left-0 w-full z-40 transition-all duration-300 max-h-[18vh] 
+          ${isScrolled || hoveredItem ? 'bg-[#0e3364] text-white shadow-md' : 'bg-transparent text-white'}
+          ${isVisible ? 'transform translate-y-0' : 'transform -translate-y-full'}
+        `}
+        aria-label="Main Navigation"
       >
         <div className="container mx-auto px-4 lg:px-8 xl:px-12">
-          <div className="flex items-center justify-between h-20">
+          <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link href="/" className="flex items-center">
-              <div className="flex items-center space-x-3 md:pt-[24px] ">
-                <Image 
-                  src="https://www.iqgroup.in/image/iql.png" 
-                  alt="IQ Group" 
-                  width={140} 
-                  height={125}
+              <div className="flex items-center">
+                <Image
+                  src="/images/logo.webp"
+                  alt="IQ Groups Logo"
+                  width={120}
+                  style={{
+                    transform: 'scale(2.3)'
+                  }}
+                  height={40}
                   priority
                 />
-                
               </div>
             </Link>
 
@@ -283,23 +394,28 @@ const NavbarNew = () => {
                 {mainNavItems.map((item, index) => (
                   <li 
                     key={index} 
-                    className="relative group"
+                    className="relative group nav-item"
+                    data-mega-menu={item.megaMenu}
                     onMouseEnter={() => handleMouseEnter(item)}
                     onMouseLeave={handleMouseLeave}
+                    onClick={() => setIsDropdownVisible(false)}
                   >
-                    <div className="flex items-center font-light font-onest lg:text-[17px]">
+                    <div className="flex items-center font-medium text-base">
                       <Link 
                         href={item.path}
-                        className={` tracking-wide text-white py-2  border-b-2 ${
-                          hoveredItem === item.megaMenu ? 'border-white' : 'border-transparent hover:border-white'
-                        }`}
+                        className="tracking-wide text-white py-2 group relative perspective-500"
+                        aria-expanded={hoveredItem === item.megaMenu}
                       >
-                        {item.name}
+                        {/* 3D Animation Wrapper */}
+                        <span className=" inline-block">
+                          {item.name}
+                        </span>
+                        
                         {item.dropdown && (
                           <ChevronDown 
                             size={14} 
                             className={`ml-1 inline-block transition-transform duration-300 ${
-                              hoveredItem === item.megaMenu ? 'rotate-180' : ''
+                              hoveredItem === item.megaMenu ? 'rotate-360' : ''
                             }`} 
                           />
                         )}
@@ -311,26 +427,30 @@ const NavbarNew = () => {
             </nav>
 
             {/* Desktop Navigation - Right Nav */}
-            <div className="hidden md:flex items-center space-x-6">
+            <div className="hidden lg:flex items-center space-x-6">
               {rightNavItems.map((item, index) => (
                 <div 
                   key={index}
-                  className="relative group"
+                  className="relative group nav-item"
+                  data-mega-menu={item.megaMenu}
                   onMouseEnter={() => handleMouseEnter(item)}
                   onMouseLeave={handleMouseLeave}
                 >
                   <Link 
                     href={item.path}
-                    className={`md:text-[16px] font-light font-onest tracking-wide text-white py-2 border-b-2 ${
-                      hoveredItem === item.megaMenu ? 'border-white' : 'border-transparent hover:border-white'
-                    }`}
+                    className="text-base font-medium tracking-wide text-white py-2 group relative perspective-500"
+                    aria-expanded={hoveredItem === item.megaMenu}
                   >
-                    {item.name}
+                    {/* 3D Animation Wrapper */}
+                    <span className=" inline-block">
+                      {item.name}
+                    </span>
+                    
                     {item.dropdown && (
                       <ChevronDown 
                         size={14} 
                         className={`ml-1 inline-block transition-transform duration-300 ${
-                          hoveredItem === item.megaMenu ? 'rotate-180' : ''
+                          hoveredItem === item.megaMenu ? 'rotate-360' : ''
                         }`} 
                       />
                     )}
@@ -341,9 +461,10 @@ const NavbarNew = () => {
               {/* Contact Button */}
               <Link
                 href="/contact"
-                className="text-[16px] font-light font-onest tracking-wide text-white py-2 border-b-2 border-transparent hover:border-white "
+                className="bg-transparent border border-white text-white hover:bg-white hover:text-[#0e3364] px-4 py-1 text-sm font-medium transition-colors duration-300 rounded-none"
+                aria-label="Contact DTRE"
               >
-                Contact
+                CONTACT
               </Link>
             </div>
 
@@ -353,6 +474,7 @@ const NavbarNew = () => {
                 onClick={toggleMobileMenu}
                 className="p-2 text-white"
                 aria-label="Toggle mobile menu"
+                aria-expanded={isMobileMenuOpen}
               >
                 {isMobileMenuOpen ? (
                   <X size={24} />
@@ -368,20 +490,33 @@ const NavbarNew = () => {
         {hoveredItem && (
           <div 
             ref={dropdownRef}
-            className={`absolute left-0 right-0 top-full bg-white shadow-lg z-50 transition-all duration-300 transform origin-top ${
+            className={`absolute left-0 right-0 top-full bg-white shadow-lg z-50 transition-all duration-300 transform origin-top rounded-b-lg ${
               isDropdownVisible 
-                ? 'opacity-100 translate-y-0' 
+                ? 'opacity-100 translate-y-0 dropdown-animation' 
                 : 'opacity-0 -translate-y-4 pointer-events-none'
             }`}
             onMouseEnter={handleDropdownMouseEnter}
             onMouseLeave={handleDropdownMouseLeave}
+            role="region"
+            aria-label={`${[...mainNavItems, ...rightNavItems, resourcesItem].find(item => item.megaMenu === hoveredItem)?.name} dropdown menu`}
           >
+            {/* Upward pointing arrow */}
+            <div 
+              className="dropdown-arrow-container absolute"
+              style={{ 
+                left: `${getHoveredItemPosition()}%`,
+                transform: 'translateX(-50%)' 
+              }}
+            >
+              <div className="dropdown-arrow"></div>
+            </div>
+            
             <div className="container mx-auto px-4 lg:px-8 py-8">
               <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                 {/* Left Column - Title and Description */}
                 <div className="md:col-span-1">
-                  <h2 className="text-[#203663] text-3xl font-bold mb-4">
-                    {[...mainNavItems, ...rightNavItems, resourcesItem].find(item => item.megaMenu === hoveredItem)?.name}
+                  <h2 className="text-[#0e3364] text-3xl font-bold mb-4">
+                    {hoveredItem === 'research' ? 'Research & Insights' : [...mainNavItems, ...rightNavItems, resourcesItem].find(item => item.megaMenu === hoveredItem)?.name}
                   </h2>
                   {!hasManyItems(hoveredItem) && (
                     <p className="text-gray-600 mb-6">
@@ -423,16 +558,16 @@ const NavbarNew = () => {
                       href={item.path}
                       className="block group"
                     >
-                      <div className={`bg-blue-50 rounded-md transition-all duration-300 hover:shadow-md ${
+                      <div onClick={() => setIsDropdownVisible(false)} className={`bg-[#f5f7fa] rounded-md transition-all duration-300 hover:shadow-md ${
                         hasManyItems(hoveredItem) ? 'p-4' : 'p-6'
                       }`}>
                         <div className="flex justify-between items-start">
-                          <h3 className={`font-semibold text-[#203663] ${
+                          <h3 className={`font-semibold text-[#0e3364] ${
                             hasManyItems(hoveredItem) ? 'text-base' : 'text-lg mb-2'
                           }`}>
                             {item.name}
                           </h3>
-                          <div className="text-[#203663]">
+                          <div className="text-[#0e3364]">
                             <svg 
                               width={hasManyItems(hoveredItem) ? "16" : "20"}
                               height={hasManyItems(hoveredItem) ? "16" : "20"}
@@ -451,7 +586,7 @@ const NavbarNew = () => {
                         </div>
                         {!hasManyItems(hoveredItem) && (
                           <p className="text-gray-600 text-sm">
-                            {getItemDescription(hoveredItem, item.name)}
+                            {item.description || getItemDescription(hoveredItem, item.name)}
                           </p>
                         )}
                       </div>
@@ -467,55 +602,18 @@ const NavbarNew = () => {
         {isMobileMenuOpen && (
           <div className="fixed inset-0 z-50 lg:hidden">
             <div className="absolute inset-0 bg-black opacity-50" onClick={toggleMobileMenu}></div>
-            <nav className="relative h-full w-80 max-w-[80%] bg-[#203663] p-6 overflow-y-auto float-right">
+            <nav className="fixed inset-y-0 right-0 h-[100vh] w-80 max-w-[80%] bg-[#0e3364] p-6 overflow-y-auto">
               <div className="flex justify-between items-center mb-8">
                 <div className="flex items-center space-x-3">
-                  <div className="w-8 h-8 bg-white text-[#203663] flex items-center justify-center font-bold text-sm rounded">
-                    IQ
-                  </div>
-                  <span className="text-lg font-bold tracking-wide text-white">IQ GROUP</span>
+                  <span className="text-2xl font-bold tracking-tight text-white">DTRE</span>
                 </div>
-                <button onClick={toggleMobileMenu} className="text-white">
+                <button onClick={toggleMobileMenu} className="text-white" aria-label="Close menu">
                   <X size={24} />
                 </button>
               </div>
               
               <ul className="space-y-4">
-                {/* Resources in mobile menu */}
-                <li className="py-2 border-b border-blue-400">
-                  <div>
-                    <button
-                      onClick={() => handleDropdownToggle(-1)}
-                      className="flex items-center justify-between w-full text-left text-white font-medium"
-                    >
-                      <span className="text-xl">{resourcesItem.name}</span>
-                      <ChevronDown
-                        size={16}
-                        className={`transform transition-transform ${
-                          activeDropdown === -1 ? 'rotate-180' : 'rotate-0'
-                        }`}
-                      />
-                    </button>
-                    
-                    {activeDropdown === -1 && (
-                      <ul className="mt-3 space-y-2">
-                        {resourcesItem.dropdown.map((dropdownItem, idx) => (
-                          <li key={idx}>
-                            <Link
-                              href={dropdownItem.path}
-                              className="block text-white opacity-80 hover:opacity-100 pl-4"
-                              onClick={toggleMobileMenu}
-                            >
-                              {dropdownItem.name}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                </li>
-                
-                {/* All other nav items */}
+                {/* All nav items */}
                 {allNavItems.map((item, index) => (
                   <li key={index} className="py-2 border-b border-blue-400">
                     {item.dropdown ? (
@@ -523,6 +621,7 @@ const NavbarNew = () => {
                         <button
                           onClick={() => handleDropdownToggle(index)}
                           className="flex items-center justify-between w-full text-left text-white font-medium"
+                          aria-expanded={activeDropdown === index}
                         >
                           <span className="text-xl">{item.name}</span>
                           <ChevronDown
@@ -576,7 +675,10 @@ const NavbarNew = () => {
       </header>
       
       {/* Add a spacer to push content below the fixed navbar */}
-      <div className="h-[48px]"></div>
+      <div className={`${!isMobile ? 'h-[72px]' : 'h-[64px]'}`}></div>
+      
+      {/* Add global styles for 3D animations */}
+      <style jsx global>{globalStyles}</style>
     </>
   );
 };
@@ -584,6 +686,10 @@ const NavbarNew = () => {
 // Helper function to get descriptions for each section
 function getDescriptionForSection(section) {
   switch (section) {
+    case 'services':
+      return 'Comprehensive real estate services tailored to your specific needs across industrial, logistics, science, and technology sectors.';
+    case 'research':
+      return 'We surface and deliver verifiable long-term industry trends, as well as the granular, asset-by-asset understandings that unlock actionable recommendations for our clients.';
     case 'about':
       return 'Learn about what we do, our approach, core values, leadership team, and our global presence across key markets worldwide.';
     case 'companies':

@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 import Image from 'next/image';
 
 // Use regular img tag for local images to avoid Next.js optimization issues with deployment
 const PLACEHOLDER_URLS = {
   port: 'https://www.iqgroup.in/image/slider-lg-a.jpg',
-  isoCert: 'https://assets.lummi.ai/assets/QmcJJ4gnTTpemnMCgVmHxLDpJNDBYVQt6gHn6zYx9FFFMS?auto=format&w=1500',
-  divisions: 'https://www.iqgroup.in/image/slider-lg-b.jpg',
-  worldMap: 'https://assets.lummi.ai/assets/QmV4d5AEniBPRQUDLkRm6ftBmVEx9jBrULQCtTeNaUp2Ra?auto=format&w=1500',
+  isoCert: '/images/HeroSection/4.jpg',
+  divisions: '/images/HeroSection/1.jpg',
+  worldMap: '/images/HeroSection/5.jpg',
   logoFerro: 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=60&h=40&fit=crop',
   logoGreen: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=60&h=40&fit=crop',
   logoMineral: 'https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=60&h=40&fit=crop'
@@ -95,42 +95,70 @@ export default function DTREHeroCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [progressKey, setProgressKey] = useState(0); // Key to force progress bar restart
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [nextSlideIndex, setNextSlideIndex] = useState(null);
+  const progressRefs = useRef([]);
 
   const SLIDE_DURATION = 4000; // 4 seconds - make sure this matches progress animation
+  const TRANSITION_DURATION = 300; // 300ms for quick completion of current progress
 
   useEffect(() => {
     if (!isPlaying) return;
 
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => {
-        const nextSlide = (prev + 1) % slides.length;
-        setProgressKey(prevKey => prevKey + 1); // Force progress bar restart
-        return nextSlide;
-      });
+      handleSlideChange((currentSlide + 1) % slides.length);
     }, SLIDE_DURATION);
 
     return () => clearInterval(interval);
-  }, [isPlaying]);
+  }, [isPlaying, currentSlide]);
+
+  // Handle smooth transition between slides
+  const handleSlideChange = (nextIndex) => {
+    if (isTransitioning) return;
+    
+    setIsTransitioning(true);
+    setNextSlideIndex(nextIndex);
+    
+    // Complete current progress bar quickly
+    const currentBar = progressRefs.current[currentSlide];
+    if (currentBar) {
+      currentBar.style.transition = `width ${TRANSITION_DURATION}ms linear`;
+      currentBar.style.width = '100%';
+    }
+    
+    // After quick completion, move to next slide
+    setTimeout(() => {
+      setCurrentSlide(nextIndex);
+      setProgressKey(prevKey => prevKey + 1);
+      setIsTransitioning(false);
+      setNextSlideIndex(null);
+    }, TRANSITION_DURATION);
+  };
 
   const goToSlide = (index) => {
-    setCurrentSlide(index);
-    setProgressKey(prevKey => prevKey + 1); // Force progress bar restart
+    if (index === currentSlide || isTransitioning) return;
+    
     setIsPlaying(false);
-    setTimeout(() => setIsPlaying(true), 100);
+    handleSlideChange(index);
+    setTimeout(() => setIsPlaying(true), TRANSITION_DURATION + 100);
   };
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
-    setProgressKey(prevKey => prevKey + 1); // Force progress bar restart
+    if (isTransitioning) return;
+    
+    const nextIndex = (currentSlide + 1) % slides.length;
     setIsPlaying(false);
-    setTimeout(() => setIsPlaying(true), 100);
+    handleSlideChange(nextIndex);
+    setTimeout(() => setIsPlaying(true), TRANSITION_DURATION + 100);
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-    setProgressKey(prevKey => prevKey + 1); // Force progress bar restart
+    if (isTransitioning) return;
+    
+    const prevIndex = (currentSlide - 1 + slides.length) % slides.length;
     setIsPlaying(false);
-    setTimeout(() => setIsPlaying(true), 100);
+    handleSlideChange(prevIndex);
+    setTimeout(() => setIsPlaying(true), TRANSITION_DURATION + 100);
   };
 
   const currentSlideData = slides[currentSlide];
@@ -167,7 +195,7 @@ export default function DTREHeroCarousel() {
 
           {/* CTA Button */}
           {currentSlideData.ctaText && <button 
-            className="inline-flex items-center gap-2 md:gap-3 bg-[#203663] border-1 border-[#203663] hover:bg-[#fbfbfb] hover:text-[#203663] text-white px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-onest font-light transition-all duration-300 transform "
+            className="inline-flex items-center gap-2 md:gap-3 bg-[#203663] border-1 border-[#203663] hover:bg-[#fbfbfb] hover:text-[#203663] text-white px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-onest font-light transition-all duration-300 transform cursor-pointer"
             onClick={() => console.log(`Navigate to: ${currentSlideData.ctaLink}`)}
           >
             <ExternalLink size={16} className="md:w-5 md:h-5" />
@@ -209,14 +237,14 @@ export default function DTREHeroCarousel() {
       <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 md:right-6 md:top-1/2 md:transform md:-translate-y-1/2 md:left-auto md:bottom-auto flex md:flex-col gap-4 z-20">
         <button
           onClick={prevSlide}
-          className="w-[60px] h-[60px] md:w-12 md:h-12 bg-white/0 hover:bg-white/0 backdrop-blur-sm border border-white/30 rounded-full flex items-center justify-center text-white transition-all duration-300"
+          className="w-[60px] h-[60px] md:w-12 md:h-12 bg-white/0 hover:bg-white/0 backdrop-blur-sm border border-white/30 rounded-full flex items-center justify-center text-white transition-all duration-300 cursor-pointer"
           aria-label="Previous slide"
         >
           <ChevronLeft size={30} className="md:w-6 md:h-6" />
         </button>
         <button
           onClick={nextSlide}
-          className="w-[60px] h-[60px] md:w-12 md:h-12 bg-white/0 hover:bg-white/0 backdrop-blur-sm border border-white/30 rounded-full flex items-center justify-center text-white transition-all duration-300"
+          className="w-[60px] h-[60px] md:w-12 md:h-12 bg-white/0 hover:bg-white/0 backdrop-blur-sm border border-white/30 rounded-full flex items-center justify-center text-white transition-all duration-300 cursor-pointer"
           aria-label="Next slide"
         >
           <ChevronRight size={30} className="md:w-6 md:h-6" />
@@ -230,6 +258,7 @@ export default function DTREHeroCarousel() {
           <div className="hidden md:grid grid-cols-4 gap-8">
             {slides.map((slide, index) => {
               const isActive = index === currentSlide;
+              const isNext = index === nextSlideIndex;
               const slideNumber = (index + 1).toString().padStart(2, '0');
               
               return (
@@ -237,12 +266,16 @@ export default function DTREHeroCarousel() {
                   {/* Progress Bar */}
                   <div className="w-full h-1 bg-white/30 mb-4 overflow-hidden">
                     <div 
+                      ref={el => progressRefs.current[index] = el}
                       key={`${index}-${progressKey}`} // Key to force restart
-                      className={`h-full transition-all duration-300 ${
-                        isActive ? 'bg-blue-400 w-full' : 'bg-white/50 w-0 group-hover:w-1/4'
+                      className={`h-full transition-all ${
+                        isActive ? 'bg-blue-400' : isNext ? 'bg-white/70' : 'bg-white/50 group-hover:bg-white/70'
                       }`}
                       style={{
-                        animation: isActive && isPlaying ? `progress-${index} ${SLIDE_DURATION}ms linear forwards` : 'none'
+                        width: isActive && isPlaying && !isTransitioning ? '0%' : isActive ? '0%' : '0%',
+                        animation: isActive && isPlaying && !isTransitioning ? 
+                          `progress-${index} ${SLIDE_DURATION}ms linear forwards` : 'none',
+                        transition: isActive ? 'width 4s linear' : 'width 0.3s ease'
                       }}
                     ></div>
                   </div>

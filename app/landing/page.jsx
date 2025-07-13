@@ -13,7 +13,7 @@ import BCGCareersSection from './careerSection';
 import InsightsSection from './insight-section';
 import BusinessStatistics from './BusinessStatistics';
 import IQGroupFooter from './footer';
-
+import DTREStyleFooter from './dtre-footer';
 const debounce = (func, wait) => {
   let timeout;
   return function executedFunction(...args) {
