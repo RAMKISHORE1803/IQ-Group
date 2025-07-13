@@ -248,10 +248,12 @@ export default function LandingPage() {
         
         {/* GlobalMap wrapper */}
         <div ref={globalMapWrapperRef} className="relative">
-          <div className='md:block hidden h-[10vh] bg-[#fbfbfb]'></div>
+          <div className='md:block hidden h-[20vh] bg-[#000]'></div>
           <div ref={globalMapContentRef} className="will-change-transform">
           <GlobalConstructionPlatform />
+          <div className='md:block hidden h-[20vh] bg-[#000]'></div>
           </div>
+          
         </div>
         
         {/* Industries section */}

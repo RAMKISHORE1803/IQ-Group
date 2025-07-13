@@ -1,21 +1,22 @@
-"use-client"
+"use client"
 import React from 'react';
 import { useState, useRef } from 'react';
 import Map from './mapSVG';
 
-
 const countryData = {
-   IN: {
-      name: "INDIA",
-      established: "2005 Established in India",
-      people: "500+ People",
-      work: "US$5bn Work to date",
-      projects: "120 Projects to date"
-    },
-   }
+  IN: {
+    name: "INDIA",
+    established: "2005 Established in India",
+    people: "500+ People",
+    work: "US$5bn Work to date",
+    projects: "120 Projects to date"
+  },
+  // Add more countries as needed
+}
 
 const GlobalConstructionPlatform = () => {
-   const [popupPosition, setPopupPosition] = useState({ x: 0, y: 0 });
+  const [activeCountry, setActiveCountry] = useState(null);
+  const [popupPosition, setPopupPosition] = useState({ x: 0, y: 0 });
   const mapRef = useRef(null);
 
   const handleCountryClick = (countryCode, e) => {
@@ -34,47 +35,36 @@ const GlobalConstructionPlatform = () => {
   const closePopup = () => {
     setActiveCountry(null);
   };
-  return (
-    <div className="min-h-[100vh] bg-[#000000] text-[#fbfbfb] font-sans">
-      <div className='h-[10vh] bg-[#000000]'></div>
-      
-        
-        <div className="p-8 lg:p-16">
-        {/* Header */}
-        <div className="flex justify-between items-start mb-8">
-          <div className="max-w-lg">
-            <h1 className="text-4xl lg:text-5xl font-light font-onest mb-6">
-              GLOBAL CONSTRUCTION PLATFORM
-            </h1>
-            <p className="text-gray-200 text-lg font-onest font-light leading-relaxed mb-8">
-            With over 20 years of industry leadership, we have established a robust international network that bridges the gap between premium raw material sources and diverse industrial applications worldwide.
-            </p>
-            <p className="text-gray-400 text-base">
-              Click the map to discover more about our locations across the world.
-            </p>
-          </div>
-          
-          {/* View all locations button */}
-          {/* <div className="flex items-center space-x-2 cursor-pointer hover:text-blue-400 transition-colors">
-            <span className="text-sm">View all locations</span>
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </div> */}
-        </div>
 
-        {/* Main Content */}
-        <div className="grid lg:grid-cols-5 gap-12 flex-wrap-reverse items-center">
-          {/* Stats Panel */}
-          <div className="lg:col-span-1">
-            <div className="bg-[#5790E1] text-black p-8 space-y-6">
+  return (
+    <div className="h-screen bg-black text-white font-sans flex flex-col relative overflow-hidden">
+      {/* Thin horizontal line at the top */}
+      <div className="w-full border-t border-gray-800 mb-8"></div>
+      
+      <div className="container mx-auto px-6 lg:px-12 flex-grow flex flex-col">
+        <div className="flex flex-col lg:flex-row h-full">
+          {/* Left Content Area */}
+          <div className="lg:w-[40%] flex flex-col justify-between pr-4 mb-8 lg:mb-0">
+            <div>
+              <h1 className="text-4xl lg:text-5xl font-light mb-6">
+                Global construction platform
+              </h1>
+              <p className="text-gray-300 text-lg font-light leading-relaxed mb-8 max-w-md">
+              With over 20 years of industry leadership, we have established a robust international network that bridges the gap between premium raw material sources and diverse industrial applications worldwide.              </p>
+              <p className="text-gray-400 text-base">
+                Click the map to discover more about our locations across the world.
+              </p>
+            </div>
+            
+            {/* Stats Box - Positioned at the bottom of the left column */}
+            <div className="bg-[#00a0e1] text-black p-8 space-y-6 mt-auto">
               <div>
                 <div className="text-3xl font-light">12 Industries</div>
               </div>
               <hr className="border-black opacity-20" />
               
               <div>
-                <div className="text-[28px] font-light ">20+Countries</div>
+                <div className="text-3xl font-light">20+ Countries</div>
               </div>
               <hr className="border-black opacity-20" />
               
@@ -88,19 +78,41 @@ const GlobalConstructionPlatform = () => {
               </div>
             </div>
           </div>
-
-          {/* World Map Area */}
           
-          <div className="lg:col-span-4">
-          
-            <div className="w-full h-96 lg:h-[550px] flex items-center justify-center">
-              {/* Replace this div with your SVG world map */}
-              <Map/>
+          {/* Right Map Area */}
+          <div className="lg:w-[60%] relative" ref={mapRef}>
+            {/* View all locations button */}
+            <div className="absolute top-0 right-0 flex items-center space-x-2 cursor-pointer hover:text-blue-400 transition-colors">
+              <span className="text-sm">View all locations</span>
+              <div className="w-6 h-6 rounded-full border border-white flex items-center justify-center">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </div>
             </div>
+            
+            {/* Map Component */}
+            <div className="w-full h-full flex items-center justify-center">
+              <Map />
+            </div>
+            
+            {/* Country Popup - Only show if activeCountry exists */}
+            {activeCountry && (
+              <div 
+                className="absolute bg-white text-black p-4 rounded shadow-lg"
+                style={{ left: `${popupPosition.x}px`, top: `${popupPosition.y}px` }}
+              >
+                <button onClick={closePopup} className="absolute top-2 right-2 text-gray-500">&times;</button>
+                <h3 className="font-bold">{countryData[activeCountry].name}</h3>
+                <p>{countryData[activeCountry].established}</p>
+                <p>{countryData[activeCountry].people}</p>
+                <p>{countryData[activeCountry].work}</p>
+                <p>{countryData[activeCountry].projects}</p>
+              </div>
+            )}
           </div>
         </div>
       </div>
-      
     </div>
   );
 };
