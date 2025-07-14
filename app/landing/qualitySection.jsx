@@ -140,7 +140,7 @@ export default function QualitySection() {
           </div>
 
           <div ref={contentRef} className="text-white space-y-6 md:min-w-[450px] lg:min-w-[550px] md:pl-[50px]">
-            <h2 className="text-[32px] text-lato text-[#3B54C4]  font-bold md:text-[38px] font-bold">
+            <h2 className="text-[32px] text-lato text-[#324390]  font-bold md:text-[38px] font-bold">
               QUALITY POLICY
             </h2>
             {/* <p className=" text-onest md:text-[32] font-light text-[#333] mb-6">

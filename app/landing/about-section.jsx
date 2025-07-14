@@ -125,11 +125,11 @@ export default function AboutSection() {
           
           <div ref={contentRef} className="text-white space-y-6 md:pr-0 md:min-w-[370px] lg:min-w-[550px] lg:pr-[10px] lg:pr-[5px] ">
             <h2 className="text-[32px] text-[#324390] text-lato text-[#000] font-bold sm:text-[34px] md:text-[38px] lg:text-[42px] font-bold">
-              IQ GROUP
+            POWERING INNOVATION. DELIVERING EXCELLENCE.
             </h2>
-            <p className=" text-onest text-[#5790E1] sm:text-[20px] md:text-[16px] lg:text-[22px] font-light text-[#333] mb-6 md:pr-30  lg:pr-[100px]">
-              POWERING INNOVATION. DELIVERING EXCELLENCE.
-            </p>
+            {/* <p className=" text-onest text-[#5790E1] sm:text-[20px] md:text-[16px] lg:text-[22px] font-light text-[#333] mb-6 md:pr-30  lg:pr-[100px]">
+              
+            </p> */}
             <p className="  text-gray-700 text-onest font-light sm:text-[24px] md:text-[18px] md:pr-0 lg:text-[20px] md:pr-[5px] xl:text-[25px] lg:pr-[0px] ">
             IQ Group powers industries with premium raw materials from alloys to minerals delivered with precision, integrity, and speed. Global reach, Mumbai roots. 
             </p>

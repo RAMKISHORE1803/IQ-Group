@@ -150,7 +150,7 @@ const HeroSection = ({
     <>
       <section 
         ref={heroRef} 
-        className="relative w-full h-[100svh] md:h-screen lg:max-h-[90vh] bg-white overflow-hidden"
+        className="relative w-full h-[100svh] md:h-screen lg:max-h-[88vh] bg-white overflow-hidden"
       >
         {/* Fixed Background Image */}
         <div 
@@ -192,9 +192,9 @@ const HeroSection = ({
           {/* Vertical text */}
           <div 
             ref={sideTextRef}
-            className="hidden md:block absolute bottom-[23%] left-8 md:left-12 transform -translate-x-1/2 origin-bottom-left rotate-[-90deg] text-white font-bold   lg:text-[20px] tracking-widest"
+            className="hidden md:block absolute bottom-[23%] min-w-[120px] left-8  md:left-[60px] transform -translate-x-1/2 origin-bottom-left rotate-[-90deg] text-white font-bold   lg:text-[20px] "
           >
-            <span className="uppercase">{displaySideText}</span>
+            <span className="uppercase ">{displaySideText}</span>
           </div>
         </div>
 

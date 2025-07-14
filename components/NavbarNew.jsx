@@ -169,13 +169,8 @@ const NavbarNew = () => {
     },
     {
       name: 'CSR',
-      path: '/csr',
-      megaMenu: 'csr',
-      dropdown: [
-        { name: 'Overview', path: '/csr/overview' },
-        { name: 'Initiatives', path: '/csr/initiatives' },
-        { name: 'Foundation', path: '/csr/foundation' }
-      ]
+      path: 'https://www.jkbfoundation.com/',
+      
     }
   ];
 

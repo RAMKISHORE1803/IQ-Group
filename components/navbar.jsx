@@ -68,11 +68,7 @@ const IQGroupNavbar = () => {
     },
     {
       title: 'CSR',
-      submenu: [
-        { title: 'Overview', link: '/csr/overview' },
-        { title: 'Initiatives', link: '/csr/initiatives' },
-        { title: 'Foundation Link', link: '/csr/foundation' }
-      ]
+      
     }
   ];
 
