@@ -6,7 +6,7 @@ import Image from 'next/image';
 const PLACEHOLDER_URLS = {
   port: 'https://www.iqgroup.in/image/slider-lg-a.jpg',
   isoCert: 'https://dtre.com/_next/image?url=https%3A%2F%2Fdtre-com.s3.eu-west-2.amazonaws.com%2Fdtre-com%2FSciTech%20Cover%20-%20Q1%202025-2.jpg&w=1200&q=75',
-  divisions: 'https://dtre.com/_next/image?url=https%3A%2F%2Fdtre-com.s3.eu-west-2.amazonaws.com%2Fdtre-com%2FBBLR_Website_Header.jpg&w=1200&q=75',
+  divisions: 'https://dtre.com/_next/image?url=https%3A%2F%2Fdtre-com.s3.eu-west-2.amazonaws.com%2Fdtre-com%2FDTRE_Industrial_1.jpg&w=750&q=75',
   worldMap: 'https://dtre.com/_next/image?url=https%3A%2F%2Fdtre-com.s3.eu-west-2.amazonaws.com%2Fdtre-com%2FBBLR_Website_Header.jpg&w=1200&q=75',
   logoFerro: 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=60&h=40&fit=crop',
   logoGreen: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=60&h=40&fit=crop',

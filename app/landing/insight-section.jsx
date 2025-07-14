@@ -235,7 +235,7 @@ const InsightsSection = () => {
       {/* Bottom CTA Button */}
       <div className="flex">
         <motion.button
-          className="bg-[#1E3157] text-white hover:bg-[#fbfbfb] hover:text-[#1E3157] border-2 border-[#1E3157] hover:border-[#1E3157] font-onest text-[20px] font-light text-black font-medium px-6 py-3  transition-colors duration-200 flex items-center gap-2"
+          className="bg-[#1E3157] cursor-pointer text-white hover:bg-[#fbfbfb] hover:text-[#1E3157] border-2 border-[#1E3157] hover:border-[#1E3157] font-onest text-[20px] font-light text-black font-medium px-6 py-3  transition-colors duration-200 flex items-center gap-2"
          
         >
           VIEW ALL

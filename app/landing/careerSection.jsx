@@ -24,7 +24,7 @@ export default function BCGCareersSection() {
           </p>
           
           {/* CTA Button */}
-          <button className="inline-flex items-center gap-3 bg-[#324390] md:bg-[#FBFBFB] md:border md:border-black md:hover:border-white md:hover:bg-[#1E3157] md:hover:text-[#FBFBFB] text-white md:text-black px-6 sm:px-7 md:px-8 py-3 sm:py-3.5 md:py-4 text-base sm:text-lg font-onest font-medium transition-all duration-300 transform rounded-none">
+          <button className="inline-flex cursor-pointer items-center gap-3 bg-[#324390] md:bg-[#FBFBFB] md:border md:border-black md:hover:border-white md:hover:bg-[#1E3157] md:hover:text-[#FBFBFB] text-white md:text-black px-6 sm:px-7 md:px-8 py-3 sm:py-3.5 md:py-4 text-base sm:text-lg font-onest font-medium transition-all duration-300 transform rounded-none">
             APPLY TODAY
             <ArrowUpRight size={20} />
           </button>

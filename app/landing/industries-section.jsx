@@ -7,9 +7,9 @@ const IndustriesSection = () => {
         {"id": 1, "name": "Aerospace", "image": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800"},
         {"id": 2, "name": "Steel", "image": "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800"},
         {"id": 3, "name": "Automobile", "image": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800"},
-        {"id": 4, "name": "Battery", "image": "https://images.unsplash.com/photo-1593941707882-a5bac6861d75?w=800"},
-        {"id": 5, "name": "Ceramic", "image": "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800"},
-        {"id": 6, "name": "Chemical", "image": "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800"},
+        {"id": 4, "name": "Battery", "image": "https://news.mst.edu/files/2025/05/batteries-1260x473.jpeg"},
+        {"id": 5, "name": "Ceramic", "image": "https://assets.lummi.ai/assets/QmXVv9yqRL9wsVqUgBDYZF6voys4NLczx2De7xE3FSsKUm?auto=format&w=1500"},
+        {"id": 6, "name": "Chemical", "image": "https://assets.lummi.ai/assets/QmRWrf7RRguRREw1py5ASex7cAGxv3rVYQL6Tw9LFAGRCq?auto=format&w=1500"},
         {"id": 7, "name": "Foundries", "image": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800"},
         {"id": 8, "name": "Glass", "image": "https://assets.lummi.ai/assets/QmdjvE5DEVkpGMDUNBQtTgMXXXNBnrxgeBk5Q6RTka9GHM?auto=format&w=1500"},
         {"id": 9, "name": "Paint", "image": "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=800"},
@@ -17,8 +17,8 @@ const IndustriesSection = () => {
         {"id": 11, "name": "Stainless Steel", "image": "https://www.shyammetalics.com/wp-content/uploads/2024/07/blog_img_1_07.jpg"},
         {"id": 12, "name": "Aluminum", "image": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800"},
         {"id": 13, "name": "Textile", "image": "https://assets.lummi.ai/assets/QmNpyxgXoXt78SXLsfBTdqADVQzN7DBv9WFqu5bfkaRDGF?auto=format&w=1500"},
-        {"id": 14, "name": "Tyre", "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800"},
-        {"id": 15, "name": "Paper", "image": "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=800"}
+        {"id": 14, "name": "Tyre", "image": "https://assets.lummi.ai/assets/QmeNHGPHEyi8Sjx25eaEwUE9JU3Ko2fZ3EWCpDfz6qd54E?auto=format&w=1500"},
+        {"id": 15, "name": "Paper", "image": "https://assets.lummi.ai/assets/QmUevsnAtUyS9mRE61tsC55xddmrsaqVSc7tdF81i6mFJH?auto=format&w=1500"}
       ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -176,14 +176,14 @@ const IndustriesSection = () => {
           <div className="absolute right-0 bottom-0 md:bottom-[-80px] flex gap-3 mb-4 mr-4">
             <button 
               onClick={prevSlide}
-              className="p-3 text-[#1E3157] rounded-full bg-white shadow-md hover:text-black transition-colors"
+              className="p-3 text-[#1E3157] rounded-full cursor-pointer bg-white shadow-md hover:text-black transition-colors"
               aria-label="Previous"
             >
               <ChevronLeft  size={32} />
             </button>
             <button 
               onClick={nextSlide}
-              className="p-3 text-[#1E3157]  rounded-full bg-white shadow-md hover:text-black transition-colors"
+              className="p-3 text-[#1E3157] cursor-pointer  rounded-full bg-white shadow-md hover:text-black transition-colors"
               aria-label="Next"
             >
               <ChevronRight  size={32} />
@@ -234,14 +234,14 @@ const IndustriesSection = () => {
           <div className="flex justify-center gap-4 mt-8">
             <button 
               onClick={prevSlide}
-              className="p-2 text-gray-400 hover:text-white transition-colors"
+              className="p-2 text-gray-400 cursor-pointer hover:text-white transition-colors"
               aria-label="Previous"
             >
               <ChevronLeft size={20} />
             </button>
             <button 
               onClick={nextSlide}
-              className="p-2 text-gray-400 hover:text-white transition-colors"
+              className="p-2 text-gray-400 cursor-pointer hover:text-white transition-colors"
               aria-label="Next"
             >
               <ChevronRight size={20} />

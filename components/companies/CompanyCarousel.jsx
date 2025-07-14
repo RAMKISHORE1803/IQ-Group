@@ -131,7 +131,7 @@ function CompanyCard({ company, isCenter, position, scale, xOffset, yOffset, onC
                 ))}
               </div>
               
-              <button className="inline-flex items-center text-[16px] font-medium text-green-600 hover:text-green-700 transition-colors">
+              <button className="inline-flex cursor-pointer items-center text-[16px] font-medium text-green-600 hover:text-green-700 transition-colors">
                 → Learn More
               </button>
             </motion.div>
@@ -362,7 +362,7 @@ export default function CompanyCarousel() {
             {/* Pause/Play Button */}
             <button
               onClick={togglePause}
-              className="w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center text-gray-700 hover:bg-gray-100 transition-colors z-20"
+              className="w-12 h-12 cursor-pointer rounded-full bg-white shadow-lg flex items-center justify-center text-gray-700 hover:bg-gray-100 transition-colors z-20"
               aria-label={isPaused ? "Play slideshow" : "Pause slideshow"}
             >
               {isPaused ? <Play size={20} /> : <Pause size={20} />}
@@ -371,7 +371,7 @@ export default function CompanyCarousel() {
             {/* Previous Button */}
             <button 
               onClick={prevSlide}
-              className="w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center text-gray-700 hover:bg-gray-100 transition-colors z-20"
+              className="w-12 h-12 cursor-pointer rounded-full bg-white shadow-lg flex items-center justify-center text-gray-700 hover:bg-gray-100 transition-colors z-20"
               aria-label="Previous slide"
             >
               <ChevronLeft size={20} />
@@ -380,7 +380,7 @@ export default function CompanyCarousel() {
             {/* Next Button */}
             <button 
               onClick={nextSlide}
-              className="w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center text-gray-700 hover:bg-gray-100 transition-colors z-20"
+              className="w-12 h-12 rounded-full cursor-pointer bg-white shadow-lg flex items-center justify-center text-gray-700 hover:bg-gray-100 transition-colors z-20"
               aria-label="Next slide"
             >
               <ChevronRight size={20} />
