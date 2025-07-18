@@ -7,7 +7,7 @@ import SectionWithCards from '@/components/companies/SectionWithCards';
 import SectionNavigation from '@/components/companies/SectionNavigation';
 import HeroSection from '@/components/about/HeroSection';
 import ProductRangeSection from '@/components/companies/ProductRangeSection';
-import TimelineDemo from '@/components/ui/timeline-demo';
+
 import Link from 'next/link';
 import { useState, useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
