@@ -7,6 +7,7 @@ import SectionWithCards from '@/components/companies/SectionWithCards';
 import SectionNavigation from '@/components/companies/SectionNavigation';
 import HeroSection from '@/components/about/HeroSection';
 import ProductRangeSection from '@/components/companies/ProductRangeSection';
+import QualityStandardsSection from '@/components/companies/QualityStandardsSection';
 
 // Value cards data for "How We Deliver Value" section
 const valueCards = [
@@ -101,6 +102,10 @@ const sectionLinks = [
   {
     title: "Applications",
     link: "#applications"
+  },
+  {
+    title: "Quality standards",
+    link: "#quality-standards"
   }
 ];
 
@@ -220,6 +225,20 @@ export default function NobleAlloysPage() {
             </div>
           </div>
         </ContentSection>
+        
+        {/* Quality Standards Section */}
+        <QualityStandardsSection
+          id="quality-standards"
+          title="Quality Standards"
+          description="In the world of noble alloys, microscopic precision determines macroscopic success. Our quality assurance program operates at the elemental level—verifying composition, structure, and performance against the industry's most demanding benchmarks. This scientific rigor ensures that when critical applications demand perfection, our alloys deliver without compromise."
+          logoSrc="/Images/QualityCertificate/usa-accreditation.svg"
+          logoAlt="United States Accreditation"
+          buttonText="Learn More"
+          buttonLink="#"
+          background="white"
+          sectionNumber="04"
+          sectionTitle="IN THIS SECTION"
+        />
         
         {/* Contact CTA */}
         <ContentSection>

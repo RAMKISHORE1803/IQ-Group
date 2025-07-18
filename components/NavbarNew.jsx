@@ -114,7 +114,7 @@ const NavbarNew = () => {
         { name: 'IQ Minerals & Metals', path: '/companies/minerals-metals' },
         { name: 'IQ Coke & Coal', path: '/companies/coke-coal' },
         { name: 'IQ Green Energy', path: '/companies/green-energy' },
-        { name: 'IQ International Chemical Supply', path: '/companies/chemical-supply' },
+        { name: 'IQ International Chemical Supply', path: '/companies/international' },
         { name: 'IQ Noble Alloys', path: '/companies/noble-alloys' },
         { name: 'IQ Angel Investments', path: '/companies/angel-investments' },
         { name: 'DAB Worldwide', path: '/companies/dab-worldwide' }

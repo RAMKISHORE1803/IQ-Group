@@ -7,6 +7,7 @@ import SectionWithCards from '@/components/companies/SectionWithCards';
 import SectionNavigation from '@/components/companies/SectionNavigation';
 import ProductRangeSection from '@/components/companies/ProductRangeSection';
 import HeroSection from '@/components/about/HeroSection';
+import QualityStandardsSection from '@/components/companies/QualityStandardsSection';
 
 // Value cards data for "How We Deliver Value" section
 const valueCards = [
@@ -192,36 +193,18 @@ export default function InternationalPage() {
         />
         
         {/* Quality Standards Section */}
-        <ContentSection id="quality-standards" title="Quality Standards" background="gray">
-          <div className="bg-white p-8 rounded-lg shadow-sm">
-            <p className="text-gray-700 mb-4">
-              At IQ International, we maintain stringent quality control throughout our global supply network. Our chemical products undergo comprehensive testing to ensure they meet international standards and client specifications, while our distribution processes are optimized for reliability and efficiency.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-              <div className="text-center">
-                <div className="bg-[#203663] text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold">ISO</span>
-                </div>
-                <h3 className="font-semibold text-[#203663]">ISO 9001:2015</h3>
-                <p className="text-sm text-gray-600 mt-2">Quality Management System</p>
-              </div>
-              <div className="text-center">
-                <div className="bg-[#203663] text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold">ISO</span>
-                </div>
-                <h3 className="font-semibold text-[#203663]">ISO 14001:2015</h3>
-                <p className="text-sm text-gray-600 mt-2">Environmental Management</p>
-              </div>
-              <div className="text-center">
-                <div className="bg-[#203663] text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold">ISO</span>
-                </div>
-                <h3 className="font-semibold text-[#203663]">ISO 45001:2018</h3>
-                <p className="text-sm text-gray-600 mt-2">Occupational Health & Safety</p>
-              </div>
-            </div>
-          </div>
-        </ContentSection>
+        <QualityStandardsSection
+          id="quality-standards"
+          title="Quality Standards"
+          description="Our chemical products represent the pinnacle of quality assurance. Through our global network, we maintain unwavering standards that transcend borders. Each product undergoes rigorous verification against international benchmarks, ensuring that what you receive isn't just a chemical—it's a guarantee of performance, safety, and consistency that empowers your innovations."
+          logoSrc="/Images/QualityCertificate/usa-accreditation.svg"
+          logoAlt="United States Accreditation"
+          buttonText="Learn More"
+          buttonLink="#"
+          background="gray"
+          sectionNumber="04"
+          sectionTitle="IN THIS SECTION"
+        />
         
         {/* Contact CTA */}
         <ContentSection>

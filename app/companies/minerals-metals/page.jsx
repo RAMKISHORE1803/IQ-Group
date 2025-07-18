@@ -7,6 +7,7 @@ import SectionWithCards from '@/components/companies/SectionWithCards';
 import SectionNavigation from '@/components/companies/SectionNavigation';
 import HeroSection from '@/components/about/HeroSection';
 import ProductRangeSection from '@/components/companies/ProductRangeSection';
+import QualityStandardsSection from '@/components/companies/QualityStandardsSection';
 
 // Value cards data for "How We Deliver Value" section
 const valueCards = [
@@ -190,9 +191,10 @@ const sectionLinks = [
     title: "Metals",
     link: "#metals"
   },
+  
   {
-    title: "Industries served",
-    link: "#industries-served"
+    title: "Quality standards",
+    link: "#quality-standards"
   }
 ];
 
@@ -250,7 +252,7 @@ export default function MineralsMetalsPage() {
         />
         
         {/* Industries Served Section */}
-        <ContentSection id="industries-served" title="Industries We Serve" background="white" sectionNumber="05">
+        {/* <ContentSection id="industries-served" title="Industries We Serve" background="white" sectionNumber="05">
           <div className="bg-white p-8 rounded-lg shadow-sm">
             <p className="text-gray-700 mb-6">
               At IQ Minerals & Metals, we serve a diverse range of industries with tailored mineral and metal solutions. Our expertise spans multiple sectors, ensuring that each client receives materials that meet their specific requirements and quality standards.
@@ -306,7 +308,21 @@ export default function MineralsMetalsPage() {
               </div>
             </div>
           </div>
-        </ContentSection>
+        </ContentSection> */}
+        
+        {/* Quality Standards Section */}
+        <QualityStandardsSection
+          id="quality-standards"
+          title="Quality Standards"
+          description="We don't just source minerals and metals—we curate excellence. Our materials undergo comprehensive analysis and certification at every stage, from origin to delivery. This uncompromising approach ensures that when you specify a material grade, what you receive isn't just compliant—it's precisely calibrated to perform in your most demanding applications, time after time."
+          logoSrc="/Images/QualityCertificate/usa-accreditation.svg"
+          logoAlt="United States Accreditation"
+          buttonText="Learn More"
+          buttonLink="#"
+          background="gray"
+          sectionNumber="05"
+          sectionTitle="IN THIS SECTION"
+        />
         
         {/* Contact CTA */}
         <ContentSection>

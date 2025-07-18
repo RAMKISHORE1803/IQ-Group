@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Main circle -->
+  <circle cx="256" cy="256" r="240" fill="#f1f5f9" stroke="#203663" stroke-width="8"/>
+  
+  <!-- Inner circle with text -->
+  <circle cx="256" cy="256" r="200" fill="none" stroke="#203663" stroke-width="4"/>
+  
+  <!-- USA text -->
+  <text x="256" y="180" font-family="Arial, sans-serif" font-size="60" font-weight="bold" text-anchor="middle" fill="#203663">USA</text>
+  
+  <!-- Accreditation text -->
+  <text x="256" y="240" font-family="Arial, sans-serif" font-size="32" font-weight="bold" text-anchor="middle" fill="#203663">ACCREDITATION</text>
+  
+  <!-- Stars - repositioned to avoid overlap -->
+  <g fill="#203663">
+    <polygon points="256,90 264,107 283,107 268,118 275,135 256,124 237,135 244,118 229,107 248,107"/>
+    <polygon points="170,140 178,157 197,157 182,168 189,185 170,174 151,185 158,168 143,157 162,157"/>
+    <polygon points="342,140 350,157 369,157 354,168 361,185 342,174 323,185 330,168 315,157 334,157"/>
+  </g>
+  
+  <!-- Quality Certified text -->
+  <text x="256" y="300" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" fill="#203663">QUALITY CERTIFIED</text>
+  
+  <!-- Year -->
+  <text x="256" y="340" font-family="Arial, sans-serif" font-size="20" text-anchor="middle" fill="#203663">EST. 1995</text>
+  
+  <!-- Bottom text -->
+  <text x="256" y="380" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#203663">INTERNATIONAL STANDARDS</text>
+</svg> 

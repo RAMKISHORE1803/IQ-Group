@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SectionNavigation from '@/components/companies/SectionNavigation';
-import ContactOptionsSection from '@/components/about/ContactOptionsSection';
 
 // Register GSAP plugins
 if (typeof window !== 'undefined') {
@@ -21,7 +20,6 @@ if (typeof window !== 'undefined') {
  * @param {string} props.sideText - Optional vertical text on the side
  * @param {string} props.navTitle - Navigation title (for the vertical side text)
  * @param {Array} props.sectionLinks - Array of section links for "In This Section" navigation
- * @param {boolean} props.showContactOptions - Whether to show the contact options section
  */
 const HeroSection = ({ 
   title = "", 
@@ -30,8 +28,7 @@ const HeroSection = ({
   overlayColor = "rgba(0, 0, 0, 0.7)",
   sideText,
   navTitle = "",
-  sectionLinks = [],
-  showContactOptions = false
+  sectionLinks = []
 }) => {
   const heroRef = useRef(null);
   const backgroundRef = useRef(null);
@@ -153,12 +150,12 @@ const HeroSection = ({
     <>
       <section 
         ref={heroRef} 
-        className={`relative w-full ${showContactOptions ? 'h-[90svh] md:h-[90vh] lg:max-h-[80vh]' : 'h-[100svh] md:h-screen lg:max-h-[88vh]'} bg-white overflow-hidden`}
+        className="relative w-full h-[100svh] md:h-screen lg:max-h-[65vh] bg-white overflow-hidden"
       >
         {/* Fixed Background Image */}
         <div 
           ref={backgroundRef}
-          className="fixed inset-0 w-full md:h-screen bg-cover bg-center z-0"
+          className="fixed inset-0 w-full  md:h-screen bg-cover bg-center z-0"
           style={{ 
             backgroundImage: `url(${backgroundImage})`,
             backgroundAttachment: isMobile ? 'scroll' : 'fixed',
@@ -204,7 +201,7 @@ const HeroSection = ({
         {/* Content positioned at bottom */}
         <div 
           ref={contentRef}
-          className={`hero-content relative z-10 h-[100svh] md:h-screen lg:left-[180px] flex flex-col justify-end ${showContactOptions ? 'pb-8 md:pb-4' : 'pb-12 md:pb-4'} px-4 sm:px-8 md:px-16 ${showContactOptions ? 'lg:pb-[70px]' : 'lg:pb-[90px]'} lg:px-24 xl:px-32`}
+          className="hero-content relative z-10 h-[100svh] md:h-screen lg:left-[180px] flex flex-col justify-end pb-12 md:pb-4 px-4 sm:px-8 md:px-16 lg:pb-[200px] lg:px-24 xl:px-32"
         >
           <div className="max-w-5xl mb-8 md:mb-16 lg:mb-24">
             <h1 
@@ -218,7 +215,7 @@ const HeroSection = ({
                 ref={subtitleRef}
                 className="mt-4 md:mt-6 lg:mt-12"
               >
-                <h2 className="text-[16px] leading-[26px] md:leading-tight lg:leading-normal md:text-2xl lg:text-[45px] lg:max-w-4xl font-bold font-lato text-white">
+                <h2 className="text-[16px] leading-[26px] md:leading-tight lg:leading-normal md:text-2xl lg:text-[45px]  lg:max-w-4xl font-bold font-lato text-white">
                   {subtitle}
                 </h2>
               </div>
@@ -230,8 +227,8 @@ const HeroSection = ({
         <div className="h-[100svh] md:h-screen w-full"></div>
       </section>
       
-      {/* Contact Options Section */}
-      {showContactOptions && <ContactOptionsSection />}
+      {/* Section Navigation */}
+      
     </>
   );
 };

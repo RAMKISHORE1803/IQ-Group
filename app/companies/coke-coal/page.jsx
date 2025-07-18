@@ -7,6 +7,7 @@ import SectionWithCards from '@/components/companies/SectionWithCards';
 import SectionNavigation from '@/components/companies/SectionNavigation';
 import HeroSection from '@/components/about/HeroSection';
 import ProductRangeSection from '@/components/companies/ProductRangeSection';
+import QualityStandardsSection from '@/components/companies/QualityStandardsSection';
 
 // Value cards data for "How We Deliver Value" section
 const valueCards = [
@@ -173,36 +174,18 @@ export default function CokeCoalPage() {
         />
         
         {/* Quality Standards Section */}
-        <ContentSection id="quality-standards" title="Quality Standards" background="gray">
-          <div className="bg-white p-8 rounded-lg shadow-sm">
-            <p className="text-gray-700 mb-4">
-              At IQ Coke & Coal, we maintain rigorous quality control standards throughout our supply chain. Every shipment undergoes comprehensive testing to ensure consistent carbon content, size distribution, and mechanical properties that meet or exceed industry specifications.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-              <div className="text-center">
-                <div className="bg-[#203663] text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold">ISO</span>
-                </div>
-                <h3 className="font-semibold text-[#203663]">ISO 9001:2015</h3>
-                <p className="text-sm text-gray-600 mt-2">Quality Management System</p>
-              </div>
-              <div className="text-center">
-                <div className="bg-[#203663] text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold">ISO</span>
-                </div>
-                <h3 className="font-semibold text-[#203663]">ISO 14001:2015</h3>
-                <p className="text-sm text-gray-600 mt-2">Environmental Management</p>
-              </div>
-              <div className="text-center">
-                <div className="bg-[#203663] text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold">ISO</span>
-                </div>
-                <h3 className="font-semibold text-[#203663]">ISO 45001:2018</h3>
-                <p className="text-sm text-gray-600 mt-2">Occupational Health & Safety</p>
-              </div>
-            </div>
-          </div>
-        </ContentSection>
+        <QualityStandardsSection
+          id="quality-standards"
+          title="Quality Standards"
+          description="Every carbon material we deliver is rigorously tested and certified. We don't just meet industry benchmarks—we set them. Our comprehensive quality control system ensures that each product maintains perfect consistency from source to delivery, giving manufacturers the confidence to build their reputation on our materials."
+          logoSrc="/Images/QualityCertificate/usa-accreditation.svg"
+          logoAlt="United States Accreditation"
+          buttonText="Learn More"
+          buttonLink="#"
+          background="gray"
+          sectionNumber="04"
+          sectionTitle="IN THIS SECTION"
+        />
         
         {/* Contact CTA */}
         <ContentSection>

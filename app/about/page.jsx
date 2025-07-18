@@ -64,22 +64,19 @@ export default function AboutPage() {
 
   return (
     <div className="about-page bg-white">
-      {/* Hero Section */}
+      {/* Hero Section with Contact Options */}
       <HeroSection 
-        
         subtitle="Powering industries with premium raw materials delivered with precision, integrity, and speed. Global reach, Mumbai roots."
         backgroundImage="https://www.multiplex.global/media/5zvnll30/banner-image-transit-city-crane-can-updated-1.jpg?rxy=0.5497647007080969,0.340893470790378&width=3840&height=1640&v=1dad1e2acf2fa70"
         sideText="ABOUT US"
         navTitle="ABOUT"
         sectionLinks={sectionLinks}
+        showContactOptions={true}
       />
-     
-        
-    
 
       {/* Main Content */}
       <div className="relative z-20 bg-white">
-      <SectionNavigation links={sectionLinks} title="IN THIS SECTION" />
+        <SectionNavigation links={sectionLinks} title="IN THIS SECTION" />
         {/* What We Do Section */}
         <WhatWeDoSection />
         
@@ -90,11 +87,9 @@ export default function AboutPage() {
        
       </div>
       <div className="relative z-20 bg-white">
-      <OurValuesSection />
-        
+        <OurValuesSection />
         
         <LeadershipSection />
-        
         
         <OfficeLocationsSection />
       </div>
