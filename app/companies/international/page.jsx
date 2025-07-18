@@ -5,6 +5,8 @@ import ContactCTA from '@/components/companies/ContactCTA';
 import ProductCard from '@/components/companies/ProductCard';
 import SectionWithCards from '@/components/companies/SectionWithCards';
 import SectionNavigation from '@/components/companies/SectionNavigation';
+import ProductRangeSection from '@/components/companies/ProductRangeSection';
+import HeroSection from '@/components/about/HeroSection';
 
 // Value cards data for "How We Deliver Value" section
 const valueCards = [
@@ -46,23 +48,83 @@ const capabilityCards = [
   }
 ];
 
-// Product/Service data
+// Chemical products data from screenshot
 const products = [
   {
-    title: "Industrial Chemicals",
-    description: "High-quality industrial chemicals for manufacturing, processing, and production applications across multiple sectors."
+    title: "Hydrofluoric Acid 70% (HF)",
+    description: "High-purity hydrofluoric acid used in glass etching, metal cleaning, and as a catalyst in petrochemical processes."
   },
   {
-    title: "Specialty Chemicals",
-    description: "Specialized chemical formulations designed for specific industry applications requiring precise performance characteristics."
+    title: "Glacial acetic acid",
+    description: "Concentrated form of acetic acid used in chemical synthesis, textile processing, and food preservation."
   },
   {
-    title: "Supply Chain Solutions",
-    description: "End-to-end chemical supply chain management services from sourcing to delivery, optimized for efficiency and reliability."
+    title: "Phthalic anhydride",
+    description: "Organic compound used in the production of plasticizers, resins, and dyes."
   },
   {
-    title: "Market Intelligence",
-    description: "Industry insights and market analysis to help clients make informed decisions about chemical procurement and usage."
+    title: "Caustic Soda",
+    description: "Sodium hydroxide used in various industrial applications including paper production, textile processing, and chemical manufacturing."
+  },
+  {
+    title: "Maleic Anhydride",
+    description: "Organic compound used in the production of unsaturated polyester resins, agricultural chemicals, and pharmaceuticals."
+  },
+  {
+    title: "Aluminium Fluoride (HBD & LBD)",
+    description: "Used primarily in aluminum production as a flux to lower the melting point of electrolytes."
+  },
+  {
+    title: "Titanium Di Oxide",
+    description: "White pigment used in paints, coatings, plastics, paper, inks, foods, and cosmetics."
+  },
+  {
+    title: "Edta Di Oxide",
+    description: "Chelating agent used in various industrial applications including cleaning solutions and water treatment."
+  },
+  {
+    title: "Chromium Oxide",
+    description: "Used in pigments, ceramics, and as a polishing compound."
+  },
+  {
+    title: "Caustic Soda Flakes/Lye",
+    description: "Solid form of sodium hydroxide used in soap making, food processing, and water treatment."
+  },
+  {
+    title: "HYDROGEN PEROXIDE",
+    description: "Strong oxidizing agent used for bleaching, disinfection, and as a propellant."
+  },
+  {
+    title: "Electrolytic Manganese Dioxide (EMD)",
+    description: "Used primarily in the production of batteries, especially alkaline and lithium-ion batteries."
+  },
+  {
+    title: "Carbon Black",
+    description: "Fine carbon powder used as a reinforcing filler in tires and other rubber products, and as a pigment."
+  },
+  {
+    title: "Cryolite",
+    description: "Used as a solvent for alumina in the Hall–Héroult process of aluminum production."
+  },
+  {
+    title: "Isopropyl Alchol (IP)",
+    description: "Commonly used solvent and cleaning fluid in industrial and consumer applications."
+  },
+  {
+    title: "Potassium Sorbate",
+    description: "Food preservative used to inhibit molds and yeasts in foods, wines, and personal care products."
+  },
+  {
+    title: "Sorbic Acid",
+    description: "Preservative used to prevent the growth of mold, yeast, and fungi in foods."
+  },
+  {
+    title: "Hy-Flo Super Cel",
+    description: "Filter aid used in the clarification of liquids in food, beverage, and pharmaceutical industries."
+  },
+  {
+    title: "Concentrated Sulphuric Acid",
+    description: "Strong mineral acid used in chemical synthesis, mineral processing, and petroleum refining."
   }
 ];
 
@@ -77,8 +139,8 @@ const sectionLinks = [
     link: "#our-capabilities"
   },
   {
-    title: "Services",
-    link: "#services"
+    title: "Chemicals",
+    link: "#chemicals"
   },
   {
     title: "Quality standards",
@@ -88,88 +150,87 @@ const sectionLinks = [
 
 export default function InternationalPage() {
   return (
-    <CompanyTemplate
-      title="IQ International"
-      subtitle="We lead the global chemical supply sector by combining bold entrepreneurship with modern strategy. With a presence spanning continents and a network built on trust, we deliver more than just products — we deliver global momentum."
-      backgroundImage="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=2070&auto=format&fit=crop"
-      sideText="INTERNATIONAL"
-      navTitle="COMPANIES"
-    >
+    <div className="relative">
+      <HeroSection
+        title=""
+        subtitle="Driving the world forward with bold strategy, trusted networks, and global chemical solutions that go beyond products,we deliver momentum."
+        backgroundImage="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=2070&auto=format&fit=crop"
+        sideText="IQ International"
+        navTitle="COMPANIES"
+      />
       {/* In This Section navigation */}
-      <SectionNavigation links={sectionLinks} />
-      
-      {/* How We Deliver Value Section */}
-      <SectionWithCards
-        id="how-we-deliver-value"
-        title="How We Deliver Value"
-        subtitle="Empowering global chemical supply through trust and innovation."
-        cards={valueCards}
-        hasDivider={false}
-        sectionNumber="01"
-      />
-      
-      {/* Our Capabilities Section */}
-      <SectionWithCards
-        id="our-capabilities"
-        title="Our Capabilities"
-        subtitle="Comprehensive chemical solutions with global reach."
-        cards={capabilityCards}
-        background="gray"
-        sectionNumber="02"
-      />
-      
-      {/* Services Section */}
-      <ContentSection id="services" title="Our Services" subtitle="Comprehensive chemical supply and distribution solutions">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-          {products.map((product, index) => (
-            <ProductCard
-              key={index}
-              title={product.title}
-              description={product.description}
-            />
-          ))}
-        </div>
-      </ContentSection>
-      
-      {/* Quality Standards Section */}
-      <ContentSection id="quality-standards" title="Quality Standards" background="gray">
-        <div className="bg-white p-8 rounded-lg shadow-sm">
-          <p className="text-gray-700 mb-4">
-            At IQ International, we maintain stringent quality control throughout our global supply network. Our chemical products undergo comprehensive testing to ensure they meet international standards and client specifications, while our distribution processes are optimized for reliability and efficiency.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-            <div className="text-center">
-              <div className="bg-[#203663] text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold">ISO</span>
+      <div className="relative bg-white">
+        <SectionNavigation links={sectionLinks} />
+        
+        {/* How We Deliver Value Section */}
+        <SectionWithCards
+          id="how-we-deliver-value"
+          title="How We Deliver Value"
+          subtitle="Empowering global chemical supply through trust and innovation."
+          cards={valueCards}
+          hasDivider={false}
+          sectionNumber="01"
+        />
+        
+        {/* Our Capabilities Section */}
+        <SectionWithCards
+          id="our-capabilities"
+          title="Our Capabilities"
+          subtitle="Comprehensive chemical solutions with global reach."
+          cards={capabilityCards}
+          background="gray"
+          sectionNumber="02"
+        />
+        
+        {/* Chemicals Section */}
+        <ProductRangeSection
+          id="chemicals"
+          title="Chemicals"
+          subtitle="Premium industrial and specialty chemicals for diverse applications"
+          products={products}
+          sectionNumber="03"
+        />
+        
+        {/* Quality Standards Section */}
+        <ContentSection id="quality-standards" title="Quality Standards" background="gray">
+          <div className="bg-white p-8 rounded-lg shadow-sm">
+            <p className="text-gray-700 mb-4">
+              At IQ International, we maintain stringent quality control throughout our global supply network. Our chemical products undergo comprehensive testing to ensure they meet international standards and client specifications, while our distribution processes are optimized for reliability and efficiency.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+              <div className="text-center">
+                <div className="bg-[#203663] text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl font-bold">ISO</span>
+                </div>
+                <h3 className="font-semibold text-[#203663]">ISO 9001:2015</h3>
+                <p className="text-sm text-gray-600 mt-2">Quality Management System</p>
               </div>
-              <h3 className="font-semibold text-[#203663]">ISO 9001:2015</h3>
-              <p className="text-sm text-gray-600 mt-2">Quality Management System</p>
-            </div>
-            <div className="text-center">
-              <div className="bg-[#203663] text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold">ISO</span>
+              <div className="text-center">
+                <div className="bg-[#203663] text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl font-bold">ISO</span>
+                </div>
+                <h3 className="font-semibold text-[#203663]">ISO 14001:2015</h3>
+                <p className="text-sm text-gray-600 mt-2">Environmental Management</p>
               </div>
-              <h3 className="font-semibold text-[#203663]">ISO 14001:2015</h3>
-              <p className="text-sm text-gray-600 mt-2">Environmental Management</p>
-            </div>
-            <div className="text-center">
-              <div className="bg-[#203663] text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold">ISO</span>
+              <div className="text-center">
+                <div className="bg-[#203663] text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl font-bold">ISO</span>
+                </div>
+                <h3 className="font-semibold text-[#203663]">ISO 45001:2018</h3>
+                <p className="text-sm text-gray-600 mt-2">Occupational Health & Safety</p>
               </div>
-              <h3 className="font-semibold text-[#203663]">ISO 45001:2018</h3>
-              <p className="text-sm text-gray-600 mt-2">Occupational Health & Safety</p>
             </div>
           </div>
-        </div>
-      </ContentSection>
-      
-      {/* Contact CTA */}
-      <ContentSection>
-        <ContactCTA 
-          title="Ready to discuss your chemical supply requirements?" 
-          description="Our global team is available to help you find the right solution for your business."
-        />
-      </ContentSection>
-    </CompanyTemplate>
+        </ContentSection>
+        
+        {/* Contact CTA */}
+        <ContentSection>
+          <ContactCTA 
+            title="Ready to discuss your chemical supply requirements?" 
+            description="Our global team is available to help you find the right solution for your business."
+          />
+        </ContentSection>
+      </div>
+    </div>
   );
 } 

@@ -131,9 +131,9 @@ const IQGroupFooter = () => {
                   </p>
                 </div>
               </div>
+              </div>
             </div>
-          </div>
-          
+
           {/* Logos Section */}
           <div className="flex flex-col lg:flex-row justify-between items-center mb-8 pt-4 border-t border-[#fbfbfb]/10">
             {/* Left Side Logos - Custom logos */}
