@@ -510,7 +510,7 @@ const NavbarNew = () => {
               <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                 {/* Left Column - Title and Description */}
                 <div className="md:col-span-1">
-                  <h2 className="text-[#0e3364] text-3xl font-bold mb-4">
+                  <h2 className="text-[#0e3364] text-3xl font-bold uppercase font-lato mb-4">
                     {hoveredItem === 'research' ? 'Research & Insights' : [...mainNavItems, ...rightNavItems, resourcesItem].find(item => item.megaMenu === hoveredItem)?.name}
                   </h2>
                   {!hasManyItems(hoveredItem) && (
@@ -522,7 +522,7 @@ const NavbarNew = () => {
                     href={[...mainNavItems, ...rightNavItems, resourcesItem].find(item => item.megaMenu === hoveredItem)?.path || '/'}
                     className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium group"
                   >
-                    <span className="bg-blue-100 p-3 rounded mr-3 group-hover:bg-blue-200 transition-colors">
+                    <span className="bg-blue-100 p-3 rounded mr-3 group-hover:bg-blue-200 font-lato uppercase transition-colors">
                       <svg 
                         width="18" 
                         height="18" 
@@ -542,7 +542,7 @@ const NavbarNew = () => {
                 </div>
 
                 {/* Right Columns - Cards */}
-                <div className={`md:col-span-3 grid grid-cols-1 ${
+                <div className={`md:col-span-3 grid grid-cols-1 font-lato ${
                   hasManyItems(hoveredItem) 
                     ? 'md:grid-cols-3 gap-3' 
                     : 'md:grid-cols-2 gap-5'
