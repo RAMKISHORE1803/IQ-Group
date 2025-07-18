@@ -1,13 +1,84 @@
-import React from 'react';
+'use client';
+import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// Register GSAP plugins
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 const ContactOptionsSection = () => {
+  const sectionRef = useRef(null);
+  const leftOptionRef = useRef(null);
+  const dividerRef = useRef(null);
+  const rightOptionRef = useRef(null);
+
+  useEffect(() => {
+    // Check if we're in the browser environment
+    if (typeof window === 'undefined') return;
+
+    const section = sectionRef.current;
+    const leftOption = leftOptionRef.current;
+    const divider = dividerRef.current;
+    const rightOption = rightOptionRef.current;
+
+    if (!section || !leftOption || !rightOption) return;
+
+    // Create animation timeline
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top 90%",
+        toggleActions: "play none none none"
+      }
+    });
+
+    // Initial state - elements are invisible and translated down
+    gsap.set([leftOption, divider, rightOption], { 
+      opacity: 0, 
+      y: 30 
+    });
+
+    // Animate elements fading in and moving up
+    tl.to(leftOption, { 
+      opacity: 1, 
+      y: 0, 
+      duration: 0.7, 
+      ease: "power2.out" 
+    });
+
+    if (divider) {
+      tl.to(divider, { 
+        opacity: 1, 
+        y: 0, 
+        duration: 0.7, 
+        ease: "power2.out" 
+      }, "-=0.5");
+    }
+
+    tl.to(rightOption, { 
+      opacity: 1, 
+      y: 0, 
+      duration: 0.7, 
+      ease: "power2.out" 
+    }, "-=0.5");
+
+    // Cleanup
+    return () => {
+      if (tl.scrollTrigger) {
+        tl.scrollTrigger.kill();
+      }
+    };
+  }, []);
+
   return (
-    <div className="bg-[#fbfbfb] py-8 md:py-10 lg:min-h-[30vh] -mt-2 relative z-20">
+    <div ref={sectionRef} className="bg-[#fbfbfb] py-8 md:py-10 lg:min-h-[30vh] -mt-2 relative z-20">
       <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-24">
         <div className="flex flex-col md:flex-row justify-between items-center gap-8 md:gap-12">
           {/* Careers Option */}
-          <div className="flex items-center gap-6 w-full md:w-auto">
+          <div ref={leftOptionRef} className="flex items-center gap-6 w-full md:w-auto">
             <div className="relative w-[86px] h-[86px] flex-shrink-0">
               <svg width="86" height="86" viewBox="0 0 86 86" xmlns="http://www.w3.org/2000/svg">
                 <g transform="translate(1 1)" fill="none" fillRule="evenodd">
@@ -24,10 +95,10 @@ const ContactOptionsSection = () => {
           </div>
 
           {/* Divider for desktop */}
-          <div className="hidden md:block h-24 w-px bg-gray-300"></div>
+          <div ref={dividerRef} className="hidden md:block h-24 w-px bg-gray-300"></div>
 
           {/* Contact Form Option */}
-          <div className="flex items-center gap-6 w-full md:w-auto">
+          <div ref={rightOptionRef} className="flex items-center gap-6 w-full md:w-auto">
             <div className="relative w-[86px] h-[86px] flex-shrink-0">
               <svg width="86" height="86" viewBox="0 0 86 86" xmlns="http://www.w3.org/2000/svg">
                 <g transform="translate(1 1)" fill="none" fillRule="evenodd">
