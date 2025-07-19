@@ -177,7 +177,7 @@ const ProductRangeSection = ({
               }`}
               onClick={() => setSelectedProduct(product)}
             >
-              <h3 className=" font-onest font-light">{product.title}</h3>
+              <h3 className=" font-onest font-regular   text-[18px]"> <span className='text-[#203663] font-medium'>{index + 1}.</span> {product.title}</h3>
             </div>
           ))}
         </div>

@@ -356,7 +356,7 @@ const OfficesCarousel = () => {
       {/* Navigation buttons */}
       <div className="flex justify-end mt-8 space-x-4">
         <motion.button
-          className="bg-white text-[#1E3157] border border-gray-200 w-10 h-10 rounded-full flex items-center justify-center shadow-sm"
+          className="bg-white text-[#1E3157] border cursor-pointer border-gray-200 w-10 h-10 rounded-full flex items-center justify-center shadow-sm"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={prevSlide}
@@ -364,7 +364,7 @@ const OfficesCarousel = () => {
           <ChevronLeft size={20} />
         </motion.button>
         <motion.button
-          className="bg-[#1E3157] text-white w-10 h-10 rounded-full flex items-center justify-center shadow-sm"
+          className="bg-[#1E3157] text-white w-10 h-10 cursor-pointer rounded-full flex items-center justify-center shadow-sm"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={nextSlide}
