@@ -68,7 +68,7 @@ const AccordionItem = ({ id, title, content, isActive, onClick, index }) => {
     <div className="border-b border-gray-200 last:border-b-0">
       <button
         onClick={() => onClick(id)}
-        className="w-full py-6 flex items-center justify-between text-left focus:outline-none"
+        className="w-full py-6 flex cursor-pointer items-center justify-between text-left focus:outline-none"
       >
         <div className="flex items-center">
           <span className="font-lato lg:text-[32px] font-bold text-[#1a365d]">
@@ -93,7 +93,7 @@ const AccordionItem = ({ id, title, content, isActive, onClick, index }) => {
         transition={{ duration: 0.3 }}
         className="overflow-hidden"
       >
-        <div className="pb-4 text-[17px] font-onest text-gray-700 leading-relaxed">
+        <div className="pb-4 text-[17px]  font-onest text-gray-700 leading-relaxed">
           {content}
         </div>
       </motion.div>
@@ -108,9 +108,15 @@ const WhyJoinUs = () => {
   const leftColRef = useRef(null);
   const rightColRef = useRef(null);
   const [activeItem, setActiveItem] = useState("growth"); // Default open item
+  const [isImageTransitioning, setIsImageTransitioning] = useState(false);
+  const [displayedImage, setDisplayedImage] = useState(null);
 
   const handleItemClick = (id) => {
-    setActiveItem(activeItem === id ? null : id);
+    if (activeItem === id) return; // Don't transition if clicking the same item
+    
+    setIsImageTransitioning(true);
+    // Set the new active item
+    setActiveItem(id);
   };
 
   const benefits = [
@@ -125,6 +131,9 @@ const WhyJoinUs = () => {
           <li>Educational assistance for continuous evolution</li>
         </ul>
       ),
+      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop",
+      alt: "Team members collaborating on career development",
+      description: "We invest in your growth with clear advancement paths, world-class training, and mentorship from industry leaders."
     },
     {
       id: "culture",
@@ -137,44 +146,78 @@ const WhyJoinUs = () => {
           <li>Recognition that celebrates excellence</li>
         </ul>
       ),
+      image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070&auto=format&fit=crop",
+      alt: "Diverse team collaborating in modern office space",
+      description: "Our collaborative culture brings together diverse perspectives, borderless teamwork, and open communication at all levels."
     },
     {
       id: "innovation",
       title: "Innovation & Impact",
       content: (
-        <ul className="list-disc pl-5 space-y-2">
+        <ul className="list-disc pl-5  space-y-2">
           <li>Bridge global supply chains with groundbreaking solutions</li>
           <li>Direct contribution to industries that shape our world</li>
           <li>Freedom to challenge conventions and explore new approaches</li>
           <li>Work with sustainable practices defining tomorrow's trade</li>
         </ul>
       ),
+      image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=2070&auto=format&fit=crop",
+      alt: "Innovation and technology in industrial setting",
+      description: "Make a direct impact through groundbreaking solutions that bridge global supply chains and shape sustainable industry practices."
     },
     {
       id: "benefits",
       title: "Comprehensive Benefits",
       content: (
-        <ul className="list-disc pl-5 space-y-2">
+        <ul className="list-disc pl-5  space-y-2">
           <li>Competitive compensation tailored to regional excellence</li>
           <li>Health and wellness programs that prioritize your wellbeing</li>
           <li>Flexible arrangements respecting work-life harmony</li>
           <li>International travel connecting our global presence</li>
         </ul>
       ),
+      image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=2070&auto=format&fit=crop",
+      alt: "Work-life balance and employee benefits",
+      description: "Enjoy competitive compensation, comprehensive health programs, flexible work arrangements, and opportunities for international travel."
     },
     {
       id: "global",
       title: "Global Exposure",
       content: (
-        <ul className="list-disc pl-5 space-y-2">
+        <ul className="list-disc pl-5   space-y-2">
           <li>Collaborate across India, Hong Kong, China and beyond</li>
           <li>Cross-cultural projects expanding your worldview</li>
           <li>International assignments for boundless growth</li>
           <li>Insights into global markets that enhance your expertise</li>
         </ul>
       ),
+      image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=2069&auto=format&fit=crop",
+      alt: "Global business network and international collaboration",
+      description: "Gain exposure to global markets through cross-cultural projects and international assignments across our worldwide operations."
     },
   ];
+
+  // Find the active benefit
+  const activeBenefit = benefits.find(benefit => benefit.id === activeItem) || benefits[0];
+
+  // Handle image preloading and transitions
+  useEffect(() => {
+    // Set the initial displayed image
+    if (!displayedImage) {
+      setDisplayedImage(activeBenefit);
+      return;
+    }
+
+    // If transitioning, wait for fade out then update the displayed image
+    if (isImageTransitioning) {
+      const timer = setTimeout(() => {
+        setDisplayedImage(activeBenefit);
+        setIsImageTransitioning(false);
+      }, 300); // Match this with the CSS transition duration
+      
+      return () => clearTimeout(timer);
+    }
+  }, [activeItem, isImageTransitioning, displayedImage, activeBenefit]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -226,6 +269,14 @@ const WhyJoinUs = () => {
     };
   }, []);
 
+  // Preload images for smoother transitions
+  useEffect(() => {
+    benefits.forEach(benefit => {
+      const img = new Image();
+      img.src = benefit.image;
+    });
+  }, []);
+
   return (
     <section
       ref={sectionRef}
@@ -242,19 +293,23 @@ const WhyJoinUs = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 relative">
           {/* Left column - Image and description - Now sticky */}
           <div ref={leftColRef} className="lg:sticky lg:top-24 lg:self-start">
-            <div className="aspect-w-16 aspect-h-9 mb-8">
-              <img
-                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop"
-                alt="Team collaboration at IQ Group"
-                className="object-cover w-full max-h-[298px] shadow-lg"
-              />
+            <div className="aspect-w-16 aspect-h-9 mb-8 overflow-hidden rounded-lg relative h-[298px]">
+              {displayedImage && (
+                <img
+                  key={displayedImage.id}
+                  src={displayedImage.image}
+                  alt={displayedImage.alt}
+                  className={`object-cover w-full h-full shadow-lg absolute top-0 left-0 transition-opacity duration-300 ease-in-out ${isImageTransitioning ? 'opacity-0' : 'opacity-100'}`}
+                  onLoad={() => setIsImageTransitioning(false)}
+                />
+              )}
             </div>
-            <div className="bg-[#1a365d]/10 p-6 rounded-lg">
-              <h3 className="font-lato font-bold text-[#1a365d] mb-4 lg:text-[24px]">
-                Our Commitment to Excellence
+            <div className="bg-[#1a365d]/10 p-6 rounded-lg transition-all duration-300 ease-in-out">
+              <h3 className="font-lato font-bold text-[#1a365d] mb-4 lg:text-[24px] transition-opacity duration-300 ease-in-out">
+              Our Commitment to Excellence
               </h3>
-              <p className="text-gray-700 font-onest font-light lg:text-[18px]">
-                We don't just distribute raw materials. We bridge possibilities. With responsibility, quality, and transparency at our core, we unite global expertise to transform industrial resourcefulness.
+              <p className="text-gray-700 font-onest font-light lg:text-[18px] transition-opacity duration-300 ease-in-out">
+              We don't just distribute raw materials. We bridge possibilities. With responsibility, quality, and transparency at our core, we unite global expertise to transform industrial resourcefulness.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <span className="bg-[#1a365d] text-white px-3 py-1 rounded-full text-sm">
