@@ -1,6 +1,7 @@
 import HeroSection from "@/components/contact/herosection";
 import ContactFormSection from "@/components/contact/ContactFormSection";
 import ContactOptionsSection from "@/components/about/ContactOptionsSection";
+import OfficesCarousel from "@/components/contact/OfficesCarousel";
 
 export default function ContactPage() {
   return (
@@ -16,10 +17,13 @@ export default function ContactPage() {
         />
       </div>
       <div className="relative bg-white min-h-[60vh]">
-      <ContactOptionsSection />
-        <div id="form">
+        <ContactOptionsSection />
         
-        <ContactFormSection />
+        {/* Our Offices Section */}
+          <OfficesCarousel />
+        
+        <div id="form">
+          <ContactFormSection />
         </div>
       </div>
       

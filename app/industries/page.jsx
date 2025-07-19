@@ -69,7 +69,7 @@ export default function IndustriesPage() {
         <IndustryCardsSection />
         
         {/* Call to Action Section */}
-        <CallToActionSection />
+        {/* <CallToActionSection /> */}
       </div>
     </div>
   );

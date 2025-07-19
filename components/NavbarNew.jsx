@@ -144,13 +144,13 @@ const NavbarNew = () => {
     },
     {
       name: 'Quality & Insights',
-      path: '/quality',
+      path: '/quality-insights',
       megaMenu: 'quality',
       dropdown: [
-        { name: 'Quality Policy', path: '/quality/policy' },
-        { name: 'Certifications', path: '/quality/certifications' },
-        { name: 'Testing Procedures', path: '/quality/testing' },
-        { name: 'Quality Assurance', path: '/quality/assurance' }
+        { name: 'Quality Policy', path: '/quality-insights/quality-policy' },
+        { name: 'Certifications', path: '/quality-insights/certifications' },
+        { name: 'Testing Procedures', path: '/quality-insights/testing-procedures' },
+        { name: 'Quality Assurance', path: '/quality-insights/quality-assurance' }
       ]
     }
   ];

@@ -7,6 +7,7 @@ import SectionWithCards from '@/components/companies/SectionWithCards';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+
 // Register GSAP plugins
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -146,6 +147,7 @@ export default function CompaniesPage() {
       
       {/* What Sets Us Apart Section */}
       <div className="relative z-20 bg-white">
+        
         <SectionWithCards
           id="what-sets-us-apart"
           title="What Sets Us Apart"

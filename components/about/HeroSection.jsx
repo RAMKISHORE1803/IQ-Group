@@ -153,7 +153,7 @@ const HeroSection = ({
     <>
       <section 
         ref={heroRef} 
-        className={`relative w-full ${showContactOptions ? 'h-[90svh] md:h-[90vh] lg:max-h-[80vh]' : 'h-[100svh] md:h-screen lg:max-h-[88vh]'} bg-white overflow-hidden`}
+        className={`relative w-full ${showContactOptions ? 'h-[90svh] md:h-[90vh] lg:min-h-[95vh]' : 'h-[100svh] md:h-screen lg:max-h-[96vh]'} bg-white overflow-hidden`}
       >
         {/* Fixed Background Image */}
         <div 
@@ -204,7 +204,7 @@ const HeroSection = ({
         {/* Content positioned at bottom */}
         <div 
           ref={contentRef}
-          className={`hero-content relative z-10 h-[100svh] md:h-screen lg:left-[180px] flex flex-col justify-end ${showContactOptions ? 'pb-8 md:pb-4' : 'pb-12 md:pb-4'} px-4 sm:px-8 md:px-16 ${showContactOptions ? 'lg:pb-[70px]' : 'lg:pb-[90px]'} lg:px-24 xl:px-32`}
+          className={`hero-content relative z-10 h-[100svh] md:h-screen lg:left-[180px] flex flex-col justify-end ${showContactOptions ? 'pb-8 md:pb-4' : 'pb-12 md:pb-4'} px-4 sm:px-8 md:px-16 ${showContactOptions ? 'lg:pb-[70px]' : 'lg:pb-[20px]'} lg:px-24 xl:px-32`}
         >
           <div className="max-w-5xl mb-8 md:mb-16 lg:mb-24">
             <h1 

@@ -17,7 +17,7 @@ const debounce = (func, wait) => {
   };
 };
 
-export default function CompaniesLayout({ children }) {
+export default function CareerLayout({ children }) {
   const mainContentRef = useRef(null);
   const footerAnimationWrapperRef = useRef(null);
   const footerRef = useRef(null);

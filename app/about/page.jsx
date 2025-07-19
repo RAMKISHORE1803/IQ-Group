@@ -76,7 +76,7 @@ export default function AboutPage() {
 
       {/* Main Content */}
       <div className="relative z-20 bg-white">
-        <SectionNavigation links={sectionLinks} title="IN THIS SECTION" />
+      <SectionNavigation links={sectionLinks} title="IN THIS SECTION" />
         {/* What We Do Section */}
         <WhatWeDoSection />
         
@@ -87,7 +87,7 @@ export default function AboutPage() {
        
       </div>
       <div className="relative z-20 bg-white">
-        <OurValuesSection />
+      <OurValuesSection />
         
         <LeadershipSection />
         
