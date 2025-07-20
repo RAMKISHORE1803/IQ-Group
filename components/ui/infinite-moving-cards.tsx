@@ -149,7 +149,7 @@ export const InfiniteMovingCards = ({
                 {/* Expanded content - only visible on hover for desktop */}
                 <div className="px-4 pb-4 opacity-0 group-hover:opacity-100">
                   <div className="text-gray-800 text-[16px] font-onest font-light leading-relaxed mb-4">
-                    <p className="italic mb-4">"{item.quote}"</p>
+                    <p className="italic mb-4">&quot;{item.quote}&quot;</p>
                     <p className="font-medium text-[#1a365d] mt-2">{item.title}</p>
                   </div>
                 </div>
