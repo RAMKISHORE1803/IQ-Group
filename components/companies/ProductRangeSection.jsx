@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { GlareCard } from '@/components/ui/glare-card';
+import { motion } from 'framer-motion';
 
 // Register GSAP plugins
 if (typeof window !== 'undefined') {
@@ -161,6 +161,74 @@ const ProductRangeSection = ({
   // Determine background color class
   const bgClass = background === 'gray' ? 'bg-gray-50' : 'bg-white';
   
+  // Product Card Component with hover effect
+  const ProductCard = ({ product }) => (
+    <motion.div
+      ref={imageContainerRef}
+      className="relative h-96 bg-cover bg-center bg-no-repeat overflow-hidden group cursor-pointer flex-shrink-0 "
+      style={{ 
+        backgroundImage: product.image ? `url(${product.image})` : 'none',
+        backgroundColor: product.image ? 'transparent' : getBackgroundColor(product.title)
+      }}
+      whileHover={{ scale: 1.02 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+    >
+      {/* Dark overlay for better text readability */}
+      <div className="absolute inset-0 bg-black opacity-20" />
+      
+      {/* Category Label */}
+      <div className="absolute top-4 left-4 z-20">
+        <span className="bg-black bg-opacity-60 text-white text-xs font-medium px-3 py-1.5 rounded-full">
+          MATERIAL
+        </span>
+      </div>
+      
+      {/* Floating Glassy overlay - small at bottom, full card on hover */}
+      <motion.div
+        className="absolute bg-white/70 bg-opacity-40 backdrop-blur-md rounded-lg overflow-hidden"
+        initial={{ 
+          bottom: "16px",
+          left: "16px",
+          right: "16px",
+          top: "auto",
+          height: "120px"
+        }}
+        whileHover={{ 
+          top: "0px",
+          bottom: "0px",
+          left: "0px",
+          right: "0px",
+          height: "100%",
+          borderRadius: "0px",
+          zIndex: 50,
+          opacity: 1
+        }}
+        transition={{ 
+          duration: 0.4, 
+          ease: [0.4, 0, 0.2, 1],
+          type: "tween"
+        }}
+      >
+        {/* Default content - always visible */}
+        <div className="relative z-10 p-4">
+          <p className="text-xs text-gray-600 font-medium mb-1">
+            PRODUCT DETAILS
+          </p>
+          <h3 className="font-lato font-light text-[30px] line-clamp-2 group-hover:line-clamp-none text-ellipsis overflow-hidden text-black leading-tight transition-all duration-300">
+            {product.title}
+          </h3>
+        </div>
+        
+        {/* Expanded content - only visible on hover for desktop */}
+        <div className="px-4 pb-4 opacity-0 group-hover:opacity-100">
+          <div className="text-gray-800 text-[16px] font-onest font-light leading-relaxed mb-4">
+            <p className="mt-2">{product.description}</p>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+  
   // Desktop layout with fixed image pane
   const DesktopLayout = () => (
     <div className="flex ">
@@ -186,33 +254,8 @@ const ProductRangeSection = ({
       {/* Right pane (25% width) - Fixed image */}
       <div className="w-1/4 relative" ref={rightPaneRef}>
         <div className="sticky top-1/4">
-          <GlareCard className="flex items-center justify-center w-full h-auto aspect-square">
-            <div 
-              ref={imageContainerRef}
-              className="w-full h-full flex items-center justify-center"
-              style={{ 
-                backgroundColor: selectedProduct.image ? 'transparent' : getBackgroundColor(selectedProduct.title) 
-              }}
-            >
-              {selectedProduct.image ? (
-                <img
-                  src={selectedProduct.image}
-                  alt={selectedProduct.title}
-                  className="h-full w-full absolute inset-0 object-cover"
-                  onError={(e) => {
-                    e.target.style.display = 'none';
-                    e.target.parentNode.style.backgroundColor = getBackgroundColor(selectedProduct.title);
-                    e.target.parentNode.innerHTML += `<div class="text-white text-center p-4"><h3 class="font-semibold">${selectedProduct.title}</h3></div>`;
-                  }}
-                />
-              ) : (
-                <div className="text-white text-center p-4">
-                  <h3 className="font-semibold">{selectedProduct.title}</h3>
-                </div>
-              )}
-            </div>
-          </GlareCard>
-          <p className="mt-4 text-sm text-gray-600">{selectedProduct.description}</p>
+          <ProductCard product={selectedProduct} />
+          {/* <p className="mt-4 text-sm text-gray-600">{selectedProduct.description}</p> */}
         </div>
       </div>
     </div>
@@ -254,31 +297,9 @@ const ProductRangeSection = ({
           {/* Collapsible content */}
           {expandedProductId === index && (
             <div className="p-4 border-t border-gray-200">
-              <GlareCard className="flex items-center justify-center w-full h-auto aspect-video mb-4">
-                <div 
-                  className="w-full h-full flex items-center justify-center"
-                  style={{ 
-                    backgroundColor: product.image ? 'transparent' : getBackgroundColor(product.title) 
-                  }}
-                >
-                  {product.image ? (
-                    <img
-                      src={product.image}
-                      alt={product.title}
-                      className="h-full w-full absolute inset-0 object-cover"
-                      onError={(e) => {
-                        e.target.style.display = 'none';
-                        e.target.parentNode.style.backgroundColor = getBackgroundColor(product.title);
-                        e.target.parentNode.innerHTML += `<div class="text-white text-center p-4"><h3 class="font-semibold">${product.title}</h3></div>`;
-                      }}
-                    />
-                  ) : (
-                    <div className="text-white text-center p-4">
-                      <h3 className="font-semibold">{product.title}</h3>
-                    </div>
-                  )}
-                </div>
-              </GlareCard>
+              <div className="mb-4 h-48 overflow-hidden rounded-lg">
+                <ProductCard product={product} />
+              </div>
               <p className="text-gray-700">{product.description}</p>
             </div>
           )}

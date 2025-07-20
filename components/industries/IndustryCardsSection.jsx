@@ -355,7 +355,7 @@ const IndustryCardsSection = () => {
     >
       <div className="max-w-[1400px] mx-auto">
         {/* Section heading */}
-        <div className="mb-12 md:mb-16 lg:mb-20">
+        {/* <div className="mb-12 md:mb-16 lg:mb-20">
           <h2 
             ref={headingRef}
             className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#203663] text-center"
@@ -365,7 +365,7 @@ const IndustryCardsSection = () => {
           <p className="text-gray-600 text-center mt-4 max-w-3xl mx-auto">
             IQ Group delivers premium materials across diverse industries, with specialized knowledge and solutions for each sector's unique requirements.
           </p>
-        </div>
+        </div> */}
         
         {/* Desktop View - Grid Layout */}
         {!isMobile && (
