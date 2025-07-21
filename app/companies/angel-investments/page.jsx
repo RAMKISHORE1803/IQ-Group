@@ -1,8 +1,4 @@
 'use client';
-import CompanyTemplate from '@/components/companies/CompanyTemplate';
-import ContentSection from '@/components/companies/ContentSection';
-import ContactCTA from '@/components/companies/ContactCTA';
-import ProductCard from '@/components/companies/ProductCard';
 import SectionWithCards from '@/components/companies/SectionWithCards';
 import SectionNavigation from '@/components/companies/SectionNavigation';
 import HeroSection from '@/components/about/HeroSection';
@@ -11,7 +7,6 @@ import Link from 'next/link';
 import { useState, useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Image from 'next/image';
 
 // Register GSAP plugins
 if (typeof window !== 'undefined') {

@@ -1,13 +1,12 @@
 'use client';
-import HeroSection from "@/components/contact/herosection";
+import HeroSection from "@/components/about/HeroSection";
 import { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
-import OpenPositionsCarousel from "@/components/careers/OpenPositionsCarousel";
-import LifeAtIQSection from "@/components/careers/LifeAtIQSection";
-
+import Link from "next/link";
+import SectionNavigation from "@/components/companies/SectionNavigation";
 // Register GSAP plugins
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -101,585 +100,240 @@ const AccordionItem = ({ id, title, content, isActive, onClick, index }) => {
   );
 };
 
-// WhyJoinUs Component
-const WhyJoinUs = () => {
-  const sectionRef = useRef(null);
-  const titleRef = useRef(null);
-  const leftColRef = useRef(null);
-  const rightColRef = useRef(null);
-  const [activeItem, setActiveItem] = useState("growth"); // Default open item
-  const [isImageTransitioning, setIsImageTransitioning] = useState(false);
-  const [displayedImage, setDisplayedImage] = useState(null);
-
-  const handleItemClick = (id) => {
-    if (activeItem === id) return; // Don't transition if clicking the same item
-    
-    setIsImageTransitioning(true);
-    // Set the new active item
-    setActiveItem(id);
-  };
-
-  const benefits = [
-    {
-      id: "growth",
-      title: "Career Growth & Development",
-      content: (
-        <ul className="list-disc pl-5 space-y-2">
-          <li>Clear advancement paths across our global network</li>
-          <li>World-class technical and leadership training</li>
-          <li>Mentorship from industry pioneers</li>
-          <li>Educational assistance for continuous evolution</li>
-        </ul>
-      ),
-      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop",
-      alt: "Team members collaborating on career development",
-      description: "We invest in your growth with clear advancement paths, world-class training, and mentorship from industry leaders."
-    },
-    {
-      id: "culture",
-      title: "Collaborative Culture",
-      content: (
-        <ul className="list-disc pl-5 space-y-2">
-          <li>Diverse perspectives driving innovation</li>
-          <li>Borderless teamwork across continents</li>
-          <li>Open communication at all levels</li>
-          <li>Recognition that celebrates excellence</li>
-        </ul>
-      ),
-      image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070&auto=format&fit=crop",
-      alt: "Diverse team collaborating in modern office space",
-      description: "Our collaborative culture brings together diverse perspectives, borderless teamwork, and open communication at all levels."
-    },
-    {
-      id: "innovation",
-      title: "Innovation & Impact",
-      content: (
-        <ul className="list-disc pl-5  space-y-2">
-          <li>Bridge global supply chains with groundbreaking solutions</li>
-          <li>Direct contribution to industries that shape our world</li>
-          <li>Freedom to challenge conventions and explore new approaches</li>
-          <li>Work with sustainable practices defining tomorrow's trade</li>
-        </ul>
-      ),
-      image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=2070&auto=format&fit=crop",
-      alt: "Innovation and technology in industrial setting",
-      description: "Make a direct impact through groundbreaking solutions that bridge global supply chains and shape sustainable industry practices."
-    },
-    {
-      id: "benefits",
-      title: "Comprehensive Benefits",
-      content: (
-        <ul className="list-disc pl-5  space-y-2">
-          <li>Competitive compensation tailored to regional excellence</li>
-          <li>Health and wellness programs that prioritize your wellbeing</li>
-          <li>Flexible arrangements respecting work-life harmony</li>
-          <li>International travel connecting our global presence</li>
-        </ul>
-      ),
-      image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=2070&auto=format&fit=crop",
-      alt: "Work-life balance and employee benefits",
-      description: "Enjoy competitive compensation, comprehensive health programs, flexible work arrangements, and opportunities for international travel."
-    },
-    {
-      id: "global",
-      title: "Global Exposure",
-      content: (
-        <ul className="list-disc pl-5   space-y-2">
-          <li>Collaborate across India, Hong Kong, China and beyond</li>
-          <li>Cross-cultural projects expanding your worldview</li>
-          <li>International assignments for boundless growth</li>
-          <li>Insights into global markets that enhance your expertise</li>
-        </ul>
-      ),
-      image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=2069&auto=format&fit=crop",
-      alt: "Global business network and international collaboration",
-      description: "Gain exposure to global markets through cross-cultural projects and international assignments across our worldwide operations."
-    },
-  ];
-
-  // Find the active benefit
-  const activeBenefit = benefits.find(benefit => benefit.id === activeItem) || benefits[0];
-
-  // Handle image preloading and transitions
-  useEffect(() => {
-    // Set the initial displayed image
-    if (!displayedImage) {
-      setDisplayedImage(activeBenefit);
-      return;
-    }
-
-    // If transitioning, wait for fade out then update the displayed image
-    if (isImageTransitioning) {
-      const timer = setTimeout(() => {
-        setDisplayedImage(activeBenefit);
-        setIsImageTransitioning(false);
-      }, 300); // Match this with the CSS transition duration
-      
-      return () => clearTimeout(timer);
-    }
-  }, [activeItem, isImageTransitioning, displayedImage, activeBenefit]);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const section = sectionRef.current;
-    const title = titleRef.current;
-    const leftCol = leftColRef.current;
-    const rightCol = rightColRef.current;
-
-    if (!section || !title || !leftCol || !rightCol) return;
-
-    // Create animation timeline
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: "top 80%",
-        toggleActions: "play none none none",
-      },
-    });
-
-    // Animate title
-    tl.fromTo(
-      title,
-      { y: 30, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" }
-    );
-
-    // Animate left column
-    tl.fromTo(
-      leftCol,
-      { y: 30, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
-      "-=0.3"
-    );
-
-    // Animate right column
-    tl.fromTo(
-      rightCol,
-      { y: 30, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
-      "-=0.3"
-    );
-
-    return () => {
-      // Clean up ScrollTrigger
-      if (tl.scrollTrigger) {
-        tl.scrollTrigger.kill();
-      }
-    };
-  }, []);
-
-  // Preload images for smoother transitions
-  useEffect(() => {
-    benefits.forEach(benefit => {
-      const img = new Image();
-      img.src = benefit.image;
-    });
-  }, []);
-
+// Resource Card Component
+const ResourceCard = ({ type, date, title, description, image, link }) => {
   return (
-    <section
-      ref={sectionRef}
-      className="py-12 md:py-20 px-4 md:px-8 bg-white"
+    <motion.div
+      className="relative h-96 bg-cover bg-center bg-no-repeat overflow-hidden group cursor-pointer"
+      style={{ 
+        backgroundImage: `url(${image})`,
+      }}
+      whileHover={{ scale: 1.02 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
     >
-      <div className="max-w-7xl mx-auto">
-        <h2
-          ref={titleRef}
-          className="font-lato font-bold text-[#1a365d] lg:text-[42px] mb-10"
-        >
-          Why Join IQ Group?
-        </h2>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 relative">
-          {/* Left column - Image and description - Now sticky */}
-          <div ref={leftColRef} className="lg:sticky lg:top-24 lg:self-start">
-            <div className="aspect-w-16 aspect-h-9 mb-8 overflow-hidden rounded-lg relative h-[298px]">
-              {displayedImage && (
-                <img
-                  key={displayedImage.id}
-                  src={displayedImage.image}
-                  alt={displayedImage.alt}
-                  className={`object-cover w-full h-full shadow-lg absolute top-0 left-0 transition-opacity duration-300 ease-in-out ${isImageTransitioning ? 'opacity-0' : 'opacity-100'}`}
-                  onLoad={() => setIsImageTransitioning(false)}
-                />
-              )}
-            </div>
-            <div className="bg-[#1a365d]/10 p-6 rounded-lg transition-all duration-300 ease-in-out">
-              <h3 className="font-lato font-bold text-[#1a365d] mb-4 lg:text-[24px] transition-opacity duration-300 ease-in-out">
-              Our Commitment to Excellence
-              </h3>
-              <p className="text-gray-700 font-onest font-light lg:text-[18px] transition-opacity duration-300 ease-in-out">
-              We don't just distribute raw materials. We bridge possibilities. With responsibility, quality, and transparency at our core, we unite global expertise to transform industrial resourcefulness.
-              </p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <span className="bg-[#1a365d] text-white px-3 py-1 rounded-full text-sm">
-                  Responsibility
-                </span>
-                <span className="bg-[#1a365d] text-white px-3 py-1 rounded-full text-sm">
-                  Quality
-                </span>
-                <span className="bg-[#1a365d] text-white px-3 py-1 rounded-full text-sm">
-                  Commitment
-                </span>
-                <span className="bg-[#1a365d] text-white px-3 py-1 rounded-full text-sm">
-                  Transparency
-                </span>
-                <span className="bg-[#1a365d] text-white px-3 py-1 rounded-full text-sm">
-                  Team Work
-                </span>
-              </div>
-            </div>
-          </div>
-
-          {/* Right column - Accordion - Scrollable */}
-          <div ref={rightColRef} className="space-y-0 max-h-[800px] lg:overflow-y-auto lg:pr-4 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
-            {benefits.map((benefit, index) => (
-              <AccordionItem
-                key={benefit.id}
-                id={benefit.id}
-                title={benefit.title}
-                content={benefit.content}
-                isActive={activeItem === benefit.id}
-                onClick={handleItemClick}
-                index={index}
-              />
-            ))}
-          </div>
-        </div>
+      {/* Dark overlay for better text readability */}
+      <div className="absolute inset-0 bg-black opacity-20" />
+      
+      {/* Category Label */}
+      <div className="absolute top-4 left-4 z-20">
+        <span className="bg-black bg-opacity-60 text-white text-xs font-medium px-3 py-1.5 rounded-full">
+          {type}
+        </span>
+        <span className="ml-2 text-white text-xs font-medium px-2 py-1 rounded-full bg-opacity-60 bg-gray-700">
+          {date}
+        </span>
       </div>
-    </section>
+      
+      {/* Floating Glassy overlay - small at bottom, full card on hover */}
+      <motion.div
+        className="absolute bg-white/70 bg-opacity-40 backdrop-blur-md rounded-lg overflow-hidden"
+        initial={{ 
+          bottom: "16px",
+          left: "16px",
+          right: "16px",
+          top: "auto",
+          height: "120px"
+        }}
+        whileHover={{ 
+          top: "0px",
+          bottom: "0px",
+          left: "0px",
+          right: "0px",
+          height: "100%",
+          borderRadius: "0px",
+          zIndex: 50,
+          opacity: 1
+        }}
+        transition={{ 
+          duration: 0.4, 
+          ease: [0.4, 0, 0.2, 1],
+          type: "tween"
+        }}
+      >
+        {/* Default content - always visible */}
+        <div className="relative z-10 p-4">
+          <p className="text-xs text-gray-600 font-medium mb-1">
+            {type}
+          </p>
+          <h3 className="font-lato font-light text-[30px] line-clamp-2 group-hover:line-clamp-none text-ellipsis overflow-hidden text-black leading-tight transition-all duration-300">
+            {title}
+          </h3>
+        </div>
+        
+        {/* Expanded content - only visible on hover */}
+        <div className="px-4 pb-4 opacity-0 group-hover:opacity-100">
+          <p className="text-gray-800 text-[16px] font-onest font-light leading-relaxed mb-4">
+            {description}
+          </p>
+          <Link 
+            href={link || "#"}
+            className="inline-flex items-center text-[16px] font-medium text-green-600 hover:text-green-700 transition-colors"
+          >
+            → Read More
+          </Link>
+        </div>
+      </motion.div>
+    </motion.div>
   );
 };
 
-// Application Form Component
-const ApplicationForm = () => {
-  const formRef = useRef(null);
-  const titleRef = useRef(null);
-  const formContentRef = useRef(null);
-  const leftSideRef = useRef(null);
-  
-  const [formData, setFormData] = useState({
-    firstName: '',
-    surname: '',
-    company: '',
-    email: '',
-    telephone: '',
-    position: '',
-    experience: '',
-    resume: null,
-    message: '',
-    newsletter: false
-  });
-
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value
-    }));
-  };
-
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setFormData(prev => ({
-        ...prev,
-        resume: file
-      }));
-    }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Here you would typically send the data to your backend
-    alert('Application submitted successfully! We will contact you soon.');
-  };
-  
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    
-    const form = formRef.current;
-    const title = titleRef.current;
-    const formContent = formContentRef.current;
-    const leftSide = leftSideRef.current;
-    
-    if (!form || !title || !formContent || !leftSide) return;
-    
-    // Create animation timeline
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: form,
-        start: "top 80%",
-        toggleActions: "play none none none"
-      }
-    });
-    
-    // Animate left side image
-    tl.fromTo(
-      leftSide,
-      { x: -50, opacity: 0 },
-      { x: 0, opacity: 1, duration: 0.8, ease: "power2.out" }
-    );
-    
-    // Animate title
-    tl.fromTo(
-      title,
-      { y: 30, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
-      "-=0.4"
-    );
-    
-    // Animate form content
-    tl.fromTo(
-      formContent,
-      { y: 30, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
-      "-=0.3"
-    );
-    
-    return () => {
-      // Clean up ScrollTrigger
-      if (tl.scrollTrigger) {
-        tl.scrollTrigger.kill();
-      }
-    };
-  }, []);
-
+// Section Title Component
+const SectionTitle = ({ number, title }) => {
   return (
-    <div className="flex flex-col md:flex-row min-h-screen" id="apply-now" ref={formRef}>
-      {/* Left side - Image */}
-      <div className="w-full md:w-2/5 relative" ref={leftSideRef}>
-        <div 
-          className="h-[50vh] md:h-full bg-cover bg-center"
-          style={{ 
-            backgroundImage: `url('https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?q=80&w=2047&auto=format&fit=crop')`,
-            position: 'sticky',
-            top: 0
-          }}
-        ></div>
-      </div>
-
-      {/* Right side - Application Form */}
-      <div className="w-full md:w-3/5 bg-[#f7f9fc] z-10 font-lato px-4 py-12 md:p-16 lg:p-24">
-        <div className="max-w-4xl mx-auto" ref={formContentRef}>
-          <div className="flex flex-col md:flex-row gap-8 md:gap-16 mb-12">
-            {/* Left column - Career sections */}
-            <div className="md:w-2/5">
-              {/* Career Opportunities Section */}
-              <div className="mb-12">
-                <div className="inline-block bg-[#e9f0f9] px-4 py-2 mb-4">
-                  <span className="text-[#203663] font-medium text-sm">CAREER OPPORTUNITIES</span>
-                </div>
-                <div className="mt-4">
-                  <p className="text-gray-700">careers@iqgroup.com</p>
-                  <p className="text-gray-700">+91 22 4005 4242</p>
-                </div>
-              </div>
-
-              {/* Internship Enquiries Section */}
-              <div>
-                <div className="inline-block bg-[#e9f0f9] px-4 py-2 mb-4">
-                  <span className="text-[#203663] font-medium text-sm">INTERNSHIP ENQUIRIES</span>
-                </div>
-                <div className="mt-4">
-                  <p className="text-gray-700 font-medium">HR Department</p>
-                  <p className="text-gray-700">internships@iqgroup.com</p>
-                  <p className="text-gray-700">+91 22 4005 4243</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Right column - Form */}
-            <div className="md:w-3/5">
-              <h2 
-                ref={titleRef}
-                className="text-3xl md:text-4xl font-bold font-lato text-[#203663] mb-8"
-              >
-                Apply Now
-              </h2>
-              <form onSubmit={handleSubmit}>
-                <div className="mb-6">
-                  <label htmlFor="firstName" className="block text-[#203663] mb-2">
-                    First Name <span className="text-[#203663]">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="firstName"
-                    name="firstName"
-                    value={formData.firstName}
-                    onChange={handleChange}
-                    required
-                    className="w-full border-b border-gray-300 py-2 px-1 focus:outline-none focus:border-[#203663] transition-colors bg-transparent"
-                  />
-                </div>
-
-                <div className="mb-6">
-                  <label htmlFor="surname" className="block text-[#203663] mb-2">
-                    Surname <span className="text-[#203663]">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="surname"
-                    name="surname"
-                    value={formData.surname}
-                    onChange={handleChange}
-                    required
-                    className="w-full border-b border-gray-300 py-2 px-1 focus:outline-none focus:border-[#203663] transition-colors bg-transparent"
-                  />
-                </div>
-
-                {/* <div className="mb-6">
-                  <label htmlFor="company" className="block text-[#203663] mb-2">
-                    Current Company
-                  </label>
-                  <input
-                    type="text"
-                    id="company"
-                    name="company"
-                    value={formData.company}
-                    onChange={handleChange}
-                    className="w-full border-b border-gray-300 py-2 px-1 focus:outline-none focus:border-[#203663] transition-colors bg-transparent"
-                  />
-                </div> */}
-
-                <div className="mb-6">
-                  <label htmlFor="email" className="block text-[#203663] mb-2">
-                    Email <span className="text-[#203663]">*</span>
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full border-b border-gray-300 py-2 px-1 focus:outline-none focus:border-[#203663] transition-colors bg-transparent"
-                  />
-                </div>
-
-                <div className="mb-6">
-                  <label htmlFor="telephone" className="block text-[#203663] mb-2">
-                    Telephone <span className="text-[#203663]">*</span>
-                  </label>
-                  <input
-                    type="tel"
-                    id="telephone"
-                    name="telephone"
-                    value={formData.telephone}
-                    onChange={handleChange}
-                    required
-                    className="w-full border-b border-gray-300 py-2 px-1 focus:outline-none focus:border-[#203663] transition-colors bg-transparent"
-                  />
-                </div>
-
-                <div className="mb-6">
-                  <label htmlFor="position" className="block text-[#203663] mb-2">
-                    Position Applying For <span className="text-[#203663]">*</span>
-                  </label>
-                  <select
-                    id="position"
-                    name="position"
-                    value={formData.position}
-                    onChange={handleChange}
-                    required
-                    className="w-full border-b border-gray-300 py-2 px-1 focus:outline-none focus:border-[#203663] transition-colors bg-transparent"
-                  >
-                    <option value="">Select a position</option>
-                    <option value="sales">Sales Manager</option>
-                    <option value="supply">Supply Chain Analyst</option>
-                    <option value="marketing">Marketing Specialist</option>
-                    <option value="quality">Quality Control Engineer</option>
-                    <option value="finance">Financial Analyst</option>
-                    <option value="business">Business Development Executive</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-
-                <div className="mb-6">
-                  <label htmlFor="experience" className="block text-[#203663] mb-2">
-                    Years of Experience <span className="text-[#203663]">*</span>
-                  </label>
-                  <select
-                    id="experience"
-                    name="experience"
-                    value={formData.experience}
-                    onChange={handleChange}
-                    required
-                    className="w-full border-b border-gray-300 py-2 px-1 focus:outline-none focus:border-[#203663] transition-colors bg-transparent"
-                  >
-                    <option value="">Select experience</option>
-                    <option value="0-1">0-1 years</option>
-                    <option value="1-3">1-3 years</option>
-                    <option value="3-5">3-5 years</option>
-                    <option value="5-10">5-10 years</option>
-                    <option value="10+">10+ years</option>
-                  </select>
-                </div>
-
-                <div className="mb-6">
-                  <label htmlFor="resume" className="block text-[#203663] mb-2">
-                    Upload Resume (PDF) <span className="text-[#203663]">*</span>
-                  </label>
-                  <input
-                    type="file"
-                    id="resume"
-                    name="resume"
-                    accept=".pdf,.doc,.docx"
-                    onChange={handleFileChange}
-                    required
-                    className="w-full border-b border-gray-300 py-2 px-1 focus:outline-none focus:border-[#203663] transition-colors bg-transparent"
-                  />
-                </div>
-
-                <div className="mb-8">
-                  <label htmlFor="message" className="block text-[#203663] mb-2">
-                    Cover Letter / Message
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    rows="4"
-                    className="w-full border-b border-gray-300 py-2 px-1 focus:outline-none focus:border-[#203663] transition-colors bg-transparent"
-                    placeholder="Tell us why you want to join IQ Group..."
-                  ></textarea>
-                </div>
-
-                <div className="mb-8 flex items-start">
-                  <input
-                    type="checkbox"
-                    id="newsletter"
-                    name="newsletter"
-                    checked={formData.newsletter}
-                    onChange={handleChange}
-                    className="mt-1 mr-3"
-                  />
-                  <label htmlFor="newsletter" className="text-gray-700 text-sm">
-                    Sign me up for the IQ Group career updates and opportunities
-                  </label>
-                </div>
-
-                <div className="text-right">
-                  <button
-                    type="submit"
-                    className="bg-[#203663] border border-[#203663] hover:bg-[#fbfbfb] cursor-pointer hover:text-[#203663] text-white px-8 py-4 transition-colors flex items-center"
-                  >
-                    <span>Submit Application</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div className="mb-12">
+      <p className="text-sm uppercase tracking-wider font-lato text-gray-500 mb-2">IN THIS SECTION</p>
+      <span className="text-4xl font-bold text-[#1a365d] block mb-4">{number}</span>
+      <h2 className="text-3xl uppercase md:text-4xl font-bold text-[#1a365d]">{title}</h2>
     </div>
   );
 };
+
+// News section data
+const newsCards = [
+  {
+    type: "Press Release",
+    date: "July 21, 2023",
+    title: "IQ Group Expands Global Reach with New Strategic Partnership",
+    description: "Revolutionary alliance formed to redefine industry standards. A bold move that strengthens our commitment to excellence in material sourcing worldwide.",
+    image: "https://images.unsplash.com/photo-1591696205602-2f950c417cb9?q=80&w=1740&auto=format&fit=crop",
+    link: "#"
+  },
+  {
+    type: "News",
+    date: "July 18, 2023",
+    title: "Breakthrough in Material Technology Propels Manufacturing Innovation",
+    description: "Unveiling next-generation composites that transform production capabilities. Engineered at molecular precision to deliver unprecedented performance across industrial applications.",
+    image: "https://images.unsplash.com/photo-1581092160607-ee22732d58dc?q=80&w=1740&auto=format&fit=crop",
+    link: "#"
+  },
+  {
+    type: "Event",
+    date: "July 14, 2023",
+    title: "IQ Group to Lead Keynote at Global Materials Summit 2023",
+    description: "Join our experts as they reveal transformative insights on material science evolution. Exclusive preview of research destined to reshape industrial materials landscape.",
+    image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=1740&auto=format&fit=crop",
+    link: "#"
+  },
+  {
+    type: "Press Release",
+    date: "July 10, 2023",
+    title: "Record Quarter Results Reflect Strong Market Position",
+    description: "Exceptional performance demonstrates our relentless pursuit of excellence. Strategic investments yield unprecedented growth across all business divisions.",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1715&auto=format&fit=crop",
+    link: "#"
+  },
+  {
+    type: "News",
+    date: "July 7, 2023",
+    title: "Environmental Milestone: Carbon-Neutral Operations Achieved",
+    description: "Pioneering sustainability initiative reaches completion ahead of schedule. Revolutionary approach sets new benchmark for environmental stewardship in materials industry.",
+    image: "https://images.unsplash.com/photo-1473646590311-c48e1bc77b44?q=80&w=1738&auto=format&fit=crop",
+    link: "#"
+  },
+  {
+    type: "Event",
+    date: "June 28, 2023",
+    title: "Registration Open for Annual Materials Innovation Conference",
+    description: "Exclusive gathering of industry pioneers exploring the frontiers of material science. Limited seats available for this transformative knowledge exchange experience.",
+    image: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=1712&auto=format&fit=crop",
+    link: "#"
+  },
+  {
+    type: "News",
+    date: "June 25, 2023",
+    title: "IQ Group Recognized with Global Excellence Award",
+    description: "Distinguished honor celebrates our unwavering commitment to quality and innovation. Rigorous evaluation identifies our practices as defining the industry's future.",
+    image: "https://images.unsplash.com/photo-1565530973854-e4e4e8a9ea13?q=80&w=1740&auto=format&fit=crop",
+    link: "#"
+  },
+  {
+    type: "Press Release",
+    date: "June 20, 2023",
+    title: "Next-Generation Research Laboratory Unveiled",
+    description: "State-of-the-art facility designed to push boundaries of material innovation. Unprecedented capabilities accelerate discovery of transformative industrial solutions.",
+    image: "https://images.unsplash.com/photo-1581093458791-9d52200c79a8?q=80&w=1740&auto=format&fit=crop",
+    link: "#"
+  }
+];
+
+// Insights section data
+const insightsCards = [
+  {
+    type: "Article",
+    date: "July 19, 2023",
+    title: "The Evolution of Supply Chain Resilience in Material Sourcing",
+    description: "Decoding the transformation from fragile networks to unbreakable material pathways. Strategic insights that redefine how industry leaders secure critical resources.",
+    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1470&auto=format&fit=crop",
+    link: "#"
+  },
+  {
+    type: "Report",
+    date: "July 15, 2023",
+    title: "Material Intelligence: The Competitive Edge in Manufacturing",
+    description: "Deep analysis of how material selection drives product differentiation and market leadership. Revolutionary framework for evaluating material impact on performance outcomes.",
+    image: "https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?q=80&w=1476&auto=format&fit=crop",
+    link: "#"
+  },
+  {
+    type: "Whitepaper",
+    date: "July 9, 2023",
+    title: "Decarbonizing Industrial Materials: Pathways to Net Zero",
+    description: "Comprehensive roadmap for achieving carbon neutrality without compromising material integrity. Visionary strategies that transform sustainability challenges into innovation catalysts.",
+    image: "https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?q=80&w=1480&auto=format&fit=crop",
+    link: "#"
+  },
+  {
+    type: "Analysis",
+    date: "July 5, 2023",
+    title: "The Economics of Quality: Premium Materials as Strategic Investment",
+    description: "Revealing the hidden ROI metrics of selecting exceptional materials over standard options. Mathematical proof that material excellence delivers exponential value creation.",
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1470&auto=format&fit=crop",
+    link: "#"
+  },
+  {
+    type: "Article",
+    date: "June 30, 2023",
+    title: "Beyond Specifications: The Art of Material Selection",
+    description: "Exploring the subtle factors that elevate material choices from adequate to exceptional. Strategic framework for identifying materials that unlock unprecedented product capabilities.",
+    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1470&auto=format&fit=crop",
+    link: "#"
+  },
+  {
+    type: "Report",
+    date: "June 26, 2023",
+    title: "Material Innovation Index: Industry Benchmarking Study",
+    description: "Definitive analysis of innovation metrics across industrial materials sectors worldwide. Data-driven insights revealing tomorrow's material science breakthroughs today.",
+    image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1470&auto=format&fit=crop",
+    link: "#"
+  },
+  {
+    type: "Analysis",
+    date: "June 22, 2023",
+    title: "Geopolitical Shifts and Their Impact on Material Supply Chains",
+    description: "Strategic assessment of global dynamics reshaping material availability and pricing. Forward-looking scenarios that prepare industry leaders for tomorrow's supply challenges.",
+    image: "https://images.unsplash.com/photo-1533645782036-997947a9d529?q=80&w=1470&auto=format&fit=crop",
+    link: "#"
+  },
+  {
+    type: "Whitepaper",
+    date: "June 18, 2023",
+    title: "The Quantum Advantage: Next-Generation Materials for Industrial Excellence",
+    description: "Exploring the frontier where quantum science meets industrial material development. Visionary perspective on materials engineered at atomic precision for unmatched performance.",
+    image: "https://images.unsplash.com/photo-1581093805715-a127be2f3e5f?q=80&w=1470&auto=format&fit=crop",
+    link: "#"
+  }
+];
+
+const sectionLinks = [
+  {
+    title: "LATEST NEWS",
+    link: "/resources#news"
+  },
+  {
+    title: "INDUSTRY INSIGHTS",
+    link: "/resources#insights"
+  }
+];
 
 export default function ResourcesPage() {
   const introRef = useRef(null);
@@ -729,22 +383,38 @@ export default function ResourcesPage() {
         navTitle="RESOURCES"
       />
       <div className="relative z-20 bg-white"> 
-        <div 
-          ref={introRef}
-          className="w-full max-w-7xl md:max-w-[1300px] flex flex-wrap justify-between mx-auto px-4 py-12 bg-[#ffffff]"
-        >
-          <div className="w-full md:w-1/2 lg:text-[38px] font-lato leading-[1.1] text-[#1a365d] font-bold animate-item">
-            There's nowhere like IQ Group to build your legacy.
-          </div>
-          <div className="w-full md:w-1/2 flex items-center text-[17px] font-onest text-[#1a365d] animate-item">
-            We don't just offer jobs. We craft careers. Develop skills that matter, gain experiences that count, and build a future that rewards.
-          </div>
-         </div>
+        <SectionNavigation 
+          links={sectionLinks}
+        />
         
-       
+        {/* News Section */}
+        <FadeInSection className="py-16 md:py-24 px-2 md:px-4 bg-white" id="news">
+          <div className="max-w-7xl lg:max-w-[1300px] mx-auto">
+            <SectionTitle number="01" title="LATEST NEWS" />
+            <div className="flex flex-wrap -mx-1">
+              {newsCards.map((card, index) => (
+                <div key={index} className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 px-1 mb-2">
+                  <ResourceCard {...card} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </FadeInSection>
+        
+        {/* Insights Section */}
+        <FadeInSection className="py-16 md:py-24 px-2 md:px-4 bg-gray-50" id="insights">
+          <div className="max-w-7xl mx-auto">
+            <SectionTitle number="02" title="INDUSTRY INSIGHTS" />
+            <div className="flex flex-wrap -mx-1">
+              {insightsCards.map((card, index) => (
+                <div key={index} className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 px-1 mb-2">
+                  <ResourceCard {...card} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </FadeInSection>
       </div>
-      
-     
     </main>
   );
 }
