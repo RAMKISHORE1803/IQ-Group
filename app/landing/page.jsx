@@ -242,7 +242,7 @@ export default function LandingPage() {
         {/* Normal scrolling sections */}
         <DTREHeroCarousel />
           <AboutSection />
-        <QualitySection />
+        {/* <QualitySection /> */}
           <CompanySection />
         
         {/* GlobalMap wrapper */}

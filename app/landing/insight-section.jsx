@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Link from 'next/link';
 
 const InsightsSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
-  const insights = [
-      {
+    const insights = [
+      {
         "id": 1,
         "category": "INTERNATIONAL BUSINESS",
         "date": "MAY 14, 2025",
@@ -14,7 +15,7 @@ const InsightsSection = () => {
         "subheadline": "Siddharth Bothra, CEO of IQ Minerals & Metals, sounds the alarm.",
         "body": "India's specialty steel lifeline is on the clock. No BIS certifications. No imports. No options. If red tape wins, our steel supply loses. And when steel stops, infrastructure, industry, and ambition fall silent.",
         "cta": "→ Read the Statement",
-        "bgImage": "https://media.licdn.com/dms/image/v2/D4D22AQFDO32GDzfxgw/feedshare-shrink_800/B4DZUk_fyzHYAs-/0/1740082390732?e=1752105600&v=beta&t=UNTBwC1kypdN4kVnO8uhHtkaW6XBF9Ki9DhLB6eyf4o"
+        "bgImage": "https://images.unsplash.com/photo-1530968033775-2c92736b131e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80"
       },
       {
         "id": 2,
@@ -24,7 +25,7 @@ const InsightsSection = () => {
         "subheadline": "Siddharth Bothra, CEO of IQ Minerals & Metals, issues a wake-up call.",
         "body": "Freight rates have exploded. Containers are gone. Profits chase the West. Supply chains buckle under greed. The world isn't paying attention — but industries and consumers are already paying the price.",
         "cta": "→ Read the Full Perspective",
-        "bgImage": "https://media.licdn.com/dms/image/v2/D4D22AQEk22pW3d_Vrw/feedshare-shrink_800/B4DZcBPNZLGYAo-/0/1748072460719?e=1752105600&v=beta&t=HfNSGK_bjZrjybPv3trDiiLit6sxWK-ovSWVmk4GQSY"
+        "bgImage": "https://images.unsplash.com/photo-1494412651409-8963ce7935a7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80"
       },
       {
         "id": 3,
@@ -34,18 +35,18 @@ const InsightsSection = () => {
         "subheadline": "Siddharth Bothra, CEO of IQ Minerals & Metals, challenges the new License Raj.",
         "body": "BIS mandates were meant for quality. Now they gatekeep competition. MSMEs can't breathe. Big players tighten their grip. Inputs vanish. Prices soar. If this is ease of business, it's choking our future.",
         "cta": "→ Read the Full Insight",
-        "bgImage": "https://media.licdn.com/dms/image/v2/D4D22AQFDWrRDFw6xgg/feedshare-shrink_800/B4DZZiiSbUGsAg-/0/1745409882063?e=1752105600&v=beta&t=99Z7cWsi9OCw6tR_f5lWUWXBDsBPxgxwYluNUO990ro"
+        "bgImage": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80"
       },
-      {
-        "id": 4,
-        "category": "TRADE ENFORCEMENT",
-        "date": "MAY 8, 2025",
-        "headline": "China's New Clampdown Means More Pressure on India.",
-        "subheadline": "Siddharth Bothra, CEO of IQ Minerals & Metals, warns of rising risks.",
-        "body": "China's crackdown pushes exports to India. Dumping danger is real. Defend before it's too late.",
-        "cta": "→ Read the Full Analysis",
-        "bgImage": "https://media.licdn.com/dms/image/v2/D4D22AQGqp9BMF8blGg/feedshare-shrink_800/B4DZYviVqvG8Ag-/0/1744554253982?e=1752105600&v=beta&t=Wm9q0PMRGGsOLNR0gbxvLFBiwoUU0u4_rl6gzXsT3ik"
-      }
+      {
+        "id": 4,
+        "category": "TRADE ENFORCEMENT",
+        "date": "MAY 8, 2025",
+        "headline": "China's New Clampdown Means More Pressure on India.",
+        "subheadline": "Siddharth Bothra, CEO of IQ Minerals & Metals, warns of rising risks.",
+        "body": "China's crackdown pushes exports to India. Dumping danger is real. Defend before it's too late.",
+        "cta": "→ Read the Full Analysis",
+        "bgImage": "https://plus.unsplash.com/premium_photo-1675826460422-e39481fae224?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Y2hpbmF8ZW58MHx8MHx8fDA%3D"
+      }
     ];
     
 
@@ -238,8 +239,10 @@ const InsightsSection = () => {
           className="bg-[#1E3157] cursor-pointer text-white hover:bg-[#fbfbfb] hover:text-[#1E3157] border-2 border-[#1E3157] hover:border-[#1E3157] font-onest text-[20px] font-light text-black font-medium px-6 py-3  transition-colors duration-200 flex items-center gap-2"
          
         >
+          <Link href="/resources">
           VIEW ALL
           <span className="text-lg">→</span>
+          </Link>
         </motion.button>
       </div>
     </div>

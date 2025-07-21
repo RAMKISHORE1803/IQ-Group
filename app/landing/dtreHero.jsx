@@ -176,8 +176,8 @@ export default function DTREHeroCarousel() {
           alt={currentSlideData.ariaLabel}
           className="w-full h-full object-cover transition-all duration-1000"
         />
-        <div className='absolute inset-0 bg-black/46'></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-white/10"></div>
+        <div className='absolute inset-0 bg-black/50'></div>
+        {/* <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-white/10"></div> */}
       </div>
 
       {/* Main Content */}

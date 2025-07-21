@@ -37,14 +37,14 @@ export default function AboutSection() {
       
       // Create separate animations for each element for better control
       const imageAnim = gsap.to(imageContainer, {
-        x: window.innerWidth < 768 ? 0 : -40,
+        x: window.innerWidth < 768 ? 0 : window.innerWidth < 1290 ? -50 : -20,
         ease: "power2.out",
         duration: window.innerWidth <768 ? 2 : 10,
         paused: true
       });
       
       const contentAnim = gsap.to(content, {
-        x: window.innerWidth < 768 ? 0 : 40,
+        x: window.innerWidth < 768 ? 0 : window.innerWidth < 1290 ? 50 : 20,
         ease: "power2.out",
         duration: window.innerWidth <768 ? 1 : 10,
         paused: true
@@ -111,16 +111,16 @@ export default function AboutSection() {
         <div ref={sectionRef} className="grid grid-cols-1 md:grid-cols-2 lg:ml-[0px] lg:pl-[0px] xl:ml-[50px] gap-8 md:gap-12 items-center">
           <div 
             ref={imageContainerRef} 
-            className="relative h-[350px] md:pl-[10px] sm:h-[400px] lg:ml-[0px] lg:min-w-[550px] xl:min-w-[580px] xl:pl-[100px] md:h-[450px] lg:h-[500px] w-full rounded-xl overflow-hidden"
+            className="relative h-auto max-w-[500px] md:pl-[10px] sm:h-[400px] lg:ml-[0px] lg:min-w-[580px] xl:min-w-[600px] xl:pl-[100px] md:h-[450px] lg:h-[500px] w-full  overflow-hidden"
           >
             <Image
-              src="https://images.unsplash.com/photo-1661103391619-46e3175b3152?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              src="/images/about-us.png"
               alt="Fiber optic network"
               fill
-              className="object-cover rounded-xl"
+              className="object-cover "
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-tr from-[#010A4E]/70 to-transparent rounded-xl"></div>
+            {/* <div className="absolute inset-0 bg-gradient-to-tr from-[#010A4E]/70 to-transparent rounded-xl"></div> */}
           </div>
           
           <div ref={contentRef} className="text-white space-y-6 md:pr-0 md:min-w-[370px] lg:min-w-[550px] lg:pr-[10px] lg:pr-[5px] ">
