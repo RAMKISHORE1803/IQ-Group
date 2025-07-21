@@ -371,7 +371,7 @@ const NavbarNew = () => {
             <Link href="/" className="flex items-center">
               <div className="flex items-center">
                 <Image
-                  src="/images/logo.webp"
+                  src="https://videos.openai.com/vg-assets/assets%2Ftask_01k0nqtt3ae6xvg6mkwy0fspbq%2F1753076466_img_0.webp?st=2025-07-21T03%3A52%3A25Z&se=2025-07-27T04%3A52%3A25Z&sks=b&skt=2025-07-21T03%3A52%3A25Z&ske=2025-07-27T04%3A52%3A25Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=aa5ddad1-c91a-4f0a-9aca-e20682cc8969&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=9%2FAgFXrq9VBA%2BGgQJ1ZQnlrar5JpXMUL72NhcI7TDaA%3D&az=oaivgprodscus"
                   alt="IQ Groups Logo"
                   width={120}
                   style={{

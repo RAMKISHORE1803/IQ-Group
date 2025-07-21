@@ -9,7 +9,8 @@ const nextConfig = {
       'assets.lummi.ai',
       'usacamerica.us',
       'www.buafoodsplc.com',
-      'encrypted-tbn0.gstatic.com'
+      'encrypted-tbn0.gstatic.com',
+      'videos.openai.com'
     ],
   },
 };
