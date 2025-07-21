@@ -113,10 +113,10 @@ export default function AboutSection() {
             ref={imageContainerRef} 
             className="relative h-auto max-w-[500px] md:pl-[10px] sm:h-[400px] lg:ml-[0px] lg:min-w-[580px] xl:min-w-[600px] xl:pl-[100px] md:h-[450px] lg:h-[500px] w-full  overflow-hidden"
           >
-            <Image
+            <img
               src="/images/about-us.png"
               alt="Fiber optic network"
-              fill
+            
               className="object-cover "
               priority
             />
