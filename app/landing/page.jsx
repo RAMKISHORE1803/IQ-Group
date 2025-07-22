@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import AboutSection from './about-section';
 import CompanySection from './company-section';
 import { gsap } from 'gsap';
@@ -31,8 +31,44 @@ export default function LandingPage() {
   const globalMapContentRef = useRef(null);
   const industriesRef = useRef(null);
   const scrollTriggersRef = useRef([]); // Track our specific triggers
-  const footerAnimationWrapperRef = useRef(null);
+  const contentWrapperRef = useRef(null);
   const footerRef = useRef(null);
+  const [footerTransform, setFooterTransform] = useState('translateY(100%)');
+
+  // Calculate footer position based on scroll
+  const handleFooterScroll = useCallback(() => {
+    if (!contentWrapperRef.current || !footerRef.current) return;
+    
+    // Get total document height and scroll position
+    const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+    const windowHeight = window.innerHeight;
+    const documentHeight = Math.max(
+      document.body.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.clientHeight,
+      document.documentElement.scrollHeight,
+      document.documentElement.offsetHeight
+    );
+    
+    // Calculate how close we are to the bottom of the document
+    // Start showing footer when we're 300px from reaching the end
+    const distanceFromBottom = documentHeight - (scrollPosition + windowHeight);
+    const triggerDistance = 300;
+    
+    if (distanceFromBottom <= triggerDistance && distanceFromBottom >= 0) {
+      // Calculate progress (0 to 1) based on how close we are to the bottom
+      const progress = 1 - (distanceFromBottom / triggerDistance);
+      
+      // Apply transform based on progress
+      setFooterTransform(`translateY(${100 - (progress * 100)}%)`);
+    } else if (distanceFromBottom < 0) {
+      // Fully show footer when we've scrolled past the end
+      setFooterTransform('translateY(0%)');
+    } else {
+      // Hide footer when we're not near the end
+      setFooterTransform('translateY(100%)');
+    }
+  }, []);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -114,76 +150,6 @@ export default function LandingPage() {
       scrollTriggersRef.current.push(trigger1);
     };
 
-    const setupFooterReveal = () => {
-      if (!footerAnimationWrapperRef.current || !footerRef.current) return;
-
-      // Reset any previous animations
-      gsap.set([footerAnimationWrapperRef.current, footerRef.current], {
-        clearProps: "all"
-      });
-
-      // Set up wrapper - acts as a viewport window during animation only
-      gsap.set(footerAnimationWrapperRef.current, {
-        overflow: 'hidden',
-        position: 'relative',
-        height: '100vh' // Match the GlobalMap wrapper height
-      });
-
-      // Set initial position - content starts just above the viewport (negative y)
-      gsap.set(footerRef.current, {
-        y: '-20vh', // Match the GlobalMap content initial position
-        willChange: 'transform'
-      });
-
-      // Create the reveal animation - exact same structure as GlobalMap
-      const footerTrigger = ScrollTrigger.create({
-        trigger: footerAnimationWrapperRef.current,
-        start: "top 90%",    
-        end: "top 10%",      
-        scrub: 1,
-        markers: false,
-        invalidateOnRefresh: true,
-        animation: gsap.to(footerRef.current, {
-          y: 0,
-          ease: "none",
-        }),
-        
-        onLeave: () => {
-          console.log("Footer animation complete - releasing constraints");
-          
-          gsap.set(footerAnimationWrapperRef.current, {
-            height: 'auto',
-            overflow: 'visible',
-            position: 'relative'
-          });
-          
-          gsap.set(footerRef.current, {
-            y: 0,
-            transform: 'none',
-            willChange: 'auto'
-          });
-          
-      ScrollTrigger.refresh();
-        },
-        
-        onEnterBack: () => {
-          console.log("Re-entering Footer animation area");
-          
-          gsap.set(footerAnimationWrapperRef.current, {
-            height: '100vh',
-            overflow: 'hidden',
-            position: 'relative'
-          });
-          
-          gsap.set(footerRef.current, {
-            willChange: 'transform'
-          });
-        }
-      });
-
-      scrollTriggersRef.current.push(footerTrigger);
-    };
-
     const setupIndustriesAnimation = () => {
       if (!industriesRef.current || !globalMapContentRef.current) return;
       
@@ -208,21 +174,21 @@ export default function LandingPage() {
       scrollTriggersRef.current.push(trigger2);
     };
 
-    // Remove any leftover initial positioning that might interfere
-    gsap.set(footerRef.current, {
-      clearProps: "all"
-    });
-
     const initTimeout = setTimeout(() => {
       setupCurtainReveal();
       setupIndustriesAnimation();
-      setupFooterReveal();
     }, 100);
+
+    // Add scroll event listener for footer
+    window.addEventListener('scroll', handleFooterScroll);
+    
+    // Initial check
+    handleFooterScroll();
 
     const handleResize = debounce(() => {
       setupCurtainReveal();
       setupIndustriesAnimation();
-      setupFooterReveal();
+      handleFooterScroll();
     }, 250);
     
     window.addEventListener('resize', handleResize);
@@ -230,16 +196,17 @@ export default function LandingPage() {
     return () => {
       clearTimeout(initTimeout);
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('scroll', handleFooterScroll);
       
       // Clean up only OUR ScrollTriggers
       scrollTriggersRef.current.forEach(trigger => trigger.kill());
       scrollTriggersRef.current = [];
     };
-  }, []);
+  }, [handleFooterScroll]);
 
   return (
     <div className="bg-[#fbfbfb] z-[2]">
-      <main className="relative ">
+      <main className="relative" ref={contentWrapperRef}>
         {/* Normal scrolling sections */}
         <DTREHeroCarousel />
           <AboutSection />
@@ -282,17 +249,22 @@ export default function LandingPage() {
           
         </div>
         
-        {/* Footer with curtain reveal - separate from industries section */}
-        <div ref={footerAnimationWrapperRef} className="relative">
-          <div className='md:block hidden h-[0.1vh] bg-[#fbfbfb]'></div>
-          <div ref={footerRef} className="will-change-transform">
-            <IQGroupFooter/>    
-          </div>
-        </div>
-
-        {/* Clear ending point */}
-        
-    </main>
+        {/* Spacer to ensure content is tall enough */}
+        {/* <div style={{ height: '30vh' }}></div> */}
+      </main>
+      
+      {/* Footer - fixed position at bottom */}
+      <div 
+        ref={footerRef} 
+        className="fixed bottom-0 left-0 w-full z-40"
+        style={{ 
+          transform: footerTransform,
+          transition: 'transform 0.1s linear',
+          willChange: 'transform'
+        }}
+      >
+        <IQGroupFooter />
+      </div>
     </div>
   );
 } 

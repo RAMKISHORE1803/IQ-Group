@@ -1,133 +1,82 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import IQGroupFooter from '../landing/footer';
 
-const debounce = (func, wait) => {
-  let timeout;
-  return function executedFunction(...args) {
-    const later = () => {
-      clearTimeout(timeout);
-      func(...args);
-    };
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-  };
-};
-
 export default function AboutLayout({ children }) {
-  const footerAnimationWrapperRef = useRef(null);
+  const contentWrapperRef = useRef(null);
   const footerRef = useRef(null);
-  const scrollTriggersRef = useRef([]);
+  const [footerTransform, setFooterTransform] = useState('translateY(100%)');
+
+  // Calculate footer position based on scroll
+  const handleScroll = useCallback(() => {
+    if (!contentWrapperRef.current || !footerRef.current) return;
+    
+    // Get content dimensions
+    const contentRect = contentWrapperRef.current.getBoundingClientRect();
+    const contentBottom = contentRect.bottom;
+    
+    // Get viewport height
+    const viewportHeight = window.innerHeight;
+    
+    // Calculate how close we are to the bottom
+    // Start showing footer when we're 300px from reaching the end
+    const triggerDistance = 300;
+    const distanceFromBottom = contentBottom - viewportHeight;
+    
+    if (distanceFromBottom <= triggerDistance && distanceFromBottom >= 0) {
+      // Calculate progress (0 to 1) based on how close we are to the bottom
+      const progress = 1 - (distanceFromBottom / triggerDistance);
+      
+      // Apply transform and opacity based on progress
+      setFooterTransform(`translateY(${100 - (progress * 100)}%)`);
+      
+    } else if (distanceFromBottom < 0) {
+      // Fully show footer when we've scrolled past the end
+      setFooterTransform('translateY(0%)');
+      
+    } else {
+      // Hide footer when we're not near the end
+      setFooterTransform('translateY(100%)');
+      
+    }
+  }, []);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    gsap.registerPlugin(ScrollTrigger);
-
-    const setupFooterReveal = () => {
-      if (!footerAnimationWrapperRef.current || !footerRef.current) return;
-
-      // Clear any existing ScrollTriggers
-      scrollTriggersRef.current.forEach(trigger => trigger.kill());
-      scrollTriggersRef.current = [];
-
-      // Reset any previous animations
-      gsap.set([footerAnimationWrapperRef.current, footerRef.current], {
-        clearProps: "all"
-      });
-
-      // Set up wrapper - acts as a viewport window during animation only
-      gsap.set(footerAnimationWrapperRef.current, {
-        overflow: 'hidden',
-        position: 'relative',
-        height: '100vh'
-      });
-
-      // Set initial position - content starts just above the viewport
-      gsap.set(footerRef.current, {
-        y: '-50vh',
-        willChange: 'transform'
-      });
-
-      // Create the reveal animation
-      const footerTrigger = ScrollTrigger.create({
-        trigger: footerAnimationWrapperRef.current,
-        start: "top 80%",    
-        end: "top 20%",      
-        scrub: 1,
-        markers: false,
-        invalidateOnRefresh: true,
-        animation: gsap.to(footerRef.current, {
-          y: 0,
-          ease: "none",
-        }),
-        
-        onLeave: () => {
-          gsap.set(footerAnimationWrapperRef.current, {
-            height: 'auto',
-            overflow: 'visible',
-            position: 'relative'
-          });
-          
-          gsap.set(footerRef.current, {
-            y: 0,
-            transform: 'none',
-            willChange: 'auto'
-          });
-          
-          ScrollTrigger.refresh();
-        },
-        
-        onEnterBack: () => {
-          gsap.set(footerAnimationWrapperRef.current, {
-            height: '100vh',
-            overflow: 'hidden',
-            position: 'relative'
-          });
-          
-          gsap.set(footerRef.current, {
-            willChange: 'transform'
-          });
-        }
-      });
-
-      scrollTriggersRef.current.push(footerTrigger);
-    };
-
-    const initTimeout = setTimeout(() => {
-      setupFooterReveal();
-    }, 100);
-
-    const handleResize = debounce(() => {
-      setupFooterReveal();
-    }, 250);
+    // Add scroll event listener
+    window.addEventListener('scroll', handleScroll);
     
-    window.addEventListener('resize', handleResize);
+    // Initial check
+    handleScroll();
 
     return () => {
-      clearTimeout(initTimeout);
-      window.removeEventListener('resize', handleResize);
-      
-      // Clean up ScrollTriggers
-      scrollTriggersRef.current.forEach(trigger => trigger.kill());
-      scrollTriggersRef.current = [];
+      window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [handleScroll]);
 
   return (
-    <>
-      {children}
-      
-      {/* Footer with curtain reveal */}
-      <div ref={footerAnimationWrapperRef} className="relative">
-        <div className='md:block hidden h-[0.1vh] bg-[#fbfbfb]'></div>
-        <div ref={footerRef} className="will-change-transform">
-          <IQGroupFooter />    
-        </div>
+    <div className="relative bg-white">
+      {/* Main content */}
+      <div ref={contentWrapperRef} className="min-h-screen">
+        {children}
+        {/* Spacer to ensure content is tall enough */}
+        <div style={{ height: '40vh' }}></div>
       </div>
-    </>
+      
+      {/* Footer - fixed position at bottom */}
+      <div 
+        ref={footerRef} 
+        className="fixed bottom-0 left-0 w-full z-40"
+        style={{ 
+          transform: footerTransform,
+          transition: 'transform 0.1s linear',
+          willChange: 'transform, opacity'
+        }}
+      >
+        <IQGroupFooter />
+      </div>
+    </div>
   );
 }

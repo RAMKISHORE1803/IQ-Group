@@ -63,7 +63,7 @@ const BusinessStatistics = () => {
   }, [isStatsInView]);
 
   return (
-    <div ref={mainSectionRef} className="relative w-full bg-[#000] overflow-hidden lg:min-h-[140vh]" style={{ minHeight: '140vh' }}>
+    <div ref={mainSectionRef} className="relative w-full bg-[#000] overflow-hidden lg:min-h-[180vh]" style={{ minHeight: '140vh' }}>
       {/* Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
