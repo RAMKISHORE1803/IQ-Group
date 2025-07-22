@@ -91,7 +91,7 @@ function AccordionItem({ id, title, description, isActive, onClick, index }) {
     >
       <button
         onClick={() => onClick(id)}
-        className="w-full py-6 flex items-center justify-between text-left focus:outline-none"
+        className="w-full py-6 flex items-center cursor-pointer justify-between text-left focus:outline-none"
         aria-expanded={isActive}
         aria-controls={`content-${id}`}
       >

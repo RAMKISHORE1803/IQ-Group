@@ -109,7 +109,7 @@ export default function AboutSection() {
   return (
     <>
     <section 
-      className="relative py-[20px] md:py-32 min-h-screen overflow-hidden bg-white from-[#010A4E] to-[#041174]"
+      className="relative py-[20px] md:py-32 min-h-screen overflow-hidden bg-[#fbfbfb]"
       id="about"
     >
       {/* Grid background */}
@@ -124,11 +124,11 @@ export default function AboutSection() {
       {/* Radial gradient for the container to give a faded look */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
       
-      <div className="container relative z-10 mx-auto px-4 md:pl-4 lg:pl-0 lg:pr-12 xl:pl-[20px]">
-        <div ref={sectionRef} className="grid grid-cols-1 md:grid-cols-2 lg:ml-[0px] lg:pl-[0px]  gap-8 md:gap-12 items-center">
+      <div className="container relative z-10 mx-auto px-4 md:pl-4 lg:pl-0 lg:pr-8 xl:pl-[10px]">
+        <div ref={sectionRef} className="grid grid-cols-1 md:grid-cols-2 lg:ml-[0px] lg:pl-[0px] gap-8 md:gap-6 lg:gap-4 items-center">
           <div 
             ref={imageContainerRef} 
-            className="relative h-auto max-w-[500px] md:pl-[10px] sm:h-[400px] lg:ml-[0px] lg:min-w-[650px] xl:min-w-[600px] xl:pl-[100px] md:h-[450px] lg:h-[500px] w-full overflow-hidden"
+            className="relative h-auto max-w-[550px] md:pl-[5px] sm:h-[400px] lg:ml-[0px] lg:min-w-[700px] xl:min-w-[700px] xl:pl-[20px] md:h-[500px] lg:h-[550px] w-full overflow-hidden"
           >
             <Image
               src="/about-us.png"
@@ -139,11 +139,11 @@ export default function AboutSection() {
             />
           </div>
           
-          <div ref={contentRef} className="text-white space-y-6 md:pr-0 md:min-w-[370px] lg:min-w-[550px] lg:pr-[10px] lg:pr-[5px]">
+          <div ref={contentRef} className="text-white space-y-6 md:pr-4 lg:pr-8 md:min-w-[370px] lg:min-w-[500px]">
             <h2 className="text-[32px] text-[#324390] text-lato text-[#000] font-bold sm:text-[34px] md:text-[38px] lg:text-[42px] font-bold">
             POWERING INNOVATION. DELIVERING EXCELLENCE.
             </h2>
-            <p className="text-gray-700 text-onest font-light sm:text-[24px] md:text-[18px] md:pr-0 lg:text-[20px] md:pr-[5px] xl:text-[25px] lg:pr-[0px]">
+            <p className="text-gray-700 text-onest font-light sm:text-[24px] md:text-[18px] lg:text-[20px] xl:text-[25px]">
             IQ Group powers industries with premium raw materials from alloys to minerals delivered with precision, integrity, and speed. Global reach, Mumbai roots. 
             </p>
             <p className="sm:text-[24px] md:text-[17px] lg:text-[21px] xl:text-[25px] text-[#1E3157] font-onest font-light leading-relaxed">Trusted by steel, aerospace, ceramics, batteries, and more.</p>

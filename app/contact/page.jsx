@@ -10,7 +10,7 @@ export default function ContactPage() {
         <HeroSection
           title="Contact Us"
           subtitle="How can we help you? Get in touch with one of our global offices below"
-          backgroundImage="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop"
+          backgroundImage="https://www.multiplex.global/media/y2ggchbo/bm_office_37_final_a3.jpg?rxy=0.5196706312900274,0.35134681114340327&width=3840&height=1640&v=1dad1e2563cf320"
           sideText="Contact Us"
           navTitle="CONTACT"
           showContactOptions={true}
