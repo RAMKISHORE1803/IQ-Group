@@ -7,6 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SectionWithCards from '@/components/companies/SectionWithCards';
 import Image from 'next/image';
 import { motion } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 
 // Register GSAP plugins
 if (typeof window !== "undefined") {
@@ -66,12 +67,54 @@ export default function QualityInsightsPage() {
   const introRef = useRef(null);
   const sectionRef = useRef(null);
   const leftColumnRef = useRef(null);
-  const stepsRef = useRef([]);
+  const certificateSectionRef = useRef(null);
+  const certificateTitleRef = useRef(null);
+  const certificateLeftColRef = useRef(null);
+  const certificateRightColRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
   const [activeSteps, setActiveSteps] = useState({});
+  const [activeCertificate, setActiveCertificate] = useState("registration"); // Default to first certificate
+  const [isImageTransitioning, setIsImageTransitioning] = useState(false);
+  const [displayedCertificate, setDisplayedCertificate] = useState(null);
   
-  // Value cards data for "Quality Standards" section
-  const qualityStandardsCards = [
+  // Certificates data
+  const certificates = [
+    {
+      id: "registration",
+      title: "Company Registration",
+      description: "IQ Groups and Metals Company is officially registered at ICEGATE (Indian Customs Electronic Gateway), allowing us to engage in international trade with proper customs clearance and compliance with import/export regulations. This registration is essential for our global operations and ensures smooth cross-border transactions.",
+      imageUrl: "https://www.iqgroup.in/image/certificate/3.jpg",
+      issuedBy: "ICEGATE (Indian Customs Electronic Gateway)",
+      validUntil: "Permanent Registration"
+    },
+    {
+      id: "iso9001",
+      title: "ISO 9001:2015 Certification",
+      description: "Our ISO 9001:2015 certification from AQSR demonstrates our commitment to maintaining the highest quality management standards. This internationally recognized certification validates our systematic approach to enhancing customer satisfaction, ensuring consistent product quality, and implementing continuous improvement processes across our operations.",
+      imageUrl: "https://www.iqgroup.in/image/certificate/2.jpg",
+      issuedBy: "AQSR (American Quality Standards Registrars)",
+      validUntil: "2025-12-31"
+    },
+    {
+      id: "msmeAward",
+      title: "India 5000 Best MSME Award",
+      description: "IQ Group has been nominated for the prestigious 'India 5000 Best MSME Award', recognizing our excellence in business practices, innovation, and contribution to the Indian economy. This nomination acknowledges our commitment to quality, customer satisfaction, and sustainable business growth as a Micro, Small and Medium Enterprise.",
+      imageUrl: "https://www.iqgroup.in/image/certificate/1.jpg",
+      issuedBy: "India 5000",
+      validUntil: "Annual Recognition"
+    },
+    {
+      id: "assocham",
+      title: "ASSOCHAM Membership",
+      description: "IQ Group is a proud member of ASSOCHAM (The Associated Chambers of Commerce and Industry of India), one of India's apex trade associations. This membership connects us with a vast network of businesses, provides advocacy support, and keeps us informed about policy developments affecting our industry, enhancing our ability to contribute to India's economic growth.",
+      imageUrl: "https://www.iqgroup.in/image/certificate/4.jpg",
+      issuedBy: "ASSOCHAM India",
+      validUntil: "Active Membership"
+    }
+  ];
+  
+  // Value cards data for "Quality Policy" section
+  const qualityPolicyCards = [
     {
       title: "ISO 9001:2008 Certified",
       description: "Our certification demonstrates our commitment to quality management systems that meet international standards for global sourcing and supply."
@@ -110,37 +153,36 @@ export default function QualityInsightsPage() {
     }
   ];
 
-  // Process steps data for quality process section
-  const processSteps = [
-    {
-      id: "quality-policy",
-      title: "Quality Policy",
-      description: "Our ISO 9001:2008 certified quality management system ensures excellence at every step.",
-      image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop",
-      link: "/quality-insights/quality-policy"
-    },
-    {
-      id: "certifications",
-      title: "Certifications",
-      description: "International certifications that validate our commitment to quality and excellence.",
-      image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=2070&auto=format&fit=crop",
-      link: "/quality-insights/certifications"
-    },
-    {
-      id: "testing-procedures",
-      title: "Testing Procedures",
-      description: "Rigorous testing methodologies ensure all materials meet the highest quality standards.",
-      image: "https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?q=80&w=2070&auto=format&fit=crop",
-      link: "/quality-insights/testing-procedures"
-    },
-    {
-      id: "quality-assurance",
-      title: "Quality Assurance",
-      description: "Comprehensive quality assurance processes designed to prevent defects and ensure consistency.",
-      image: "https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?q=80&w=2076&auto=format&fit=crop",
-      link: "/quality-insights/quality-assurance"
+  // Handle certificate accordion hover
+  const handleCertificateHover = (id) => {
+    if (activeCertificate === id) return; // Don't transition if hovering the same item
+    
+    setIsImageTransitioning(true);
+    // Set the new active certificate
+    setActiveCertificate(id);
+  };
+  
+  // Find the active certificate
+  const activeCertificateData = certificates.find(cert => cert.id === activeCertificate) || certificates[0];
+  
+  // Handle image preloading and transitions
+  useEffect(() => {
+    // Set the initial displayed certificate
+    if (!displayedCertificate) {
+      setDisplayedCertificate(activeCertificateData);
+      return;
     }
-  ];
+
+    // If transitioning, wait for fade out then update the displayed certificate
+    if (isImageTransitioning) {
+      const timer = setTimeout(() => {
+        setDisplayedCertificate(activeCertificateData);
+        setIsImageTransitioning(false);
+      }, 300); // Match this with the CSS transition duration
+      
+      return () => clearTimeout(timer);
+    }
+  }, [activeCertificate, isImageTransitioning, displayedCertificate, activeCertificateData]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -148,7 +190,7 @@ export default function QualityInsightsPage() {
     const intro = introRef.current;
     if (!intro) return;
     
-    // Create animation timeline with earlier trigger
+    // Create animation timeline
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: intro,
@@ -170,11 +212,52 @@ export default function QualityInsightsPage() {
       }
     );
     
+    // Certificate section animations
+    const section = certificateSectionRef.current;
+    const title = certificateTitleRef.current;
+    const leftCol = certificateLeftColRef.current;
+    const rightCol = certificateRightColRef.current;
+    
+    if (section && title && leftCol && rightCol) {
+      // Create animation timeline
+      const certTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+      });
+
+      // Animate title
+      certTl.fromTo(
+        title,
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" }
+      );
+      
+      // Animate left column
+      certTl.fromTo(
+        leftCol,
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
+        "-=0.3"
+      );
+
+      // Animate right column
+      certTl.fromTo(
+        rightCol,
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
+        "-=0.3"
+      );
+    }
+    
     return () => {
       // Clean up ScrollTrigger
       if (tl.scrollTrigger) {
         tl.scrollTrigger.kill();
       }
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, []);
 
@@ -188,117 +271,69 @@ export default function QualityInsightsPage() {
     checkMobile();
     window.addEventListener('resize', checkMobile);
     
-    // Set up scroll animations
-    const timer = setTimeout(() => {
-      if (isMobile) {
-        // For mobile, make all steps visible immediately
-        const initialActiveSteps = {};
-        processSteps.forEach((_, index) => {
-          initialActiveSteps[index] = true;
-        });
-        setActiveSteps(initialActiveSteps);
-        return;
-      }
-      
-      const section = sectionRef.current;
-      const leftColumn = leftColumnRef.current;
-      
-      if (!section || !leftColumn) return;
-      
-      // Clear any existing ScrollTriggers for this section
-      ScrollTrigger.getAll().forEach(trigger => {
-        if (trigger.vars.trigger === section) {
-          trigger.kill();
-        }
-      });
-      
-      // Pin the left column while scrolling, but stop before footer
-      ScrollTrigger.create({
-        trigger: section,
-        start: 'top top',
-        end: 'bottom bottom-=100px', // Stop before reaching the footer
-        pin: leftColumn,
-        pinSpacing: false,
-        invalidateOnRefresh: true,
-      });
-      
-      // Create scroll triggers for each step
-      stepsRef.current.forEach((step, index) => {
-        if (!step) return;
-        
-        ScrollTrigger.create({
-          trigger: step,
-          start: 'top center+=100',
-          end: 'bottom center',
-          onEnter: () => {
-            setActiveSteps(prev => ({ ...prev, [index]: true }));
-          },
-          onLeaveBack: () => {
-            setActiveSteps(prev => ({ ...prev, [index]: false }));
-          },
-        });
-      });
-    }, 200);
-    
     return () => {
-      clearTimeout(timer);
       window.removeEventListener('resize', checkMobile);
-      
-      // Clean up ScrollTriggers
-      ScrollTrigger.getAll().forEach(trigger => {
-        if (trigger.vars.trigger === sectionRef.current) {
-          trigger.kill();
-        }
-      });
     };
-  }, [isMobile]);
+  }, []);
 
-  // Reset refs array when steps change
-  stepsRef.current = [];
-  
-  // Process Step Component
-  function ProcessStep({ title, description, image, index, inView, link }) {
+  // Certificate Accordion Item Component
+  function CertificateAccordionItem({ id, title, description, issuedBy, validUntil, isActive, onMouseEnter }) {
     return (
       <div 
-        className={`mb-16 md:mb-48 transition-opacity duration-700 ${inView ? 'opacity-100' : 'opacity-0'}`}
-        style={{ transitionDelay: `${index * 0.2}s` }}
+        className="border-b border-gray-200 last:border-b-0"
+        onMouseEnter={() => onMouseEnter(id)}
       >
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-          {/* Image - Full height on left side */}
-          <div className="relative h-[300px] md:h-[500px] w-full overflow-hidden">
-            <img
-              src={image}
-              alt={title}
-              className="object-cover w-full h-full"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+        <div
+          className="w-full py-6 flex cursor-pointer items-center justify-between text-left focus:outline-none"
+        >
+          <div className="flex items-center">
+            <span className="font-lato lg:text-[28px] font-bold text-[#324390]">
+              {title}
+            </span>
           </div>
-          
-          {/* Content - Right side */}
-          <div className="py-4 md:py-6">
-            <span className="text-[#203663] font-lato font-medium text-lg">Quality Element {index + 1}</span>
-            <h3 className="text-2xl md:text-4xl font-bold font-lato text-[#203663] mt-2 mb-4 md:mb-6">{title}</h3>
-            <p className="text-xl md:text-[24px] leading-tight font-onest font-light text-gray-700 mb-6">{description}</p>
-            <Link 
-              href={link}
-              className="inline-flex items-center px-6 py-3 border border-[#203663] text-base font-medium text-[#203663] hover:bg-[#203663] hover:text-white transition-colors duration-300"
-            >
-              Learn More
-              <svg 
-                className="ml-2 w-5 h-5" 
-                xmlns="http://www.w3.org/2000/svg" 
-                viewBox="0 0 20 20" 
-                fill="currentColor"
-              >
-                <path 
-                  fillRule="evenodd" 
-                  d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" 
-                  clipRule="evenodd" 
-                />
-              </svg>
-            </Link>
-          </div>
+          <motion.div
+            animate={{ rotate: isActive ? 180 : 0 }}
+            transition={{ duration: 0.3 }}
+            className="flex-shrink-0 ml-2"
+          >
+            <ChevronDown className="w-6 h-6 text-[#324390]" />
+          </motion.div>
         </div>
+        <motion.div
+          initial={false}
+          animate={{
+            height: isActive ? "auto" : 0,
+            opacity: isActive ? 1 : 0,
+            marginBottom: isActive ? 24 : 0,
+          }}
+          transition={{ duration: 0.3 }}
+          className="overflow-hidden"
+        >
+          <div className="pb-4 text-[17px] font-onest text-gray-700 leading-relaxed">
+            <div className="space-y-3">
+              <div className="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" className="text-[#324390] mt-1 mr-3 flex-shrink-0 h-[18px] w-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <p className="text-gray-700 font-onest">{description}</p>
+              </div>
+              
+              <div className="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" className="text-[#324390] mr-3 flex-shrink-0 h-[18px] w-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+                <p className="text-gray-700 font-onest">Issued By: <span className="hover:text-[#324390]">{issuedBy}</span></p>
+              </div>
+              
+              <div className="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" className="text-[#324390] mr-3 flex-shrink-0 h-[18px] w-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <p className="text-gray-700 font-onest">Valid Until: <span className="hover:text-[#324390]">{validUntil}</span></p>
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
     );
   }
@@ -324,13 +359,13 @@ export default function QualityInsightsPage() {
           </div>
         </div>
         
-        {/* Quality Standards Section */}
+        {/* Quality Policy Section */}
         <FadeInSection>
           <SectionWithCards
-            id="quality-standards"
-            title="Quality Standards"
+            id="quality-policy"
+            title="Quality Policy"
             subtitle="Our commitment to excellence in every aspect of our operations"
-            cards={qualityStandardsCards}
+            cards={qualityPolicyCards}
             hasDivider={false}
             sectionNumber="01"
           />
@@ -348,61 +383,80 @@ export default function QualityInsightsPage() {
           />
         </FadeInSection>
         
-        {/* Quality Process Section with Process Steps */}
+        {/* Certifications Section */}
         <section 
-          id="quality-process" 
-          ref={sectionRef}
-          className="relative bg-white py-16 md:py-0 overflow-hidden bg-[#203663]"
+          id="certifications" 
+          ref={certificateSectionRef}
+          className="py-24 bg-[#f5f5f5]"
         >
-          <div className="container mx-auto px-0">
-            <div className="md:grid md:grid-cols-12 md:gap-0">
-              {/* Left Column - Fixed CTA */}
-              <div 
-                ref={leftColumnRef}
-                className="col-span-4 lg:col-span-3 bg-[#203663] px-4 md:px-0 md:pl-4 lg:ml-[0px] md:ml-0 mb-4 md:mb-0"
+          <div className="container mx-auto px-4 ">
+            <div className="max-w-3xl  text-left mb-16">
+              <p className="text-sm uppercase tracking-wider font-lato text-left text-gray-500 mb-2">IN THIS SECTION</p>
+              <span className="text-4xl font-bold font-lato text-[#324390] block mb-4">03</span>
+              <h2 
+                ref={certificateTitleRef}
+                className="text-3xl uppercase md:text-4xl font-bold font-lato text-[#324390] mb-4"
               >
-                <div className="md:h-screen md:flex md:flex-col md:justify-center md:sticky md:top-0">
-                  <div className="max-w-xs py-8 md:py-0">
-                    <span className="text-sm uppercase tracking-wider font-lato text-gray-300 mb-2">IN THIS SECTION</span>
-                    <p className="text-4xl font-bold text-white mb-4">03</p>
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-lato text-[#fbfbfb] mb-6">
-                      Quality Process
-                    </h2>
-                    <p className="text-[24px] leading-tight font-onest font-light text-gray-200 mb-8">
-                      Rigorous standards. <br/>
-                      Comprehensive testing. <br/>
-                      Consistent excellence.
-                    </p>
-                    
-                    {/* CTA Button */}
-                    <div className="mt-8">
-                      <Link href="/contact">
-                        <button className="bg-[#fbfbfb] text-[#203663] cursor-pointer hover:bg-[#f0f0f0] transition-colors py-4 px-6 text-lg font-onest">
-                          Contact Our Quality Team
-                        </button>
-                      </Link>
-                    </div>
+                Our Certifications
+              </h2>
+              {/* <p 
+                className="text-gray-700 font-onest text-lg"
+              >
+                Recognition of our commitment to quality, compliance, and excellence in business practices
+              </p> */}
+            </div>
+            
+            <div className="max-w-7xl mx-auto">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 relative">
+                {/* Left column - Certificate Image - Sticky */}
+                <div ref={certificateLeftColRef} className="lg:sticky lg:top-24 lg:self-start">
+                  <div className="aspect-w-16 aspect-h-9 mb-8 overflow-hidden rounded-lg relative h-[600px]">
+                    {displayedCertificate && (
+                      <div 
+                        key={displayedCertificate.id}
+                        className={`relative w-full h-full transition-opacity duration-300 ease-in-out ${isImageTransitioning ? 'opacity-0' : 'opacity-100'}`}
+                      >
+                        <Image
+                          src={displayedCertificate.imageUrl}
+                          alt={`${displayedCertificate.title} Certificate`}
+                          fill
+                          className="object-contain"
+                          priority
+                          onLoad={() => setIsImageTransitioning(false)}
+                        />
+                      </div>
+                    )}
                   </div>
+                  {/* <div className="bg-[#324390]/10 p-6 rounded-lg transition-all duration-300 ease-in-out">
+                    <h3 className="font-lato font-bold text-[#324390] mb-4 lg:text-[24px] transition-opacity duration-300 ease-in-out">
+                      {displayedCertificate?.title}
+                    </h3>
+                    <p className="text-gray-700 font-onest font-light lg:text-[18px] transition-opacity duration-300 ease-in-out">
+                      Our certifications validate our commitment to quality, sustainability, and excellence in all our business operations.
+                    </p>
+                    {displayedCertificate && (
+                      <div className="mt-6">
+                        <p className="flex items-center text-[#324390]">
+                          <span className="mr-1">Issued by: {displayedCertificate.issuedBy}</span>
+                        </p>
+                      </div>
+                    )}
+                  </div> */}
                 </div>
-              </div>
-              
-              {/* Right Column - Process Steps */}
-              <div className="col-span-8 lg:col-span-9 px-4 bg-white md:px-8 lg:px-12">
-                <div className="py-8 md:py-16 space-y-24">
-                  {processSteps.map((step, index) => (
-                    <div 
-                      key={step.id} 
-                      ref={el => stepsRef.current[index] = el}
-                    >
-                      <ProcessStep 
-                        title={step.title}
-                        description={step.description}
-                        image={step.image}
-                        link={step.link}
-                        index={index}
-                        inView={activeSteps[index] || isMobile}
-                      />
-                    </div>
+                
+                {/* Right column - Accordion - Scrollable */}
+                <div ref={certificateRightColRef} className="space-y-0 max-h-[800px] lg:overflow-y-auto lg:pr-4 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
+                  {certificates.map((certificate) => (
+                    <CertificateAccordionItem
+                      key={certificate.id}
+                      id={certificate.id}
+                      title={certificate.title}
+                      description={certificate.description}
+                      issuedBy={certificate.issuedBy}
+                      validUntil={certificate.validUntil}
+                      isActive={activeCertificate === certificate.id}
+                      onMouseEnter={handleCertificateHover}
+                    />
                   ))}
                 </div>
               </div>

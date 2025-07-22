@@ -4,21 +4,21 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const IndustriesSection = () => {
     const sectors = [
-        {"id": 1, "name": "Aerospace", "image": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800"},
-        {"id": 2, "name": "Steel", "image": "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800"},
-        {"id": 3, "name": "Automobile", "image": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800"},
-        {"id": 4, "name": "Battery", "image": "https://news.mst.edu/files/2025/05/batteries-1260x473.jpeg"},
-        {"id": 5, "name": "Ceramic", "image": "https://assets.lummi.ai/assets/QmXVv9yqRL9wsVqUgBDYZF6voys4NLczx2De7xE3FSsKUm?auto=format&w=1500"},
-        {"id": 6, "name": "Chemical", "image": "https://assets.lummi.ai/assets/QmRWrf7RRguRREw1py5ASex7cAGxv3rVYQL6Tw9LFAGRCq?auto=format&w=1500"},
-        {"id": 7, "name": "Foundries", "image": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800"},
-        {"id": 8, "name": "Glass", "image": "https://assets.lummi.ai/assets/QmdjvE5DEVkpGMDUNBQtTgMXXXNBnrxgeBk5Q6RTka9GHM?auto=format&w=1500"},
-        {"id": 9, "name": "Paint", "image": "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=800"},
-        {"id": 10, "name": "Refractory", "image": "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800"},
-        {"id": 11, "name": "Stainless Steel", "image": "https://www.shyammetalics.com/wp-content/uploads/2024/07/blog_img_1_07.jpg"},
-        {"id": 12, "name": "Aluminum", "image": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800"},
-        {"id": 13, "name": "Textile", "image": "https://assets.lummi.ai/assets/QmNpyxgXoXt78SXLsfBTdqADVQzN7DBv9WFqu5bfkaRDGF?auto=format&w=1500"},
-        {"id": 14, "name": "Tyre", "image": "https://assets.lummi.ai/assets/QmeNHGPHEyi8Sjx25eaEwUE9JU3Ko2fZ3EWCpDfz6qd54E?auto=format&w=1500"},
-        {"id": 15, "name": "Paper", "image": "https://assets.lummi.ai/assets/QmUevsnAtUyS9mRE61tsC55xddmrsaqVSc7tdF81i6mFJH?auto=format&w=1500"}
+        {"id": 1, "name": "Aerospace", "image": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800", "link": "/industries/aerospace"},
+        {"id": 2, "name": "Steel", "image": "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800", "link": "/industries/steel"},
+        {"id": 3, "name": "Automobile", "image": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800", "link": "/industries/automobile"},
+        {"id": 4, "name": "Battery", "image": "https://news.mst.edu/files/2025/05/batteries-1260x473.jpeg", "link": "/industries/battery-industries"},
+        {"id": 5, "name": "Ceramic", "image": "https://assets.lummi.ai/assets/QmXVv9yqRL9wsVqUgBDYZF6voys4NLczx2De7xE3FSsKUm?auto=format&w=1500", "link": "/industries/ceramic"},
+        {"id": 6, "name": "Chemical", "image": "https://assets.lummi.ai/assets/QmRWrf7RRguRREw1py5ASex7cAGxv3rVYQL6Tw9LFAGRCq?auto=format&w=1500", "link": "/industries/chemical"},
+        {"id": 7, "name": "Foundries", "image": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800", "link": "/industries/foundries"},
+        {"id": 8, "name": "Glass", "image": "https://assets.lummi.ai/assets/QmdjvE5DEVkpGMDUNBQtTgMXXXNBnrxgeBk5Q6RTka9GHM?auto=format&w=1500", "link": "/industries/glass"},
+        {"id": 9, "name": "Paint", "image": "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=800", "link": "/industries/paints"},
+        {"id": 10, "name": "Refractory", "image": "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800", "link": "/industries/refractory"},
+        {"id": 11, "name": "Stainless Steel", "image": "https://www.shyammetalics.com/wp-content/uploads/2024/07/blog_img_1_07.jpg", "link": "/industries/stainless-steel"},
+        {"id": 12, "name": "Aluminum", "image": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800", "link": "/industries/aluminum"},
+        {"id": 13, "name": "Textile", "image": "https://assets.lummi.ai/assets/QmNpyxgXoXt78SXLsfBTdqADVQzN7DBv9WFqu5bfkaRDGF?auto=format&w=1500", "link": "/industries/textile"},
+        {"id": 14, "name": "Tyre", "image": "https://assets.lummi.ai/assets/QmeNHGPHEyi8Sjx25eaEwUE9JU3Ko2fZ3EWCpDfz6qd54E?auto=format&w=1500", "link": "/industries/tyres"},
+        {"id": 15, "name": "Paper", "image": "https://assets.lummi.ai/assets/QmUevsnAtUyS9mRE61tsC55xddmrsaqVSc7tdF81i6mFJH?auto=format&w=1500", "link": "/industries/paper"}
       ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -154,7 +154,7 @@ const IndustriesSection = () => {
                   key={`${sector.id}-${Math.floor(index / sectors.length)}`} 
                   className="flex-shrink-0 group cursor-pointer" 
                   style={{ width: 'calc(15% - 20px)' }}
-                  onClick={() => window.location.href = `/industries/${sector.name.toLowerCase().replace(/\s+/g, '-')}`}
+                  onClick={() => window.location.href = sector.link}
                 >
                   <div className="aspect-[4/3] overflow-hidden mb-4">
                     <img 
@@ -212,7 +212,7 @@ const IndustriesSection = () => {
                   key={`${sector.id}-${Math.floor(index / sectors.length)}`}
                   className="flex-shrink-0"
                   style={{ width: '280px' }}
-                  onClick={() => window.location.href = `/industries/${sector.name.toLowerCase().replace(/\s+/g, '-')}`}
+                  onClick={() => window.location.href = sector.link}
                 >
                   <div className="aspect-[4/3] overflow-hidden mb-6">
                     <img 

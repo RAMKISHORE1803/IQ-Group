@@ -13,6 +13,7 @@ import BCGCareersSection from './careerSection';
 import InsightsSection from './insight-section';
 import BusinessStatistics from './BusinessStatistics';
 import IQGroupFooter from './footer';
+import QualityCertificationsSection from './QualityCertificationsSection';
 const debounce = (func, wait) => {
   let timeout;
   return function executedFunction(...args) {
@@ -242,10 +243,12 @@ export default function LandingPage() {
         {/* Normal scrolling sections */}
         <DTREHeroCarousel />
           <AboutSection />
+          
         {/* <QualitySection /> */}
         <div className='bg-[#fbfbfb]'>
           
           <CompanySection />
+          
         </div>
         
         {/* GlobalMap wrapper */}
@@ -265,10 +268,18 @@ export default function LandingPage() {
         
         {/* Industries section */}
         <div ref={industriesRef} className="min-h-[70vh] xl:min-h-[100vh] bg-[#fbfbfb] text-white text-4xl">
+       
           <IndustriesSection/>
+          
           <BCGCareersSection />
-          <InsightsSection/>
+         
+           
+           <InsightsSection/>
+           {/* <div className="h-[5vh]"></div> */}
+          <QualityCertificationsSection />
+          <div className="h-[5vh]"></div>
           <BusinessStatistics/>
+          
         </div>
         
         {/* Footer with curtain reveal - separate from industries section */}

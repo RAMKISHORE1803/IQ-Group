@@ -8,6 +8,7 @@ import SectionNavigation from '@/components/companies/SectionNavigation';
 import HeroSection from '@/components/about/HeroSection';
 import ProductRangeSection from '@/components/companies/ProductRangeSection';
 import QualityStandardsSection from '@/components/companies/QualityStandardsSection';
+import ContactSection from '@/components/companies/ContactSection';
 
 // Value cards data for "How We Deliver Value" section
 const valueCards = [
@@ -166,13 +167,8 @@ export default function FerroAlloysPage() {
           sectionTitle="IN THIS SECTION"
         />
         
-        {/* Contact CTA */}
-        {/* <ContentSection>
-          <ContactCTA 
-            title="Ready to discuss your ferro alloy requirements?" 
-            description="Our technical experts are available to help you find the right solution."
-          />
-        </ContentSection> */}
+        {/* Contact Section */}
+        <ContactSection />
       </div>
     </div>
   );
