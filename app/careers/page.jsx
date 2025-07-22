@@ -724,7 +724,7 @@ export default function CareerPage() {
     <main>
       <HeroSection 
         subtitle="Join our team and shape the future of global trade"
-        backgroundImage="https://images.unsplash.com/photo-1529253355930-ddbe423a2ac7?q=80&w=1740&auto=format&fit=crop"
+        backgroundImage="https://images.pexels.com/photos/4064840/pexels-photo-4064840.jpeg"
         sideText="CAREER"
         navTitle="CAREER"
       />

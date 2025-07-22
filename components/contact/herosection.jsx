@@ -159,7 +159,7 @@ const HeroSection = ({
           style={{ 
             backgroundImage: `url(${backgroundImage})`,
             backgroundAttachment: isMobile ? 'scroll' : 'fixed',
-            backgroundPosition: isMobile ? 'center center' : 'center center',
+            backgroundPosition: isMobile ? 'center center' : 'center bottom',
           }}
         >
           {/* Overlay for better text visibility */}
