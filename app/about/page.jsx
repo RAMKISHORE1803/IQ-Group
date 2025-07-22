@@ -92,6 +92,7 @@ export default function AboutPage() {
         <LeadershipSection />
         
         <OfficeLocationsSection />
+        <div className="h-[20vh] md:hidden bg-[#fbfbfb]"></div>
       </div>
     </div>
   );

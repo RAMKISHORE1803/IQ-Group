@@ -75,7 +75,7 @@ const offices = [
 ];
 
 // Accordion Item Component
-function AccordionItem({ id, city, country, address, phone, email, isHeadquarters, isActive, onMouseEnter, index }) {
+function AccordionItem({ id, city, country, address, phone, email, isHeadquarters, isActive, onMouseEnter, index, mapUrl }) {
   return (
     <div 
       className="border-b border-gray-200 last:border-b-0"
@@ -131,6 +131,34 @@ function AccordionItem({ id, city, country, address, phone, email, isHeadquarter
               <a href={`mailto:${email}`} className="text-gray-700 font-onest hover:text-[#324390]">
                 {email}
               </a>
+            </div>
+            
+            {/* Map iframe for mobile view */}
+            <div className="lg:hidden mt-4">
+              <div className="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden h-[250px] relative">
+                <iframe
+                  src={mapUrl}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title={`IQ Group ${city} Office`}
+                  className="absolute inset-0 w-full h-full shadow-md"
+                ></iframe>
+              </div>
+              <div className="mt-3">
+                <a 
+                  href={`https://www.google.com/maps/search/${encodeURIComponent(address || '')}`}
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center text-[#324390] hover:underline text-sm"
+                >
+                  <span className="mr-1">View on Google Maps</span>
+                  <ExternalLink size={14} />
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -263,8 +291,8 @@ export default function OfficeLocationsSection() {
         
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 relative">
-            {/* Left column - Map and description - Sticky */}
-            <div ref={leftColRef} className="lg:sticky lg:top-24 lg:self-start">
+            {/* Left column - Map and description - Sticky - Hidden on mobile */}
+            <div ref={leftColRef} className="hidden lg:block lg:sticky lg:top-24 lg:self-start">
               <div className="aspect-w-16 aspect-h-9 mb-8 overflow-hidden rounded-lg relative h-[400px]">
                 {displayedMap && (
                   <iframe
@@ -319,6 +347,7 @@ export default function OfficeLocationsSection() {
                   isActive={activeOffice === office.id}
                   onMouseEnter={handleOfficeHover}
                   index={index}
+                  mapUrl={office.mapUrl}
                 />
               ))}
             </div>

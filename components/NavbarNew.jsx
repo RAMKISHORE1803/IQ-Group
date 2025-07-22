@@ -196,8 +196,8 @@ const NavbarNew = () => {
   };
 
   // Handle dropdown toggle
-  const handleDropdownToggle = (index) => {
-    setActiveDropdown(activeDropdown === index ? null : index);
+  const handleDropdownToggle = (id) => {
+    setActiveDropdown(activeDropdown === id ? null : id);
   };
   
   // Handle hover menu
@@ -600,7 +600,7 @@ const NavbarNew = () => {
             <nav className="fixed inset-y-0 right-0 h-[100vh] w-80 max-w-[80%] bg-[#0e3364] p-6 overflow-y-auto">
               <div className="flex justify-between items-center mb-8">
                 <div className="flex items-center space-x-3">
-                  <span className="text-2xl font-bold tracking-tight text-white">DTRE</span>
+                  <span className="text-2xl font-bold tracking-tight text-white">IQ Group</span>
                 </div>
                 <button onClick={toggleMobileMenu} className="text-white" aria-label="Close menu">
                   <X size={24} />
@@ -608,26 +608,71 @@ const NavbarNew = () => {
               </div>
               
               <ul className="space-y-4">
-                {/* All nav items */}
-                {allNavItems.map((item, index) => (
+                {/* Resources item at the top for mobile */}
+                <li className="py-2 border-b border-blue-400">
+                  {resourcesItem.dropdown ? (
+                    <div>
+                      <button
+                        onClick={() => handleDropdownToggle('resources')}
+                        className="flex items-center justify-between w-full text-left text-white font-medium"
+                        aria-expanded={activeDropdown === 'resources'}
+                      >
+                        <span className="text-xl">{resourcesItem.name}</span>
+                        <ChevronDown
+                          size={16}
+                          className={`transform transition-transform ${
+                            activeDropdown === 'resources' ? 'rotate-180' : 'rotate-0'
+                          }`}
+                        />
+                      </button>
+                      
+                      {activeDropdown === 'resources' && (
+                        <ul className="mt-3 space-y-2">
+                          {resourcesItem.dropdown.map((dropdownItem, idx) => (
+                            <li key={idx}>
+                              <Link
+                                href={dropdownItem.path}
+                                className="block text-white opacity-80 hover:opacity-100 pl-4"
+                                onClick={toggleMobileMenu}
+                              >
+                                {dropdownItem.name}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  ) : (
+                    <Link
+                      href={resourcesItem.path}
+                      className="block text-white text-xl hover:opacity-80"
+                      onClick={toggleMobileMenu}
+                    >
+                      {resourcesItem.name}
+                    </Link>
+                  )}
+                </li>
+
+                {/* Main navigation items */}
+                {mainNavItems.map((item, index) => (
                   <li key={index} className="py-2 border-b border-blue-400">
                     {item.dropdown ? (
                       <div>
                         <button
-                          onClick={() => handleDropdownToggle(index)}
+                          onClick={() => handleDropdownToggle(item.megaMenu)}
                           className="flex items-center justify-between w-full text-left text-white font-medium"
-                          aria-expanded={activeDropdown === index}
+                          aria-expanded={activeDropdown === item.megaMenu}
                         >
                           <span className="text-xl">{item.name}</span>
                           <ChevronDown
                             size={16}
                             className={`transform transition-transform ${
-                              activeDropdown === index ? 'rotate-180' : 'rotate-0'
+                              activeDropdown === item.megaMenu ? 'rotate-180' : 'rotate-0'
                             }`}
                           />
                         </button>
                         
-                        {activeDropdown === index && (
+                        {activeDropdown === item.megaMenu && (
                           <ul className="mt-3 space-y-2">
                             {item.dropdown.map((dropdownItem, idx) => (
                               <li key={idx}>
@@ -654,7 +699,58 @@ const NavbarNew = () => {
                     )}
                   </li>
                 ))}
-                <li className="py-2 border-b border-blue-400">
+
+                {/* Right navigation items */}
+                {rightNavItems.map((item, index) => (
+                  <li key={index} className="py-2 border-b border-blue-400">
+                    {item.dropdown ? (
+                      <div>
+                        <button
+                          onClick={() => handleDropdownToggle(item.megaMenu)}
+                          className="flex items-center justify-between w-full text-left text-white font-medium"
+                          aria-expanded={activeDropdown === item.megaMenu}
+                        >
+                          <span className="text-xl">{item.name}</span>
+                          <ChevronDown
+                            size={16}
+                            className={`transform transition-transform ${
+                              activeDropdown === item.megaMenu ? 'rotate-180' : 'rotate-0'
+                            }`}
+                          />
+                        </button>
+                        
+                        {activeDropdown === item.megaMenu && (
+                          <ul className="mt-3 space-y-2">
+                            {item.dropdown.map((dropdownItem, idx) => (
+                              <li key={idx}>
+                                <Link
+                                  href={dropdownItem.path}
+                                  className="block text-white opacity-80 hover:opacity-100 pl-4"
+                                  onClick={toggleMobileMenu}
+                                >
+                                  {dropdownItem.name}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    ) : (
+                      <Link
+                        href={item.path}
+                        className="block text-white text-xl hover:opacity-80"
+                        onClick={toggleMobileMenu}
+                        target={item.name === 'CSR' ? '_blank' : '_self'}
+                        rel={item.name === 'CSR' ? 'noopener noreferrer' : ''}
+                      >
+                        {item.name}
+                      </Link>
+                    )}
+                  </li>
+                ))}
+
+                {/* Contact button */}
+                <li className="py-2">
                   <Link
                     href="/contact"
                     className="block text-white text-xl hover:opacity-80"

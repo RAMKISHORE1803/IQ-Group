@@ -41,12 +41,12 @@ const processSteps = [
 function ProcessStep({ title, description, image, index, inView }) {
   return (
     <div 
-      className={`mb-32 md:mb-48 transition-opacity duration-700 ${inView ? 'opacity-100' : 'opacity-0'}`}
+      className={`mb-16 md:mb-48 transition-opacity duration-700 ${inView ? 'opacity-100' : 'opacity-0'}`}
       style={{ transitionDelay: `${index * 0.2}s` }}
     >
-      <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+      <div className="grid md:grid-cols-2 gap-6 md:gap-12 items-center">
         {/* Image - Full height on left side */}
-        <div className="relative h-[400px] md:h-[500px] w-full overflow-hidden">
+        <div className="relative h-[250px] md:h-[500px] w-full overflow-hidden rounded-lg shadow-md">
           <Image
             src={image}
             alt={title}
@@ -57,10 +57,10 @@ function ProcessStep({ title, description, image, index, inView }) {
         </div>
         
         {/* Content - Right side */}
-        <div className="py-6">
-          <span className="text-[#324390] font-lato font-medium text-lg">Step {index + 1}</span>
-          <h3 className="text-3xl md:text-4xl font-bold font-lato text-[#324390] mt-2 mb-6">{title}</h3>
-          <p className="text-[24px] leading-tight font-onest font-light text-gray-700">{description}</p>
+        <div className="py-4 md:py-6">
+          <span className="text-[#324390] font-lato font-medium text-base md:text-lg">Step {index + 1}</span>
+          <h3 className="text-2xl md:text-4xl font-bold font-lato text-[#324390] mt-2 mb-4 md:mb-6">{title}</h3>
+          <p className="text-lg md:text-[24px] leading-tight font-onest font-light text-gray-700">{description}</p>
         </div>
       </div>
     </div>
@@ -86,7 +86,26 @@ export default function HowWeDoSection() {
     
     // Set up scroll animations
     const timer = setTimeout(() => {
-      if (isMobile) return; // Skip pinning on mobile
+      if (isMobile) {
+        // Mobile animations - just trigger step visibility
+        stepsRef.current.forEach((step, index) => {
+          if (!step) return;
+          
+          ScrollTrigger.create({
+            trigger: step,
+            start: 'top 80%',
+            end: 'bottom 20%',
+            onEnter: () => {
+              setActiveSteps(prev => ({ ...prev, [index]: true }));
+            },
+            onLeaveBack: () => {
+              setActiveSteps(prev => ({ ...prev, [index]: false }));
+            },
+          });
+        });
+        
+        return;
+      }
       
       const section = sectionRef.current;
       const leftColumn = leftColumnRef.current;
@@ -150,12 +169,31 @@ export default function HowWeDoSection() {
       ref={sectionRef}
       className="relative bg-white py-16 md:py-0"
     >
-      <div className="container ">
+      <div className="container mx-auto px-4 md:px-0">
+        {/* Mobile Header - Only visible on mobile */}
+        <div className="md:hidden mb-8">
+          <h2 className="text-3xl font-bold font-lato text-[#203663] mb-4">
+            How We Do
+          </h2>
+          <p className="text-xl leading-tight font-onest font-light text-gray-700 mb-6">
+            Material excellence. <br/>
+            Source to destination. <br/>
+            Without compromise.
+          </p>
+          
+          {/* Mobile CTA Button */}
+          <div className="mt-6">
+            <button className="bg-[#203663] text-white hover:bg-[#324390] transition-colors py-3 px-5 text-base font-onest">
+              Contact Our Experts
+            </button>
+          </div>
+        </div>
+        
         <div className="md:grid md:grid-cols-12 md:gap-8">
-          {/* Left Column - Fixed CTA */}
+          {/* Left Column - Fixed CTA - Hidden on mobile */}
           <div 
             ref={leftColumnRef}
-            className="col-span-4 lg:col-span-3 bg-[#203663] px-4 md:px-0 md:pl-8 mb-4 md:mb-0"
+            className="hidden md:block col-span-4 lg:col-span-3 bg-[#203663] px-4 md:px-0 md:pl-8 mb-4 md:mb-0"
           >
             <div className="md:h-screen md:flex md:flex-col md:justify-center md:sticky md:top-0">
               <div className="max-w-xs">
@@ -179,8 +217,8 @@ export default function HowWeDoSection() {
           </div>
           
           {/* Right Column - Process Steps */}
-          <div className="col-span-8 lg:col-span-9 px-4 md:px-0 md:pr-8">
-            <div className="py-8 md:py-16 space-y-24">
+          <div className="md:col-span-8 lg:col-span-9 md:pr-8">
+            <div className="py-4 md:py-16 space-y-12 md:space-y-24">
               {processSteps.map((step, index) => (
                 <div 
                   key={step.id} 
@@ -191,7 +229,7 @@ export default function HowWeDoSection() {
                     description={step.description}
                     image={step.image}
                     index={index}
-                    inView={activeSteps[index]}
+                    inView={isMobile ? true : activeSteps[index]}
                   />
                 </div>
               ))}

@@ -397,7 +397,7 @@ export default function ResourcesPage() {
                   <ResourceCard {...card} />
                 </div>
               ))}
-            </div>
+          </div>
           </div>
         </FadeInSection>
         

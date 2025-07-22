@@ -89,10 +89,10 @@ const steelMaterials = [
 export default function SteelIndustryPage() {
   return (
     <IndustryPageTemplate
-      title="Steel Industry"
-      subtitle="Providing premium raw materials for steel manufacturing with consistent quality and reliable supply chain solutions."
-      backgroundImage="https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3"
-      sideText="STEEL INDUSTRY"
+        title="Steel Industry"
+        subtitle="Providing premium raw materials for steel manufacturing with consistent quality and reliable supply chain solutions."
+        backgroundImage="https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3"
+        sideText="STEEL INDUSTRY"
       overviewData={{
         subtitle: "Powering global steel production with premium materials and unmatched expertise",
         cards: overviewCards

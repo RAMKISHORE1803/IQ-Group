@@ -38,6 +38,7 @@ const HeroSection = ({
   const contentRef = useRef(null);
   const sideBarRef = useRef(null);
   const sideTextRef = useRef(null);
+  const mobileSideBarRef = useRef(null);
   const mobileSideTextRef = useRef(null);
   const titleRef = useRef(null);
   const subtitleRef = useRef(null);
@@ -65,6 +66,7 @@ const HeroSection = ({
       const contentElement = contentRef.current;
       const sideBarElement = sideBarRef.current;
       const sideTextElement = sideTextRef.current;
+      const mobileSideBarElement = mobileSideBarRef.current;
       const mobileSideTextElement = mobileSideTextRef.current;
       const titleElement = titleRef.current;
       const subtitleElement = subtitleRef.current;
@@ -86,6 +88,13 @@ const HeroSection = ({
         );
       }
       
+      if (mobileSideBarElement) {
+        gsap.fromTo(mobileSideBarElement, 
+          { height: 0 }, 
+          { height: '50%', duration: 1.2, delay: 0.4, ease: 'power2.out' }
+        );
+      }
+      
       if (sideTextElement) {
         gsap.fromTo(sideTextElement, 
           { opacity: 0, y: 20 }, 
@@ -95,8 +104,8 @@ const HeroSection = ({
       
       if (mobileSideTextElement) {
         gsap.fromTo(mobileSideTextElement, 
-          { opacity: 0, x: -20 }, 
-          { opacity: 1, x: 0, duration: 1, delay: 0.8, ease: 'power2.out' }
+          { opacity: 0, y: 20 }, 
+          { opacity: 1, y: 0, duration: 1, delay: 0.8, ease: 'power2.out' }
         );
       }
       
@@ -158,7 +167,7 @@ const HeroSection = ({
         {/* Fixed Background Image */}
         <div 
           ref={backgroundRef}
-          className="fixed inset-0 w-full md:h-screen bg-cover bg-center z-0"
+          className="fixed inset-0 w-full max-h-[80vh] md:h-screen bg-cover bg-center z-0"
           style={{ 
             backgroundImage: `url(${backgroundImage})`,
             backgroundAttachment: isMobile ? 'scroll' : 'fixed',
@@ -171,40 +180,44 @@ const HeroSection = ({
             style={{ backgroundColor: overlayColor }}
           ></div>
         </div>
-
-        {/* Mobile Top Bar with Text (Horizontal) */}
-        <div 
-          ref={mobileSideTextRef}
-          className="absolute top-6 left-4 md:hidden z-10"
-        >
-          <div className="flex items-center">
-            <div className="w-8 h-[2px] bg-white mr-3"></div>
-            <span className="text-white text-sm tracking-widest font-medium">
-              {displaySideText}
-            </span>
+        
+        {/* Mobile Side Bar and Text (Vertical) */}
+        <div className="absolute left-[25vw] top-0 h-full md:hidden flex items-center z-10">
+          {/* Vertical white bar for mobile */}
+          <div 
+            ref={mobileSideBarRef} 
+            className="w-[1px] bg-white absolute bottom-0 left-0 origin-bottom"
+            style={{ height: '0%' }}
+          ></div>
+          {/* Vertical text for mobile */}
+          <div 
+            ref={mobileSideTextRef}
+            className="absolute bottom-[30%] left-[8vw] transform -translate-x-1/2 origin-bottom-left rotate-[-90deg] text-white font-bold text-[16px]"
+          >
+            <span className="uppercase whitespace-nowrap">{displaySideText}</span>
           </div>
         </div>
 
         {/* Side Bar and Text (Vertical) - Desktop only */}
-        <div className="absolute left-[150px] top-0 h-full flex items-center z-10">
+        <div className="absolute left-[150px] top-0 md:h-full hidden md:flex items-center z-10">
           {/* Vertical white bar */}
           <div 
             ref={sideBarRef} 
-            className="w-[1px] hidden md:block bg-white absolute bottom-0 left-8 md:left-12"
+            className="w-[1px] bg-white absolute bottom-0 left-[-20vw] md:left-12"
           ></div>
           {/* Vertical text */}
           <div 
             ref={sideTextRef}
-            className="hidden md:block absolute bottom-[23%] min-w-[120px] left-8  md:left-[60px] transform -translate-x-1/2 origin-bottom-left rotate-[-90deg] text-white font-bold   lg:text-[20px] "
+            className="absolute bottom-[23%] min-w-[120px] left-[-25vw] md:left-[60px] transform -translate-x-1/2 origin-bottom-left rotate-[-90deg] text-white font-bold lg:text-[20px]"
           >
-            <span className="uppercase ">{displaySideText}</span>
+            <span className="uppercase">{displaySideText}</span>
           </div>
         </div>
 
         {/* Content positioned at bottom */}
         <div 
           ref={contentRef}
-          className={`hero-content relative z-10 h-[100svh] md:h-screen lg:left-[180px] flex flex-col justify-end ${showContactOptions ? 'pb-8 md:pb-4' : 'pb-12 md:pb-4'} px-4 sm:px-8 md:px-16 ${showContactOptions ? 'lg:pb-[80px]' : 'lg:pb-[80px]'} lg:px-24 xl:px-32`}
+          className={`hero-content relative z-10 h-[100svh] md:h-screen bottom-[15vh] max-w-[60vw] left-[27vw] lg:max-w-7xl lg:left-[180px] flex flex-col justify-end ${showContactOptions ? 'pb-8 md:pb-4' : 'pb-12 md:pb-4'} px-4 sm:px-8 md:px-16 ${showContactOptions ? 'lg:pb-[80px]' : 'lg:pb-[80px]'} lg:px-24 xl:px-32`}
         >
           <div className="max-w-5xl mb-8 md:mb-16 lg:mb-24">
             <h1 
@@ -218,7 +231,7 @@ const HeroSection = ({
                 ref={subtitleRef}
                 className="mt-4 md:mt-6 lg:mt-12"
               >
-                <h2 className="text-[16px] leading-[26px] md:leading-tight lg:leading-normal md:text-2xl lg:text-[45px] lg:max-w-4xl font-bold font-lato text-white">
+                <h2 className="text-[22px] leading-[28px] md:leading-tight lg:leading-normal md:text-2xl lg:text-[45px] lg:max-w-4xl font-bold font-lato text-white">
                   {subtitle}
                 </h2>
               </div>
@@ -231,7 +244,7 @@ const HeroSection = ({
       </section>
       
       {/* Contact Options Section */}
-     
+      
     </>
   );
 };
