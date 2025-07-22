@@ -59,21 +59,21 @@ export default function LandingPage() {
 
       // Set initial position - content starts just above the viewport
       gsap.set(globalMapContentRef.current, {
-        y: '-50vh',
+        y: '-20vh', // More moderate offset
         willChange: 'transform'
       });
 
       // Create the reveal animation
       const trigger1 = ScrollTrigger.create({
         trigger: globalMapWrapperRef.current,
-        start: "top 80%",    
-        end: "top 20%",      
-        scrub: 1,
+        start: "top 90%",    // Start even earlier
+        end: "top 10%",      // End even later
+        scrub: 1,             // True scroll sync
         markers: false,
         invalidateOnRefresh: true,
         animation: gsap.to(globalMapContentRef.current, {
           y: 0,
-          ease: "none",
+          ease: "none", // Perfect scroll sync
         }),
         
         onLeave: () => {
@@ -82,7 +82,7 @@ export default function LandingPage() {
           gsap.set(globalMapWrapperRef.current, {
             height: 'auto',
             overflow: 'visible',
-            position: 'relative' // Keep relative, not 
+            position: 'relative'
           });
           
           gsap.set(globalMapContentRef.current, {
@@ -130,15 +130,15 @@ export default function LandingPage() {
 
       // Set initial position - content starts just above the viewport (negative y)
       gsap.set(footerRef.current, {
-        y: '-50vh', // Match the GlobalMap content initial position
+        y: '-20vh', // Match the GlobalMap content initial position
         willChange: 'transform'
       });
 
       // Create the reveal animation - exact same structure as GlobalMap
       const footerTrigger = ScrollTrigger.create({
         trigger: footerAnimationWrapperRef.current,
-        start: "top 80%",    
-        end: "top 20%",      
+        start: "top 90%",    
+        end: "top 10%",      
         scrub: 1,
         markers: false,
         invalidateOnRefresh: true,
@@ -193,14 +193,14 @@ export default function LandingPage() {
         end: "top top",
         pin: globalMapContentRef.current,
         pinSpacing: false,
-        scrub: 1,
-        markers: false, // Disable markers for production
+        scrub: 1.5,  // Increased scrub value for smoother animation
+        markers: false,
         animation: gsap.fromTo(industriesRef.current, {
           yPercent: 0,
           willChange: 'transform'
         }, {
           y: 0,
-          ease: "none",
+          ease: "power2.inOut", // Changed to power2.inOut for smoother transition
         })
       });
 
@@ -243,7 +243,10 @@ export default function LandingPage() {
         <DTREHeroCarousel />
           <AboutSection />
         {/* <QualitySection /> */}
+        <div className='bg-[#fbfbfb]'>
+          
           <CompanySection />
+        </div>
         
         {/* GlobalMap wrapper */}
         <div ref={globalMapWrapperRef} className="relative hidden md:block">

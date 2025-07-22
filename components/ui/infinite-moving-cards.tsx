@@ -16,6 +16,7 @@ export const InfiniteMovingCards = ({
     name: string;
     title: string;
     image: string;
+    category: string;
   }[];
   direction?: "left" | "right";
   speed?: "fast" | "normal" | "slow";
@@ -93,7 +94,7 @@ export const InfiniteMovingCards = ({
             key={item.name + idx}
           >
             <motion.div
-              className="relative aspect-[4/3] bg-cover bg-center bg-no-repeat overflow-hidden group cursor-pointer flex-shrink-0 rounded-xl"
+              className="relative aspect-[4/3] bg-cover bg-center bg-no-repeat overflow-hidden group cursor-pointer flex-shrink-0 "
               style={{ 
                 backgroundImage: `url(${item.image})`
               }}
@@ -106,7 +107,7 @@ export const InfiniteMovingCards = ({
               {/* Category Label */}
               <div className="absolute top-4 left-4 z-20">
                 <span className="bg-black bg-opacity-60 text-white text-xs font-medium px-3 py-1.5 rounded-full">
-                  SUCCESS STORY
+                  {item.category || "SUCCESS STORY"}
                 </span>
               </div>
               
@@ -139,7 +140,7 @@ export const InfiniteMovingCards = ({
                 {/* Default content - always visible */}
                 <div className="relative z-10 p-4">
                   <p className="text-xs text-gray-600 font-medium mb-1">
-                    SUCCESS STORY
+                    {item.category}
                   </p>
                   <h3 className="font-lato font-light text-[28px] line-clamp-2 group-hover:line-clamp-none text-ellipsis overflow-hidden text-black leading-tight transition-all duration-300">
                     {item.name}

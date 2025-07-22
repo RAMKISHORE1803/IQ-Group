@@ -307,6 +307,7 @@ export default function CompanyCarousel() {
           <p className="company-description text-[20px] text-gray-900 max-w-[1000px] mx-auto md:text-[32px] font-light font-onest">
             Explore our specialized divisions working together to deliver excellence in global logistics and material supply.
           </p>
+          
         </div>
 
         <div 

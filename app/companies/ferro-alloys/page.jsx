@@ -111,7 +111,7 @@ const sectionLinks = [
 
 export default function FerroAlloysPage() {
   return (
-    <div className="relative">
+    <div className="relative bg-white">
       <HeroSection
         title=""
         subtitle="We power the world's steel with high-value Ferro Alloys — fast, reliable, and globally sourced. Trusted by industries. Built for speed."

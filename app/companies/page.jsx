@@ -228,7 +228,7 @@ export default function CompaniesPage() {
                       flex: activeIndex === index ? '7 1 0%' : '1 1 0%',
                       zIndex: activeIndex === index ? 10 : 1
                     }}
-                    onClick={() => handleOptionClick(index)}
+                    onMouseEnter={() => handleOptionClick(index)}
                   >
                     {/* Shadow gradient overlay */}
                     <div 

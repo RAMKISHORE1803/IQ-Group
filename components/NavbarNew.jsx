@@ -360,7 +360,7 @@ const NavbarNew = () => {
       <header
         ref={navRef}
         className={`fixed ${!isMobile ? 'top-[28px]' : 'top-0'} left-0 w-full z-40 transition-all duration-300 max-h-[18vh] 
-          ${isScrolled || hoveredItem ? 'bg-[#0e3364] text-white shadow-md' : 'bg-transparent text-white'}
+          ${isScrolled || hoveredItem ? 'bg-[#fbfbfb] text-[#0e3364] shadow-md' : 'bg-transparent text-white'}
           ${isVisible ? 'transform translate-y-0' : 'transform -translate-y-full'}
         `}
         aria-label="Main Navigation"
@@ -398,7 +398,7 @@ const NavbarNew = () => {
                     <div className="flex items-center font-medium text-base">
                       <Link 
                         href={item.path}
-                        className="tracking-wide text-white py-2 group relative perspective-500"
+                        className="tracking-wide py-2 group relative perspective-500"
                         aria-expanded={hoveredItem === item.megaMenu}
                       >
                         {/* 3D Animation Wrapper */}
@@ -433,7 +433,7 @@ const NavbarNew = () => {
                 >
                   <Link 
                     href={item.path}
-                    className="text-base font-medium tracking-wide text-white py-2 group relative perspective-500"
+                    className="text-base font-medium tracking-wide  py-2 group relative perspective-500"
                     aria-expanded={hoveredItem === item.megaMenu}
                   >
                     {/* 3D Animation Wrapper */}
@@ -456,7 +456,7 @@ const NavbarNew = () => {
               {/* Contact Button */}
               <Link
                 href="/contact"
-                className="bg-transparent border border-white text-white hover:bg-white hover:text-[#0e3364] px-4 py-1 text-sm font-medium transition-colors duration-300 rounded-none"
+                className={`bg-transparent border ${isScrolled || hoveredItem ? 'border-[#0e3364] hover:bg-[#0e3364] hover:text-white' : 'border-white hover:bg-white hover:text-[#0e3364]'} px-4 py-1 text-sm font-medium transition-colors duration-300 rounded-none`}
                 aria-label="Contact DTRE"
               >
                 CONTACT
@@ -467,7 +467,7 @@ const NavbarNew = () => {
             <div className="lg:hidden">
               <button
                 onClick={toggleMobileMenu}
-                className="p-2 text-white"
+                className={`p-2 ${isScrolled || hoveredItem ? 'text-[#0e3364]' : 'text-white'}`}
                 aria-label="Toggle mobile menu"
                 aria-expanded={isMobileMenuOpen}
               >
