@@ -6,12 +6,9 @@ import { cn } from "@/lib/utils";
 export const GlareCard = ({
   children,
   className,
-}: {
-  children: React.ReactNode;
-  className?: string;
 }) => {
   const isPointerInside = useRef(false);
-  const refElement = useRef<HTMLDivElement>(null);
+  const refElement = useRef(null);
   const state = useRef({
     glare: {
       x: 50,
@@ -39,7 +36,7 @@ export const GlareCard = ({
     "--radius": "0px",
     "--easing": "ease",
     "--transition": "var(--duration) var(--easing)",
-  } as any;
+  };
 
   const backgroundStyle = {
     "--step": "5%",
