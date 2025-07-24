@@ -3,18 +3,9 @@
 import React from "react";
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 
-interface Story {
-  quote: string;
-  name: string;
-  title: string;
-  image: string;
-}
+ 
 
-interface InfiniteMovingCardsDemoProps {
-  stories?: Story[];
-}
-
-export default function InfiniteMovingCardsDemo({ stories = defaultSuccessStories }: InfiniteMovingCardsDemoProps) {
+export default function InfiniteMovingCardsDemo({ stories }) {
   return (
     <div className="lg:min-h-[50vh] rounded-md flex flex-col antialiased bg-gray-50 dark:bg-black dark:bg-grid-white/[0.05] items-center justify-start relative overflow-hidden">
       
