@@ -2,23 +2,10 @@
 
 import { useEffect, useRef } from "react";
 
-interface TweetEmbedProps {
-  tweetUrl: string;
-}
 
-// TypeScript declaration for Twitter widgets API
-declare global {
-  interface Window {
-    twttr?: {
-      widgets: {
-        load: (element?: HTMLElement | null) => void;
-      };
-    };
-  }
-}
 
-const TweetEmbed = ({ tweetUrl }: TweetEmbedProps) => {
-  const containerRef = useRef<HTMLDivElement>(null);
+const TweetEmbed = ({ tweetUrl }) => {
+  const containerRef = useRef(null);
   
   // Convert x.com URLs to twitter.com URLs if needed
   const normalizedTweetUrl = tweetUrl.replace('x.com', 'twitter.com');

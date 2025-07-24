@@ -162,13 +162,23 @@ const InsightsSection = () => {
   return (
     <div className="w-full max-w-7xl md:max-w-[1300px]  mx-auto px-4 py-16">
       {/* Section Title */}
-      <h2 className="text-4xl md:text-5xl font-onest font-light text-gray-800 mb-12">
+      <motion.h2 
+      initial = {{opacity:0 , x:-30}}
+      whileInView = {{opacity:1 , x:0}}
+      viewport = {{once: true , amount: 0.4}}
+      transition = {{duration: 0.4 , delay: .1}}
+      className="text-4xl md:text-5xl font-onest font-light text-gray-800 mb-12">
         Our Latest Insights
-      </h2>
+      </motion.h2>
       
       {/* Desktop Carousel */}
       {!isMobile ? (
-        <div className="flex gap-6 overflow-x-auto mad:min-h-[410px] pb-4 mb-8 scrollbar-hide">
+        <motion.div
+        initial = {{opacity:0 , x:30}}
+        whileInView = {{opacity:1 , x:0}}
+        viewport = {{once: true , amount: 0.4}}
+        transition = {{duration: 0.4 , delay: .1}}
+         className="flex gap-6 overflow-x-hidden mad:min-h-[410px] pb-4 mb-8 scrollbar-hide">
           <style jsx>{`
             .scrollbar-hide {
               -ms-overflow-style: none;
@@ -181,7 +191,7 @@ const InsightsSection = () => {
           {insights.map((insight, index) => (
             <CardComponent key={insight.id} insight={insight} index={index} />
           ))}
-        </div>
+        </motion.div>
       ) : (
         /* Mobile Carousel */
         <div className="relative mb-8">

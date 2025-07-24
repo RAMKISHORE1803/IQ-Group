@@ -513,11 +513,11 @@ export default function ResourcesPage() {
                 </div>
               ))}
           </div>
-          </div>
+         </div>
         </FadeInSection>
         
         {/* Insights Section */}
-        
+       
       </div>
     </main>
   );

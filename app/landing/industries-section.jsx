@@ -1,6 +1,8 @@
 "use-client"
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 
 const IndustriesSection = () => {
     const sectors = [
@@ -126,18 +128,37 @@ const IndustriesSection = () => {
         {/* Header */}
         <div className="mb-8 md:mb-[64px]  lg:mb-[80px]">
           <div className="md:flex md:justify-between md:items-start">
-            <h2 className="text-[20px] md:text-5xl lg:text-[42px] text-center font-light mb-4 md:mb-0 font-lato font-bold text-[#1E3157]">INDUSTRIES WE SERVE</h2>
-            <div className="md:max-w-lg md:ml-8">
+            <motion.h2
+             initial={{ opacity: 0, y: 50 }}
+             whileInView={{ opacity: 1, y: 0  }}
+             
+             viewport={{ once: false , amount: 0.4 }}
+             transition={{ duration: 0.5 }}
+             className="text-[20px] md:text-5xl lg:text-[42px] text-center font-light mb-4 md:mb-0 font-lato font-bold text-[#1E3157]">INDUSTRIES WE SERVE</motion.h2>
+          
+            <motion.div
+             initial={{ opacity: 0, x: 40 }}
+             whileInView={{ opacity: 1, x: 0 }}
+             viewport={{ once: false , amount: 1 }}
+             transition={{ duration: 0.5 , delay: .2 }}
+            
+            
+             className="md:max-w-lg md:ml-8">
               <p className="text-gray-700 text-[18px] md:text-[20px] xl:text-[22px] lg:min-w-[550px] text-center md:text-left font-onest lg:leading-[28px] font-light ">
               Discover the industries we empower delivering precision, consistency, and global-scale material excellence.
               </p>
-            </div>
+            </motion.div>
+          
           </div>
         </div>
 
         {/* Desktop View */}
-        <div className="hidden md:block relative lg:mb-[40px]">
-          <div 
+        <div className="hidden md:block relative lg:mb-[40px] ">
+          <motion.div 
+          initial={{opacity: 0, y:30}}
+          whileInView={{opacity: 1, y:0}}
+          viewport={{once: false, amount: 0.4}}
+          transition={{duration: 0.4, delay: .1}}
             className="flex gap-6 overflow-hidden"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
@@ -170,7 +191,7 @@ const IndustriesSection = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
           
           {/* Desktop Navigation */}
           <div className="absolute right-0 bottom-0 md:bottom-[-80px] flex gap-3 mb-4 mr-4">

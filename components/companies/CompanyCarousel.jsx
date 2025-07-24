@@ -135,7 +135,7 @@ function CompanyCard({ company, isCenter, position, scale, xOffset, yOffset, onC
         
         {/* Floating Glassy overlay - small at bottom, full card on hover */}
         <div
-          className={`absolute bg-white/70 bg-opacity-40 backdrop-blur-md rounded-lg overflow-hidden transition-all duration-400 ease-out
+          className={`absolute bg-white/70 bg-opacity-40 backdrop-blur-md rounded-lg overflow-hidden transition-all duration-400 ease-[0.4,0,0.2,1]
             ${canShowHoverEffects && isHovered 
               ? "top-0 bottom-0 left-0 right-0 h-full rounded-none z-50" 
               : "bottom-4 left-4 right-4 top-auto h-[120px]"}`}
@@ -152,7 +152,7 @@ function CompanyCard({ company, isCenter, position, scale, xOffset, yOffset, onC
           
           {/* Expanded content - only visible on hover for center card */}
           {canShowHoverEffects && (
-            <div className={`px-4 pb-4 transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
+            <div className={`px-4 pb-4 transition-all duration-300 ${isHovered ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-5'}`}>
               <p className="text-gray-800 text-[16px] font-onest font-light leading-relaxed mb-4">
                 {company.description}
               </p>

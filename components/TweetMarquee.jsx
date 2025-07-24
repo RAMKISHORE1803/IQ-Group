@@ -3,15 +3,7 @@
 import { useEffect, useRef, useState, Suspense } from "react";
 import TweetEmbed from "./TweetEmbed";
 
-interface TweetMarqueeProps {
-  tweetUrls: string[];
-  title?: string;
-  direction?: "left" | "right";
-  speed?: "fast" | "normal" | "slow";
-  pauseOnHover?: boolean;
-  className?: string;
-  showTitle?: boolean;
-}
+
 
 // Loading skeleton component for tweets
 const TweetSkeleton = () => (
@@ -44,9 +36,9 @@ const TweetMarquee = ({
   pauseOnHover = true,
   className = "",
   showTitle = true,
-}: TweetMarqueeProps) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const scrollerRef = useRef<HTMLDivElement>(null);
+}) => {
+  const containerRef = useRef(null);
+  const scrollerRef = useRef(null);
   const [start, setStart] = useState(false);
   const [loading, setLoading] = useState(true);
   const [tweetsRendered, setTweetsRendered] = useState(false);
