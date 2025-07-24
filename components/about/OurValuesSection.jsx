@@ -186,7 +186,7 @@ export default function OurValuesSection() {
           <div className="md:col-span-5 mb-8 md:mb-0">
             <div className="sticky top-24">
               <div className="inline-block bg-[#203663]/10 px-4 py-2 rounded-md mb-4">
-                <span className="text-sm font-medium text-[#203663]">OUR VALUES</span>
+                <span className="text-sm font-medium text-[#203663]">CORE VALUES</span>
               </div>
               <h2 
                 ref={headingRef}

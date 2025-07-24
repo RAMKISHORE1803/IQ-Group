@@ -14,26 +14,32 @@ const processSteps = [
   {
     id: "direct-sourcing",
     title: "Direct Sourcing",
-    description: "From mine to manufacturing. No middlemen. Pure quality.",
-    image: "https://images.pexels.com/photos/2882630/pexels-photo-2882630.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    description: "Mine to market. Zero intermediaries. Quality guaranteed.",
+    image: "https://images.unsplash.com/photo-1518085250887-2f903c200fee?q=80&w=2070&auto=format&fit=crop",
   },
   {
-    id: "port-verification",
-    title: "Port Verification",
-    description: "Precision inspections. Exacting standards. Zero compromise.",
-    image: "https://images.pexels.com/photos/1554646/pexels-photo-1554646.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    id: "quality-verification",
+    title: "Quality Verification At Loading Port",
+    description: "Molecular precision. Rigorous standards. Certified excellence.",
+    image: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=2070&auto=format&fit=crop",
   },
   {
     id: "logistics",
     title: "Logistics",
-    description: "Intelligent routing. Real-time tracking. Seamless movement.",
-    image: "https://images.pexels.com/photos/2199293/pexels-photo-2199293.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    description: "Global networks. Real-time tracking. Flawless execution.",
+    image: "https://images.unsplash.com/photo-1494412651409-8963ce7935a7?q=80&w=2070&auto=format&fit=crop",
   },
   {
-    id: "end-user-delivery",
-    title: "End-User Delivery",
-    description: "Final mile excellence. Ready for production. On your schedule.",
-    image: "https://images.pexels.com/photos/1427541/pexels-photo-1427541.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    id: "warehousing",
+    title: "Warehousing",
+    description: "Strategic locations. Climate-controlled. Just-in-time readiness.",
+    image: "https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=2070&auto=format&fit=crop",
+  },
+  {
+    id: "end-users",
+    title: "End Users",
+    description: "Final mile perfection. Production-ready materials. When you need them.",
+    image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=2070&auto=format&fit=crop",
   }
 ];
 

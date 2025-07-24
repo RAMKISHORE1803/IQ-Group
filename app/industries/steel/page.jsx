@@ -1,6 +1,18 @@
 'use client';
 
-import IndustryPageTemplate from '@/components/industries/IndustryPageTemplate';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import ProductRangeSection from '@/components/companies/ProductRangeSection';
+import SectionNavigation from '@/components/companies/SectionNavigation';
+import SectionWithCards from '@/components/companies/SectionWithCards';
+import HeroSection from '@/components/about/HeroSection';
+import InfiniteMovingCardsDemo from '@/components/ui/infinite-moving-cards-demo';
+import { useEffect, useState, useRef } from 'react';
+
+// Register GSAP plugins
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 // Overview cards data
 const overviewCards = [
@@ -42,17 +54,12 @@ const challengeCards = [
   }
 ];
 
-// Product data for steel industry materials
-const steelMaterials = [
+// Ferro Alloys data
+const ferroAlloys = [
   {
-    title: "Iron Ore",
-    description: "High-grade iron ore with 58-65% Fe content levels, available in lump, fines, and pellets for different steel production requirements.",
-    image: "https://images.unsplash.com/photo-1518783211485-10fd3bfb2ce2?q=80&w=2000&auto=format&fit=crop"
-  },
-  {
-    title: "Coking Coal",
-    description: "Premium metallurgical coal with low ash and sulfur content, essential for coke production in blast furnace operations.",
-    image: "https://images.unsplash.com/photo-1578575752670-bbc2a5adb58e?q=80&w=2000&auto=format&fit=crop"
+    title: "Ferro Phosphorus",
+    description: "High-purity ferro phosphorus with 18-26% phosphorus content, used as a deoxidizer and to improve machinability in steel production.",
+    image: "https://images.unsplash.com/photo-1605557202138-077ef7c4fa7c?q=80&w=2000&auto=format&fit=crop"
   },
   {
     title: "Ferro Silicon",
@@ -65,14 +72,86 @@ const steelMaterials = [
     image: "https://images.unsplash.com/photo-1535813547-99c456a41d4a?q=80&w=2000&auto=format&fit=crop"
   },
   {
+    title: "Ferro Titanium",
+    description: "High-quality alloy used as a deoxidizer and grain refiner in steel production, improving mechanical properties and corrosion resistance.",
+    image: "https://images.unsplash.com/photo-1648193820372-1677480a84b1?q=80&w=2000&auto=format&fit=crop"
+  },
+  {
     title: "Ferro Manganese",
     description: "Essential alloy adding manganese to steel to improve strength, toughness, hardenability, and wear resistance.",
     image: "https://images.unsplash.com/photo-1531088009183-5ff5b7c95f91?q=80&w=2000&auto=format&fit=crop"
+  }
+];
+
+// Noble Alloys data
+const nobleAlloys = [
+  {
+    title: "Ferro Vanadium",
+    description: "Premium alloy with 40-80% vanadium content, used to increase strength, toughness, and wear resistance in high-strength steels.",
+    image: "https://images.unsplash.com/photo-1518783211485-10fd3bfb2ce2?q=80&w=2000&auto=format&fit=crop"
   },
   {
-    title: "Limestone",
-    description: "Critical flux material used to remove impurities in the steelmaking process, forming slag that can be separated from the molten metal.",
-    image: "https://images.unsplash.com/photo-1598104358204-117bc812c6c1?q=80&w=2000&auto=format&fit=crop"
+    title: "Ferro Niobium",
+    description: "Specialized alloy containing 60-70% niobium, used to improve strength, toughness, and weldability in HSLA steels.",
+    image: "https://images.unsplash.com/photo-1578575752670-bbc2a5adb58e?q=80&w=2000&auto=format&fit=crop"
+  },
+  {
+    title: "Ferro Boron",
+    description: "High-purity alloy with 17-20% boron content, used as a microalloying element to enhance hardenability and grain refinement.",
+    image: "https://images.unsplash.com/photo-1535813547-99c456a41d4a?q=80&w=2000&auto=format&fit=crop"
+  },
+  {
+    title: "Ferro Molybdenum",
+    description: "Specialized alloy containing 60-70% molybdenum, used to enhance strength, hardenability, and corrosion resistance in steel.",
+    image: "https://images.unsplash.com/photo-1531088009183-5ff5b7c95f91?q=80&w=2000&auto=format&fit=crop"
+  }
+];
+
+// Carbon Materials data
+const carbonMaterials = [
+  {
+    title: "Graphite",
+    description: "High-carbon material with 99%+ carbon content, used as a carbon additive and for refractory applications in steel production.",
+    image: "https://images.unsplash.com/photo-1578575752670-bbc2a5adb58e?q=80&w=2000&auto=format&fit=crop"
+  },
+  {
+    title: "Petroleum Coke",
+    description: "High-grade carbon material with low sulfur and ash content, used as a carbon raiser in steel and foundry applications.",
+    image: "https://images.unsplash.com/photo-1605557202138-077ef7c4fa7c?q=80&w=2000&auto=format&fit=crop"
+  },
+  {
+    title: "Carbon Raisers",
+    description: "Specialized carbon additives with 97-99% carbon content, used to precisely adjust carbon levels in steel production.",
+    image: "https://images.unsplash.com/photo-1531088009183-5ff5b7c95f91?q=80&w=2000&auto=format&fit=crop"
+  },
+  {
+    title: "Calcined Anthracite",
+    description: "High-carbon material with low volatile content, used as a carbon additive and for electrode production in steelmaking.",
+    image: "https://images.unsplash.com/photo-1535813547-99c456a41d4a?q=80&w=2000&auto=format&fit=crop"
+  }
+];
+
+// Metals & Minerals data
+const metalsMinerals = [
+  {
+    title: "Manganese Metal Flakes",
+    description: "High-purity manganese (99%+) used for precise alloying in specialty steels and for manufacturing manganese-based chemicals.",
+    image: "https://images.unsplash.com/photo-1518783211485-10fd3bfb2ce2?q=80&w=2000&auto=format&fit=crop"
+  },
+  {
+    title: "Silicon Metal",
+    description: "High-purity silicon (98-99.5%) used as a deoxidizer and alloying element in steel and for manufacturing silicones.",
+    image: "https://images.unsplash.com/photo-1578575752670-bbc2a5adb58e?q=80&w=2000&auto=format&fit=crop"
+  },
+  {
+    title: "Chromite",
+    description: "Essential mineral ore containing chromium, used in the production of ferrochrome and ultimately in stainless steel manufacturing.",
+    image: "https://images.unsplash.com/photo-1605557202138-077ef7c4fa7c?q=80&w=2000&auto=format&fit=crop"
+  },
+  {
+    title: "Bauxite",
+    description: "Primary ore for aluminum production, also used as a flux in steelmaking and for manufacturing refractories.",
+    image: "https://images.unsplash.com/photo-1531088009183-5ff5b7c95f91?q=80&w=2000&auto=format&fit=crop"
   },
   {
     title: "Dolomite",
@@ -80,36 +159,244 @@ const steelMaterials = [
     image: "https://images.unsplash.com/photo-1550047506-25b6cd9f0aad?q=80&w=2000&auto=format&fit=crop"
   },
   {
-    title: "Ferro Titanium",
-    description: "High-quality alloy used as a deoxidizer and grain refiner in steel production, improving mechanical properties and corrosion resistance.",
-    image: "https://images.unsplash.com/photo-1648193820372-1677480a84b1?q=80&w=2000&auto=format&fit=crop"
+    title: "Limestone",
+    description: "Critical flux material used to remove impurities in the steelmaking process, forming slag that can be separated from the molten metal.",
+    image: "https://images.unsplash.com/photo-1598104358204-117bc812c6c1?q=80&w=2000&auto=format&fit=crop"
   }
 ];
 
+// Section links for navigation
+const sectionLinks = [
+  {
+    title: "Overview",
+    link: "#overview"
+  },
+  {
+    title: "Industry Challenges",
+    link: "#challenges"
+  },
+  {
+    title: "Ferro Alloys",
+    link: "#ferro-alloys"
+  },
+  {
+    title: "Noble Alloys",
+    link: "#noble-alloys"
+  },
+  {
+    title: "Carbon Materials",
+    link: "#carbon-materials"
+  },
+  {
+    title: "Metals & Minerals",
+    link: "#metals-minerals"
+  },
+  {
+    title: "Success Stories",
+    link: "#success-stories"
+  }
+];
+
+// Success stories data for the template
+const successStories = [
+  {
+    quote: "IQ Group's consistent supply of high-grade iron ore allowed us to maintain production during a critical global shortage, saving us an estimated €2.3M in potential downtime.",
+    name: "European Steel Manufacturing Co.",
+    title: "Uninterrupted Production During Supply Crisis",
+    image: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?q=80&w=2070&auto=format&fit=crop"
+  },
+  {
+    quote: "Their technical expertise helped us optimize our alloy formulations, resulting in a 15% reduction in material costs while maintaining all quality specifications.",
+    name: "Asian Specialty Steel Producer",
+    title: "Cost Optimization Without Compromising Quality",
+    image: "https://images.unsplash.com/photo-1533106418989-88406c7cc8ca?q=80&w=2070&auto=format&fit=crop"
+  },
+  {
+    quote: "When we needed to meet new environmental regulations, IQ Group delivered lower-carbon materials six months ahead of our deadline, helping us maintain market leadership.",
+    name: "North American Steel Corporation",
+    title: "Sustainable Transition Support",
+    image: "https://images.unsplash.com/photo-1530968033775-2c92736b131e?q=80&w=2070&auto=format&fit=crop"
+  }
+];
+
+const successStoriesData = {
+  subtitle: "Real results from our partnerships with leading steel manufacturers worldwide",
+  stories: successStories
+};
+
+const overviewData = {
+  subtitle: "Powering global steel production with premium materials and unmatched expertise",
+  cards: overviewCards
+};
+
+const challengesData = {
+  subtitle: "Solving the most pressing challenges facing modern steel production",
+  cards: challengeCards
+};
+
 export default function SteelIndustryPage() {
+  const [isMounted, setIsMounted] = useState(false);
+  
+  // Create refs for each section
+  const overviewRef = useRef(null);
+  const challengesRef = useRef(null);
+  const ferroAlloysRef = useRef(null);
+  const nobleAlloysRef = useRef(null);
+  const carbonMaterialsRef = useRef(null);
+  const metalsMineralsRef = useRef(null);
+  const successStoriesRef = useRef(null);
+
+  useEffect(() => {
+    setIsMounted(true);
+    
+    // Initialize scroll animations
+    if (typeof window === 'undefined') return;
+    
+    // Small delay to ensure DOM is fully rendered
+    const timer = setTimeout(() => {
+      // Initialize scroll animations if needed
+      ScrollTrigger.refresh();
+
+      // Create animation for each section
+      const sections = [
+        { ref: overviewRef, delay: 0 },
+        { ref: challengesRef, delay: 0.1 },
+        { ref: ferroAlloysRef, delay: 0.2 },
+        { ref: nobleAlloysRef, delay: 0.3 },
+        { ref: carbonMaterialsRef, delay: 0.4 },
+        { ref: metalsMineralsRef, delay: 0.5 },
+        { ref: successStoriesRef, delay: 0.6 }
+      ];
+
+      sections.forEach(({ ref, delay }) => {
+        if (!ref.current) return;
+
+        gsap.timeline({
+          scrollTrigger: {
+            trigger: ref.current,
+            start: 'top 75%',
+            end: 'bottom 20%',
+            toggleActions: 'play none none reverse',
+          }
+        }).fromTo(
+          ref.current,
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8, delay, ease: 'power2.out' }
+        );
+      });
+    }, 200);
+
+    return () => {
+      clearTimeout(timer);
+      // Clean up any ScrollTriggers
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, []);
+
   return (
-    <IndustryPageTemplate
-        title="Steel Industry"
-        subtitle="Providing premium raw materials for steel manufacturing with consistent quality and reliable supply chain solutions."
+    <div className='bg-white'>
+      <HeroSection 
+        title=""
+        subtitle="We support the steel industry with a comprehensive range of high-quality raw materials, enabling enhanced performance across carbon, alloy, and stainless steel production."
         backgroundImage="https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3"
         sideText="STEEL INDUSTRY"
-      overviewData={{
-        subtitle: "Powering global steel production with premium materials and unmatched expertise",
-        cards: overviewCards
-      }}
-      challengesData={{
-        subtitle: "Solving the most pressing challenges facing modern steel production",
-        cards: challengeCards
-      }}
-      materialsData={{
-        title: "Key Materials for Steel Production",
-        subtitle: "Premium quality raw materials essential for modern steel manufacturing",
-        products: steelMaterials
-      }}
-      successStoriesData={{
-        subtitle: "Real results from our partnerships with leading steel manufacturers worldwide"
-      }}
-      showSuccessStories={true}
-    />
+        navTitle="INDUSTRIES"
+      />
+
+      <div className="relative z-20 bg-white">
+        <SectionNavigation links={sectionLinks} />
+        
+        {/* Overview Section using SectionWithCards */}
+        <div ref={overviewRef} id="overview">
+          <SectionWithCards
+            title="Steel Industry Overview"
+            subtitle={overviewData.subtitle}
+            cards={overviewData.cards}
+            background="white"
+            sectionNumber="01"
+          />
+        </div>
+        
+        {/* Industry Challenges Section using SectionWithCards */}
+        <div ref={challengesRef} id="challenges">
+          <SectionWithCards
+            title="Industry Challenges"
+            subtitle={challengesData.subtitle}
+            cards={challengesData.cards}
+            background="gray"
+            sectionNumber="02"
+          />
+        </div>
+        
+        {/* Ferro Alloys Section */}
+        <div ref={ferroAlloysRef} id="ferro-alloys">
+          <ProductRangeSection
+            id="ferro-alloys"
+            title="Ferro Alloys"
+            subtitle="Premium ferro alloys for enhanced steel properties and precise composition control"
+            products={ferroAlloys}
+            sectionNumber="03"
+            sectionTitle="MATERIAL CATEGORY"
+          />
+        </div>
+        
+        {/* Noble Alloys Section */}
+        <div ref={nobleAlloysRef} id="noble-alloys">
+          <ProductRangeSection
+            id="noble-alloys"
+            title="Noble Alloys"
+            subtitle="Specialized high-performance alloys for advanced steel applications"
+            products={nobleAlloys}
+            background="gray"
+            sectionNumber="04"
+            sectionTitle="MATERIAL CATEGORY"
+          />
+        </div>
+        
+        {/* Carbon Materials Section */}
+        <div ref={carbonMaterialsRef} id="carbon-materials">
+          <ProductRangeSection
+            id="carbon-materials"
+            title="Carbon Materials"
+            subtitle="High-purity carbon additives for precise carbon control in steel production"
+            products={carbonMaterials}
+            sectionNumber="05"
+            sectionTitle="MATERIAL CATEGORY"
+          />
+        </div>
+        
+        {/* Metals & Minerals Section */}
+        <div ref={metalsMineralsRef} id="metals-minerals">
+          <ProductRangeSection
+            id="metals-minerals"
+            title="Metals & Minerals"
+            subtitle="Essential raw materials and minerals for steel manufacturing processes"
+            products={metalsMinerals}
+            background="gray"
+            sectionNumber="06"
+            sectionTitle="MATERIAL CATEGORY"
+          />
+        </div>
+
+        {/* Success Stories Section */}
+        <section 
+          ref={successStoriesRef}
+          id="success-stories"
+          className="py-16 md:py-24 lg:py-32 px-4 md:px-8 lg:px-24 bg-gray-50"
+        >
+          <div className="max-w-7xl mx-auto">
+            <div className="mb-12">
+              <div className="mb-8">
+                <p className="text-sm uppercase tracking-wider font-lato text-gray-500 mb-2">IN THIS SECTION</p>
+                <span className="text-4xl font-bold font-lato text-[#203663]">07</span>
+              </div>
+              <h2 className="text-3xl uppercase md:text-4xl font-bold font-lato text-[#203663] mb-6">Success Stories</h2>
+              <p className="text-xl text-gray-700 font-lato">{successStoriesData.subtitle}</p>
+            </div>
+            <InfiniteMovingCardsDemo stories={successStoriesData.stories} />
+          </div>
+        </section>
+      </div>
+    </div>
   );
 } 

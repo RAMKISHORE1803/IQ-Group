@@ -34,19 +34,19 @@ export default function AboutSection() {
       }
 
       // Set initial state
-      gsap.set(imageContainer, { x: window.innerWidth < 768 ? 450 : 0 });
+      gsap.set(imageContainer, { x: window.innerWidth < 768 ? 450 : window.innerWidth < 1490 ? 0 : 50 });
       gsap.set(content, { x: window.innerWidth < 768 ? -450 : 0 });
       
       // Create separate animations for each element for better control
       const imageAnim = gsap.to(imageContainer, {
-        x: window.innerWidth < 768 ? 0 : window.innerWidth < 1290 ? -50 : -80,
+        x: window.innerWidth < 768 ? 0 : window.innerWidth < 1290 ? -50 : window.innerWidth < 1490 ? -80 : 0,
         ease: "power2.out",
         duration: window.innerWidth <768 ? 2 : 10,
         paused: true
       });
       
       const contentAnim = gsap.to(content, {
-        x: window.innerWidth < 768 ? 0 : window.innerWidth < 1290 ? 50 : 80,
+        x: window.innerWidth < 768 ? 0 : window.innerWidth < 1290 ? 50 : window.innerWidth < 1490 ? 50 : 40,
         ease: "power2.out",
         duration: window.innerWidth <768 ? 1 : 10,
         paused: true
@@ -128,7 +128,7 @@ export default function AboutSection() {
         <div ref={sectionRef} className="grid grid-cols-1 md:grid-cols-2 lg:ml-[0px] lg:pl-[0px] gap-8 md:gap-6 lg:gap-4 items-center">
           <div 
             ref={imageContainerRef} 
-            className="relative h-auto max-w-[550px] md:pl-[5px] sm:h-[400px] lg:ml-[0px] lg:min-w-[700px] xl:min-w-[700px] xl:pl-[20px] md:h-[500px] lg:h-[550px] w-full overflow-hidden"
+            className="relative h-auto max-w-[550px] md:pl-[5px] sm:h-[400px] lg:ml-[0px] lg:min-w-[700px] xl:min-w-[700px] xl:pl-[20px] md:h-[500px] lg:h-[550px] w-full  min-w-[1490px]:ml-[50px] overflow-hidden"
           >
             <Image
               src="/about-us.png"
@@ -144,9 +144,8 @@ export default function AboutSection() {
             POWERING INNOVATION. DELIVERING EXCELLENCE.
             </h2>
             <p className="text-gray-700 text-onest font-light sm:text-[24px] md:text-[18px] lg:text-[20px] xl:text-[25px]">
-            IQ Group powers industries with premium raw materials from alloys to minerals delivered with precision, integrity, and speed. Global reach, Mumbai roots. 
-            </p>
-            <p className="sm:text-[24px] md:text-[17px] lg:text-[21px] xl:text-[25px] text-[#1E3157] font-onest font-light leading-relaxed">Trusted by steel, aerospace, ceramics, batteries, and more.</p>
+            IQ Group fuels industries worldwide with premium raw materials—from alloys to minerals—delivered with precision, integrity, and speed.            </p>
+            <p className="sm:text-[24px] md:text-[17px] lg:text-[21px] xl:text-[25px] text-[#1E3157] font-onest font-light leading-relaxed">Trusted by leading sectors including steel, aerospace, ceramics, and battery manufacturing.</p>
             <Link href="/about">
             <button className="mt-6 cursor-pointer border bg-[#324390] text-[#fbfbfb] hover:bg-[#fbfbfb] border-2 border-[#2D4BD2] hover:border-[#2D4BD2] hover:text-[#2D4BD2] px-6 py-3 transition-all duration-300">
               Learn More

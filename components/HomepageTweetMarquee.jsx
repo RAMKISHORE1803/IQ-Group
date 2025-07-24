@@ -1,0 +1,35 @@
+'use client';
+
+import TweetMarquee from './TweetMarquee';
+
+export default function HomepageTweetMarquee() {
+  // IQ Group tweet URLs
+  const tweetUrls = [
+    "https://x.com/IQGroupMumbai/status/1932872422589399092",
+    "https://x.com/IQGroupMumbai/status/1926183337166577775",
+    "https://x.com/IQGroupMumbai/status/1925185100653760894",
+    "https://x.com/IQGroupMumbai/status/1591689282762469376"
+  ];
+
+  return (
+    <div className="bg-[#fbfbfb] py-12 md:py-16 xl:px-[8.3vw]">
+      <div className="container mx-auto">
+        <div className="mb-6">
+          <h2 className="font-bold font-lato text-[#203663] text-3xl md:text-4xl lg:text-5xl">
+            SOCIAL MEDIA UPDATES
+          </h2>
+          <p className="text-gray-600 mt-4 max-w-3xl text-[18px] lg:text-[23px] font-onest">
+            Stay connected with our latest news, events, and industry insights through our social media channels.
+          </p>
+        </div>
+      </div>
+      
+      <TweetMarquee 
+        tweetUrls={tweetUrls}
+        direction="right" 
+        speed="slow"
+        showTitle={false}
+      />
+    </div>
+  );
+} 

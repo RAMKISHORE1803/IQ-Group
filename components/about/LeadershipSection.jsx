@@ -215,20 +215,20 @@ export default function LeadershipSection() {
     >
       <div className="max-w-[1600px] mx-auto px-4 md:px-8">
         {/* Section Label */}
-        <div className="mb-8">
+        {/* <div className="mb-8">
           <div className="inline-block bg-[#e9edf5] px-4 py-2 rounded">
             <span className="text-[#324390] font-lato font-medium text-sm uppercase tracking-wider">
               LEADERSHIP TEAM
             </span>
           </div>
-        </div>
+        </div> */}
         
         {/* Heading */}
         <h2 
           ref={headingRef}
           className="text-3xl md:text-4xl lg:text-5xl font-bold font-lato text-[#324390] mb-12"
         >
-          Our Management Team
+          OUR LEADERSHIP TEAM
         </h2>
         
         {/* Desktop View Carousel */}

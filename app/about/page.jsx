@@ -19,23 +19,23 @@ if (typeof window !== 'undefined') {
 // Section links for "In This Section" navigation
 const sectionLinks = [
   {
-    title: "What We Do",
+    title: "Our Expertise",
     link: "#what-we-do"
   },
   {
-    title: "How We Do",
+    title: "Our Approach",
     link: "#how-we-do"
   },
   {
-    title: "Our Values",
+    title: "Core Values",
     link: "#our-values"
   },
   {
-    title: "Leadership",
+    title: "Our Leadership Team",
     link: "#leadership"
   },
   {
-    title: "Office Locations",
+    title: "Global Presence",
     link: "#office-locations"
   }
 ];

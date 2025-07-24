@@ -7,10 +7,22 @@ import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 import SectionNavigation from "@/components/companies/SectionNavigation";
+import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
 // Register GSAP plugins
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
+
+// Custom styles for mirror grid layout
+const customStyles = `
+  @media (min-width: 768px) {
+    .mirror-grid {
+      display: grid;
+      grid-template-columns: 2fr 4fr;
+      gap: 1rem;
+    }
+  }
+`;
 
 // Fade-in animation for sections
 const FadeInSection = ({ children, delay = 0, className = "" }) => {
@@ -263,7 +275,7 @@ const insightsCards = [
     date: "July 19, 2023",
     title: "The Evolution of Supply Chain Resilience in Material Sourcing",
     description: "Decoding the transformation from fragile networks to unbreakable material pathways. Strategic insights that redefine how industry leaders secure critical resources.",
-    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1470&auto=format&fit=crop",
+    image: "/conference/3.jpg",
     link: "#"
   },
   {
@@ -271,7 +283,7 @@ const insightsCards = [
     date: "July 15, 2023",
     title: "Material Intelligence: The Competitive Edge in Manufacturing",
     description: "Deep analysis of how material selection drives product differentiation and market leadership. Revolutionary framework for evaluating material impact on performance outcomes.",
-    image: "https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?q=80&w=1476&auto=format&fit=crop",
+    image: "/conference/4.jpg",
     link: "#"
   },
   {
@@ -279,60 +291,88 @@ const insightsCards = [
     date: "July 9, 2023",
     title: "Decarbonizing Industrial Materials: Pathways to Net Zero",
     description: "Comprehensive roadmap for achieving carbon neutrality without compromising material integrity. Visionary strategies that transform sustainability challenges into innovation catalysts.",
-    image: "https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?q=80&w=1480&auto=format&fit=crop",
+    image: "/conference/1.jpg",
     link: "#"
   },
-  {
-    type: "Analysis",
-    date: "July 5, 2023",
-    title: "The Economics of Quality: Premium Materials as Strategic Investment",
-    description: "Revealing the hidden ROI metrics of selecting exceptional materials over standard options. Mathematical proof that material excellence delivers exponential value creation.",
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1470&auto=format&fit=crop",
-    link: "#"
-  },
+  // {
+  //   type: "Analysis",
+  //   date: "July 5, 2023",
+  //   title: "The Economics of Quality: Premium Materials as Strategic Investment",
+  //   description: "Revealing the hidden ROI metrics of selecting exceptional materials over standard options. Mathematical proof that material excellence delivers exponential value creation.",
+  //   image: "/conference/2.jpg",
+  //   link: "#"
+  // },
+  // {
+  //   type: "Article",
+  //   date: "June 30, 2023",
+  //   title: "Beyond Specifications: The Art of Material Selection",
+  //   description: "Exploring the subtle factors that elevate material choices from adequate to exceptional. Strategic framework for identifying materials that unlock unprecedented product capabilities.",
+  //   image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1470&auto=format&fit=crop",
+  //   link: "#"
+  // },
+  // {
+  //   type: "Report",
+  //   date: "June 26, 2023",
+  //   title: "Material Innovation Index: Industry Benchmarking Study",
+  //   description: "Definitive analysis of innovation metrics across industrial materials sectors worldwide. Data-driven insights revealing tomorrow's material science breakthroughs today.",
+  //   image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1470&auto=format&fit=crop",
+  //   link: "#"
+  // },
+  // {
+  //   type: "Analysis",
+  //   date: "June 22, 2023",
+  //   title: "Geopolitical Shifts and Their Impact on Material Supply Chains",
+  //   description: "Strategic assessment of global dynamics reshaping material availability and pricing. Forward-looking scenarios that prepare industry leaders for tomorrow's supply challenges.",
+  //   image: "https://images.unsplash.com/photo-1533645782036-997947a9d529?q=80&w=1470&auto=format&fit=crop",
+  //   link: "#"
+  // },
+  // {
+  //   type: "Whitepaper",
+  //   date: "June 18, 2023",
+  //   title: "The Quantum Advantage: Next-Generation Materials for Industrial Excellence",
+  //   description: "Exploring the frontier where quantum science meets industrial material development. Visionary perspective on materials engineered at atomic precision for unmatched performance.",
+  //   image: "https://images.unsplash.com/photo-1581093805715-a127be2f3e5f?q=80&w=1470&auto=format&fit=crop",
+  //   link: "#"
+  // }
+];
+
+const insightsCards2 = [
   {
     type: "Article",
-    date: "June 30, 2023",
-    title: "Beyond Specifications: The Art of Material Selection",
-    description: "Exploring the subtle factors that elevate material choices from adequate to exceptional. Strategic framework for identifying materials that unlock unprecedented product capabilities.",
-    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1470&auto=format&fit=crop",
+    date: "July 19, 2023",
+    title: "The Evolution of Supply Chain Resilience in Material Sourcing",
+    description: "Decoding the transformation from fragile networks to unbreakable material pathways. Strategic insights that redefine how industry leaders secure critical resources.",
+    image: "/conference/6.jpg", 
     link: "#"
   },
   {
     type: "Report",
-    date: "June 26, 2023",
-    title: "Material Innovation Index: Industry Benchmarking Study",
-    description: "Definitive analysis of innovation metrics across industrial materials sectors worldwide. Data-driven insights revealing tomorrow's material science breakthroughs today.",
-    image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1470&auto=format&fit=crop",
+    date: "July 15, 2023",
+    title: "Material Intelligence: The Competitive Edge in Manufacturing",    
+    description: "Deep analysis of how material selection drives product differentiation and market leadership. Revolutionary framework for evaluating material impact on performance outcomes.",
+    image: "/conference/2.jpg",
     link: "#"
   },
   {
-    type: "Analysis",
-    date: "June 22, 2023",
-    title: "Geopolitical Shifts and Their Impact on Material Supply Chains",
-    description: "Strategic assessment of global dynamics reshaping material availability and pricing. Forward-looking scenarios that prepare industry leaders for tomorrow's supply challenges.",
-    image: "https://images.unsplash.com/photo-1533645782036-997947a9d529?q=80&w=1470&auto=format&fit=crop",
-    link: "#"
-  },
-  {
-    type: "Whitepaper",
-    date: "June 18, 2023",
-    title: "The Quantum Advantage: Next-Generation Materials for Industrial Excellence",
-    description: "Exploring the frontier where quantum science meets industrial material development. Visionary perspective on materials engineered at atomic precision for unmatched performance.",
-    image: "https://images.unsplash.com/photo-1581093805715-a127be2f3e5f?q=80&w=1470&auto=format&fit=crop",
+    type: "Whitepaper",   
+    date: "July 9, 2023",
+    title: "Decarbonizing Industrial Materials: Pathways to Net Zero",
+    description: "Comprehensive roadmap for achieving carbon neutrality without compromising material integrity. Visionary strategies that transform sustainability challenges into innovation catalysts.",
+    image: "/conference/5.jpg",
     link: "#"
   }
 ];
 
 const sectionLinks = [
   {
-    title: "LATEST NEWS",
-    link: "/resources#news"
+    title: "INSIGHTS",
+    link: "/resources#insights"
   },
   {
-    title: "INDUSTRY INSIGHTS",
-    link: "/resources#insights"
+    title: "LATEST NEWS",
+    link: "/resources#news"
   }
+  
 ];
 
 export default function ResourcesPage() {
@@ -376,6 +416,18 @@ export default function ResourcesPage() {
   
   return (
     <main>
+      <style jsx>{`
+        @media (min-width: 768px) {
+          .mirror-grid {
+            display: grid;
+            grid-template-columns: 2fr 4fr !important;
+            gap: 1rem;
+          }
+          .mirror-grid > div:first-child {
+            height: 100%;
+          }
+        }
+      `}</style>
       <HeroSection 
         subtitle="Resources"
         backgroundImage="https://images.unsplash.com/photo-1529253355930-ddbe423a2ac7?q=80&w=1740&auto=format&fit=crop"
@@ -386,11 +438,74 @@ export default function ResourcesPage() {
         <SectionNavigation 
           links={sectionLinks}
         />
+
+<FadeInSection className="py-16 md:py-24 px-2 md:px-4 bg-[#ffffff]" id="insights">
+          <div className="max-w-7xl mx-auto">
+            <SectionTitle number="01" title="INSIGHTS" />
+            
+            {/* First BentoGrid */}
+            <BentoGrid className="mx-auto mb-12">
+              {insightsCards.slice(0, 5).map((card, index) => (
+                <BentoGridItem
+                  key={index}
+                  header={
+                    <Link href={card.link || "#"} className="block relative w-full h-full min-h-[12rem] overflow-hidden">
+                      <img 
+                        src={card.image} 
+                        alt={card.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover/bento:scale-105"
+                      />
+                    </Link>
+                  }
+                  title={
+                    <div className="flex flex-col">
+                      <span className="text-xs font-medium text-white/90 mb-1">
+                        {card.type} • {card.date}
+                      </span>
+                      <span className="text-lg md:text-xl">{card.title}</span>
+                    </div>
+                  }
+                  className={index === 0 ? "md:col-span-4 md:row-span-2" : "md:col-span-2"}
+                />
+              ))}
+            </BentoGrid>
+
+            <BentoGrid className="mx-auto transform scale-x-[-1]">
+              {insightsCards2.slice(0, 5).map((card, index) => (
+                <BentoGridItem
+                  key={index}
+                  header={
+                    <Link href={card.link || "#"} className="block relative w-full h-full min-h-[12rem] overflow-hidden">
+                      <img 
+                        src={card.image} 
+                        alt={card.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover/bento:scale-105"
+                      />
+                    </Link>
+                  }
+                  title={
+                    <div className="flex flex-col transform scale-x-[-1]">
+                      <span className="text-xs font-medium text-white/90 mb-1">
+                        {card.type} • {card.date}
+                      </span>
+                      <span className="text-lg md:text-xl">{card.title}</span>
+                    </div>
+                  }
+                  className={index === 0 ? "md:col-span-4 md:row-span-2" : "md:col-span-2"}
+                />
+              ))}
+            </BentoGrid>
+            
+            
+           
+          </div>
+        </FadeInSection>
+
         
         {/* News Section */}
         <FadeInSection className="py-16 md:py-24 px-2 md:px-4 bg-white" id="news">
           <div className="max-w-7xl lg:max-w-[1300px] mx-auto">
-            <SectionTitle number="01" title="LATEST NEWS" />
+            <SectionTitle number="02" title="LATEST NEWS" />
             <div className="flex flex-wrap -mx-1">
               {newsCards.map((card, index) => (
                 <div key={index} className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 px-1 mb-2">
@@ -402,18 +517,7 @@ export default function ResourcesPage() {
         </FadeInSection>
         
         {/* Insights Section */}
-        <FadeInSection className="py-16 md:py-24 px-2 md:px-4 bg-gray-50" id="insights">
-          <div className="max-w-7xl mx-auto">
-            <SectionTitle number="02" title="INDUSTRY INSIGHTS" />
-            <div className="flex flex-wrap -mx-1">
-              {insightsCards.map((card, index) => (
-                <div key={index} className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 px-1 mb-2">
-                  <ResourceCard {...card} />
-                </div>
-              ))}
-            </div>
-          </div>
-        </FadeInSection>
+        
       </div>
     </main>
   );

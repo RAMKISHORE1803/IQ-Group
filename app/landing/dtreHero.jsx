@@ -18,8 +18,8 @@ const slides = [
     ariaLabel: 'Core Mission & Global Scale',
     background: PLACEHOLDER_URLS.port,
     isVideo: false,
-    headline: 'Trusted by Global Manufacturers. Powered by Proven Logistics.',
-    subtext: 'We enable raw material movement from source to industry—efficiently, reliably, worldwide.',
+    headline: 'Trusted by Global Manufacturers. Empowering End Users Worldwide."',
+    subtext: 'Driven by a dynamic quality policy, we ensure excellence at every stage—from sourcing to delivery of top-tier materials.',
     ctaText: 'Get a Quote',
     ctaLink: '/contact'
   },
@@ -52,7 +52,7 @@ const slides = [
     animatedStats: [
       { value: 20, suffix: '+', label: 'Countries' },
       { value: 15, suffix: '+', label: 'Industries' },
-      { value: 100000, suffix: 'K+', label: 'Tons Delivered' }
+      { value: 500000, suffix: '+', label: 'Tons' }
     ]
   }
 ];

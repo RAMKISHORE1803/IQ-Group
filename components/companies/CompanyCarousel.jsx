@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 import { Pause, Play, ChevronLeft, ChevronRight } from 'lucide-react';
 import { allCompanies } from './CompanyData';
 
@@ -10,6 +9,7 @@ function CompanyCard({ company, isCenter, position, scale, xOffset, yOffset, onC
   // State for mobile detection and hover
   const [isMobile, setIsMobile] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const videoRef = useRef(null);
   
   // Detect mobile screen on client side
   useEffect(() => {
@@ -31,8 +31,51 @@ function CompanyCard({ company, isCenter, position, scale, xOffset, yOffset, onC
     }
   }, []);
 
+  // Handle video playback when card is in center
+  useEffect(() => {
+    if (videoRef.current) {
+      if (isCenter) {
+        // Only load the video when the card is in center
+        if (!videoRef.current.src || videoRef.current.src === '') {
+          videoRef.current.src = getVideoSource(company.category);
+        }
+        videoRef.current.play().catch(err => console.log('Video play failed:', err));
+      } else {
+        videoRef.current.pause();
+        // Optionally unload the video when not in center to save memory
+        if (Math.abs(position) > 1) {
+          videoRef.current.removeAttribute('src');
+          videoRef.current.load();
+        }
+      }
+    }
+  }, [isCenter, position, company.category]);
+
   // Only allow hover effects on the center card
   const canShowHoverEffects = isCenter;
+  
+  // Get appropriate video based on company category
+  const getVideoSource = (category) => {
+    const categoryMap = {
+      'Ferro Alloys': '/iqwebsitevideos/Ferro Alloy Video.mp4',
+      'Metals': '/iqwebsitevideos/Metals Video.mp4',
+      'Minerals': '/iqwebsitevideos/Minerals Video.mp4',
+      'Chemicals': '/iqwebsitevideos/Chemical & Metal.mp4',
+      'Coal': '/iqwebsitevideos/Coal Video.mp4',
+      'Acid': '/iqwebsitevideos/Acid Video.mp4'
+    };
+    
+    return categoryMap[category] || '/iqwebsitevideos/Ferro Alloy Video.mp4'; // Default video
+  };
+  
+  // Handle video errors
+  const handleVideoError = (e) => {
+    console.error('Video failed to load:', e);
+    // If video fails to load, set a fallback background color
+    if (e.target) {
+      e.target.style.backgroundColor = '#000';
+    }
+  };
   
   return (
     <div
@@ -53,16 +96,32 @@ function CompanyCard({ company, isCenter, position, scale, xOffset, yOffset, onC
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Main Card Container - Insight Style */}
-      <motion.div 
+      <div 
         className="relative w-full h-full bg-cover bg-center bg-no-repeat overflow-hidden group"
-        whileHover={canShowHoverEffects ? { scale: 1.02 } : {}}
-        transition={{ duration: 0.3, ease: "easeOut" }}
       >
-        {/* Background Image */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center" 
-          style={{ backgroundImage: `url(${company.image})` }}
-        />
+        {/* Video Background */}
+        <div className="absolute inset-0 bg-black">
+          <video
+            ref={videoRef}
+            className="w-full h-full object-cover"
+            muted
+            loop
+            playsInline
+            autoPlay={isCenter}
+            preload="metadata"
+            onError={handleVideoError}
+            poster={company.image} // Use the image as a fallback poster
+            style={{
+              opacity: isCenter ? 1 : 0.8,
+              transition: 'opacity 0.5s ease'
+            }}
+          />
+          {/* Fallback for browsers that don't support video */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center z-[-1]" 
+            style={{ backgroundImage: `url(${company.image})` }}
+          />
+        </div>
         
         {/* Dark overlay for better text readability */}
         <div className="absolute inset-0 bg-black opacity-20" />
@@ -75,49 +134,25 @@ function CompanyCard({ company, isCenter, position, scale, xOffset, yOffset, onC
         </div>
         
         {/* Floating Glassy overlay - small at bottom, full card on hover */}
-        <motion.div
-          className="absolute bg-white/70 bg-opacity-40 backdrop-blur-md rounded-lg overflow-hidden"
-          initial={{ 
-            bottom: "16px",
-            left: "16px",
-            right: "16px",
-            top: "auto",
-            height: "120px"
-          }}
-          whileHover={canShowHoverEffects ? { 
-            top: "0px",
-            bottom: "0px",
-            left: "0px",
-            right: "0px",
-            height: "100%",
-            borderRadius: "0px",
-            zIndex: 50,
-            opacity: 1
-          } : {}}
-          transition={{ 
-            duration: 0.4, 
-            ease: [0.4, 0, 0.2, 1],
-            type: "tween"
-          }}
+        <div
+          className={`absolute bg-white/70 bg-opacity-40 backdrop-blur-md rounded-lg overflow-hidden transition-all duration-400 ease-out
+            ${canShowHoverEffects && isHovered 
+              ? "top-0 bottom-0 left-0 right-0 h-full rounded-none z-50" 
+              : "bottom-4 left-4 right-4 top-auto h-[120px]"}`}
         >
           {/* Default content - always visible */}
           <div className="relative z-10 p-4">
             <p className="text-xs text-gray-600 font-medium mb-1">
               COMPANY
             </p>
-            <h3 className={`font-lato font-light text-[30px] ${canShowHoverEffects ? "group-hover:line-clamp-none" : ""} line-clamp-2 text-ellipsis overflow-hidden text-black leading-tight transition-all duration-300`}>
+            <h3 className="font-lato font-light text-[30px] line-clamp-2 text-ellipsis overflow-hidden text-black leading-tight">
               {company.name}
             </h3>
           </div>
           
           {/* Expanded content - only visible on hover for center card */}
           {canShowHoverEffects && (
-            <motion.div
-              className="px-4 pb-4 opacity-0 group-hover:opacity-100"
-              initial={{ opacity: 0, y: 20 }}
-              whileHover={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: 0.1 }}
-            >
+            <div className={`px-4 pb-4 transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
               <p className="text-gray-800 text-[16px] font-onest font-light leading-relaxed mb-4">
                 {company.description}
               </p>
@@ -134,10 +169,10 @@ function CompanyCard({ company, isCenter, position, scale, xOffset, yOffset, onC
               <button className="inline-flex cursor-pointer items-center text-[16px] font-medium text-green-600 hover:text-green-700 transition-colors">
                 → Learn More
               </button>
-            </motion.div>
+            </div>
           )}
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </div>
   );
 }

@@ -36,6 +36,7 @@ if (typeof window !== 'undefined') {
  * @param {Object} props.successStoriesData - Data for success stories section
  * @param {string} props.successStoriesData.subtitle - Success stories section subtitle
  * @param {boolean} props.showSuccessStories - Whether to show the success stories section
+ * @param {boolean} props.hideProductSection - Whether to hide the materials section
  */
 export default function IndustryPageTemplate({
   title,
@@ -48,7 +49,8 @@ export default function IndustryPageTemplate({
   successStoriesData = {
     subtitle: "Real results from our partnerships with leading industry manufacturers worldwide"
   },
-  showSuccessStories = true
+  showSuccessStories = true,
+  hideProductSection = false
 }) {
   // Create section links based on which sections are included
   const sectionLinks = [
@@ -59,12 +61,16 @@ export default function IndustryPageTemplate({
     {
       title: "Industry Challenges",
       link: "#challenges"
-    },
-    {
-      title: "Key Materials",
-      link: "#key-materials"
     }
   ];
+
+  // Add materials section link if not hidden
+  if (!hideProductSection) {
+    sectionLinks.push({
+      title: "Key Materials",
+      link: "#key-materials"
+    });
+  }
 
   // Add success stories link if that section is shown
   if (showSuccessStories) {
@@ -91,9 +97,13 @@ export default function IndustryPageTemplate({
       // Create animation for each section
       const sections = [
         { ref: overviewRef, delay: 0 },
-        { ref: challengesRef, delay: 0.1 },
-        { ref: keyMaterialsRef, delay: 0.2 }
+        { ref: challengesRef, delay: 0.1 }
       ];
+
+      // Add materials section if it's not hidden
+      if (!hideProductSection) {
+        sections.push({ ref: keyMaterialsRef, delay: 0.2 });
+      }
 
       // Add success stories section if it's shown
       if (showSuccessStories) {
@@ -123,7 +133,7 @@ export default function IndustryPageTemplate({
       // Clean up any ScrollTriggers
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
-  }, [showSuccessStories]);
+  }, [showSuccessStories, hideProductSection]);
 
   return (
     <div className="industry-page bg-white">
@@ -163,15 +173,17 @@ export default function IndustryPageTemplate({
         </div>
         
         {/* Materials Section using ProductRangeSection */}
-        <div ref={keyMaterialsRef}>
-          <ProductRangeSection
-            id="key-materials"
-            title={materialsData.title}
-            subtitle={materialsData.subtitle}
-            products={materialsData.products}
-            sectionNumber="03"
-          />
-        </div>
+        {!hideProductSection && (
+          <div ref={keyMaterialsRef}>
+            <ProductRangeSection
+              id="key-materials"
+              title={materialsData.title}
+              subtitle={materialsData.subtitle}
+              products={materialsData.products}
+              sectionNumber="03"
+            />
+          </div>
+        )}
 
         {/* Success Stories Section */}
         {showSuccessStories && (
@@ -184,12 +196,12 @@ export default function IndustryPageTemplate({
               <div className="mb-12">
                 <div className="mb-8">
                   <p className="text-sm uppercase tracking-wider font-lato text-gray-500 mb-2">IN THIS SECTION</p>
-                  <span className="text-4xl font-bold font-lato text-[#203663]">04</span>
+                  <span className="text-4xl font-bold font-lato text-[#203663]">{hideProductSection ? "03" : "04"}</span>
                 </div>
                 <h2 className="text-3xl uppercase md:text-4xl font-bold font-lato text-[#203663] mb-6">Success Stories</h2>
                 <p className="text-xl text-gray-700 font-lato">{successStoriesData.subtitle}</p>
               </div>
-              <InfiniteMovingCardsDemo />
+              <InfiniteMovingCardsDemo stories={successStoriesData.stories} />
             </div>
           </section>
         )}

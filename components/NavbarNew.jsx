@@ -117,7 +117,7 @@ const NavbarNew = () => {
         { name: 'IQ International Chemical Supply', path: '/companies/international' },
         { name: 'IQ Noble Alloys', path: '/companies/noble-alloys' },
         { name: 'IQ Angel Investments', path: '/companies/angel-investments' },
-        { name: 'DAB Worldwide', path: '/companies/dab-worldwide' }
+        // { name: 'DAB Worldwide', path: '/companies/dab-worldwide' }
       ]
     },
     {
@@ -378,7 +378,7 @@ const NavbarNew = () => {
                     transform: 'scale(2.3)'
                   }}
                   height={40}
-                  priority
+                  priority="true"
                 />
               </div>
             </Link>

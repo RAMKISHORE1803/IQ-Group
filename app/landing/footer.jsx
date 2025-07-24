@@ -47,8 +47,9 @@ const IQGroupFooter = () => {
                       <select 
                         id="interests" 
                         className="w-full appearance-none border-b border-[#fbfbfb] bg-transparent text-[#fbfbfb] py-2 focus:outline-none focus:border-[#4a90e2] font-onest"
+                        defaultValue="anything"
                       >
-                        <option value="anything" disabled selected>Areas of interest (Please select)</option>
+                        <option value="anything" disabled>Areas of interest (Please select)</option>
                         <option value="option1">Option 1</option>
                         <option value="option2">Option 2</option>
                         <option value="option3">Option 3</option>

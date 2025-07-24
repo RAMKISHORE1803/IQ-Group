@@ -47,19 +47,19 @@ const GlobalConstructionPlatform = () => {
           <div className="w-full md:w-[40%] flex flex-col justify-between pr-0 md:pr-4 mb-8 md:mb-0 order-2 md:order-1">
             <div>
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-light mb-6">
-                Global construction platform
+              20+ Years of Bridging Raw Material Supply with Industrial Innovation
               </h1>
               <p className="text-gray-300 text-base md:text-lg font-light leading-relaxed mb-8 max-w-md">
               With over 20 years of industry leadership, we have established a robust international network that bridges the gap between premium raw material sources and diverse industrial applications worldwide.              </p>
-              <p className="text-gray-400 text-base hidden md:block">
+              {/* <p className="text-gray-400 text-base hidden md:block">
                 Click the map to discover more about our locations across the world.
-              </p>
+              </p> */}
             </div>
             
             {/* Stats Box - Positioned at the bottom of the left column */}
             <div className="bg-[#00a0e1] text-black p-6 md:p-8 space-y-4 md:space-y-6 mt-auto">
               <div>
-                <div className="text-2xl md:text-3xl font-light">12 Industries</div>
+                <div className="text-2xl md:text-3xl font-light">15 Industries</div>
               </div>
               <hr className="border-black opacity-20" />
               
@@ -97,9 +97,9 @@ const GlobalConstructionPlatform = () => {
             </div>
             
             {/* Mobile instruction text */}
-            <p className="text-gray-400 text-sm text-center mt-2 md:hidden">
+            {/* <p className="text-gray-400 text-sm text-center mt-2 md:hidden">
               Tap the map to explore our global locations
-            </p>
+            </p> */}
             
             {/* Country Popup - Only show if activeCountry exists */}
             {activeCountry && (

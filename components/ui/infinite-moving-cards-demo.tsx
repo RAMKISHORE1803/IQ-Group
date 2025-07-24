@@ -3,12 +3,23 @@
 import React from "react";
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 
-export default function InfiniteMovingCardsDemo() {
+interface Story {
+  quote: string;
+  name: string;
+  title: string;
+  image: string;
+}
+
+interface InfiniteMovingCardsDemoProps {
+  stories?: Story[];
+}
+
+export default function InfiniteMovingCardsDemo({ stories = defaultSuccessStories }: InfiniteMovingCardsDemoProps) {
   return (
     <div className="lg:min-h-[50vh] rounded-md flex flex-col antialiased bg-gray-50 dark:bg-black dark:bg-grid-white/[0.05] items-center justify-start relative overflow-hidden">
       
       <InfiniteMovingCards
-        items={successStories}
+        items={stories}
         direction="right"
         speed="slow"
       />
@@ -16,7 +27,7 @@ export default function InfiniteMovingCardsDemo() {
   );
 }
 
-const successStories = [
+const defaultSuccessStories = [
   {
     quote:
       "IQ Group's consistent supply of high-grade iron ore allowed us to maintain production during a critical global shortage, saving us an estimated €2.3M in potential downtime.",

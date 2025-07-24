@@ -32,11 +32,11 @@ const BusinessStatistics = () => {
     const stepDuration = duration / steps;
 
     const targets = {
-        revenue2024: 9,           // Line 26 - Change this value
-        currentPortfolio: 25,     // Line 27 - Change this value  
-        totalMarketValue: 128,      // Line 28 - Change this value
-        countriesServed: 20,        // Line 29 - Change this value
-        globalPartnerships: 190    // Line 30 - Change this value
+        revenue2024: 500000,           // Total tons of materials
+        currentPortfolio: 25,     
+        totalMarketValue: 128,      
+        countriesServed: 20,        // Countries served
+        globalPartnerships: 15      // Global partnerships
       };
 
     let currentStep = 0;
@@ -101,9 +101,7 @@ const BusinessStatistics = () => {
                 <p className="text-[20px] md:text-[27px] font-onest font-light leading-relaxed">
                 IQ Group powers global innovation by connecting businesses to premium raw materials. With trusted partners worldwide, we align interests, ensure quality, and turn bold ideas into reality through unmatched market reach.                </p>
                 
-                {/* <p className="text-xs md:text-sm text-blue-400">
-                  *Revenue as at Dec 2024. Workbook is global and the total value of work under secured contracts as at [Q1 2025] including assumed raw materials supply value on Raw Materials Management projects. All values are in USD.
-                </p> */}
+                
               </motion.div>
             </div>
           </div>
@@ -126,51 +124,57 @@ const BusinessStatistics = () => {
                     </clipPath>
                   </defs>
                   
-                  {/* Donut Chart Segments */}
+                                    {/* Donut Chart Segments */}
                   <g id="data_segments" clipPath="url(#clippath)">
-                    <motion.path 
-                      className="fill-gray-300" 
-                      d="M306.3,280.3V106.8c94.4,0,170.1,73.1,173.4,167.5l-173.4,6.1Z"
-                      initial={{ pathLength: 0 }}
-                      animate={isChartInView ? { pathLength: 1 } : { pathLength: 0 }}
-                      transition={{ duration: 3, delay: 0.5 }}
-                    />
-                    <motion.path 
-                      className="fill-gray-400" 
-                      d="M306.3,280.3l173.4-6.1c3.2,91.5-64.3,169.1-155.3,178.6l-18.1-172.6Z"
-                      initial={{ pathLength: 0 }}
-                      animate={isChartInView ? { pathLength: 1 } : { pathLength: 0 }}
-                      transition={{ duration: 3, delay: 0.6 }}
-                    />
-                    <motion.path 
-                      className="fill-gray-500" 
-                      d="M306.3,280.3l18.1,172.6c-25.5,2.7-47.3.4-71.8-7.5l53.6-165Z"
-                      initial={{ pathLength: 0 }}
-                      animate={isChartInView ? { pathLength: 1 } : { pathLength: 0 }}
-                      transition={{ duration: 3, delay: 0.7 }}
-                    />
-                    <motion.path 
-                      className="fill-gray-600" 
-                      d="M306.3,280.3l-53.6,165c-84.3-27.4-134.5-114.4-116.1-201.1l169.7,36.1Z"
-                      initial={{ pathLength: 0 }}
-                      animate={isChartInView ? { pathLength: 1 } : { pathLength: 0 }}
-                      transition={{ duration: 3, delay: 0.8 }}
-                    />
-                    <motion.path 
-                      className="fill-gray-200" 
-                      d="M306.3,280.3l-169.7-36.1c16-75.5,74.9-128.4,151.6-136.5l18.1,172.6Z"
-                      initial={{ pathLength: 0 }}
-                      animate={isChartInView ? { pathLength: 1 } : { pathLength: 0 }}
-                      transition={{ duration: 3, delay: 0.9 }}
-                    />
-                    <motion.path 
-                      className="fill-white" 
-                      d="M306.3,280.3l-18.1-172.6c5.6-.6,9.5-.8,15.1-.9l3,173.5Z"
-                      initial={{ pathLength: 0 }}
-                      animate={isChartInView ? { pathLength: 1 } : { pathLength: 0 }}
-                      transition={{ duration: 3, delay: 1.0 }}
-                    />
-                  </g>
+                      {/* Alloys - 20% */}
+                      <motion.path 
+                        className="fill-gray-300" 
+                        d="M306.3,280.3V106.8c94.4,0,171,73.1,173.4,167.5c0,1.9-0.1,3.8-0.2,5.7l-173.2,0.4Z"
+                        initial={{ pathLength: 0 }}
+                        animate={isChartInView ? { pathLength: 1 } : { pathLength: 0 }}
+                        transition={{ duration: 3, delay: 0.5 }}
+                      />
+                      {/* Metals - 20% */}
+                      <motion.path 
+                        className="fill-gray-400" 
+                        d="M306.3,280.3l173.4-6.1c3.2,91.5-64.3,169.1-155.3,178.6l-18.1-172.6Z"
+                        initial={{ pathLength: 0 }}
+                        animate={isChartInView ? { pathLength: 1 } : { pathLength: 0 }}
+                        transition={{ duration: 3, delay: 0.6 }}
+                      />
+                      {/* Minerals & Ores - 20% */}
+                      <motion.path 
+                        className="fill-gray-500" 
+                        d="M306.3,280.3l18.1,172.6c-25.5,2.7-47.3.4-71.8-7.5l53.6-165Z"
+                        initial={{ pathLength: 0 }}
+                        animate={isChartInView ? { pathLength: 1 } : { pathLength: 0 }}
+                        transition={{ duration: 3, delay: 0.7 }}
+                      />
+                      {/* Chemicals - 30% */}
+                      <motion.path 
+                        className="fill-gray-600" 
+                        d="M306.3,280.3l-53.6,165c-84.3-27.4-134.5-114.4-116.1-201.1l169.7,36.1Z"
+                        initial={{ pathLength: 0 }}
+                        animate={isChartInView ? { pathLength: 1 } : { pathLength: 0 }}
+                        transition={{ duration: 3, delay: 0.8 }}
+                      />
+                      {/* Carbon Materials - 10% */}
+                      <motion.path 
+                        className="fill-white" 
+                        d="M306.3,280.3l-169.7-36.1c16-75.5,74.9-128.4,151.6-136.5c6-0.8,12.1-1.3,18.1-1.3v173.9Z"
+                        initial={{ pathLength: 0 }}
+                        animate={isChartInView ? { pathLength: 1 } : { pathLength: 0 }}
+                        transition={{ duration: 3, delay: 0.9 }}
+                      />
+                      {/* Gap filler to complete the circle */}
+                      {/* <motion.path 
+                        className="fill-white" 
+                        d="M306.3,280.3l-18.1-172.6c5.6-.6,18.1-.9,18.1-.9v173.5Z"
+                        initial={{ pathLength: 0 }}
+                        animate={isChartInView ? { pathLength: 1 } : { pathLength: 0 }}
+                        transition={{ duration: 3, delay: 0.95 }}
+                      /> */}
+                    </g>
                   
                   {/* Pointer Lines and Dots */}
                   <g id="pointers" className="stroke-white stroke-1 fill-white">
@@ -219,25 +223,25 @@ const BusinessStatistics = () => {
                       <polyline points="201.9,164.3 140.9,127.3 114.4,127.3" className="fill-none"/>
                     </motion.g>
                     
-                    <motion.g
+                    {/* <motion.g
                       initial={{ opacity: 0 }}
                       animate={isChartInView ? { opacity: 1 } : { opacity: 0 }}
                       transition={{ duration: 0.8, delay: 1.7 }}
                     >
                       <circle cx="300" cy="120" r="3"/>
-                      <polyline points="298.7,128.8 298.4,51.7 269.2,51.7" className="fill-none"/>
-                    </motion.g>
+                      
+                    </motion.g> */}
                   </g>
                   
                   {/* Chart Labels */}
-                  <g id="text" className="fill-white">
+                  <g id="text" className="fill-gray-200">
                     <motion.g
                       initial={{ opacity: 0 }}
                       animate={isChartInView ? { opacity: 1 } : { opacity: 0 }}
                       transition={{ duration: 0.5, delay: 1.8 }}
                     >
-                      <text x="489" y="128" className="text-xs md:text-sm font-medium">Ferro Alloys</text>
-                      <text x="489" y="143" className="text-xs md:text-sm">$3.2M</text>
+                      <text x="489" y="128" className="text-xs md:text-sm font-medium">Alloys</text>
+                      <text x="489" y="143" className="text-xs md:text-sm">20%</text>
                     </motion.g>
                     
                     <motion.g
@@ -245,8 +249,8 @@ const BusinessStatistics = () => {
                       animate={isChartInView ? { opacity: 1 } : { opacity: 0 }}
                       transition={{ duration: 0.5, delay: 1.9 }}
                     >
-                      <text x="479" y="428" className="text-xs md:text-sm font-medium">Steel Industry</text>
-                      <text x="479" y="443" className="text-xs md:text-sm">$2M</text>
+                      <text x="479" y="428" className="text-xs md:text-sm font-medium">Metals</text>
+                      <text x="479" y="443" className="text-xs md:text-sm">20%</text>
                     </motion.g>
                     
                     <motion.g
@@ -254,8 +258,8 @@ const BusinessStatistics = () => {
                       animate={isChartInView ? { opacity: 1 } : { opacity: 0 }}
                       transition={{ duration: 0.5, delay: 2.0 }}
                     >
-                      <text x="220" y="485" className="text-xs md:text-sm font-medium text-center" textAnchor="middle">Chemicals</text>
-                      <text x="220" y="500" className="text-xs md:text-sm text-center" textAnchor="middle">$1.8</text>
+                      <text x="220" y="485" className="text-xs md:text-sm font-medium text-center" textAnchor="middle">Carbon Materials</text>
+                      <text x="220" y="500" className="text-xs md:text-sm text-center" textAnchor="middle">10%</text>
                     </motion.g>
                     
                     <motion.g
@@ -264,8 +268,8 @@ const BusinessStatistics = () => {
                       transition={{ duration: 0.5, delay: 2.1 }}
                     >
                       <text x="50" y="380" className="text-xs md:text-sm font-medium">Minerals &</text>
-                      <text x="50" y="395" className="text-xs md:text-sm font-medium">Metals</text>
-                      <text x="50" y="410" className="text-xs md:text-sm">$1.1M</text>
+                      <text x="50" y="395" className="text-xs md:text-sm font-medium">Ores</text>
+                      <text x="50" y="410" className="text-xs md:text-sm">20%</text>
                     </motion.g>
                     
                     <motion.g
@@ -273,20 +277,20 @@ const BusinessStatistics = () => {
                       animate={isChartInView ? { opacity: 1 } : { opacity: 0 }}
                       transition={{ duration: 0.5, delay: 2.2 }}
                     >
-                      <text x="60" y="123" className="text-xs md:text-sm font-medium">Carbon &</text>
-                      <text x="60" y="138" className="text-xs md:text-sm font-medium">Graphite</text>
-                      <text x="60" y="153" className="text-xs md:text-sm">$0.7M</text>
+                      <text x="60" y="123" className="text-xs md:text-sm font-medium">Chemicals</text>
+                      <text x="60" y="138" className="text-xs md:text-sm font-medium">30%</text>
+                      <text x="60" y="153" className="text-xs md:text-sm"></text>
                     </motion.g>
                     
-                    <motion.g
+                    {/* <motion.g
                       initial={{ opacity: 0 }}
                       animate={isChartInView ? { opacity: 1 } : { opacity: 0 }}
                       transition={{ duration: 0.5, delay: 2.3 }}
                     >
-                      <text x="220" y="47" className="text-xs md:text-sm font-medium text-center" textAnchor="middle">Raw Materials</text>
-                      <text x="220" y="62" className="text-xs md:text-sm text-center" textAnchor="middle">Trading</text>
-                      <text x="220" y="77" className="text-xs md:text-sm text-center" textAnchor="middle">$0.3M</text>
-                    </motion.g>
+                      <text x="220" y="47" className="text-xs md:text-sm font-medium text-center" textAnchor="middle">Portfolio</text>
+                      <text x="220" y="62" className="text-xs md:text-sm text-center" textAnchor="middle">Distribution</text>
+                      <text x="220" y="77" className="text-xs md:text-sm text-center" textAnchor="middle">2024</text>
+                    </motion.g> */}
                   </g>
                   
                   {/* Center Label */}
@@ -295,8 +299,8 @@ const BusinessStatistics = () => {
                     animate={isChartInView ? { opacity: 1 } : { opacity: 0 }}
                     transition={{ duration: 0.5, delay: 1.0 }}
                   >
-                    <text x="306" y="270" fill='white' className="text-white text-[24px] md:text-lg font-light text-center leading-relaxed" textAnchor="middle">Global Market</text>
-                    <text x="306" y="290" fill='white' className="text-white text-[24px] md:text-lg font-light text-center leading-relaxed" textAnchor="middle">Portfolio</text>
+                    <text x="306" y="270" fill='white' className="text-white text-[24px] md:text-lg font-medium text-center leading-relaxed" textAnchor="middle">Material</text>
+                    <text x="306" y="290" fill='white' className="text-white text-[24px] md:text-lg font-medium text-center leading-relaxed" textAnchor="middle">Categories</text>
                   </motion.g>
                 </svg>
               </motion.div>
@@ -306,7 +310,7 @@ const BusinessStatistics = () => {
             <div ref={statsRef} className="col-span-12 lg:col-span-6">
               {/* Desktop: 3x2 Grid, Tablet: 2x3 Grid, Mobile: 1 Column */}
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-12">
-                {/* 2024 Revenue */}
+                {/* Total Materials */}
                 <motion.div 
                   className="text-center xl:text-center md:text-left text-left pb-6 border-b border-gray-600"
                   initial={{ opacity: 0, y: 30 }}
@@ -314,36 +318,13 @@ const BusinessStatistics = () => {
                   transition={{ duration: 0.8, delay: 0.6 }}
                 >
                   <div className="text-3xl md:text-4xl xl:text-5xl font-bold text-white mb-3">
-                    ${animatedValues.revenue2024.toFixed(1)}M*
+                    {animatedValues.revenue2024.toFixed(0)}
                   </div>
-                  <div className="text-gray-400 text-sm">Annual Turnover</div>
+                  <div className="text-gray-400 text-sm">Tons of Materials</div>
                 </motion.div>
 
-                {/* Current Portfolio */}
-                <motion.div 
-                  className="text-center xl:text-center md:text-left text-left pb-6 border-b border-gray-600"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={isStatsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                  transition={{ duration: 0.8, delay: 0.7 }}
-                >
-                  <div className="text-3xl md:text-4xl xl:text-5xl font-bold text-white mb-3">
-                    ${animatedValues.currentPortfolio.toFixed(1)}*
-                  </div>
-                  <div className="text-gray-400 text-sm">Project Portfolio</div>
-                </motion.div>
-
-                {/* Total Market Value */}
-                {/* <motion.div 
-                  className="text-center xl:text-center md:text-left text-left pb-6 border-b border-gray-600"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={isStatsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                  transition={{ duration: 0.8, delay: 0.8 }}
-                >
-                  <div className="text-3xl md:text-4xl xl:text-5xl font-bold text-white mb-3">
-                    ${Math.round(animatedValues.totalMarketValue)}bn*
-                  </div>
-                  <div className="text-gray-400 text-sm">Total Market Value</div>
-                </motion.div> */}
+                {/* Material Categories */}
+               
 
                 {/* Countries Served */}
                 <motion.div 
@@ -371,6 +352,8 @@ const BusinessStatistics = () => {
                   <div className="text-gray-400 text-sm">Global Partnerships</div>
                 </motion.div>
 
+                {/* Top Category */}
+              
                 {/* Empty cell for desktop 3x2 grid alignment */}
                 <div className="hidden xl:block"></div>
               </div>

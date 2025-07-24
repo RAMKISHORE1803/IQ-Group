@@ -6,14 +6,17 @@ import CompanySection from './company-section';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import GlobalConstructionPlatform from './globalMap';
-import IndustriesSection from './industries-section';
-import QualitySection from './qualitySection';          
+import IndustriesSection from './industries-section'; 
 import DTREHeroCarousel from './dtreHero';
 import BCGCareersSection from './careerSection';
 import InsightsSection from './insight-section';
 import BusinessStatistics from './BusinessStatistics';
 import IQGroupFooter from './footer';
 import QualityCertificationsSection from './QualityCertificationsSection';
+import CustomerMarqueeSection from '../../components/customer-marquee-section';
+import Associates from '../../components/associates';
+// import HomepageTweetMarquee from '../../components/HomepageTweetMarquee';
+
 const debounce = (func, wait) => {
   let timeout;
   return function executedFunction(...args) {
@@ -215,6 +218,7 @@ export default function LandingPage() {
         <div className='bg-[#fbfbfb]'>
           
           <CompanySection />
+          <CustomerMarqueeSection />
           
         </div>
         
@@ -229,19 +233,23 @@ export default function LandingPage() {
         </div>
 
        <div className='md:hidden block '>
+        <Associates />
         <GlobalConstructionPlatform />
         <div className='h-[10vh]'></div>
        </div>
         
         {/* Industries section */}
         <div ref={industriesRef} className="min-h-[70vh] xl:min-h-[100vh] bg-[#fbfbfb] text-white text-4xl">
-       
+          <Associates />
           <IndustriesSection/>
           
           <BCGCareersSection />
          
            
            <InsightsSection/>
+
+           {/* <HomepageTweetMarquee /> */}
+           
            {/* <div className="h-[5vh]"></div> */}
           <QualityCertificationsSection />
           <div className="h-[5vh]"></div>

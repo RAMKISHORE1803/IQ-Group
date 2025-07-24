@@ -201,7 +201,7 @@ export default function WhatWeDoSection() {
               ref={headingRef}
               className="text-3xl md:text-4xl lg:text-5xl font-bold font-lato text-[#324390] mb-6"
             >
-              What We Do
+              Our Expertise
             </h2>
             <div 
               ref={textRef}
@@ -237,7 +237,7 @@ export default function WhatWeDoSection() {
         </div>
         
         {/* Company Divisions - Infinite Moving Cards */}
-        <div ref={cardsContainerRef} className="mt-16 md:mt-24">
+        {/* <div ref={cardsContainerRef} className="mt-16 md:mt-24">
           
           <div className="lg:min-h-[50vh] rounded-md flex flex-col antialiased bg-gray-50 dark:bg-black dark:bg-grid-white/[0.05] bg-white items-center justify-start relative overflow-hidden">
             <InfiniteMovingCards
@@ -246,7 +246,7 @@ export default function WhatWeDoSection() {
               speed="slow"
             />
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );
