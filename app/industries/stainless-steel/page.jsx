@@ -1,4 +1,4 @@
-'use client';
+
 
 import IndustryPageTemplate from '@/components/industries/IndustryPageTemplate';
 

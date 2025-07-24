@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 
 // Helper function to merge Tailwind classes
-const cn = (...classes: string[]) => {
+const cn = (...classes) => {
   return classes.filter(Boolean).join(' ');
 };
 
@@ -13,26 +13,12 @@ export const CustomerMarquee = ({
   speed = "normal",
   pauseOnHover = true,
   className,
-}: {
-  items: {
-    logo: string;
-    name: string;
-  }[];
-  direction?: "left" | "right";
-  speed?: "fast" | "normal" | "slow";
-  pauseOnHover?: boolean;
-  className?: string;
 }) => {
-  const containerRef = React.useRef<HTMLDivElement>(null);
-  const scrollerRef = React.useRef<HTMLUListElement>(null);
-
-  useEffect(() => {
-    addAnimation();
-  }, []);
-  
+  const containerRef = React.useRef(null);
+  const scrollerRef = React.useRef(null);
   const [start, setStart] = useState(false);
   
-  function addAnimation() {
+  const addAnimation = () => {
     if (containerRef.current && scrollerRef.current) {
       const scrollerContent = Array.from(scrollerRef.current.children);
 
@@ -47,7 +33,11 @@ export const CustomerMarquee = ({
       getSpeed();
       setStart(true);
     }
-  }
+  };
+
+  useEffect(() => {
+    addAnimation();
+  }, []);
   
   const getDirection = () => {
     if (containerRef.current) {

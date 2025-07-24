@@ -5,17 +5,14 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 export const InfiniteMovingCards = ({
-  items,
+  items = [],
   direction = "left",
   speed = "fast",
   pauseOnHover = true,
   className,
 }) => {
-  items = [
-    
-  ]
-  const containerRef = React.useRef<HTMLDivElement>(null);
-  const scrollerRef = React.useRef<HTMLUListElement>(null);
+  const containerRef = React.useRef(null);
+  const scrollerRef = React.useRef(null);
 
   useEffect(() => {
     addAnimation();

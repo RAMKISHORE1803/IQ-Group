@@ -3,14 +3,14 @@
 import React from "react";
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 
- 
-
 export default function InfiniteMovingCardsDemo({ stories }) {
+  // Use default stories if none are provided
+  const storiesToUse = stories || defaultSuccessStories;
+  
   return (
     <div className="lg:min-h-[50vh] rounded-md flex flex-col antialiased bg-gray-50 dark:bg-black dark:bg-grid-white/[0.05] items-center justify-start relative overflow-hidden">
-      
       <InfiniteMovingCards
-        items={stories}
+        items={storiesToUse}
         direction="right"
         speed="slow"
       />
