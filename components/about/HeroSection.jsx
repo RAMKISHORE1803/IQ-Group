@@ -30,6 +30,7 @@ const HeroSection = ({
   overlayColor = "rgba(0, 0, 0, 0.7)",
   sideText,
   navTitle = "",
+  sideTextHeight ,
   sectionLinks = [],
   showContactOptions = false
 }) => {
@@ -208,7 +209,7 @@ const HeroSection = ({
           {/* Vertical text */}
           <div 
             ref={sideTextRef}
-            className="absolute bottom-[300px] min-w-[120px] left-[-25vw] md:left-[7vw] transform -translate-x-1/2 origin-bottom-left rotate-[-90deg] text-white font-semibold lg:text-[20px]"
+            className={`absolute bottom-[${sideTextHeight || '300px'}] min-w-[120px] left-[-25vw] md:left-[7vw] transform -translate-x-1/2 origin-bottom-left rotate-[-90deg] text-white font-semibold lg:text-[20px]`}
           >
             <span className="uppercase">{displaySideText}</span>
           </div>

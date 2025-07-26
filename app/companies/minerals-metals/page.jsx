@@ -1,11 +1,7 @@
 'use client';
-import CompanyTemplate from '@/components/companies/CompanyTemplate';
-import ContentSection from '@/components/companies/ContentSection';
-import ContactCTA from '@/components/companies/ContactCTA';
-import ProductCard from '@/components/companies/ProductCard';
 import SectionWithCards from '@/components/companies/SectionWithCards';
 import SectionNavigation from '@/components/companies/SectionNavigation';
-import HeroSection from '@/components/about/HeroSection';
+import HeroSection from './hero';
 import ProductRangeSection from '@/components/companies/ProductRangeSection';
 import QualityStandardsSection from '@/components/companies/QualityStandardsSection';
 import ContactSection from '@/components/companies/ContactSection';
@@ -210,6 +206,7 @@ export default function MineralsMetalsPage() {
         backgroundImage="https://images.unsplash.com/photo-1605130284535-11dd9eedc58a?q=80&w=2070&auto=format&fit=crop"
         sideText="IQ Minerals & Metals"
         navTitle="COMPANIES"
+        sideTextHeight="280px"
       />
       {/* In This Section navigation */}
       <div className="relative bg-white">

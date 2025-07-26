@@ -186,7 +186,7 @@ export default function IndustryPageTemplate({
         )}
 
         {/* Success Stories Section */}
-        {showSuccessStories && (
+        {/* {showSuccessStories && (
           <section 
             ref={successStoriesRef}
             id="success-stories"
@@ -204,7 +204,7 @@ export default function IndustryPageTemplate({
               <InfiniteMovingCardsDemo stories={successStoriesData.stories} />
             </div>
           </section>
-        )}
+        )} */}
       </div>
     </div>
   );

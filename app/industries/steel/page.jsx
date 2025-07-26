@@ -380,7 +380,7 @@ export default function SteelIndustryPage() {
         </div>
 
         {/* Success Stories Section */}
-        <section 
+        {/* <section 
           ref={successStoriesRef}
           id="success-stories"
           className="py-16 md:py-24 lg:py-32 px-4 md:px-8 lg:px-24 bg-gray-50"
@@ -396,7 +396,7 @@ export default function SteelIndustryPage() {
             </div>
             <InfiniteMovingCardsDemo stories={successStoriesData.stories} />
           </div>
-        </section>
+        </section> */}
       </div>
     </div>
   );

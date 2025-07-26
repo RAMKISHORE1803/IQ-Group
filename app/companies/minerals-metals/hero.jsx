@@ -30,6 +30,7 @@ const HeroSection = ({
   overlayColor = "rgba(0, 0, 0, 0.7)",
   sideText,
   navTitle = "",
+  sideTextHeight ,
   sectionLinks = [],
   showContactOptions = false
 }) => {
@@ -208,7 +209,7 @@ const HeroSection = ({
           {/* Vertical text */}
           <div 
             ref={sideTextRef}
-            className="absolute bottom-[245px] min-w-[120px] left-[-25vw] md:left-[7vw] transform -translate-x-1/2 origin-bottom-left rotate-[-90deg] text-white font-semibold lg:text-[20px]"
+            className={`absolute bottom-[280px] min-w-[120px] left-[-25vw] md:left-[7vw] transform -translate-x-1/2 origin-bottom-left rotate-[-90deg] text-white font-semibold lg:text-[20px]`}
           >
             <span className="uppercase">{displaySideText}</span>
           </div>
@@ -217,7 +218,7 @@ const HeroSection = ({
         {/* Content positioned at bottom */}
         <div 
           ref={contentRef}
-          className={`hero-content relative  z-10 h-[100svh] md:h-screen bottom-[15vh] max-w-[60vw] left-[27vw] lg:max-w-7xl lg:left-[180px] flex flex-col justify-end ${showContactOptions ? 'pb-8 md:pb-4' : 'pb-12 md:pb-4'} px-4 sm:px-8 md:px-16  lg:pb-[0px] lg:px-24 xl:px-32`}
+          className={`hero-content relative  z-10 h-[100svh] md:h-screen lg:bottom-[140px] max-w-[60vw] left-[27vw] lg:max-w-7xl lg:left-[180px] flex flex-col justify-end ${showContactOptions ? 'pb-8 md:pb-4' : 'pb-12 md:pb-4'} px-4 sm:px-8 md:px-16  lg:pb-[0px] lg:px-24 xl:px-32`}
         >
           <div className="max-w-5xl mb-8 md:mb-16 lg:mb-24">
             <h1 
@@ -231,7 +232,7 @@ const HeroSection = ({
                 ref={subtitleRef}
                 className="mt-4 md:mt-6 lg:mt-12"
               >
-                <h2 className="text-[22px] leading-[28px] md:leading-tight lg:leading-normal md:text-2xl lg:text-[45px] lg:max-w-4xl font-bold font-lato text-white">
+                <h2 className="text-[22px] leading-[24px] md:leading-tight lg:leading-tight md:text-2xl lg:text-[45px]  lg:max-w-4xl font-bold font-lato text-white">
                   {subtitle}
                 </h2>
               </div>

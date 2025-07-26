@@ -429,10 +429,11 @@ export default function ResourcesPage() {
         }
       `}</style>
       <HeroSection 
-        subtitle="Resources"
+        subtitle="Explore a curated feed of IQ Group’s latest moments, market insights, and innovation in action."
         backgroundImage="https://images.unsplash.com/photo-1529253355930-ddbe423a2ac7?q=80&w=1740&auto=format&fit=crop"
         sideText="RESOURCES"
         navTitle="RESOURCES"
+        sideTextHeight="290px"
       />
       <div className="relative z-20 bg-white"> 
         <SectionNavigation 
