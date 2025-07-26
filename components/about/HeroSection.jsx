@@ -163,12 +163,12 @@ const HeroSection = ({
     <>
       <section 
         ref={heroRef} 
-        className={`relative w-full md:h-screen lg:min-h-[95vh]  bg-white overflow-hidden`}
+        className={`relative w-full md:h-screen lg:min-h-[90vh]  bg-white overflow-hidden`}
       >
         {/* Fixed Background Image */}
         <div 
           ref={backgroundRef}
-          className="fixed inset-0 w-full max-h-[97vh] md:h-screen bg-cover bg-center z-0"
+          className="fixed inset-0 w-full max-h-[90vh] md:h-screen bg-cover bg-center z-0"
           style={{ 
             backgroundImage: `url(${backgroundImage})`,
             backgroundAttachment: isMobile ? 'scroll' : 'fixed',

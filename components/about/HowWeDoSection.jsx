@@ -79,16 +79,12 @@ export default function HowWeDoSection() {
   const stepsRef = useRef([]);
   const [isMobile, setIsMobile] = useState(false);
   const [activeSteps, setActiveSteps] = useState({});
-  const [marginClass, setMarginClass] = useState("");
 
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    if (window.innerWidth < 1486) {
-      setMarginClass("ml-[-7vw]");
-    } else {
-      setMarginClass("ml-0");
-    }
-  }, []);
+  // CSS-in-JS approach for custom breakpoint
+  const leftColumnClasses = "hidden md:block col-span-4 lg:col-span-3 bg-[#203663] px-4 md:px-0 md:pl-8 mb-4 md:mb-0";
+  const leftColumnStyles = {
+    marginLeft: typeof window !== 'undefined' && window.innerWidth >= 1486 ? '0' : '-7vw'
+  };
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -183,7 +179,7 @@ export default function HowWeDoSection() {
     <section 
       id="how-we-do" 
       ref={sectionRef}
-      className="relative bg-white py-16 md:py-0 "
+      className="relative bg-white py-16 md:py-0"
     >
       <div className="container mx-auto px-4 md:px-0">
         {/* Mobile Header - Only visible on mobile */}
@@ -205,11 +201,12 @@ export default function HowWeDoSection() {
           </div>
         </div>
         
-        <div className={`md:grid md:grid-cols-12 md:gap-8 ${marginClass}}`}>
+        <div className="md:grid md:grid-cols-12 md:gap-8">
           {/* Left Column - Fixed CTA - Hidden on mobile */}
           <div
             ref={leftColumnRef}
-            className={`hidden md:block col-span-4 lg:col-span-3 bg-[#203663] px-4 md:px-0 md:pl-8 mb-4 md:mb-0 `}
+            className={leftColumnClasses}
+            style={leftColumnStyles}
           >
             <div className="md:h-screen md:flex md:flex-col md:justify-center md:sticky md:top-0">
               <div className="max-w-xs">
@@ -255,4 +252,4 @@ export default function HowWeDoSection() {
       </div>
     </section>
   );
-} 
+}

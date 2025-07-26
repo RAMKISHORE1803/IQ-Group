@@ -346,7 +346,7 @@ export default function QualityInsightsPage() {
         sideText="QUALITY & INSIGHTS"
         navTitle="QUALITY & INSIGHTS"
       />
-      <div className="relative z-20 bg-white"> 
+      <div className="relative z-20 bg-white lg:pt-[2vh]"> 
         <div 
           ref={introRef}
           className="w-full max-w-7xl md:max-w-[1300px] flex flex-wrap justify-between mx-auto px-4 py-12 bg-[#ffffff]"

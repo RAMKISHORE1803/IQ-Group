@@ -166,7 +166,7 @@ const HeroSection = ({
         {/* Fixed Background Image */}
         <div 
           ref={backgroundRef}
-          className="fixed inset-0 w-full max-h-[97vh] md:h-screen bg-cover bg-center z-0"
+          className="fixed inset-0 w-full max-h-[92vh] md:h-screen bg-cover bg-center z-0"
           style={{ 
             backgroundImage: `url(${backgroundImage})`,
             backgroundAttachment: isMobile ? 'scroll' : 'fixed',

@@ -16,6 +16,7 @@ export const theme = {
       "2xl": "1400px",
     },
   },
+
   extend: {
     fontFamily: {
       sans: ['var(--font-geist-sans)'],
@@ -62,6 +63,9 @@ export const theme = {
       card: {
         DEFAULT: "hsl(var(--card))",
         foreground: "hsl(var(--card-foreground))",
+      },
+      screens:{
+        'custom': '1486px',
       },
     },
     borderRadius: {
