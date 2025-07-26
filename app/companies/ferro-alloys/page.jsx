@@ -97,13 +97,14 @@ const sectionLinks = [
     link: "#how-we-deliver-value"
   },
   {
-    title: "Our capabilities",
-    link: "#our-capabilities"
-  },
-  {
     title: "Product range",
     link: "#product-range"
   },
+  {
+    title: "Our capabilities",
+    link: "#our-capabilities"
+  },
+  
   {
     title: "Quality standards",
     link: "#quality-standards"
@@ -115,7 +116,8 @@ export default function FerroAlloysPage() {
     <div className="relative bg-white">
       <HeroSection
         title=""
-        subtitle="We power the world's steel with high-value Ferro Alloys — fast, reliable, and globally sourced. Trusted by industries. Built for speed."
+        subtitle="Powering global steel with premium Ferro Alloys fast, trusted, relentless, world-class delivery.
+"
         backgroundImage="https://images.unsplash.com/photo-1547555706-54bcf05bbad1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8ZmVycm8lMjBhbGxveXxlbnwwfHwwfHx8MA%3D%3D"
         sideText="IQ Ferro Alloys"
         navTitle="COMPANIES"
@@ -133,6 +135,15 @@ export default function FerroAlloysPage() {
           hasDivider={false}
           sectionNumber="01"
         />
+
+         {/* Product Range Section */}
+         <ProductRangeSection
+          id="product-range"
+          title="Our Product Range"
+          subtitle="Premium ferro alloys for diverse industrial applications"
+          products={products}
+          sectionNumber="02"
+        />
         
         {/* Our Capabilities Section */}
         <SectionWithCards
@@ -141,17 +152,10 @@ export default function FerroAlloysPage() {
           subtitle="Beyond products — we optimize supply."
           cards={capabilityCards}
           background="gray"
-          sectionNumber="02"
-        />
-        
-        {/* Product Range Section */}
-        <ProductRangeSection
-          id="product-range"
-          title="Our Product Range"
-          subtitle="Premium ferro alloys for diverse industrial applications"
-          products={products}
           sectionNumber="03"
         />
+        
+       
         
         {/* Quality Standards Section */}
         <QualityStandardsSection

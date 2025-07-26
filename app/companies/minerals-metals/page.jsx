@@ -181,10 +181,6 @@ const sectionLinks = [
     link: "#how-we-deliver-value"
   },
   {
-    title: "Our capabilities",
-    link: "#our-capabilities"
-  },
-  {
     title: "Minerals",
     link: "#minerals"
   },
@@ -192,6 +188,11 @@ const sectionLinks = [
     title: "Metals",
     link: "#metals"
   },
+  {
+    title: "Our capabilities",
+    link: "#our-capabilities"
+  },
+  
   
   {
     title: "Quality standards",
@@ -204,7 +205,8 @@ export default function MineralsMetalsPage() {
     <div className="relative">
       <HeroSection
         title=""
-        subtitle="With 20+ years of global impact, IQ delivers premium raw materials across 20 nations—driven by precision, trust, innovation, and client-focused excellence"
+        subtitle="20+ years. 20 nations. IQ delivers raw materials with trust, precision, and innovation.
+"
         backgroundImage="https://images.unsplash.com/photo-1605130284535-11dd9eedc58a?q=80&w=2070&auto=format&fit=crop"
         sideText="IQ Minerals & Metals"
         navTitle="COMPANIES"
@@ -222,24 +224,14 @@ export default function MineralsMetalsPage() {
           hasDivider={false}
           sectionNumber="01"
         />
-        
-        {/* Our Capabilities Section */}
-        <SectionWithCards
-          id="our-capabilities"
-          title="Our Capabilities"
-          subtitle="Comprehensive mineral and metal solutions with global reach."
-          cards={capabilityCards}
-          background="gray"
-          sectionNumber="02"
-        />
-        
+
         {/* Products Section - Minerals */}
         <ProductRangeSection
           id="minerals"
           title="Minerals"
           subtitle="Premium industrial minerals for diverse applications"
           products={products.minerals}
-          sectionNumber="03"
+          sectionNumber="02"
         />
         
         {/* Products Section - Metals */}
@@ -248,9 +240,21 @@ export default function MineralsMetalsPage() {
           title="Metals"
           subtitle="High-quality metal raw materials for precision manufacturing"
           products={products.metals}
-          sectionNumber="04"
+          sectionNumber="03"
           background="gray"
         />
+        
+        {/* Our Capabilities Section */}
+        <SectionWithCards
+          id="our-capabilities"
+          title="Our Capabilities"
+          subtitle="Comprehensive mineral and metal solutions with global reach."
+          cards={capabilityCards}
+          background="gray"
+          sectionNumber="04"
+        />
+        
+        
         
         {/* Industries Served Section */}
         {/* <ContentSection id="industries-served" title="Industries We Serve" background="white" sectionNumber="05">

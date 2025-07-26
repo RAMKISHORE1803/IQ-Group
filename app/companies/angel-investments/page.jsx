@@ -1,7 +1,7 @@
 'use client';
 import SectionWithCards from '@/components/companies/SectionWithCards';
 import SectionNavigation from '@/components/companies/SectionNavigation';
-import HeroSection from '@/components/about/HeroSection';
+import HeroSection from './HeroSection';
 import ProductRangeSection from '@/components/companies/ProductRangeSection';
 import Link from 'next/link';
 import { useState, useRef, useEffect } from 'react';
@@ -128,13 +128,14 @@ const sectionLinks = [
     link: "#investment-philosophy"
   },
   {
+    title: "Areas of Interest",
+    link: "#areas-of-interest"
+  },
+  {
     title: "Our Approach",
     link: "#our-approach"
   },
-  {
-    title: "Areas of Interest",
-    link: "#areas-of-interest"
-  }
+  
 ];
 
 // Accordion Item Component for Investment Philosophy
@@ -357,8 +358,9 @@ export default function AngelInvestmentsPage() {
   return (
     <div className="relative">
       <HeroSection
-        title="Fueling the Next Generation of Innovators since 2016"
-        subtitle="Early‑stage capital, mentoring, and market access for high‑potential startups."
+        title=""
+        subtitle="Fueling high-potential startups with capital, mentorship, and unmatched access to global markets.
+"
         backgroundImage="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
         sideText="IQ Angel Investments"
         navTitle="COMPANIES"
@@ -385,6 +387,14 @@ export default function AngelInvestmentsPage() {
           criteria={investmentCriteria}
           sectionNumber="01"
         />
+
+<ProductRangeSection
+          id="areas-of-interest"
+          title="Areas of Interest"
+          subtitle="Innovative ideas need the right backing. We support entrepreneurs across diverse sectors."
+          products={areasOfInterest}
+          sectionNumber="02"
+        />
         
         {/* Our Approach Section */}
         <SectionWithCards
@@ -393,17 +403,11 @@ export default function AngelInvestmentsPage() {
           subtitle="What We Bring to the Table"
           cards={approachCards}
           background="gray"
-          sectionNumber="02"
+          sectionNumber="03"
         />
         
         {/* Areas of Interest Section */}
-        <ProductRangeSection
-          id="areas-of-interest"
-          title="Areas of Interest"
-          subtitle="Innovative ideas need the right backing. We support entrepreneurs across diverse sectors."
-          products={areasOfInterest}
-          sectionNumber="03"
-        />
+        
       </div>
     </div>
   );

@@ -297,7 +297,8 @@ export default function SteelIndustryPage() {
     <div className='bg-white'>
       <HeroSection 
         title=""
-        subtitle="We support the steel industry with a comprehensive range of high-quality raw materials, enabling enhanced performance across carbon, alloy, and stainless steel production."
+        subtitle="Empowering steel with premium raw materials—driving performance in carbon, alloy, and stainless steel.
+"
         backgroundImage="https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3"
         sideText="STEEL INDUSTRY"
         navTitle="INDUSTRIES"

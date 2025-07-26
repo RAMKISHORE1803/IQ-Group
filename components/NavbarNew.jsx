@@ -110,14 +110,13 @@ const NavbarNew = () => {
       path: '/companies',
       megaMenu: 'companies',
       dropdown: [
-        { name: 'IQ Ferro Alloys', path: '/companies/ferro-alloys' },
         { name: 'IQ Minerals & Metals', path: '/companies/minerals-metals' },
-        { name: 'IQ Coke & Coal', path: '/companies/coke-coal' },
-        { name: 'IQ Green Energy', path: '/companies/green-energy' },
-        { name: 'IQ International Chemical Supply', path: '/companies/international' },
+        { name: 'IQ Ferro Alloys', path: '/companies/ferro-alloys' },
         { name: 'IQ Noble Alloys', path: '/companies/noble-alloys' },
-        { name: 'IQ Angel Investments', path: '/companies/angel-investments' },
-        // { name: 'DAB Worldwide', path: '/companies/dab-worldwide' }
+        { name: 'IQ Coke & Coal', path: '/companies/coke-coal' },
+        { name: 'IQ International', path: '/companies/international' },
+        { name: 'IQ Angel Investment', path: '/companies/angel-investments' },
+        { name: 'IQ Green Energy', path: '/companies/green-energy' }
       ]
     },
     {
@@ -359,8 +358,8 @@ const NavbarNew = () => {
       {/* Main Navbar */}
       <header
         ref={navRef}
-        className={`fixed ${!isMobile ? 'top-[28px]' : 'top-0'} left-0 w-full z-40 transition-all duration-300 max-h-[18vh] 
-          ${isScrolled || hoveredItem ? 'bg-[#fbfbfb] text-[#0e3364] shadow-md' : 'bg-transparent text-white'}
+        className={`fixed ${!isMobile ? 'top-[28px]' : 'top-0'} left-0 w-full z-40 transition-all duration-300 min-h-[10vh] 
+        ${isScrolled ? 'bg-[#fbfbfb] text-[#0e3364] shadow-md' : 'bg-transparent text-white'}
           ${isVisible ? 'transform translate-y-0' : 'transform -translate-y-full'}
         `}
         aria-label="Main Navigation"
@@ -371,13 +370,13 @@ const NavbarNew = () => {
             <Link href="/" className="flex items-center">
               <div className="flex items-center">
                 <img
-                  src="https://videos.openai.com/vg-assets/assets%2Ftask_01k0nqtt3ae6xvg6mkwy0fspbq%2F1753076466_img_0.webp?st=2025-07-21T03%3A52%3A25Z&se=2025-07-27T04%3A52%3A25Z&sks=b&skt=2025-07-21T03%3A52%3A25Z&ske=2025-07-27T04%3A52%3A25Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=aa5ddad1-c91a-4f0a-9aca-e20682cc8969&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=9%2FAgFXrq9VBA%2BGgQJ1ZQnlrar5JpXMUL72NhcI7TDaA%3D&az=oaivgprodscus"
+                  src="/logo/2.png"
                   alt="IQ Groups Logo"
-                  width={120}
+                  width={60}
                   style={{
-                    transform: 'scale(2.3)'
+                    transform: 'scale(1.5)'
                   }}
-                  height={40}
+                  height={60}
                   priority="true"
                 />
               </div>

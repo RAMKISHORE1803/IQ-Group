@@ -93,13 +93,14 @@ const sectionLinks = [
     link: "#how-we-deliver-value"
   },
   {
-    title: "Our capabilities",
-    link: "#our-capabilities"
-  },
-  {
     title: "Products",
     link: "#products"
   },
+  {
+    title: "Our capabilities",
+    link: "#our-capabilities"
+  },
+  
   {
     title: "Applications",
     link: "#applications"
@@ -115,7 +116,8 @@ export default function NobleAlloysPage() {
     <div className="relative">
       <HeroSection
         title=""
-      subtitle="We bring precision to progress — delivering high-grade noble alloys through an exclusive global distribution network. Focused. Trusted. Built for the industries that shape the future."
+      subtitle="Precision meets progress — noble alloys delivered globally for the industries shaping tomorrow. Trusted. Elite.
+"
       backgroundImage="https://images.unsplash.com/photo-1533613220915-609f661a6fe1?q=80&w=2070&auto=format&fit=crop"
         sideText="IQ Noble Alloys"
       navTitle="COMPANIES"
@@ -133,6 +135,14 @@ export default function NobleAlloysPage() {
         hasDivider={false}
         sectionNumber="01"
       />
+
+  <ProductRangeSection
+          id="products"
+          title="Our Products"
+          subtitle="Premium noble alloys for specialized industrial applications"
+          products={products}
+          sectionNumber="02"
+        />
       
       {/* Our Capabilities Section */}
       <SectionWithCards
@@ -141,17 +151,11 @@ export default function NobleAlloysPage() {
         subtitle="Precision noble alloy distribution with global reach."
         cards={capabilityCards}
         background="gray"
-        sectionNumber="02"
+        sectionNumber="03"
       />
       
       {/* Products Section */}
-        <ProductRangeSection
-          id="products"
-          title="Our Products"
-          subtitle="Premium noble alloys for specialized industrial applications"
-          products={products}
-          sectionNumber="03"
-        />
+        
       
       {/* Applications Section */}
       

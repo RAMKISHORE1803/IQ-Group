@@ -89,10 +89,10 @@ const batteryMaterials = [
 export default function BatteryIndustriesPage() {
   return (
     <IndustryPageTemplate
-      title="Battery Industries"
+      title="Battery Industry"
       subtitle="Supplying premium materials for advanced energy storage with exceptional purity and performance."
       backgroundImage="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3"
-      sideText="BATTERY INDUSTRIES"
+      sideText="BATTERY INDUSTRY"
       overviewData={{
         subtitle: "Empowering energy storage innovation with precision-engineered materials and technical expertise",
         cards: overviewCards

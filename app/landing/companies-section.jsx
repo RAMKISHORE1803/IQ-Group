@@ -181,7 +181,7 @@ export default function CompaniesSection() {
   return (
     <section 
       ref={sectionRef}
-      className="py-[5px] md:py-32 bg-[#fbfbfb] from-[#010A4E] to-[#041174] relative min-h-[400vh]"
+      className="py-[5px] md:pt-8 md:pb-0 bg-[#fbfbfb] from-[#010A4E] to-[#041174] relative min-h-[400vh]"
       id="companies-section"
     >
       {/* This container will be pinned */}

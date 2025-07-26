@@ -6,7 +6,7 @@ import ProductCard from '@/components/companies/ProductCard';
 import SectionWithCards from '@/components/companies/SectionWithCards';
 import SectionNavigation from '@/components/companies/SectionNavigation';
 import ProductRangeSection from '@/components/companies/ProductRangeSection';
-import HeroSection from '@/components/about/HeroSection';
+import HeroSection from './HeroSection';
 import QualityStandardsSection from '@/components/companies/QualityStandardsSection';
 
 // Value cards data for "How We Deliver Value" section
@@ -136,13 +136,14 @@ const sectionLinks = [
     link: "#how-we-deliver-value"
   },
   {
-    title: "Our capabilities",
-    link: "#our-capabilities"
-  },
-  {
     title: "Chemicals",
     link: "#chemicals"
   },
+  {
+    title: "Our capabilities",
+    link: "#our-capabilities"
+  },
+ 
   {
     title: "Quality standards",
     link: "#quality-standards"
@@ -154,7 +155,7 @@ export default function InternationalPage() {
     <div className="relative">
       <HeroSection
         title=""
-        subtitle="Driving the world forward with bold strategy, trusted networks, and global chemical solutions that go beyond products,we deliver momentum."
+        subtitle="We drive progress with bold strategy, global reach, trusted networks, and transformative chemical solutions."
         backgroundImage="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
         sideText="IQ International"
         navTitle="COMPANIES"
@@ -172,6 +173,15 @@ export default function InternationalPage() {
           hasDivider={false}
           sectionNumber="01"
         />
+
+         {/* Chemicals Section */}
+         <ProductRangeSection
+          id="chemicals"
+          title="Chemicals"
+          subtitle="Premium industrial and specialty chemicals for diverse applications"
+          products={products}
+          sectionNumber="02"
+        />
         
         {/* Our Capabilities Section */}
         <SectionWithCards
@@ -180,17 +190,10 @@ export default function InternationalPage() {
           subtitle="Comprehensive chemical solutions with global reach."
           cards={capabilityCards}
           background="gray"
-          sectionNumber="02"
-        />
-        
-        {/* Chemicals Section */}
-        <ProductRangeSection
-          id="chemicals"
-          title="Chemicals"
-          subtitle="Premium industrial and specialty chemicals for diverse applications"
-          products={products}
           sectionNumber="03"
         />
+        
+       
         
         {/* Quality Standards Section */}
         <QualityStandardsSection

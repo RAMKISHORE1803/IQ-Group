@@ -89,7 +89,7 @@ const aerospaceMaterials = [
 export default function AerospaceIndustryPage() {
   return (
     <IndustryPageTemplate
-      title="Aerospace Industry"
+      title=""
       subtitle="Supplying certified aerospace materials with uncompromising quality and complete traceability."
       backgroundImage="https://images.unsplash.com/photo-1559297434-fae8a1916a79?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3"
       sideText="AEROSPACE INDUSTRY"

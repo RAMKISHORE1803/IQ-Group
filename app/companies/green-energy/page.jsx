@@ -10,6 +10,7 @@ import ProductRangeSection from '@/components/companies/ProductRangeSection';
 import { useState, useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import ContactSection from '@/components/companies/ContactSection';
 
 // Register GSAP plugins
 if (typeof window !== 'undefined') {
@@ -182,7 +183,7 @@ const capabilityCards = [
       >
         <button
           onClick={() => onClick(id)}
-          className="w-full py-6 flex items-center justify-between text-left focus:outline-none"
+          className="w-full py-6 flex cursor-pointer items-center justify-between text-left focus:outline-none"
           aria-expanded={isActive}
           aria-controls={`content-${id}`}
         >
@@ -314,7 +315,7 @@ const capabilityCards = [
             <div className="font-lato">
               {sectionNumber && (
                 <div className="mb-8">
-                  <p ref={sectionTitleRef} className="text-sm uppercase tracking-wider font-lato text-gray-500 mb-2">IN THIS SECTION</p>
+                  <p ref={sectionTitleRef} className="text-sm  uppercase tracking-wider font-lato text-gray-500 mb-2">IN THIS SECTION</p>
                   <span ref={numberRef} className="text-4xl font-bold text-[#203663]">{sectionNumber}</span>
                 </div>
               )}
@@ -358,7 +359,8 @@ const capabilityCards = [
       <div className="relative">
         <HeroSection
           title=""
-          subtitle="IQ Green Energy fuses wind and sun into one seamless system—clean, quiet, and built for the future. From rooftops to remote microgrids, we make renewable energy effortless."
+          subtitle="IQ Green Energy unites wind and sun—seamless, silent, future-ready power anywhere, effortlessly delivered.
+"
           backgroundImage="https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
           sideText="IQ Green Energy"
           navTitle="COMPANIES"
@@ -387,12 +389,7 @@ const capabilityCards = [
           />
           
           {/* Contact CTA */}
-          <ContentSection>
-            <ContactCTA 
-              title="Ready to discuss your renewable energy requirements?" 
-              description="Our industry experts are available to help you find the right solution for your needs."
-            />
-          </ContentSection>
+          <ContactSection />
         </div>
       </div>
     );

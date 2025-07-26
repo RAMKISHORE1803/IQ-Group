@@ -15,7 +15,7 @@ import IQGroupFooter from './footer';
 import QualityCertificationsSection from './QualityCertificationsSection';
 import CustomerMarqueeSection from '../../components/customer-marquee-section';
 import Associates from '../../components/associates';
-// import HomepageTweetMarquee from '../../components/HomepageTweetMarquee';
+import HomepageTweetMarquee from '../../components/HomepageTweetMarquee';
 
 const debounce = (func, wait) => {
   let timeout;
@@ -248,7 +248,7 @@ export default function LandingPage() {
            
            <InsightsSection/>
 
-           {/* <HomepageTweetMarquee /> */}
+           <HomepageTweetMarquee />
            
            {/* <div className="h-[5vh]"></div> */}
           <QualityCertificationsSection />

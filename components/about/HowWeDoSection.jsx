@@ -47,8 +47,8 @@ const processSteps = [
 function ProcessStep({ title, description, image, index, inView }) {
   return (
     <div 
-      className={`mb-16 md:mb-48 transition-opacity duration-700 ${inView ? 'opacity-100' : 'opacity-0'}`}
-      style={{ transitionDelay: `${index * 0.2}s` }}
+      className={`mb-16 md:mb-48 transition-opacity duration-300 ${inView ? 'opacity-100' : 'opacity-0'}`}
+      style={{ transitionDelay: `${index * 0.1}s` }}
     >
       <div className="grid md:grid-cols-2 gap-6 md:gap-12 items-center">
         {/* Image - Full height on left side */}
@@ -173,7 +173,7 @@ export default function HowWeDoSection() {
     <section 
       id="how-we-do" 
       ref={sectionRef}
-      className="relative bg-white py-16 md:py-0"
+      className="relative bg-white py-16 md:py-0 "
     >
       <div className="container mx-auto px-4 md:px-0">
         {/* Mobile Header - Only visible on mobile */}
@@ -195,11 +195,11 @@ export default function HowWeDoSection() {
           </div>
         </div>
         
-        <div className="md:grid md:grid-cols-12 md:gap-8">
+        <div className={`md:grid md:grid-cols-12 md:gap-8 ${window.innerWidth < 1486 ? 'ml-[-7vw]' : 'ml-0'}`}>
           {/* Left Column - Fixed CTA - Hidden on mobile */}
           <div 
             ref={leftColumnRef}
-            className="hidden md:block col-span-4 lg:col-span-3 bg-[#203663] px-4 md:px-0 md:pl-8 mb-4 md:mb-0"
+            className={`hidden md:block col-span-4 lg:col-span-3 bg-[#203663] px-4 md:px-0 md:pl-8 mb-4 md:mb-0 `}
           >
             <div className="md:h-screen md:flex md:flex-col md:justify-center md:sticky md:top-0">
               <div className="max-w-xs">
@@ -214,7 +214,7 @@ export default function HowWeDoSection() {
                 
                 {/* CTA Button - More minimalist */}
                 <div className="mt-8">
-                  <button className="bg-[#fbfbfb] text-[#324390] hover:bg-[#324390] hover:text-[#fbfbfb] transition-colors py-4 px-6 text-lg font-onest">
+                  <button className="bg-[#fbfbfb] cursor-pointer text-[#324390] hover:bg-[#324390] hover:text-[#fbfbfb] transition-colors py-4 px-6 text-lg font-onest">
                     Contact Our Experts
                   </button>
                 </div>

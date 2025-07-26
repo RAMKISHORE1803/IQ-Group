@@ -1,7 +1,7 @@
 'use client';
 import React, { useRef, useEffect, useState } from "react";
 import Link from 'next/link';
-import HeroSection from "@/components/contact/herosection";
+import HeroSection from "./HeroSection";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SectionWithCards from '@/components/companies/SectionWithCards';
@@ -390,8 +390,8 @@ export default function QualityInsightsPage() {
           className="py-24 bg-[#f5f5f5]"
         >
           <div className="container mx-auto px-4 ">
-            <div className="max-w-3xl  text-left mb-16">
-              <p className="text-sm uppercase tracking-wider font-lato text-left text-gray-500 mb-2">IN THIS SECTION</p>
+            <div className="max-w-3xl  text-left mb-8">
+              {/* <p className="text-sm uppercase tracking-wider font-lato text-left text-gray-500 mb-2">IN THIS SECTION</p> */}
               <span className="text-4xl font-bold font-lato text-[#324390] block mb-4">03</span>
               <h2 
                 ref={certificateTitleRef}
@@ -410,7 +410,7 @@ export default function QualityInsightsPage() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 relative">
                 {/* Left column - Certificate Image - Sticky */}
                 <div ref={certificateLeftColRef} className="lg:sticky lg:top-24 lg:self-start">
-                  <div className="aspect-w-16 aspect-h-9 mb-8 overflow-hidden rounded-lg relative h-[600px]">
+                  <div className="aspect-w-16 aspect-h-9 mb-8 overflow-hidden rounded-lg relative h-[580px]">
                     {displayedCertificate && (
                       <div 
                         key={displayedCertificate.id}
@@ -427,21 +427,7 @@ export default function QualityInsightsPage() {
                       </div>
                     )}
                   </div>
-                  {/* <div className="bg-[#324390]/10 p-6 rounded-lg transition-all duration-300 ease-in-out">
-                    <h3 className="font-lato font-bold text-[#324390] mb-4 lg:text-[24px] transition-opacity duration-300 ease-in-out">
-                      {displayedCertificate?.title}
-                    </h3>
-                    <p className="text-gray-700 font-onest font-light lg:text-[18px] transition-opacity duration-300 ease-in-out">
-                      Our certifications validate our commitment to quality, sustainability, and excellence in all our business operations.
-                    </p>
-                    {displayedCertificate && (
-                      <div className="mt-6">
-                        <p className="flex items-center text-[#324390]">
-                          <span className="mr-1">Issued by: {displayedCertificate.issuedBy}</span>
-                        </p>
-                      </div>
-                    )}
-                  </div> */}
+                 
                 </div>
                 
                 {/* Right column - Accordion - Scrollable */}

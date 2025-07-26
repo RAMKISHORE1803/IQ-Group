@@ -117,13 +117,14 @@ const sectionLinks = [
     link: "#how-we-deliver-value"
   },
   {
-    title: "Our capabilities",
-    link: "#our-capabilities"
-  },
-  {
     title: "Product range",
     link: "#product-range"
   },
+  {
+    title: "Our capabilities",
+    link: "#our-capabilities"
+  },
+  
   {
     title: "Quality standards",
     link: "#quality-standards"
@@ -135,7 +136,8 @@ export default function CokeCoalPage() {
     <div className="relative">
       <HeroSection
         title=""
-        subtitle="With 20+ years in carbon materials, we power global industries through seamless supply, deep expertise, and a network built for scale.
+        subtitle="20+ years in carbon. Seamless supply. Global scale. Expertise that powers every industry forward.
+
 "
         backgroundImage="https://images.unsplash.com/photo-1589007716619-42656585dd85?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Y29hbHxlbnwwfHwwfHx8MA%3D%3D"
         sideText="IQ Coke & Coal"
@@ -154,6 +156,15 @@ export default function CokeCoalPage() {
           hasDivider={false}
           sectionNumber="01"
         />
+
+         {/* Product Range Section */}
+         <ProductRangeSection
+          id="product-range"
+          title="Our Product Range"
+          subtitle="Premium carbon materials for diverse industrial applications"
+          products={products}
+          sectionNumber="02"
+        />
         
         {/* Our Capabilities Section */}
         <SectionWithCards
@@ -162,17 +173,10 @@ export default function CokeCoalPage() {
           subtitle="End-to-end carbon material solutions for global industry."
           cards={capabilityCards}
           background="gray"
-          sectionNumber="02"
-        />
-        
-        {/* Product Range Section */}
-        <ProductRangeSection
-          id="product-range"
-          title="Our Product Range"
-          subtitle="Premium carbon materials for diverse industrial applications"
-          products={products}
           sectionNumber="03"
         />
+        
+       
         
         {/* Quality Standards Section */}
         <QualityStandardsSection

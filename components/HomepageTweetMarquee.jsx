@@ -1,6 +1,7 @@
 'use client';
 
 import TweetMarquee from './TweetMarquee';
+import { motion } from 'framer-motion';
 
 export default function HomepageTweetMarquee() {
   // IQ Group tweet URLs
@@ -14,14 +15,19 @@ export default function HomepageTweetMarquee() {
   return (
     <div className="bg-[#fbfbfb] py-12 md:py-16 xl:px-[8.3vw]">
       <div className="container mx-auto">
-        <div className="mb-6">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.4 }}
+          transition={{ duration: 0.5 }}
+          className="mb-6">
           <h2 className="font-bold font-lato text-[#203663] text-3xl md:text-4xl lg:text-5xl">
             SOCIAL MEDIA UPDATES
           </h2>
           <p className="text-gray-600 mt-4 max-w-3xl text-[18px] lg:text-[23px] font-onest">
             Stay connected with our latest news, events, and industry insights through our social media channels.
           </p>
-        </div>
+        </motion.div>
       </div>
       
       <TweetMarquee 

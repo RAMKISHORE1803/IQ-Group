@@ -1,37 +1,108 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-
-
+import { useEffect, useRef, useState } from "react";
 
 const TweetEmbed = ({ tweetUrl }) => {
   const containerRef = useRef(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
   
   // Convert x.com URLs to twitter.com URLs if needed
-  const normalizedTweetUrl = tweetUrl.replace('x.com', 'twitter.com');
+  const normalizedTweetUrl = tweetUrl?.replace('x.com', 'twitter.com') || "";
 
   useEffect(() => {
-    // Load the Twitter embed script only once
-    if (!window?.twttr) {
-      const script = document.createElement("script");
-      script.src = "https://platform.twitter.com/widgets.js";
-      script.async = true;
-      document.body.appendChild(script);
-      
-      // When script loads, parse the container
-      script.onload = () => {
-        window?.twttr?.widgets?.load(containerRef.current);
-      };
-    } else {
-      // If already loaded, parse the container again
-      window?.twttr?.widgets?.load(containerRef.current);
+    if (!normalizedTweetUrl) {
+      setError("Invalid tweet URL");
+      setLoading(false);
+      return;
     }
-  }, [normalizedTweetUrl]);
+
+    let scriptLoaded = false;
+    let timeoutId;
+
+    const loadTwitterScript = () => {
+      // Check if Twitter script is already loaded
+      if (window?.twttr?.widgets) {
+        renderTweet();
+        return;
+      }
+
+      // Load Twitter widget script if not already loaded
+      try {
+        const script = document.createElement("script");
+        script.src = "https://platform.twitter.com/widgets.js";
+        script.async = true;
+        script.onload = () => {
+          scriptLoaded = true;
+          renderTweet();
+        };
+        script.onerror = () => {
+          setError("Failed to load Twitter widget script");
+          setLoading(false);
+        };
+        document.body.appendChild(script);
+      } catch (err) {
+        console.error("Error loading Twitter script:", err);
+        setError("Failed to load Twitter widget");
+        setLoading(false);
+      }
+    };
+
+    const renderTweet = () => {
+      if (!containerRef.current) return;
+      
+      try {
+        window?.twttr?.widgets?.load(containerRef.current)
+          .then(() => {
+            setLoading(false);
+          })
+          .catch((err) => {
+            console.error("Error rendering tweet:", err);
+            setError("Failed to render tweet");
+            setLoading(false);
+          });
+      } catch (err) {
+        console.error("Error rendering tweet:", err);
+        setError("Failed to render tweet");
+        setLoading(false);
+      }
+    };
+
+    // Set a timeout to detect if tweet doesn't load
+    timeoutId = setTimeout(() => {
+      if (loading && !scriptLoaded) {
+        setError("Tweet took too long to load");
+        setLoading(false);
+      }
+    }, 10000); // 10 seconds timeout
+
+    loadTwitterScript();
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [normalizedTweetUrl, loading]);
+
+  if (error) {
+    return (
+      <div className="p-4 bg-gray-100 rounded-lg border border-gray-200">
+        <p className="text-gray-600">Unable to load tweet: {error}</p>
+        <a 
+          href={normalizedTweetUrl} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="text-blue-500 hover:underline mt-2 block"
+        >
+          View on Twitter
+        </a>
+      </div>
+    );
+  }
 
   return (
     <div
       ref={containerRef}
-      className="my-4"
+      className=""
       dangerouslySetInnerHTML={{
         __html: `
           <blockquote class="twitter-tweet">

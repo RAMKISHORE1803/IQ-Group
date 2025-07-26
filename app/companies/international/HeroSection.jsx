@@ -208,7 +208,7 @@ const HeroSection = ({
           {/* Vertical text */}
           <div 
             ref={sideTextRef}
-            className="absolute bottom-[300px] min-w-[120px] left-[-25vw] md:left-[7vw] transform -translate-x-1/2 origin-bottom-left rotate-[-90deg] text-white font-bold lg:text-[20px]"
+            className="absolute bottom-[245px] min-w-[120px] left-[-25vw] md:left-[7vw] transform -translate-x-1/2 origin-bottom-left rotate-[-90deg] text-white font-bold lg:text-[20px]"
           >
             <span className="uppercase">{displaySideText}</span>
           </div>

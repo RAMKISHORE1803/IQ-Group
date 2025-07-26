@@ -1,6 +1,6 @@
 'use client'
 import React from 'react';
-import { Linkedin, Instagram, Youtube, Facebook, MapPin, Mail, Phone, ArrowRight, Twitter } from 'lucide-react';
+import { Linkedin, Instagram, Youtube, Facebook, MapPin, Mail, Phone, ArrowRight, Twitter, X } from 'lucide-react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -140,7 +140,7 @@ const IQGroupFooter = () => {
             {/* Left Side Logos - Custom logos */}
             <div className="flex flex-wrap items-center gap-6 mb-6 lg:mb-0">
               {/* Logo 1 */}
-              <div className="h-10 w-auto">
+              <div className="h-12 w-auto">
                 <Image 
                   src="https://usacamerica.us/website-file/all-img/logo.png" 
                   alt="Logo 1" 
@@ -151,7 +151,7 @@ const IQGroupFooter = () => {
             </div>
 
               {/* Logo 2 */}
-              <div className="h-10 w-auto">
+              <div className="h-12 w-auto">
                 <Image 
                   src="https://www.buafoodsplc.com/wp-content/uploads/2025/03/AQSR-LOGO.png" 
                   alt="Logo 2" 
@@ -162,24 +162,36 @@ const IQGroupFooter = () => {
               </div>
               
               {/* Logo 3 */}
-              <div className="h-10 w-auto">
+              <div className="h-12 w-auto">
                 <Image 
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTy1InRQG-B1jykQOW-rL94ujs9LD2q07ryXQ&s" 
                   alt="Logo 3" 
-                  width={80} 
-                  height={40}
+                  width={100} 
+                  height={50}
                   className="h-full w-auto object-contain"
                 />
               </div>
+
+              {/* <div className="h-30 w-auto lg:ml-[-10px] lg:mt-[10px]">
+                <Link href="https://www.jkbfoundation.com" target="_blank"> 
+                <Image 
+                  src="https://www.jkbfoundation.com/images/JKBLogo.png" 
+                  alt="Logo 3" 
+                  width={160} 
+                  height={80}
+                  className="h-full w-auto object-contain"
+                />
+                </Link>
+              </div> */}
             </div>
 
             {/* Right Side - Company Logo */}
             <div className="w-40 h-auto lg:w-48">
               <Image 
-                src="https://videos.openai.com/vg-assets/assets%2Ftask_01k0nqtt3ae6xvg6mkwy0fspbq%2F1753076466_img_0.webp?st=2025-07-21T03%3A52%3A25Z&se=2025-07-27T04%3A52%3A25Z&sks=b&skt=2025-07-21T03%3A52%3A25Z&ske=2025-07-27T04%3A52%3A25Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=aa5ddad1-c91a-4f0a-9aca-e20682cc8969&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=9%2FAgFXrq9VBA%2BGgQJ1ZQnlrar5JpXMUL72NhcI7TDaA%3D&az=oaivgprodscus" 
+                src="/logo/2.png" 
                 alt="IQ Group" 
-                width={200} 
-                height={80}
+                width={100} 
+                height={100}
                 className="w-full h-auto"
                 priority
               />
@@ -189,6 +201,7 @@ const IQGroupFooter = () => {
           {/* Bottom Footer - Divider, LinkedIn, Terms, Copyright */}
           <div className="border-t border-[#fbfbfb]/10 pt-4">
             <div className="flex flex-col md:flex-row justify-between items-center">
+              <div className="flex items-center space-x-4">
               {/* LinkedIn Button */}
               <div className="mb-3 md:mb-0">
                 <a 
@@ -199,7 +212,35 @@ const IQGroupFooter = () => {
                   aria-label="LinkedIn"
                 >
                   <Linkedin size={20} className="text-[#fbfbfb]" />
+                  
                 </a>
+            </div>
+
+            <div className="mb-3 md:mb-0">
+                <a 
+                  href="https://x.com/IQGroupMumbai" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-block border border-[#fbfbfb]/30 p-2 hover:bg-[#fbfbfb]/10 transition-colors"
+                  aria-label="LinkedIn"
+                >
+                  <Twitter size={20} className="text-[#fbfbfb]" />
+                  
+                </a>
+            </div>
+
+            <div className="mb-3 md:mb-0">
+                <a 
+                  href="https://www.facebook.com/iqgroupmumbai" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-block border border-[#fbfbfb]/30 p-2 hover:bg-[#fbfbfb]/10 transition-colors"
+                  aria-label="LinkedIn"
+                >
+                  <Facebook size={20} className="text-[#fbfbfb]" />
+                  
+                </a>
+            </div>
             </div>
 
               {/* Terms & Privacy Links */}
