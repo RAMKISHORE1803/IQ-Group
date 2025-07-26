@@ -13,7 +13,7 @@ export default function HomepageTweetMarquee() {
   ];
 
   return (
-    <div className="bg-[#fbfbfb] py-12 md:py-16 xl:px-[8.3vw]">
+    <div className="bg-[#fbfbfb] py-12 md:pb-8 md:pt-0  xl:px-[8.3vw]">
       <div className="container mx-auto">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
