@@ -167,7 +167,7 @@ const HeroSection = ({
         {/* Fixed Background Image */}
         <div 
           ref={backgroundRef}
-          className="fixed inset-0 w-full max-h-[93vh] md:h-screen bg-cover bg-center z-0"
+          className="fixed inset-0 w-full max-h-[97vh] md:h-screen bg-cover bg-center z-0"
           style={{ 
             backgroundImage: `url(${backgroundImage})`,
             backgroundAttachment: isMobile ? 'scroll' : 'fixed',
@@ -208,7 +208,7 @@ const HeroSection = ({
           {/* Vertical text */}
           <div 
             ref={sideTextRef}
-            className="absolute bottom-[286px] min-w-[120px] left-[-25vw] md:left-[7vw] transform -translate-x-1/2 origin-bottom-left rotate-[-90deg] text-white font-bold lg:text-[20px]"
+            className="absolute bottom-[286px] min-w-[120px] left-[-25vw] md:left-[7vw] transform -translate-x-1/2 origin-bottom-left rotate-[-90deg] text-white font-semibold lg:text-[20px]"
           >
             <span className="uppercase">{displaySideText}</span>
           </div>

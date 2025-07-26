@@ -150,7 +150,7 @@ const HeroSection = ({
     <>
       <section 
         ref={heroRef} 
-        className="relative w-full h-[100svh] md:h-screen lg:max-h-[85vh] bg-white overflow-hidden"
+        className="relative w-full h-[100svh] md:h-screen lg:max-h-[87vh] bg-white overflow-hidden"
       >
         {/* Fixed Background Image */}
         <div 

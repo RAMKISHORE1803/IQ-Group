@@ -1,4 +1,4 @@
-import HeroSection from "@/components/contact/herosection";
+import HeroSection from "./herosection";
 import ContactFormSection from "@/components/contact/ContactFormSection";
 import ContactOptionsSection from "@/components/about/ContactOptionsSection";
 import OfficesCarousel from "@/components/contact/OfficesCarousel";

@@ -35,7 +35,7 @@ const industries = [
     category: 'TRANSPORTATION',
     name: 'Automobile',
     description: 'Providing essential materials for automotive manufacturing, from aluminum alloys to specialty metals.',
-    image: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3',
+    image: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800',
     link: '/industries/automobile'
   },
   {
@@ -43,7 +43,7 @@ const industries = [
     category: 'ENERGY',
     name: 'Battery',
     description: 'Supplying materials for battery production, including lithium, cobalt, and other essential components.',
-    image: 'https://images.unsplash.com/photo-1620714223084-8fcacc7dfc39?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3',
+    image: 'https://news.mst.edu/files/2025/05/batteries-1260x473.jpeg',
     link: '/industries/battery'
   },
   // Row 2
@@ -52,7 +52,7 @@ const industries = [
     category: 'MATERIALS',
     name: 'Ceramic',
     description: 'Providing high-quality raw materials for ceramic production across various applications.',
-    image: 'https://images.unsplash.com/photo-1565193298357-c5f6b0ac8ab4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3',
+    image: 'https://assets.lummi.ai/assets/QmXVv9yqRL9wsVqUgBDYZF6voys4NLczx2De7xE3FSsKUm?auto=format&w=1500',
     link: '/industries/ceramic'
   },
   {
@@ -60,7 +60,7 @@ const industries = [
     category: 'PROCESSING',
     name: 'Chemical',
     description: 'Delivering raw materials for chemical processing and manufacturing industries.',
-    image: 'https://images.unsplash.com/photo-1616661317361-b8a30bef3321?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3',
+    image: 'https://assets.lummi.ai/assets/QmRWrf7RRguRREw1py5ASex7cAGxv3rVYQL6Tw9LFAGRCq?auto=format&w=1500',
     link: '/industries/chemical'
   },
   {
@@ -68,7 +68,7 @@ const industries = [
     category: 'METALLURGY',
     name: 'Foundries',
     description: 'Supplying essential materials for metal casting and foundry operations.',
-    image: 'https://images.unsplash.com/photo-1605197384465-b93a3f3a16cb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3',
+    image: 'https://images.pexels.com/photos/3730670/pexels-photo-3730670.jpeg',
     link: '/industries/foundries'
   },
   {
@@ -76,7 +76,7 @@ const industries = [
     category: 'MANUFACTURING',
     name: 'Glass',
     description: 'Providing raw materials for glass production, including silica, soda ash, and limestone.',
-    image: 'https://images.unsplash.com/photo-1518893883800-45cd0954574b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3',
+    image: 'https://assets.lummi.ai/assets/QmdjvE5DEVkpGMDUNBQtTgMXXXNBnrxgeBk5Q6RTka9GHM?auto=format&w=1500',
     link: '/industries/glass'
   },
   // Row 3
@@ -85,7 +85,7 @@ const industries = [
     category: 'COATINGS',
     name: 'Paint',
     description: 'Supplying pigments, binders, and additives for paint and coating manufacturing.',
-    image: 'https://images.unsplash.com/photo-1515688594390-b649af70d282?q=80&w=2012&auto=format&fit=crop&ixlib=rb-4.0.3',
+    image: 'https://assets.lummi.ai/assets/QmX9TW1P64SQAyG3ELPsCLCqh9P37VuxphC6yPGwgQLn1R?auto=format&w=1500',
     link: '/industries/paint'
   },
   {
@@ -93,7 +93,7 @@ const industries = [
     category: 'HEAT RESISTANCE',
     name: 'Refractory',
     description: 'Providing high-temperature resistant materials for industrial furnaces and kilns.',
-    image: 'https://images.unsplash.com/photo-1535868463750-c78d9543614f?q=80&w=2076&auto=format&fit=crop&ixlib=rb-4.0.3',
+    image: 'https://www.refractoriesinstitute.org/tri-includes/images/common/what-is-a-refractory-main.jpg',
     link: '/industries/refractory'
   },
   {
@@ -101,7 +101,7 @@ const industries = [
     category: 'METALLURGY',
     name: 'Stainless Steel',
     description: 'Supplying premium alloys and materials for stainless steel production.',
-    image: 'https://images.unsplash.com/photo-1531088009183-5ff5b7c95f91?q=80&w=2073&auto=format&fit=crop&ixlib=rb-4.0.3',
+    image: 'https://www.shyammetalics.com/wp-content/uploads/2024/07/blog_img_1_07.jpg',
     link: '/industries/stainless-steel'
   },
   {
@@ -109,7 +109,7 @@ const industries = [
     category: 'METALS',
     name: 'Aluminum',
     description: 'Delivering high-quality aluminum and related materials for various industries.',
-    image: 'https://images.unsplash.com/photo-1605001011156-cbf0b0f67a51?q=80&w=2068&auto=format&fit=crop&ixlib=rb-4.0.3',
+    image: 'https://images.pexels.com/photos/2691359/pexels-photo-2691359.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     link: '/industries/aluminum'
   },
   // Row 4
@@ -118,7 +118,7 @@ const industries = [
     category: 'FABRICS',
     name: 'Textile',
     description: 'Providing materials and chemicals for textile manufacturing and processing.',
-    image: 'https://images.unsplash.com/photo-1620208923217-62e0f24f0277?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3',
+    image: 'https://assets.lummi.ai/assets/QmNpyxgXoXt78SXLsfBTdqADVQzN7DBv9WFqu5bfkaRDGF?auto=format&w=1500',
     link: '/industries/textile'
   },
   {
@@ -126,7 +126,7 @@ const industries = [
     category: 'AUTOMOTIVE',
     name: 'Tyre',
     description: 'Supplying rubber compounds and reinforcing materials for tire manufacturing.',
-    image: 'https://images.unsplash.com/photo-1589982334414-c79c022d66e1?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3',
+    image: 'https://assets.lummi.ai/assets/QmeNHGPHEyi8Sjx25eaEwUE9JU3Ko2fZ3EWCpDfz6qd54E?auto=format&w=1500',
     link: '/industries/tyre'
   },
   {

@@ -383,15 +383,13 @@ const NavbarNew = () => {
             </Link>) : (
 
             <Link href="/" className="flex items-center">
-              <div className="flex items-center">
+              <div className="flex items-center lg:mt-[30px]">
                 <img
                   src="/logo/2.png"
                   alt="IQ Groups Logo"
-                  width={60}
-                  style={{
-                    transform: 'scale(1.5)'
-                  }}
-                  height={60}
+                  width={100}
+                  
+                  height={100}
                   priority="true"
                 />
               </div>

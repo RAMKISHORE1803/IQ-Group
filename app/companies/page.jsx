@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import HeroSection from '@/components/about/HeroSection';
+import HeroSection from './herosection';
 import ContentSection from '@/components/companies/ContentSection';
 import SectionWithCards from '@/components/companies/SectionWithCards';
 import { gsap } from 'gsap';
@@ -138,8 +138,9 @@ export default function CompaniesPage() {
     <div className="companies-page">
       {/* Hero Section */}
       <HeroSection
-        title="Powering Progress Across Industries"
-        subtitle="Explore IQ Group's diverse portfolio—delivering innovation, reliability, and global reach across raw materials, energy, technology, and investment."
+        title=""
+        subtitle="Discover IQ Group’s dynamic portfolio—where raw materials, energy, tech, and capital meet innovation.
+"
         backgroundImage="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop"
         sideText="IQ Group Companies"
         navTitle="COMPANIES"
