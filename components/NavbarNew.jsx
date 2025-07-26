@@ -367,6 +367,21 @@ const NavbarNew = () => {
         <div className="container mx-auto px-4 lg:px-8 xl:px-12">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
+            {isScrolled ? (<Link href="/" className="flex items-center">
+              <div className="flex items-center">
+                <img
+                  src="/logo/3.png"
+                  alt="IQ Groups Logo"
+                  width={60}
+                  style={{
+                    transform: 'scale(1.5)'
+                  }}
+                  height={60}
+                  priority="true"
+                />
+              </div>
+            </Link>) : (
+
             <Link href="/" className="flex items-center">
               <div className="flex items-center">
                 <img
@@ -380,7 +395,8 @@ const NavbarNew = () => {
                   priority="true"
                 />
               </div>
-            </Link>
+            </Link>)
+            }
 
             {/* Desktop Navigation - Main Nav */}
             <nav className="hidden lg:flex items-center justify-center flex-1 mx-4">
