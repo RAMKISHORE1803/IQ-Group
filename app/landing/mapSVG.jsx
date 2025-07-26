@@ -172,6 +172,20 @@ export default function Map(){
                 #CN{
                     fill:#5790E1;
                 }
+               #AE{
+               fill:#5790E1;
+               }
+               #CA{
+                fill:#5790E1;
+               }
+                #UK{
+                 fill:#5790E1;
+                }
+
+                #ZA{
+                 fill:#5790E1;
+                }
+                 #RU{ fill:#5790E1;}
                    
                 .country-clickable {
                     cursor: pointer;
