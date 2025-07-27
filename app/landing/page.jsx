@@ -208,7 +208,7 @@ export default function LandingPage() {
   }, [handleFooterScroll]);
 
   return (
-    <div className="bg-[#fbfbfb] z-[2]">
+    <div className="bg-[#000000] z-[2]">
       <main className="relative" ref={contentWrapperRef}>
         {/* Normal scrolling sections */}
         <DTREHeroCarousel />

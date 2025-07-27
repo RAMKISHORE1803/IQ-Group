@@ -203,67 +203,67 @@ const SectionTitle = ({ number, title }) => {
 // News section data
 const newsCards = [
   {
-    type: "Press Release",
+    type: "LinkedIn Post",
     date: "July 21, 2023",
-    title: "IQ Group Expands Global Reach with New Strategic Partnership",
-    description: "Revolutionary alliance formed to redefine industry standards. A bold move that strengthens our commitment to excellence in material sourcing worldwide.",
-    image: "https://images.unsplash.com/photo-1591696205602-2f950c417cb9?q=80&w=1740&auto=format&fit=crop",
+    title: "TEPA Treaty Revolutionizes India's Steel Future",
+    description: "India-EFTA partnership unlocks $100B investment, transforming steel giants into global powerhouses. The revolution starts now.",
+    image: "https://media.licdn.com/dms/image/v2/D4D22AQEbT_MwdNSe-w/feedshare-shrink_1280/B4DZf87gwsGsAk-/0/1752295160074?e=1756339200&v=beta&t=2SjWOA53DYS6oTjmFQstGOas9YqXNe87bTxIchfW3dE",
     link: "#"
   },
   {
-    type: "News",
+    type: "Event",
     date: "July 18, 2023",
-    title: "Breakthrough in Material Technology Propels Manufacturing Innovation",
-    description: "Unveiling next-generation composites that transform production capabilities. Engineered at molecular precision to deliver unprecedented performance across industrial applications.",
-    image: "https://images.unsplash.com/photo-1581092160607-ee22732d58dc?q=80&w=1740&auto=format&fit=crop",
+    title: "Siddharth Bothra Leads Chrome Market Insights Amsterdam",
+    description: "CEO speaks at prestigious CRU Summit, sharing India's ferrochrome expertise with global leaders. Industry transformation through knowledge leadership.",
+    image: "https://media.licdn.com/dms/image/v2/D4E22AQHEQnXaBHARRg/feedshare-shrink_800/B4EZdjikkRHYAk-/0/1749721703107?e=1756339200&v=beta&t=71NYpSDrBey3ld-NzIh8lpTCrRSB-mkxurMe1ENqslE",
     link: "#"
   },
   {
-    type: "Event",
+    type: "LinkedIn Post",
     date: "July 14, 2023",
-    title: "IQ Group to Lead Keynote at Global Materials Summit 2023",
-    description: "Join our experts as they reveal transformative insights on material science evolution. Exclusive preview of research destined to reshape industrial materials landscape.",
-    image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=1740&auto=format&fit=crop",
-    link: "#"
-  },
-  {
-    type: "Press Release",
-    date: "July 10, 2023",
-    title: "Record Quarter Results Reflect Strong Market Position",
-    description: "Exceptional performance demonstrates our relentless pursuit of excellence. Strategic investments yield unprecedented growth across all business divisions.",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1715&auto=format&fit=crop",
-    link: "#"
-  },
-  {
-    type: "News",
-    date: "July 7, 2023",
-    title: "Environmental Milestone: Carbon-Neutral Operations Achieved",
-    description: "Pioneering sustainability initiative reaches completion ahead of schedule. Revolutionary approach sets new benchmark for environmental stewardship in materials industry.",
-    image: "https://images.unsplash.com/photo-1473646590311-c48e1bc77b44?q=80&w=1738&auto=format&fit=crop",
+    title: "Freight Rates Double Overnight Threatening Global Economy",
+    description: "Shipping lines abandon India for US profits, doubling container costs. Supply chains collapse while regulators sleep. Action needed now.",
+    image: "https://media.licdn.com/dms/image/v2/D4D22AQEk22pW3d_Vrw/feedshare-shrink_800/B4DZcBPNZLGYAo-/0/1748072460719?e=1756339200&v=beta&t=oCheL5nuJUJp7QBWNp7KZVT-PSKSpw9geq7lExRunh4",
     link: "#"
   },
   {
     type: "Event",
+    date: "July 10, 2023",
+    title: "Siddharth Bothra Speaks at Dubai Metal Conference",
+    description: "IQ Group CEO joins global steel leaders in Dubai, sharing insights on ferro alloys innovation and sustainable supply chains.",
+    image: "https://media.licdn.com/dms/image/v2/D4D22AQFQBNYRgp4E0g/feedshare-shrink_800/B4DZbx14AuHEAg-/0/1747814155111?e=1756339200&v=beta&t=mmuQ6eLZIGzbzGf1VW0ZNg52MjpV2m9W8znBWuhUT6o",
+    link: "#"
+  },
+  {
+    type: "LinkedIn Post",
+    date: "July 7, 2023",
+    title: "Freight Wars Disrupt Global Trade Economy Overnight",
+    description: "Tariff policies trigger freight chaos, container shortages devastate supply chains. Trade needs agility, not just resilience against volatility.",
+    image: "https://media.licdn.com/dms/image/v2/D4D22AQE_t3_8uNkWYg/feedshare-shrink_800/B4DZZCqKFmHwAk-/0/1744875073885?e=1756339200&v=beta&t=R3QOhQQ-VUhlB-WAUVkgNvJT7Zo_O-aTlo9fZIysVR0",
+    link: "#"
+  },
+  {
+    type: "LinkedIn Post",
     date: "June 28, 2023",
-    title: "Registration Open for Annual Materials Innovation Conference",
-    description: "Exclusive gathering of industry pioneers exploring the frontiers of material science. Limited seats available for this transformative knowledge exchange experience.",
-    image: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=1712&auto=format&fit=crop",
+    title: "Quality Control Orders Silently Destroying India MSMEs",
+    description: "BIS certification creates new License Raj, enabling monopolies while strangling small businesses. Regulatory reform needed urgently.",
+    image: "https://media.licdn.com/dms/image/v2/D4D22AQFDWrRDFw6xgg/feedshare-shrink_800/B4DZZiiSbUGsAg-/0/1745409882063?e=1756339200&v=beta&t=g8lkuC3mtZf4XS8zprQ9WvGWy7I6FXvKkS31yjFvpzU",
     link: "#"
   },
   {
-    type: "News",
+    type: "LinkedIn Post",
     date: "June 25, 2023",
-    title: "IQ Group Recognized with Global Excellence Award",
-    description: "Distinguished honor celebrates our unwavering commitment to quality and innovation. Rigorous evaluation identifies our practices as defining the industry's future.",
-    image: "https://images.unsplash.com/photo-1565530973854-e4e4e8a9ea13?q=80&w=1740&auto=format&fit=crop",
+    title: "China VAT Crackdown Threatens India With Dumping",
+    description: "China's unified tax enforcement stops fraud, redirecting excess production to India. Anti-dumping surveillance urgently needed now.",
+    image: "https://media.licdn.com/dms/image/v2/D4D22AQEfxsjkk13S9g/feedshare-shrink_800/B4DZYvfh1CGkAo-/0/1744553517263?e=1756339200&v=beta&t=fcfZuZaJcq6roH0wttyowhdqkgxa-uepn_L7PV8bFaQ",
     link: "#"
   },
   {
-    type: "Press Release",
+    type: "Event",
     date: "June 20, 2023",
-    title: "Next-Generation Research Laboratory Unveiled",
-    description: "State-of-the-art facility designed to push boundaries of material innovation. Unprecedented capabilities accelerate discovery of transformative industrial solutions.",
-    image: "https://images.unsplash.com/photo-1581093458791-9d52200c79a8?q=80&w=1740&auto=format&fit=crop",
+    title: "Siddharth Bothra Headlines CRU Ferroalloys Europe Summit",
+    description: "IQ Group CEO joins global industry leaders discussing ferroalloys evolution, market trends, and metal industry transformation opportunities.",
+    image: "https://media.licdn.com/dms/image/v2/D4E0BAQH19bKOefRxwg/company-logo_100_100/company-logo_100_100/0/1721050364682/cru_conferences_logo?e=1756339200&v=beta&t=0NvRAITR3hEIFh8A_Vp72ZsuMNUWEPFOdLmp1KChYdw",
     link: "#"
   }
 ];

@@ -275,6 +275,38 @@ export default function GoogleMapConnections() {
                     mapTypeControl: false,
                     streetViewControl: false,
                     fullscreenControl: false,
+                    disableDefaultUi: true,
+                    rotateControl:false,
+                    scaleControl:false,
+                    clickableIcons:false,
+                    directionControl:false,
+                    mapTypeControl:false,
+                    panControl:false,
+                    // zoomControl:false,
+                    // zoomAnimation:false,
+                    // zoomAnimationDuration:0,
+                    // zoomAnimationEasing:'linear',
+                    // zoomAnimationCurve:'linear',
+                    // zoomAnimationEasing:'linear',
+                    scrollwheel: false,        // ← ADD THIS
+                    draggable: false,          // ← ADD THIS
+                    keyboardShortcuts: false,  // ← ADD THIS
+                    disableDoubleClickZoom: true, // ← ADD THIS
+                    disableScrollWheelZoom: true,
+                    gestureHandling: 'none',   
+                    disableDragging: true,
+
+                    minZoom: 2,               // ← ADD THIS
+                    maxZoom: 2,               // ← ADD THIS
+                    restriction: {            // ← ADD THIS ENTIRE BLOCK
+                        latLngBounds: {
+                            north: 85,
+                            south: -85,
+                            west: -180,
+                            east: 180
+                        },
+                        strictBounds: true
+                    }
                 };
 
                 // Use Map ID or styles based on configuration
@@ -298,7 +330,7 @@ export default function GoogleMapConnections() {
                 setMapError("Failed to initialize map");
             }
         };
-
+        
         loadGoogleMaps();
 
         // Cleanup function to prevent memory leaks
@@ -502,7 +534,7 @@ export default function GoogleMapConnections() {
           
 
             {/* Info Panel */}
-            <div className="absolute bottom-4 left-4 bg-black bg-opacity-80 text-white p-4 rounded-lg max-w-sm">
+            <div className="absolute bottom-1 left-2 bg-black bg-opacity-80 text-white p-4 rounded-lg max-w-sm">
                 <h3 className="text-lg font-bold mb-2">Global Connections from India</h3>
                 <p className="text-sm text-gray-300">
                     Interactive map showing business connections from IQ Groups, India to major global markets.

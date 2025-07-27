@@ -160,14 +160,14 @@ const InsightsSection = () => {
   );
 
   return (
-    <div className="w-full max-w-7xl md:max-w-[1300px]  mx-auto px-4 py-16">
+    <div className="w-full max-w-7xl md:max-w-[1300px]  mx-auto px-4 py-16 md:mt-[5vh]">
       {/* Section Title */}
       <motion.h2 
       initial = {{opacity:0 , x:-30}}
       whileInView = {{opacity:1 , x:0}}
       viewport = {{once: true , amount: 0.4}}
       transition = {{duration: 0.4 , delay: .1}}
-      className="text-4xl md:text-5xl font-onest font-light text-gray-800 mb-12">
+      className="text-4xl md:text-5xl font-lato uppercase font-bold text-[#1e3157] mb-12">
         Our Latest Insights
       </motion.h2>
       
