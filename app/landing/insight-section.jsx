@@ -193,7 +193,7 @@ const InsightsSection = () => {
       whileInView = {{opacity:1 , x:0}}
       viewport = {{once: true , amount: 0.4}}
       transition = {{duration: 0.4 , delay: .1}}
-      className="text-[28px] md:text-5xl font-lato uppercase font-bold text-[#1e3157] mb-12">
+      className="text-[28px] text-center md:text-left md:text-5xl font-lato uppercase font-bold text-[#1e3157] mb-12">
         Our Latest Insights
       </motion.h2>
       
@@ -270,7 +270,7 @@ const InsightsSection = () => {
       )}
       
       {/* Bottom CTA Button */}
-      <div className="flex">
+      <div className="flex justify-center md:justify-start">
         <motion.button
           className="bg-[#1E3157] cursor-pointer text-white hover:bg-[#fbfbfb] hover:text-[#1E3157] border-2 border-[#1E3157] hover:border-[#1E3157] font-onest text-[20px] font-light text-black font-medium px-6 py-3  transition-colors duration-200 flex items-center gap-2"
          

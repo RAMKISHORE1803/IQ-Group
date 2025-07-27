@@ -160,9 +160,11 @@ const NavbarNew = () => {
       path: '/careers',
       megaMenu: 'careers',
       dropdown: [
-        { name: 'Open Positions', path: '/careers/positions' },
-        { name: 'Why Join Us', path: '/careers/why-join' },
         { name: 'Life at IQ Group', path: '/careers/life' },
+        { name: 'Why Join Us', path: '/careers/why-join' },
+        { name: 'Open Positions', path: '/careers/positions' },
+       
+        
         { name: 'Application Portal', path: '/careers/apply' }
       ]
     },
@@ -179,10 +181,9 @@ const NavbarNew = () => {
     path: '/resources',
     megaMenu: 'resources',
     dropdown: [
-      { name: 'Articles', path: '/resources/articles' },
-      { name: 'Insights', path: '/resources/insights' },
-      { name: 'Perspectives', path: '/resources/perspectives' },
-      { name: 'Analysis', path: '/resources/analysis' }
+      
+      { name: 'Insights', path: '/resources#INSIGHTS' },
+      { name: 'News', path: '/resources#news' },
     ]
   };
 
@@ -358,7 +359,7 @@ const NavbarNew = () => {
       {/* Main Navbar */}
       <header
         ref={navRef}
-        className={`fixed ${!isMobile ? 'top-[28px]' : 'top-[28px]'} left-0 w-full z-40 transition-all duration-300 min-h-[10vh] 
+        className={`fixed ${!isMobile ? 'top-[28px]' : 'top-[0px]'} left-0 w-full z-40 transition-all duration-300 min-h-[10vh] 
         ${isScrolled ? 'bg-[#fbfbfb] text-[#0e3364] shadow-md' : 'bg-transparent text-white'}
           ${isVisible ? 'transform translate-y-0' : 'transform -translate-y-full'}
         `}
@@ -368,7 +369,7 @@ const NavbarNew = () => {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             {isScrolled ? (<Link href="/" className="flex items-center">
-              <div className="flex items-center">
+              <div className="flex items-center pt-[30px] md:pt-[0px]">
                 <img
                   src="/logo/3.png"
                   alt="IQ Groups Logo"
@@ -383,7 +384,7 @@ const NavbarNew = () => {
             </Link>) : (
 
             <Link href="/" className="flex items-center">
-              <div className="flex items-center lg:mt-[30px]">
+              <div className="flex items-center pt-[50px] md:pt-[0px] lg:mt-[30px]">
                 <img
                   src="/logo/2.png"
                   alt="IQ Groups Logo"

@@ -109,7 +109,7 @@ export default function AboutSection() {
   return (
     <>
     <section 
-      className="relative h-[100vh] md:min-h-[80vh] pt-[20px] pb-[0px] md:py-32 min-h-screen overflow-hidden bg-[#fbfbfb]"
+      className="relative max-h-[60vh] md:min-h-[80vh] pt-[20px] pb-[0px] md:py-32 min-h-screen overflow-hidden bg-[#fbfbfb]"
       id="about"
     >
       {/* Grid background */}
