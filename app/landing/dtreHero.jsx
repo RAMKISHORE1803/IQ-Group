@@ -165,7 +165,7 @@ export default function DTREHeroCarousel() {
 
   return (
     <div 
-      className="relative w-full min-h-[77vh] max-h-[100vh] md:h-screen flex items-center  md:items-center justify-start overflow-hidden"
+      className="relative w-full min-h-[100vh] max-h-[100vh] md:h-screen flex items-center  md:items-center justify-start overflow-hidden"
       onMouseEnter={() => setIsPlaying(false)}
       onMouseLeave={() => setIsPlaying(true)}
     >
