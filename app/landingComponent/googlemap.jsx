@@ -505,7 +505,7 @@ export default function GoogleMapConnections() {
             <div className="absolute bottom-4 left-4 bg-black bg-opacity-80 text-white p-4 rounded-lg max-w-sm">
                 <h3 className="text-lg font-bold mb-2">Global Connections from India</h3>
                 <p className="text-sm text-gray-300">
-                    Interactive map showing business connections from Delhi, India to major global markets.
+                    Interactive map showing business connections from IQ Groups, India to major global markets.
                 </p>
                 
             </div>
