@@ -1,7 +1,9 @@
 "use client"
 import React from 'react';
 import { useState, useRef } from 'react';
+import Image from 'next/image';
 import Map from './mapSVG';
+import GoogleMapConnections from '../landingComponent/googlemap';
 
 const countryData = {
   IN: {
@@ -93,7 +95,7 @@ const GlobalConstructionPlatform = () => {
             
             {/* Map Component */}
             <div className="w-full h-full flex items-center justify-center">
-              <Map />
+              <GoogleMapConnections/>
             </div>
             
             {/* Mobile instruction text */}
