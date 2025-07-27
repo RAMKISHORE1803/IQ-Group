@@ -3,11 +3,8 @@ import { useEffect, useRef, useState } from 'react';
 
 export default function GoogleMapConnections() {
     const mapRef = useRef(null);
-    const containerRef = useRef(null);
     const [map, setMap] = useState(null);
     const [mapError, setMapError] = useState(null);
-    const [isInView, setIsInView] = useState(false);
-    const [isMapInitialized, setIsMapInitialized] = useState(false);
     const connectionsRef = useRef([]);
     const markersRef = useRef([]);
 
@@ -84,45 +81,48 @@ export default function GoogleMapConnections() {
 
     const getOfficeIcon = (officeType) => {
         const icons = {
-            head_office: `
-                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="14" cy="14" r="12" fill="#FFD700" stroke="#ffffff" stroke-width="2"/>
-                    <rect x="9" y="8" width="10" height="12" fill="#000000" rx="1"/>
-                    <rect x="10" y="9" width="2" height="2" fill="#FFD700"/>
-                    <rect x="12" y="9" width="2" height="2" fill="#FFD700"/>
-                    <rect x="14" y="9" width="2" height="2" fill="#FFD700"/>
-                    <rect x="10" y="12" width="2" height="2" fill="#FFD700"/>
-                    <rect x="12" y="12" width="2" height="2" fill="#FFD700"/>
-                    <rect x="14" y="12" width="2" height="2" fill="#FFD700"/>
-                    <rect x="12" y="16" width="2" height="3" fill="#FFD700"/>
-                </svg>
-            `,
-            international_office: `
-                <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="13" cy="13" r="11" fill="#00FF7F" stroke="#ffffff" stroke-width="2"/>
-                    <rect x="8" y="7" width="10" height="12" fill="#000000" rx="1"/>
-                    <rect x="9" y="8" width="2" height="2" fill="#00FF7F"/>
-                    <rect x="11.5" y="8" width="2" height="2" fill="#00FF7F"/>
-                    <rect x="14" y="8" width="2" height="2" fill="#00FF7F"/>
-                    <rect x="9" y="11" width="2" height="2" fill="#00FF7F"/>
-                    <rect x="11.5" y="11" width="2" height="2" fill="#00FF7F"/>
-                    <rect x="14" y="11" width="2" height="2" fill="#00FF7F"/>
-                    <rect x="11.5" y="15" width="2" height="3" fill="#00FF7F"/>
-                </svg>
-            `,
-            branch_office: `
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="12" r="10" fill="#FF6347" stroke="#ffffff" stroke-width="2"/>
-                    <rect x="7" y="6" width="10" height="12" fill="#000000" rx="1"/>
-                    <rect x="8" y="7" width="2" height="2" fill="#FF6347"/>
-                    <rect x="10.5" y="7" width="2" height="2" fill="#FF6347"/>
-                    <rect x="13" y="7" width="2" height="2" fill="#FF6347"/>
-                    <rect x="8" y="10" width="2" height="2" fill="#FF6347"/>
-                    <rect x="10.5" y="10" width="2" height="2" fill="#FF6347"/>
-                    <rect x="13" y="10" width="2" height="2" fill="#FF6347"/>
-                    <rect x="10.5" y="14" width="2" height="3" fill="#FF6347"/>
-                </svg>
-            `
+            head_office: `<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="16" cy="16" r="14" fill="#FFD700" stroke="#ffffff" stroke-width="3"/>
+                <rect x="11" y="8" width="10" height="16" fill="#2C3E50"/>
+                <rect x="12" y="10" width="2" height="2" fill="#FFD700"/>
+                <rect x="15" y="10" width="2" height="2" fill="#FFD700"/>
+                <rect x="18" y="10" width="2" height="2" fill="#FFD700"/>
+                <rect x="12" y="13" width="2" height="2" fill="#FFD700"/>
+                <rect x="15" y="13" width="2" height="2" fill="#FFD700"/>
+                <rect x="18" y="13" width="2" height="2" fill="#FFD700"/>
+                <rect x="12" y="16" width="2" height="2" fill="#FFD700"/>
+                <rect x="15" y="16" width="2" height="2" fill="#FFD700"/>
+                <rect x="18" y="16" width="2" height="2" fill="#FFD700"/>
+                <rect x="15" y="20" width="2" height="4" fill="#8B4513"/>
+            </svg>`,
+            international_office: `<svg width="28" height="28" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="14" cy="14" r="12" fill="#00FF7F" stroke="#ffffff" stroke-width="3"/>
+                <rect x="9" y="7" width="10" height="14" fill="#2C3E50"/>
+                <rect x="10" y="9" width="2" height="2" fill="#00FF7F"/>
+                <rect x="13" y="9" width="2" height="2" fill="#00FF7F"/>
+                <rect x="16" y="9" width="2" height="2" fill="#00FF7F"/>
+                <rect x="10" y="12" width="2" height="2" fill="#00FF7F"/>
+                <rect x="13" y="12" width="2" height="2" fill="#00FF7F"/>
+                <rect x="16" y="12" width="2" height="2" fill="#00FF7F"/>
+                <rect x="10" y="15" width="2" height="2" fill="#00FF7F"/>
+                <rect x="13" y="15" width="2" height="2" fill="#00FF7F"/>
+                <rect x="16" y="15" width="2" height="2" fill="#00FF7F"/>
+                <rect x="13" y="18" width="2" height="3" fill="#8B4513"/>
+            </svg>`,
+            branch_office: `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="#FF6347" stroke="#ffffff" stroke-width="3"/>
+                <rect x="7" y="6" width="10" height="12" fill="#2C3E50"/>
+                <rect x="8" y="8" width="2" height="2" fill="#FF6347"/>
+                <rect x="11" y="8" width="2" height="2" fill="#FF6347"/>
+                <rect x="14" y="8" width="2" height="2" fill="#FF6347"/>
+                <rect x="8" y="11" width="2" height="2" fill="#FF6347"/>
+                <rect x="11" y="11" width="2" height="2" fill="#FF6347"/>
+                <rect x="14" y="11" width="2" height="2" fill="#FF6347"/>
+                <rect x="8" y="14" width="2" height="2" fill="#FF6347"/>
+                <rect x="11" y="14" width="2" height="2" fill="#FF6347"/>
+                <rect x="14" y="14" width="2" height="2" fill="#FF6347"/>
+                <rect x="11" y="16" width="2" height="2" fill="#8B4513"/>
+            </svg>`
         };
         return icons[officeType] || icons.branch_office;
     };
@@ -209,196 +209,144 @@ export default function GoogleMapConnections() {
         }
     ];
 
-    // Intersection Observer for viewport detection
     useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setIsInView(true);
-                    // Initialize map when it comes into view
-                    if (!isMapInitialized) {
-                        loadGoogleMaps();
-                    }
-                }
-            },
-            {
-                threshold: 0.1, // Trigger when 10% of the element is visible
-                rootMargin: '0px 0px -50px 0px' // Start animation slightly before fully in view
-            }
-        );
-
-        if (containerRef.current) {
-            observer.observe(containerRef.current);
-        }
-
-        return () => {
-            if (containerRef.current) {
-                observer.unobserve(containerRef.current);
-            }
-        };
-    }, [isMapInitialized]);
-
-    // Handle window resize for responsive map
-    useEffect(() => {
-        const handleResize = () => {
-            if (map && mapRef.current) {
-                // Trigger a resize event on the map to make it responsive
-                window.google.maps.event.trigger(map, 'resize');
-                
-                // Re-center the map after resize
-                const center = map.getCenter();
-                if (center) {
-                    map.setCenter(center);
-                }
-            }
-        };
-
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, [map]);
-
-    // Load Google Maps script with global loading prevention
-    const loadGoogleMaps = () => {
-        // Check if API is already loaded
-        if (window.google && window.google.maps) {
-            initializeMap();
-            return;
-        }
-
-        // Add callback to queue
-        window.googleMapsCallbacks.push(initializeMap);
-
-        // If already loading, just wait
-        if (window.googleMapsLoading) {
-            return;
-        }
-
-        // Check if script already exists
-        const existingScript = document.querySelector('script[src*="maps.googleapis.com"]');
-        if (existingScript) {
-            window.googleMapsLoading = true;
-            existingScript.addEventListener('load', () => {
-                window.googleMapsLoading = false;
-                window.googleMapsCallbacks.forEach(callback => callback());
-                window.googleMapsCallbacks = [];
-            });
-            return;
-        }
-
-        // Create new script
-        window.googleMapsLoading = true;
-        const script = document.createElement('script');
-        
-        if (USE_MAP_ID) {
-            script.src = `https://maps.googleapis.com/maps/api/js?key=${YOUR_API_KEY}&map_ids=${YOUR_MAP_ID}&libraries=geometry`;
-        } else {
-            script.src = `https://maps.googleapis.com/maps/api/js?key=${YOUR_API_KEY}&libraries=geometry`;
-        }
-        
-        script.async = true;
-        script.onload = () => {
-            window.googleMapsLoading = false;
-            window.googleMapsCallbacks.forEach(callback => callback());
-            window.googleMapsCallbacks = [];
-        };
-        script.onerror = () => {
-            window.googleMapsLoading = false;
-            setMapError("Failed to load Google Maps API");
-        };
-        document.head.appendChild(script);
-    };
-
-    const initializeMap = () => {
-        try {
-            // Ensure the map container exists
-            if (!mapRef.current) {
-                console.error("Map container not found");
+        // Load Google Maps script with global loading prevention
+        const loadGoogleMaps = () => {
+            // Check if API is already loaded
+            if (window.google && window.google.maps) {
+                initializeMap();
                 return;
             }
 
-            let mapOptions = {
-                center: { lat: 20, lng: 0 },
-                zoom: 2,
-                mapTypeControl: false,
-                streetViewControl: false,
-                fullscreenControl: false,
-                disableDefaultUi: true,
-                rotateControl: false,
-                scaleControl: false,
-                clickableIcons: false,
-                directionControl: false,
-                mapTypeControl: false,
-                panControl: false,
-                scrollwheel: false,
-                draggable: false,
-                keyboardShortcuts: false,
-                disableDoubleClickZoom: true,
-                disableScrollWheelZoom: true,
-                gestureHandling: 'none',
-                disableDragging: true,
-                minZoom: 2,
-                maxZoom: 2,
-                restriction: {
-                    latLngBounds: {
-                        north: 85,
-                        south: -85,
-                        west: -180,
-                        east: 180
-                    },
-                    strictBounds: true
-                }
-            };
+            // Add callback to queue
+            window.googleMapsCallbacks.push(initializeMap);
 
-            // Use Map ID or styles based on configuration
-            if (USE_MAP_ID) {
-                mapOptions.mapId = YOUR_MAP_ID;
-            } else {
-                mapOptions.styles = mapStyle;
+            // If already loading, just wait
+            if (window.googleMapsLoading) {
+                return;
             }
 
-            const mapInstance = new window.google.maps.Map(mapRef.current, mapOptions);
+            // Check if script already exists
+            const existingScript = document.querySelector('script[src*="maps.googleapis.com"]');
+            if (existingScript) {
+                window.googleMapsLoading = true;
+                existingScript.addEventListener('load', () => {
+                    window.googleMapsLoading = false;
+                    window.googleMapsCallbacks.forEach(callback => callback());
+                    window.googleMapsCallbacks = [];
+                });
+                return;
+            }
 
-            // Wait for map to be fully initialized before adding markers
-            window.google.maps.event.addListenerOnce(mapInstance, 'idle', () => {
-                setMap(mapInstance);
-                setIsMapInitialized(true);
-                
-                // Only add markers and connections if the section is in view
-                if (isInView) {
+            // Create new script
+            window.googleMapsLoading = true;
+            const script = document.createElement('script');
+            
+            if (USE_MAP_ID) {
+                script.src = `https://maps.googleapis.com/maps/api/js?key=${YOUR_API_KEY}&map_ids=${YOUR_MAP_ID}&libraries=geometry`;
+            } else {
+                script.src = `https://maps.googleapis.com/maps/api/js?key=${YOUR_API_KEY}&libraries=geometry`;
+            }
+            
+            script.async = true;
+            script.onload = () => {
+                window.googleMapsLoading = false;
+                window.googleMapsCallbacks.forEach(callback => callback());
+                window.googleMapsCallbacks = [];
+            };
+            script.onerror = () => {
+                window.googleMapsLoading = false;
+                setMapError("Failed to load Google Maps API");
+            };
+            document.head.appendChild(script);
+        };
+
+        const initializeMap = () => {
+            try {
+                // Ensure the map container exists
+                if (!mapRef.current) {
+                    console.error("Map container not found");
+                    return;
+                }
+
+                let mapOptions = {
+                    center: { lat: 20, lng: 0 },
+                    zoom: 2,
+                    mapTypeControl: false,
+                    streetViewControl: false,
+                    fullscreenControl: false,
+                    disableDefaultUi: true,
+                    rotateControl: false,
+                    scaleControl: false,
+                    clickableIcons: true, // Keep this true to allow custom markers
+                    scrollwheel: false,
+                    draggable: false,
+                    keyboardShortcuts: false,
+                    disableDoubleClickZoom: true,
+                    disableScrollWheelZoom: true,
+                    gestureHandling: 'none',
+                    disableDragging: true,
+                    minZoom: 2,
+                    maxZoom: 2,
+                    restriction: {
+                        latLngBounds: {
+                            north: 85,
+                            south: -85,
+                            west: -180,
+                            east: 180
+                        },
+                        strictBounds: true
+                    }
+                };
+
+                // Use Map ID or styles based on configuration
+                if (USE_MAP_ID) {
+                    mapOptions.mapId = YOUR_MAP_ID;
+                } else {
+                    mapOptions.styles = mapStyle;
+                }
+
+                const mapInstance = new window.google.maps.Map(mapRef.current, mapOptions);
+
+                // Wait for map to be fully initialized before adding markers
+                window.google.maps.event.addListenerOnce(mapInstance, 'idle', () => {
+                    setMap(mapInstance);
                     addMarkersAndConnections(mapInstance);
                     addCompanyOffices(mapInstance);
-                }
-            });
+                });
 
-        } catch (error) {
-            console.error("Error initializing map:", error);
-            setMapError("Failed to initialize map");
-        }
-    };
+            } catch (error) {
+                console.error("Error initializing map:", error);
+                setMapError("Failed to initialize map");
+            }
+        };
+        
+        loadGoogleMaps();
 
-    // Add markers and connections when section comes into view
-    useEffect(() => {
-        if (isInView && map && isMapInitialized) {
-            // Clear existing markers and connections
-            markersRef.current.forEach(marker => {
-                if (marker && marker.setMap) {
-                    marker.setMap(null);
-                }
-            });
-            markersRef.current = [];
-
+        // Cleanup function to prevent memory leaks
+        return () => {
+            // Clear connections
             connectionsRef.current.forEach(connection => {
                 if (connection && connection.setMap) {
                     connection.setMap(null);
                 }
             });
             connectionsRef.current = [];
-
-            // Add markers and connections with animation
-            addMarkersAndConnections(map);
-            addCompanyOffices(map);
-        }
-    }, [isInView, map, isMapInitialized]);
+            
+            // Clear markers
+            markersRef.current.forEach(marker => {
+                if (marker && marker.setMap) {
+                    marker.setMap(null);
+                }
+            });
+            markersRef.current = [];
+            
+            // Clear map reference
+            if (map) {
+                setMap(null);
+            }
+        };
+    }, []); // Empty dependency array to run only once
 
     const addMarkersAndConnections = (mapInstance) => {
         try {
@@ -411,7 +359,7 @@ export default function GoogleMapConnections() {
             const indiaLocation = locations.find(loc => loc.isHub);
             const destinations = locations.filter(loc => !loc.isHub);
 
-            // Add markers with staggered animation
+            // Add markers
             locations.forEach((location, index) => {
                 setTimeout(() => {
                     try {
@@ -450,12 +398,12 @@ export default function GoogleMapConnections() {
                     } catch (error) {
                         console.error(`Error creating marker for ${location.name}:`, error);
                     }
-                }, index * 100); // Stagger marker appearance
+                }, index * 100);
             });
 
-            // Add connection lines with animation delay
-            destinations.forEach((destination, index) => {
-                setTimeout(() => {
+            // Add connection lines - all at the same time
+            setTimeout(() => {
+                destinations.forEach((destination) => {
                     try {
                         // Double-check map instance is still valid
                         if (!mapInstance || typeof mapInstance.getCenter !== 'function') {
@@ -490,8 +438,8 @@ export default function GoogleMapConnections() {
                     } catch (error) {
                         console.error(`Error creating connection line to ${destination.name}:`, error);
                     }
-                }, (index + locations.length) * 200); // Start connections after markers
-            });
+                });
+            }, locations.length * 100); // Start all connections at the same time after markers
         } catch (error) {
             console.error("Error in addMarkersAndConnections:", error);
         }
@@ -502,6 +450,8 @@ export default function GoogleMapConnections() {
             companyOffices.forEach((office, index) => {
                 setTimeout(() => {
                     try {
+                        console.log(`Creating marker for ${office.name} at lat: ${office.lat}, lng: ${office.lng}`);
+                        
                         const marker = new window.google.maps.Marker({
                             position: { lat: office.lat, lng: office.lng },
                             map: mapInstance,
@@ -509,14 +459,15 @@ export default function GoogleMapConnections() {
                             icon: {
                                 url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(getOfficeIcon(office.type)),
                                 scaledSize: new window.google.maps.Size(
-                                    office.type === 'head_office' ? 28 : office.type === 'international_office' ? 26 : 24,
-                                    office.type === 'head_office' ? 28 : office.type === 'international_office' ? 26 : 24
+                                    office.type === 'head_office' ? 32 : office.type === 'international_office' ? 28 : 24,
+                                    office.type === 'head_office' ? 32 : office.type === 'international_office' ? 28 : 24
                                 ),
                                 anchor: new window.google.maps.Point(
-                                    office.type === 'head_office' ? 14 : office.type === 'international_office' ? 13 : 12,
-                                    office.type === 'head_office' ? 14 : office.type === 'international_office' ? 13 : 12
+                                    office.type === 'head_office' ? 16 : office.type === 'international_office' ? 14 : 12,
+                                    office.type === 'head_office' ? 16 : office.type === 'international_office' ? 14 : 12
                                 )
-                            }
+                            },
+                            zIndex: 1000 // High z-index to ensure visibility
                         });
 
                         markersRef.current.push(marker);
@@ -551,42 +502,18 @@ export default function GoogleMapConnections() {
                         marker.addListener('click', () => {
                             infoWindow.open(mapInstance, marker);
                         });
+
+                        console.log(`Successfully created marker for ${office.name}`);
         
                     } catch (error) {
                         console.error(`Error creating marker for ${office.name}:`, error);
                     }
-                }, (index + locations.length + destinations.length) * 150); // Stagger office markers
+                }, (index + locations.length) * 150); // Stagger office markers after connections
             });
         } catch (error) {
             console.error("Error in addCompanyOffices:", error);
         }
     };
-
-    // Cleanup function to prevent memory leaks
-    useEffect(() => {
-        return () => {
-            // Clear connections
-            connectionsRef.current.forEach(connection => {
-                if (connection && connection.setMap) {
-                    connection.setMap(null);
-                }
-            });
-            connectionsRef.current = [];
-            
-            // Clear markers
-            markersRef.current.forEach(marker => {
-                if (marker && marker.setMap) {
-                    marker.setMap(null);
-                }
-            });
-            markersRef.current = [];
-            
-            // Clear map reference
-            if (map) {
-                setMap(null);
-            }
-        };
-    }, [map]);
 
     if (mapError) {
         return (
@@ -605,37 +532,36 @@ export default function GoogleMapConnections() {
     }
 
     return (
-        <div 
-            ref={containerRef}
-            className="w-full h-full relative transition-all duration-1000 ease-in-out"
-            style={{
-                opacity: isInView ? 1 : 0.3,
-                transform: isInView ? 'translateY(0)' : 'translateY(20px)'
-            }}
-        >
+        <div className="w-full h-full relative">
             {/* Map Container */}
             <div 
                 ref={mapRef} 
-                className="w-full h-[600px] md:h-[700px] lg:h-[800px] rounded-lg shadow-lg transition-all duration-500 ease-in-out"
-                style={{ 
-                    minHeight: '600px',
-                    opacity: isInView ? 1 : 0,
-                    transform: isInView ? 'scale(1)' : 'scale(0.95)'
-                }}
+                className="w-full max-h-[250px] md:max-h-[600px] lg:max-w-[50vw] rounded-lg shadow-lg"
+                style={{ minHeight: '600px' }}
             />
-            
+
             {/* Info Panel */}
-            <div 
-                className="absolute bottom-1 left-2 bg-black bg-opacity-80 text-white p-4 rounded-lg max-w-sm transition-all duration-700 ease-in-out"
-                style={{
-                    opacity: isInView ? 1 : 0,
-                    transform: isInView ? 'translateX(0)' : 'translateX(-20px)'
-                }}
-            >
+            <div className="absolute bottom-1 left-2 bg-black bg-opacity-80 text-white p-4 rounded-lg max-w-sm">
                 <h3 className="text-lg font-bold mb-2">Global Connections from India</h3>
                 <p className="text-sm text-gray-300">
                     Interactive map showing business connections from IQ Groups, India to major global markets.
                 </p>
+                
+                {/* Legend */}
+                {/* <div className="mt-3 space-y-1">
+                    <div className="flex items-center space-x-2">
+                        <div className="w-4 h-4 bg-yellow-400 rounded-full border border-white"></div>
+                        <span className="text-xs">Head Office</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                        <div className="w-4 h-4 bg-green-400 rounded-full border border-white"></div>
+                        <span className="text-xs">International Office</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                        <div className="w-4 h-4 bg-red-400 rounded-full border border-white"></div>
+                        <span className="text-xs">Branch Office</span>
+                    </div>
+                </div> */}
             </div>
         </div>
     );

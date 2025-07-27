@@ -134,13 +134,13 @@ const TweetMarquee = ({
   return (
     <div className={`tweet-marquee-container py-8 ${className}`}>
       {/* Title Section */}
-      {showTitle && (
+      {/* {showTitle && (
         <div className="container mx-auto px-4 md:px-0 mb-8">
           <h2 className="font-bold font-lato text-left text-[#203663] mb-4 md:pt-4 lg:text-[40px]">
             {title}
           </h2>
         </div>
-      )}
+      )} */}
       
       {/* Marquee Section */}
       <div
@@ -172,7 +172,7 @@ const TweetMarquee = ({
                 className="relative w-[500px] max-w-full flex-shrink-0 "
                 key={`tweet-${idx}`}
               >
-                <div className="tweet-card bg-white shadow-md overflow-hidden md:min-h-[600px] md:max-h-[600px] max-h-[300px] ">
+                <div className="tweet-card bg-white shadow-md overflow-hidden min-h-[400px] md:min-h-[600px] md:max-h-[600px] max-h-[300px] ">
                   <Suspense fallback={<TweetSkeleton />}>
                     <TweetEmbed tweetUrl={url} className="h-full w-full"/>
                   </Suspense>

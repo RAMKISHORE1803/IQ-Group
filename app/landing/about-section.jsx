@@ -109,7 +109,7 @@ export default function AboutSection() {
   return (
     <>
     <section 
-      className="relative py-[20px] md:py-32 min-h-screen overflow-hidden bg-[#fbfbfb]"
+      className="relative h-[100vh] md:min-h-[80vh] pt-[20px] pb-[0px] md:py-32 min-h-screen overflow-hidden bg-[#fbfbfb]"
       id="about"
     >
       {/* Grid background */}
@@ -122,32 +122,32 @@ export default function AboutSection() {
       /> */}
       
       {/* Radial gradient for the container to give a faded look */}
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+      <div className="pointer-events-none absolute inset-0 flex md:items-center justify-between md:justify-center bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
       
       <div className="container relative z-10 mx-auto px-4 md:pl-4 lg:pl-0 lg:pr-8 xl:pl-[10px]">
-        <div ref={sectionRef} className="grid grid-cols-1 md:grid-cols-2 lg:ml-[0px] lg:pl-[0px] gap-8 md:gap-6 lg:gap-4 items-center">
+        <div ref={sectionRef} className="grid h-full grid-cols-1 md:grid-cols-2 lg:ml-[0px] lg:pl-[0px] gap-8 md:gap-6 lg:gap-4 items-center">
           <div 
             ref={imageContainerRef} 
-            className="relative h-auto max-w-[550px] md:pl-[5px] sm:h-[400px] lg:ml-[0px] lg:min-w-[700px] xl:min-w-[700px] xl:pl-[20px] md:h-[500px] lg:h-[550px] w-full  min-w-[1490px]:ml-[50px] overflow-hidden"
+            className="relative h-auto min-h-[40vh] max-w-[90vw] md:max-w-[550px] md:pl-[5px] sm:h-[400px] lg:ml-[0px] lg:min-w-[700px] xl:min-w-[700px] xl:pl-[20px] md:h-[500px] lg:h-[550px] w-full  min-w-[1490px]:ml-[50px] overflow-hidden"
           >
             <Image
               src="/about-us.png"
               alt="Fiber optic network"
               fill
-              className="object-cover"
+              className="object-contain md:object-cover"
               priority
             />
           </div>
           
           <div ref={contentRef} className="text-white space-y-6 md:pr-4 lg:pr-8 md:min-w-[370px] lg:min-w-[500px]">
-            <h2 className="text-[32px] text-[#324390] text-lato text-[#000] font-bold sm:text-[34px] md:text-[38px] lg:text-[42px] font-bold">
+            <h2 className="text-[24px] text-[#324390] leading-[1.2] md:leading-normal text-lato text-[#000] font-bold sm:text-[34px] md:text-[38px] lg:text-[42px] font-bold">
             POWERING INNOVATION. DELIVERING EXCELLENCE.
             </h2>
-            <p className="text-gray-700 text-onest font-light sm:text-[24px] md:text-[18px] lg:text-[20px] xl:text-[25px]">
+            <p className="text-gray-700 text-onest font-light text-[20px] sm:text-[24px] md:text-[18px] lg:text-[20px] xl:text-[25px]">
             IQ Group fuels industries worldwide with premium raw materials—from alloys to minerals—delivered with precision, integrity, and speed.            </p>
-            <p className="sm:text-[24px] md:text-[17px] lg:text-[21px] xl:text-[25px] text-[#1E3157] font-onest font-light leading-relaxed">Trusted by leading sectors including steel, aerospace, ceramics, and battery manufacturing.</p>
+            <p className="sm:text-[24px] text-[20px] md:text-[17px] lg:text-[21px] xl:text-[25px] text-[#1E3157] font-onest font-light leading-relaxed">Trusted by leading sectors including steel, aerospace, ceramics, and battery manufacturing.</p>
             <Link href="/about">
-            <button className="mt-6 cursor-pointer border bg-[#324390] text-[#fbfbfb] hover:bg-[#fbfbfb] border-2 border-[#2D4BD2] hover:border-[#2D4BD2] hover:text-[#2D4BD2] px-6 py-3 transition-all duration-300">
+            <button className="md:mt-6 cursor-pointer border bg-[#324390] text-[#fbfbfb] hover:bg-[#fbfbfb] border-2 border-[#2D4BD2] hover:border-[#2D4BD2] hover:text-[#2D4BD2] px-6 py-3 transition-all duration-300">
               Learn More
             </button>
             </Link>

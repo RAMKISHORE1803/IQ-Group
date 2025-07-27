@@ -92,7 +92,7 @@ export const CustomerMarquee = ({
               <img 
                 src={item.logo} 
                 alt={item.name} 
-                className="max-h-full max-w-full object-contain grayscale transition-all duration-300 hover:grayscale-0 hover:scale-110"
+                className="max-h-full max-w-full object-contain md:grayscale transition-all duration-300 hover:grayscale-0 hover:scale-110"
               />
             </div>
           </li>

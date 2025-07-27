@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 export default function QualityCertificationsSection() {
   return (
-    <div className="w-full flex flex-col md:flex-row-reverse md:flex-between">
+    <div className="w-full flex flex-col md:flex-row-reverse overflow-hidden md:overflow-visible md:flex-between">
       {/* Left Content Section */}
       <motion.div
        initial = {{opacity:0 , x:30}}

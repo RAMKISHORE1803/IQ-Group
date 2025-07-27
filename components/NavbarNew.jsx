@@ -358,7 +358,7 @@ const NavbarNew = () => {
       {/* Main Navbar */}
       <header
         ref={navRef}
-        className={`fixed ${!isMobile ? 'top-[28px]' : 'top-0'} left-0 w-full z-40 transition-all duration-300 min-h-[10vh] 
+        className={`fixed ${!isMobile ? 'top-[28px]' : 'top-[28px]'} left-0 w-full z-40 transition-all duration-300 min-h-[10vh] 
         ${isScrolled ? 'bg-[#fbfbfb] text-[#0e3364] shadow-md' : 'bg-transparent text-white'}
           ${isVisible ? 'transform translate-y-0' : 'transform -translate-y-full'}
         `}
@@ -779,7 +779,7 @@ const NavbarNew = () => {
       </header>
       
       {/* Add a spacer to push content below the fixed navbar */}
-      <div className={`${!isMobile ? 'h-[72px]' : 'h-[64px]'}`}></div>
+      <div className={`${!isMobile ? 'h-[72px]' : 'h-[0px]'}`}></div>
       
       {/* Add global styles for 3D animations */}
       <style jsx global>{globalStyles}</style>

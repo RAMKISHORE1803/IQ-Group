@@ -1,8 +1,27 @@
-import React from 'react';
+'use client'
+import React, { useEffect, useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
+import {motion} from 'framer-motion';
 
 export default function BCGCareersSection() {
+  const [isMobile, setIsMobile] = useState(false);
+  const [font, setFont] = useState('lato');
+  const [weight, setWeight] = useState('bold');
+
+  useEffect(() => {
+   if(typeof window !== 'undefined'){
+    setIsMobile(window.innerWidth < 768);
+    if(!isMobile){
+      setFont('onest');
+      setWeight('light');
+    }
+    
+
+
+   }
+  }, []);
+
   return (
     <div className="w-full flex flex-col md:flex-row-reverse md:flex-between">
       {/* Left Content Section */}
@@ -15,9 +34,14 @@ export default function BCGCareersSection() {
           </div>
           
           {/* Main Heading */}
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-onest font-light text-[#121212] md:text-white leading-tight mb-4 sm:mb-5 md:mb-6 lg:mb-8">
+          <motion.h1 
+          initial = {{opacity:0 , y:30}}
+          whileInView = {{opacity:1 , y:0}}
+          viewport = {{once: false , amount: 0.4}}
+          transition = {{duration: 0.4 , delay: 0.1}}
+          className={`text-[28px] lg:text-[40px] xl:text-[32px] font-${font} font-${weight} text-[#203663]  text-[#121212] md:text-white leading-tight mb-4 sm:mb-5 md:mb-6 lg:mb-8`}>
             GO BEYOND THE EXPECTED
-          </h1>
+          </motion.h1> 
           
           {/* Description */}
           <p className="text-[22px] sm:text-[24px] lg:text-[20px] font-onest font-light text-[#121212] md:text-[#fbfbfb]  leading-relaxed mb-6 sm:mb-7 md:mb-8 lg:mb-10">

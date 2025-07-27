@@ -63,7 +63,7 @@ const BusinessStatistics = () => {
   }, [isStatsInView]);
 
   return (
-    <div ref={mainSectionRef} className="relative w-full bg-[#000] overflow-hidden lg:min-h-[180vh]" style={{ minHeight: '180vh' }}>
+    <div ref={mainSectionRef} className="relative w-full bg-[#000] overflow-hidden min-h-[220vh] lg:min-h-[180vh]" >
       {/* Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
@@ -91,14 +91,14 @@ const BusinessStatistics = () => {
             </div>
             
             {/* Description - Right */}
-            <div ref={descriptionRef} className="col-span-12 lg:col-span-9 lg:pl-[150px]">
+            <div ref={descriptionRef} className="col-span-12 lg:col-span-9 lg:pl-[150px] pr-8 md:pr-0">
               <motion.div 
                 className="space-y-6 lg:space-y-8 text-gray-300 leading-relaxed"
                 initial={{ opacity: 0, y: 30 }}
                 animate={isDescriptionInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                <p className="text-[20px] md:text-[27px] font-onest font-light leading-relaxed">
+                <p className="text-[20px]  box-border md:px-0 md:text-[27px] font-onest font-light leading-relaxed">
                 IQ Group powers global innovation by connecting businesses to premium raw materials. With trusted partners worldwide, we align interests, ensure quality, and turn bold ideas into reality through unmatched market reach.                </p>
                 
                 
@@ -110,7 +110,7 @@ const BusinessStatistics = () => {
           <div className="grid grid-cols-12 gap-8 lg:gap-16 items-center">
             
             {/* Left Section - Donut Chart */}
-            <div ref={chartRef} className="col-span-12 lg:col-span-6 flex justify-center mb-12 lg:mb-0">
+            <div ref={chartRef} className="pr-8 md:pr-0 md:px-0 col-span-12 lg:col-span-6 flex justify-center mb-12 lg:mb-0">
               <motion.div 
                 className="relative"
                 initial={{ opacity: 0, scale: 0.8 }}

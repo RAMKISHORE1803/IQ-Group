@@ -21,9 +21,9 @@ const associates = [
 
 export default function Associates() {
   return (
-    <div className='bg-[#fbfbfb] w-screen xl:px-[8.3vw]'>
-        <div className=' container px-4 md:px-0 mx-auto min-w-[1490px]:mx-auto flex flex-between'>    
-            <h2 className='font-bold font-lato text-left text-[#203663]  min-w-[1490px]:mx-auto mb-4 md:pt-8 lg:text-[40px] '>
+    <div className='bg-[#fbfbfb] pt-[30px] md:pt-0 w-screen xl:px-[8.3vw]'>
+        <div className=' container  px-4 md:px-0 mx-auto min-w-[1490px]:mx-auto flex justify-center md:flex-between'>    
+            <h2 className='font-bold font-lato text-center md:text-left text-[#203663] text-[28px] md:text-[40px] min-w-[1490px]:mx-auto mb-4 md:pt-8 lg:text-[40px] '>
                 OUR ASSOCIATES
             </h2>
         </div>

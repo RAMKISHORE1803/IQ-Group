@@ -233,14 +233,14 @@ export default function LandingPage() {
         </div>
 
        <div className='md:hidden block '>
-        <Associates />
+        
         <GlobalConstructionPlatform />
         <div className='h-[10vh]'></div>
        </div>
         
         {/* Industries section */}
         <div ref={industriesRef} className="min-h-[70vh] xl:min-h-[100vh] bg-[#fbfbfb] text-white text-4xl">
-          <Associates />
+          {/* <Associates /> */}
           <IndustriesSection/>
           
           <BCGCareersSection />

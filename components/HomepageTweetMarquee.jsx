@@ -21,10 +21,10 @@ export default function HomepageTweetMarquee() {
           viewport={{ once: false, amount: 0.4 }}
           transition={{ duration: 0.5 }}
           className="mb-6">
-          <h2 className="font-bold font-lato text-[#203663] text-3xl md:text-4xl lg:text-5xl">
+          <h2 className="font-bold font-lato text-[#203663] text-[28px] text-center md:text-left md:text-4xl lg:text-5xl">
             SOCIAL MEDIA UPDATES
           </h2>
-          <p className="text-gray-600 mt-4 max-w-3xl text-[18px] lg:text-[23px] font-onest">
+          <p className="text-gray-600 mt-4 px-2 md:px-0 max-w-3xl text-center md:text-left text-[20px] lg:text-[23px] font-onest">
             Stay connected with our latest news, events, and industry insights through our social media channels.
           </p>
         </motion.div>

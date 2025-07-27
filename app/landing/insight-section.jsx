@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useAnimate } from 'framer-motion';
 import Link from 'next/link';
 
 const InsightsSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
 
     const insights = [
       {
@@ -102,6 +103,9 @@ const InsightsSection = () => {
       
       {/* Floating Glassy overlay - small at bottom, full card on hover */}
       <motion.div
+        onClick={() => {
+          setIsExpanded(!isExpanded);
+        }}
         className="absolute bg-white/70 bg-opacity-40 backdrop-blur-md rounded-lg overflow-hidden"
         initial={{ 
           bottom: "16px",
@@ -110,6 +114,17 @@ const InsightsSection = () => {
           top: "auto",
           height: "120px"
         }}
+        animate={isExpanded ? { 
+          top: "0px",
+          bottom: "0px",
+          left: "0px",
+          right: "0px",
+          height: "100%",
+          borderRadius: "0px",
+          zIndex: 50,
+          opacity:1
+        } : {}}
+
         whileHover={isMobile ? {} : { 
           top: "0px",
           bottom: "0px",
@@ -120,6 +135,16 @@ const InsightsSection = () => {
           zIndex: 50,
           opacity:1
         }}
+        whileTap={isMobile ? { 
+          top: "0px",
+          bottom: "0px",
+          left: "0px",
+          right: "0px",
+          height: "100%",
+          borderRadius: "0px",
+          zIndex: 50,
+          opacity:1
+        } : {}}
         transition={{ 
           duration: 0.4, 
           ease: [0.4, 0, 0.2, 1],
@@ -142,6 +167,7 @@ const InsightsSection = () => {
             className="px-4 pb-4 opacity-0 group-hover:opacity-100"
             initial={{ opacity: 0, y: 20 }}
             whileHover={{ opacity: 1, y: 0 }}
+            animate={isExpanded ? { opacity: 1, y: 0 } : { }}
             transition={{ duration: 0.3, delay: 0.1 }}
           >
             {/* <p className="text-sm font-medium text-gray-700 mb-2">
@@ -160,14 +186,14 @@ const InsightsSection = () => {
   );
 
   return (
-    <div className="w-full max-w-7xl md:max-w-[1300px]  mx-auto px-4 py-16 md:mt-[5vh]">
+    <div className="w-full max-w-7xl md:max-w-[1300px]  mx-auto px-4 py-4 md:py-16 md:mt-[5vh]">
       {/* Section Title */}
       <motion.h2 
       initial = {{opacity:0 , x:-30}}
       whileInView = {{opacity:1 , x:0}}
       viewport = {{once: true , amount: 0.4}}
       transition = {{duration: 0.4 , delay: .1}}
-      className="text-4xl md:text-5xl font-lato uppercase font-bold text-[#1e3157] mb-12">
+      className="text-[28px] md:text-5xl font-lato uppercase font-bold text-[#1e3157] mb-12">
         Our Latest Insights
       </motion.h2>
       

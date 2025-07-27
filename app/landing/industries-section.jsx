@@ -123,7 +123,7 @@ const IndustriesSection = () => {
   const extendedSectors = [...sectors, ...sectors];
 
   return (
-    <div className=" text-black bg-[#fbfbfb] min-h-[85vh] py-12 px-4 md:mb-12 md:px-8">
+    <div className=" text-black bg-[#fbfbfb] mb-4 md:mb-0 md:min-h-[85vh] py-12 px-4 md:mb-12 md:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8 md:mb-[64px]  lg:mb-[80px]">
@@ -134,7 +134,7 @@ const IndustriesSection = () => {
              
              viewport={{ once: false , amount: 0.4 }}
              transition={{ duration: 0.5 }}
-             className="text-[20px] md:text-5xl lg:text-[42px] text-center font-light mb-4 md:mb-0 font-lato font-bold text-[#1E3157]">INDUSTRIES WE SERVE</motion.h2>
+             className="text-[28px] md:text-5xl lg:text-[42px] text-center font-light mb-4 md:mb-0 font-lato font-bold text-[#1E3157]">INDUSTRIES WE SERVE</motion.h2>
           
             <motion.div
              initial={{ opacity: 0, x: 40 }}
@@ -144,7 +144,7 @@ const IndustriesSection = () => {
             
             
              className="md:max-w-lg md:ml-8">
-              <p className="text-gray-700 text-[18px] md:text-[20px] xl:text-[22px] lg:min-w-[550px] text-center md:text-left font-onest lg:leading-[28px] font-light ">
+              <p className="text-gray-700 text-[18px] md:text-[20px] hidden md:block xl:text-[22px] lg:min-w-[550px] text-center md:text-left font-onest lg:leading-[28px] font-light ">
               Discover the industries we empower delivering precision, consistency, and global-scale material excellence.
               </p>
             </motion.div>
