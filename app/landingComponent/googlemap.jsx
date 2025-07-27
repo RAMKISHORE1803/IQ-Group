@@ -3,9 +3,13 @@ import { useEffect, useRef, useState } from 'react';
 
 export default function GoogleMapConnections() {
     const mapRef = useRef(null);
+    const containerRef = useRef(null);
     const [map, setMap] = useState(null);
     const [mapError, setMapError] = useState(null);
+    const [isInView, setIsInView] = useState(false);
+    const [isMapInitialized, setIsMapInitialized] = useState(false);
     const connectionsRef = useRef([]);
+    const markersRef = useRef([]);
 
     // Configuration - set these according to your needs
     const USE_MAP_ID = false; // Set to true if you want to use Map ID, false for styles
@@ -77,7 +81,6 @@ export default function GoogleMapConnections() {
             type: "branch_office"
         }
     ];
-
 
     const getOfficeIcon = (officeType) => {
         const icons = {
@@ -206,149 +209,196 @@ export default function GoogleMapConnections() {
         }
     ];
 
+    // Intersection Observer for viewport detection
     useEffect(() => {
-        // Prevent multiple API loads
-        let isLoading = false;
-        
-        // Load Google Maps script with global loading prevention
-        const loadGoogleMaps = () => {
-            // Check if API is already loaded
-            if (window.google && window.google.maps) {
-                initializeMap();
-                return;
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsInView(true);
+                    // Initialize map when it comes into view
+                    if (!isMapInitialized) {
+                        loadGoogleMaps();
+                    }
+                }
+            },
+            {
+                threshold: 0.1, // Trigger when 10% of the element is visible
+                rootMargin: '0px 0px -50px 0px' // Start animation slightly before fully in view
             }
+        );
 
-            // Add callback to queue
-            window.googleMapsCallbacks.push(initializeMap);
+        if (containerRef.current) {
+            observer.observe(containerRef.current);
+        }
 
-            // If already loading, just wait
-            if (window.googleMapsLoading) {
-                return;
+        return () => {
+            if (containerRef.current) {
+                observer.unobserve(containerRef.current);
             }
+        };
+    }, [isMapInitialized]);
 
-            // Check if script already exists
-            const existingScript = document.querySelector('script[src*="maps.googleapis.com"]');
-            if (existingScript) {
-                window.googleMapsLoading = true;
-                existingScript.addEventListener('load', () => {
-                    window.googleMapsLoading = false;
-                    window.googleMapsCallbacks.forEach(callback => callback());
-                    window.googleMapsCallbacks = [];
-                });
-                return;
+    // Handle window resize for responsive map
+    useEffect(() => {
+        const handleResize = () => {
+            if (map && mapRef.current) {
+                // Trigger a resize event on the map to make it responsive
+                window.google.maps.event.trigger(map, 'resize');
+                
+                // Re-center the map after resize
+                const center = map.getCenter();
+                if (center) {
+                    map.setCenter(center);
+                }
             }
+        };
 
-            // Create new script
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, [map]);
+
+    // Load Google Maps script with global loading prevention
+    const loadGoogleMaps = () => {
+        // Check if API is already loaded
+        if (window.google && window.google.maps) {
+            initializeMap();
+            return;
+        }
+
+        // Add callback to queue
+        window.googleMapsCallbacks.push(initializeMap);
+
+        // If already loading, just wait
+        if (window.googleMapsLoading) {
+            return;
+        }
+
+        // Check if script already exists
+        const existingScript = document.querySelector('script[src*="maps.googleapis.com"]');
+        if (existingScript) {
             window.googleMapsLoading = true;
-            const script = document.createElement('script');
-            
-            if (USE_MAP_ID) {
-                script.src = `https://maps.googleapis.com/maps/api/js?key=${YOUR_API_KEY}&map_ids=${YOUR_MAP_ID}&libraries=geometry`;
-            } else {
-                script.src = `https://maps.googleapis.com/maps/api/js?key=${YOUR_API_KEY}&libraries=geometry`;
-            }
-            
-            script.async = true;
-            script.onload = () => {
+            existingScript.addEventListener('load', () => {
                 window.googleMapsLoading = false;
                 window.googleMapsCallbacks.forEach(callback => callback());
                 window.googleMapsCallbacks = [];
-            };
-            script.onerror = () => {
-                window.googleMapsLoading = false;
-                setMapError("Failed to load Google Maps API");
-            };
-            document.head.appendChild(script);
+            });
+            return;
+        }
+
+        // Create new script
+        window.googleMapsLoading = true;
+        const script = document.createElement('script');
+        
+        if (USE_MAP_ID) {
+            script.src = `https://maps.googleapis.com/maps/api/js?key=${YOUR_API_KEY}&map_ids=${YOUR_MAP_ID}&libraries=geometry`;
+        } else {
+            script.src = `https://maps.googleapis.com/maps/api/js?key=${YOUR_API_KEY}&libraries=geometry`;
+        }
+        
+        script.async = true;
+        script.onload = () => {
+            window.googleMapsLoading = false;
+            window.googleMapsCallbacks.forEach(callback => callback());
+            window.googleMapsCallbacks = [];
         };
+        script.onerror = () => {
+            window.googleMapsLoading = false;
+            setMapError("Failed to load Google Maps API");
+        };
+        document.head.appendChild(script);
+    };
 
-        const initializeMap = () => {
-            try {
-                // Ensure the map container exists
-                if (!mapRef.current) {
-                    console.error("Map container not found");
-                    return;
+    const initializeMap = () => {
+        try {
+            // Ensure the map container exists
+            if (!mapRef.current) {
+                console.error("Map container not found");
+                return;
+            }
+
+            let mapOptions = {
+                center: { lat: 20, lng: 0 },
+                zoom: 2,
+                mapTypeControl: false,
+                streetViewControl: false,
+                fullscreenControl: false,
+                disableDefaultUi: true,
+                rotateControl: false,
+                scaleControl: false,
+                clickableIcons: false,
+                directionControl: false,
+                mapTypeControl: false,
+                panControl: false,
+                scrollwheel: false,
+                draggable: false,
+                keyboardShortcuts: false,
+                disableDoubleClickZoom: true,
+                disableScrollWheelZoom: true,
+                gestureHandling: 'none',
+                disableDragging: true,
+                minZoom: 2,
+                maxZoom: 2,
+                restriction: {
+                    latLngBounds: {
+                        north: 85,
+                        south: -85,
+                        west: -180,
+                        east: 180
+                    },
+                    strictBounds: true
                 }
+            };
 
-                let mapOptions = {
-                    center: { lat: 20, lng: 0 },
-                    zoom: 2,
-                    mapTypeControl: false,
-                    streetViewControl: false,
-                    fullscreenControl: false,
-                    disableDefaultUi: true,
-                    rotateControl:false,
-                    scaleControl:false,
-                    clickableIcons:false,
-                    directionControl:false,
-                    mapTypeControl:false,
-                    panControl:false,
-                    // zoomControl:false,
-                    // zoomAnimation:false,
-                    // zoomAnimationDuration:0,
-                    // zoomAnimationEasing:'linear',
-                    // zoomAnimationCurve:'linear',
-                    // zoomAnimationEasing:'linear',
-                    scrollwheel: false,        // ← ADD THIS
-                    draggable: false,          // ← ADD THIS
-                    keyboardShortcuts: false,  // ← ADD THIS
-                    disableDoubleClickZoom: true, // ← ADD THIS
-                    disableScrollWheelZoom: true,
-                    gestureHandling: 'none',   
-                    disableDragging: true,
+            // Use Map ID or styles based on configuration
+            if (USE_MAP_ID) {
+                mapOptions.mapId = YOUR_MAP_ID;
+            } else {
+                mapOptions.styles = mapStyle;
+            }
 
-                    minZoom: 2,               // ← ADD THIS
-                    maxZoom: 2,               // ← ADD THIS
-                    restriction: {            // ← ADD THIS ENTIRE BLOCK
-                        latLngBounds: {
-                            north: 85,
-                            south: -85,
-                            west: -180,
-                            east: 180
-                        },
-                        strictBounds: true
-                    }
-                };
+            const mapInstance = new window.google.maps.Map(mapRef.current, mapOptions);
 
-                // Use Map ID or styles based on configuration
-                if (USE_MAP_ID) {
-                    mapOptions.mapId = YOUR_MAP_ID;
-                } else {
-                    mapOptions.styles = mapStyle;
-                }
-
-                const mapInstance = new window.google.maps.Map(mapRef.current, mapOptions);
-
-                // Wait for map to be fully initialized before adding markers
-                window.google.maps.event.addListenerOnce(mapInstance, 'idle', () => {
-                    setMap(mapInstance);
+            // Wait for map to be fully initialized before adding markers
+            window.google.maps.event.addListenerOnce(mapInstance, 'idle', () => {
+                setMap(mapInstance);
+                setIsMapInitialized(true);
+                
+                // Only add markers and connections if the section is in view
+                if (isInView) {
                     addMarkersAndConnections(mapInstance);
                     addCompanyOffices(mapInstance);
-                });
+                }
+            });
 
-            } catch (error) {
-                console.error("Error initializing map:", error);
-                setMapError("Failed to initialize map");
-            }
-        };
-        
-        loadGoogleMaps();
+        } catch (error) {
+            console.error("Error initializing map:", error);
+            setMapError("Failed to initialize map");
+        }
+    };
 
-        // Cleanup function to prevent memory leaks
-        return () => {
-            // Clear connections
+    // Add markers and connections when section comes into view
+    useEffect(() => {
+        if (isInView && map && isMapInitialized) {
+            // Clear existing markers and connections
+            markersRef.current.forEach(marker => {
+                if (marker && marker.setMap) {
+                    marker.setMap(null);
+                }
+            });
+            markersRef.current = [];
+
             connectionsRef.current.forEach(connection => {
                 if (connection && connection.setMap) {
                     connection.setMap(null);
                 }
             });
             connectionsRef.current = [];
-            
-            // Clear map reference
-            if (map) {
-                setMap(null);
-            }
-        };
-    }, []); // Empty dependency array to run only once
+
+            // Add markers and connections with animation
+            addMarkersAndConnections(map);
+            addCompanyOffices(map);
+        }
+    }, [isInView, map, isMapInitialized]);
 
     const addMarkersAndConnections = (mapInstance) => {
         try {
@@ -361,45 +411,49 @@ export default function GoogleMapConnections() {
             const indiaLocation = locations.find(loc => loc.isHub);
             const destinations = locations.filter(loc => !loc.isHub);
 
-            // Add markers
+            // Add markers with staggered animation
             locations.forEach((location, index) => {
-                try {
-                    const marker = new window.google.maps.Marker({
-                        position: { lat: location.lat, lng: location.lng },
-                        map: mapInstance,
-                        title: location.name,
-                        icon: {
-                            url: location.isHub 
-                                ? 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="12" cy="12" r="8" fill="#ff6b6b" stroke="#ffffff" stroke-width="2"/>
-                                        <circle cx="12" cy="12" r="4" fill="#ffffff"/>
-                                    </svg>
-                                `)
-                                : 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="10" cy="10" r="6" fill="#00d4ff" stroke="#ffffff" stroke-width="2"/>
-                                    </svg>
-                                `),
-                            scaledSize: new window.google.maps.Size(location.isHub ? 24 : 20, location.isHub ? 24 : 20),
-                            anchor: new window.google.maps.Point(location.isHub ? 12 : 10, location.isHub ? 12 : 10)
-                        }
-                    });
+                setTimeout(() => {
+                    try {
+                        const marker = new window.google.maps.Marker({
+                            position: { lat: location.lat, lng: location.lng },
+                            map: mapInstance,
+                            title: location.name,
+                            icon: {
+                                url: location.isHub 
+                                    ? 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="12" cy="12" r="8" fill="#ff6b6b" stroke="#ffffff" stroke-width="2"/>
+                                            <circle cx="12" cy="12" r="4" fill="#ffffff"/>
+                                        </svg>
+                                    `)
+                                    : 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
+                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="10" cy="10" r="6" fill="#00d4ff" stroke="#ffffff" stroke-width="2"/>
+                                        </svg>
+                                    `),
+                                scaledSize: new window.google.maps.Size(location.isHub ? 24 : 20, location.isHub ? 24 : 20),
+                                anchor: new window.google.maps.Point(location.isHub ? 12 : 10, location.isHub ? 12 : 10)
+                            }
+                        });
 
-                    // Add info window
-                    const infoWindow = new window.google.maps.InfoWindow({
-                        content: `<div style="color: #333; font-weight: bold;">${location.name}</div>`
-                    });
+                        markersRef.current.push(marker);
 
-                    marker.addListener('click', () => {
-                        infoWindow.open(mapInstance, marker);
-                    });
-                } catch (error) {
-                    console.error(`Error creating marker for ${location.name}:`, error);
-                }
+                        // Add info window
+                        const infoWindow = new window.google.maps.InfoWindow({
+                            content: `<div style="color: #333; font-weight: bold;">${location.name}</div>`
+                        });
+
+                        marker.addListener('click', () => {
+                            infoWindow.open(mapInstance, marker);
+                        });
+                    } catch (error) {
+                        console.error(`Error creating marker for ${location.name}:`, error);
+                    }
+                }, index * 100); // Stagger marker appearance
             });
 
-            // Add connection lines with proper validation
+            // Add connection lines with animation delay
             destinations.forEach((destination, index) => {
                 setTimeout(() => {
                     try {
@@ -436,7 +490,7 @@ export default function GoogleMapConnections() {
                     } catch (error) {
                         console.error(`Error creating connection line to ${destination.name}:`, error);
                     }
-                }, index * 200);
+                }, (index + locations.length) * 200); // Start connections after markers
             });
         } catch (error) {
             console.error("Error in addMarkersAndConnections:", error);
@@ -446,65 +500,93 @@ export default function GoogleMapConnections() {
     const addCompanyOffices = (mapInstance) => {
         try {
             companyOffices.forEach((office, index) => {
-                try {
-                    const marker = new window.google.maps.Marker({
-                        position: { lat: office.lat, lng: office.lng },
-                        map: mapInstance,
-                        title: office.name,
-                        icon: {
-                            url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(getOfficeIcon(office.type)),
-                            scaledSize: new window.google.maps.Size(
-                                office.type === 'head_office' ? 28 : office.type === 'international_office' ? 26 : 24,
-                                office.type === 'head_office' ? 28 : office.type === 'international_office' ? 26 : 24
-                            ),
-                            anchor: new window.google.maps.Point(
-                                office.type === 'head_office' ? 14 : office.type === 'international_office' ? 13 : 12,
-                                office.type === 'head_office' ? 14 : office.type === 'international_office' ? 13 : 12
-                            )
-                        }
-                    });
-    
-                    // Create detailed info window for offices
-                    const officeInfo = `
-                        <div style="max-width: 300px; color: #333; font-family: Arial, sans-serif;">
-                            <h3 style="margin: 0 0 8px 0; color: #1e3056; font-size: 16px; font-weight: bold;">
-                                ${office.name}
-                            </h3>
-                            <p style="margin: 0 0 8px 0; font-size: 12px; line-height: 1.4;">
-                                <strong>Address:</strong><br>
-                                ${office.address}
-                            </p>
-                            ${office.contact ? `
-                                <p style="margin: 0 0 4px 0; font-size: 12px;">
-                                    <strong>Contact:</strong> ${office.contact}
+                setTimeout(() => {
+                    try {
+                        const marker = new window.google.maps.Marker({
+                            position: { lat: office.lat, lng: office.lng },
+                            map: mapInstance,
+                            title: office.name,
+                            icon: {
+                                url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(getOfficeIcon(office.type)),
+                                scaledSize: new window.google.maps.Size(
+                                    office.type === 'head_office' ? 28 : office.type === 'international_office' ? 26 : 24,
+                                    office.type === 'head_office' ? 28 : office.type === 'international_office' ? 26 : 24
+                                ),
+                                anchor: new window.google.maps.Point(
+                                    office.type === 'head_office' ? 14 : office.type === 'international_office' ? 13 : 12,
+                                    office.type === 'head_office' ? 14 : office.type === 'international_office' ? 13 : 12
+                                )
+                            }
+                        });
+
+                        markersRef.current.push(marker);
+        
+                        // Create detailed info window for offices
+                        const officeInfo = `
+                            <div style="max-width: 300px; color: #333; font-family: Arial, sans-serif;">
+                                <h3 style="margin: 0 0 8px 0; color: #1e3056; font-size: 16px; font-weight: bold;">
+                                    ${office.name}
+                                </h3>
+                                <p style="margin: 0 0 8px 0; font-size: 12px; line-height: 1.4;">
+                                    <strong>Address:</strong><br>
+                                    ${office.address}
                                 </p>
-                            ` : ''}
-                            ${office.email ? `
-                                <p style="margin: 0; font-size: 12px;">
-                                    <strong>Email:</strong> ${office.email}
-                                </p>
-                            ` : ''}
-                        </div>
-                    `;
-    
-                    const infoWindow = new window.google.maps.InfoWindow({
-                        content: officeInfo
-                    });
-    
-                    marker.addListener('click', () => {
-                        infoWindow.open(mapInstance, marker);
-                    });
-    
-                } catch (error) {
-                    console.error(`Error creating marker for ${office.name}:`, error);
-                }
+                                ${office.contact ? `
+                                    <p style="margin: 0 0 4px 0; font-size: 12px;">
+                                        <strong>Contact:</strong> ${office.contact}
+                                    </p>
+                                ` : ''}
+                                ${office.email ? `
+                                    <p style="margin: 0; font-size: 12px;">
+                                        <strong>Email:</strong> ${office.email}
+                                    </p>
+                                ` : ''}
+                            </div>
+                        `;
+        
+                        const infoWindow = new window.google.maps.InfoWindow({
+                            content: officeInfo
+                        });
+        
+                        marker.addListener('click', () => {
+                            infoWindow.open(mapInstance, marker);
+                        });
+        
+                    } catch (error) {
+                        console.error(`Error creating marker for ${office.name}:`, error);
+                    }
+                }, (index + locations.length + destinations.length) * 150); // Stagger office markers
             });
         } catch (error) {
             console.error("Error in addCompanyOffices:", error);
         }
     };
 
-    
+    // Cleanup function to prevent memory leaks
+    useEffect(() => {
+        return () => {
+            // Clear connections
+            connectionsRef.current.forEach(connection => {
+                if (connection && connection.setMap) {
+                    connection.setMap(null);
+                }
+            });
+            connectionsRef.current = [];
+            
+            // Clear markers
+            markersRef.current.forEach(marker => {
+                if (marker && marker.setMap) {
+                    marker.setMap(null);
+                }
+            });
+            markersRef.current = [];
+            
+            // Clear map reference
+            if (map) {
+                setMap(null);
+            }
+        };
+    }, [map]);
 
     if (mapError) {
         return (
@@ -523,23 +605,37 @@ export default function GoogleMapConnections() {
     }
 
     return (
-        <div className="w-full h-full relative">
+        <div 
+            ref={containerRef}
+            className="w-full h-full relative transition-all duration-1000 ease-in-out"
+            style={{
+                opacity: isInView ? 1 : 0.3,
+                transform: isInView ? 'translateY(0)' : 'translateY(20px)'
+            }}
+        >
             {/* Map Container */}
             <div 
                 ref={mapRef} 
-                className="w-full h-[600px] rounded-lg shadow-lg"
-                style={{ minHeight: '600px' }}
+                className="w-full h-[600px] md:h-[700px] lg:h-[800px] rounded-lg shadow-lg transition-all duration-500 ease-in-out"
+                style={{ 
+                    minHeight: '600px',
+                    opacity: isInView ? 1 : 0,
+                    transform: isInView ? 'scale(1)' : 'scale(0.95)'
+                }}
             />
             
-          
-
             {/* Info Panel */}
-            <div className="absolute bottom-1 left-2 bg-black bg-opacity-80 text-white p-4 rounded-lg max-w-sm">
+            <div 
+                className="absolute bottom-1 left-2 bg-black bg-opacity-80 text-white p-4 rounded-lg max-w-sm transition-all duration-700 ease-in-out"
+                style={{
+                    opacity: isInView ? 1 : 0,
+                    transform: isInView ? 'translateX(0)' : 'translateX(-20px)'
+                }}
+            >
                 <h3 className="text-lg font-bold mb-2">Global Connections from India</h3>
                 <p className="text-sm text-gray-300">
                     Interactive map showing business connections from IQ Groups, India to major global markets.
                 </p>
-                
             </div>
         </div>
     );
