@@ -30,7 +30,7 @@ export default function Associates() {
             viewport={{once: false,amount: 0.5}}
             transition={{duration: 0.4, delay: 0.2}}
              className='font-bold font-lato text-center md:text-left lg:text-left text-[#203663] text-[28px] md:text-[40px]  mb-4 md:pt-8 lg:text-[40px] '>
-                OUR ASSOCIATES
+                WE ARE PART OF 
             </motion.h2>
         </div>
       <CustomerMarquee items={associates} direction="right" speed="fast" className='bg-[#fbfbfb] w-full h-full lg:w-full grayscale-none' />

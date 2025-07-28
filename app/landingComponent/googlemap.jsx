@@ -320,7 +320,7 @@ export default function GoogleMapConnections() {
             try {
                 // Ensure the map container exists
                 if (!mapRef.current) {
-                    console.error("Map container not found");
+                 
                     return;
                 }
 
@@ -371,7 +371,7 @@ export default function GoogleMapConnections() {
                 });
 
             } catch (error) {
-                console.error("Error initializing map:", error);
+
                 setMapError("Failed to initialize map");
             }
         };
@@ -407,7 +407,7 @@ export default function GoogleMapConnections() {
         try {
             // Validate that mapInstance is a proper Google Maps instance
             if (!mapInstance || typeof mapInstance.getCenter !== 'function') {
-                console.error("Invalid map instance provided");
+             
                 return;
             }
 
@@ -510,7 +510,7 @@ export default function GoogleMapConnections() {
             companyOffices.forEach((office, index) => {
                 setTimeout(() => {
                     try {
-                        console.log(`Creating marker for ${office.name} at lat: ${office.lat}, lng: ${office.lng}`);
+                       
                         
                         // Scale office markers based on device size and office type
                         let markerSize;
@@ -567,7 +567,7 @@ export default function GoogleMapConnections() {
                             infoWindow.open(mapInstance, marker);
                         });
 
-                        console.log(`Successfully created marker for ${office.name}`);
+                       
         
                     } catch (error) {
                         console.error(`Error creating marker for ${office.name}:`, error);

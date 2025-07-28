@@ -4,21 +4,19 @@ import { useState, useEffect, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation, EffectFade } from 'swiper/modules';
 import Image from 'next/image';
+import { ChevronRight , ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
-import CountUp from 'react-countup';
-import { PLACEHOLDER_URLS } from './placeholders';
-import GlobalPresenceSlide from './GlobalPresenceSlide';
-
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import 'swiper/css/effect-fade';
+import { motion } from 'framer-motion';
 
 // SlideRevealText component for text reveal animation
 const SlideRevealText = ({ text, className, startAnimation = false, delay = 0, duration = 800 }) => {
   return (
-    <div className="overflow-hidden relative">
+    <div className="overflow-visible relative">
       <div
         className={`${className} transition-transform whitespace-pre-wrap`}
         style={{
@@ -33,19 +31,31 @@ const SlideRevealText = ({ text, className, startAnimation = false, delay = 0, d
   );
 };
 
+
 // Button reveal animation component
-const ButtonReveal = ({ children, startAnimation = false, delay = 0, duration = 800 }) => {
+const ButtonReveal = ({ startAnimation = false, delay = 0, duration = 800, ctaLink, ctaText }) => {
   return (
-    <div 
-      className="overflow-hidden relative inline-block"
-      style={{
-        clipPath: startAnimation ? 'inset(0 0 0 0)' : 'inset(0 100% 0 0)',
-        transition: `clip-path ${duration}ms ease-out ${delay}ms`,
-        willChange: 'clip-path'
-      }}
+    <Link
+      href={ctaLink}
+      className="inline-block"
     >
-      {children}
-    </div>
+      <button
+        style={{
+          clipPath: startAnimation ? 'inset(0 0 0 0)' : 'inset(0 100% 0 0)',
+          transition: `clip-path ${duration}ms ease-out ${delay}ms`,
+          willChange: 'clip-path'
+        }}
+        className="bg-[#fbfbfb] hover:bg-transparent border border-solid border-[#fbfbfb] hover:text-[#fbfbfb] text-[#121212] px-6 py-3 group transition-colors duration-300 font-medium text-[16px] font-onest font-light cursor-pointer"
+      >
+        <div className="flex items-center gap-2 lg:text-[18px]">
+          {ctaText}
+          <ArrowUpRight 
+            
+            className="w-4 h-4 lg:w-5 lg:h-5  transition-all duration-300 text-black group-hover:text-white hover:block" 
+          />
+        </div>
+      </button>
+    </Link>
   );
 };
 
@@ -53,49 +63,48 @@ const ButtonReveal = ({ children, startAnimation = false, delay = 0, duration = 
 const slides = [
   {
     ariaLabel: 'Core Mission & Global Scale',
-    background: PLACEHOLDER_URLS.port, // Video
+    background: 'https://videos.openai.com/vg-assets/assets%2Ftask_01k1879599e9xv9vb0mamejvh5%2F1753696582_img_0.webp?st=2025-07-28T08%3A53%3A48Z&se=2025-08-03T09%3A53%3A48Z&sks=b&skt=2025-07-28T08%3A53%3A48Z&ske=2025-08-03T09%3A53%3A48Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=aa5ddad1-c91a-4f0a-9aca-e20682cc8969&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=h6OqLd6o4d0%2BZPPfVAtWoOJbZZmMJO1lPWCo1JImLs8%3D&az=oaivgprodscus',
     isVideo: false,
-    headline: 'Trusted by Global Manufacturers. Powered by Proven Logistics.',
+    headline: 'Manufacturers Trust.\nEnd Users Thrive.',
     subtext: 'We enable raw material movement from source to industry—efficiently, reliably, worldwide.',
     ctaText: 'Get a Quote',
-    ctaLink: '/contact'
+    ctaLink: '/contact',
+    tagline: 'EXPERTISE'
   },
   {
     ariaLabel: 'Quality & Certification Highlight',
-    background: PLACEHOLDER_URLS.isoCert,
+    background: 'https://videos.openai.com/vg-assets/assets%2Ftask_01k17n8pk6em3bz8gej9w84chp%2F1753677623_img_1.webp?st=2025-07-28T03%3A24%3A50Z&se=2025-08-03T04%3A24%3A50Z&sks=b&skt=2025-07-28T03%3A24%3A50Z&ske=2025-08-03T04%3A24%3A50Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=aa5ddad1-c91a-4f0a-9aca-e20682cc8969&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=dMGhy3Y6NixrcV2M6BUJ2gtPr68m1ws91JHR5tBHSVs%3D&az=oaivgprodscus',
     isVideo: false,
-    headline: 'ISO 9001:2008 Certified. Unmatched Quality Control.',
+    headline: 'Discover Quality Excellence.\nUnmatched Quality Control.',
     subtext: 'From sourcing to delivery, our dynamic quality policy ensures you receive only top-grade materials.',
     ctaText: 'Read Quality Policy',
-    ctaLink: '/quality-policy'
+    ctaLink: '/quality-insights',
+    tagline: 'QUALITY'
   },
   {
     ariaLabel: 'Company Divisions Snapshot',
-    background: PLACEHOLDER_URLS.divisions,
+    background: 'https://videos.openai.com/vg-assets/assets%2Ftask_01k17mzn4fe71tjvgsght9998d%2F1753677333_img_1.webp?st=2025-07-28T03%3A23%3A06Z&se=2025-08-03T04%3A23%3A06Z&sks=b&skt=2025-07-28T03%3A23%3A06Z&ske=2025-08-03T04%3A23%3A06Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=aa5ddad1-c91a-4f0a-9aca-e20682cc8969&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=Klpw5tu3DBcRXnpVbmrjuv3WUEG%2FC3HfHXT0w6QpAEA%3D&az=oaivgprodscus',
     isVideo: false,
-    headline: 'Eight Specialized Divisions. One Unified Vision.',
+    headline: 'Eight Specialized Divisions.\nOne Unified Vision.',
     subtext: 'Explore how each IQ Group company delivers excellence in its niche.',
     ctaText: 'Discover Our Companies',
-    ctaLink: '/our-companies',
-    supplementalLogos: [
-      { src: PLACEHOLDER_URLS.logoFerro, alt: 'IQ Ferro Alloys' },
-      { src: PLACEHOLDER_URLS.logoGreen, alt: 'IQ Green Energy' },
-      { src: PLACEHOLDER_URLS.logoMineral, alt: 'IQ Mineral & Metals' }
-    ]
+    ctaLink: '/companies',
+    tagline: 'DIVISIONS'
   },
   {
     ariaLabel:'Operating in 20+ Countries. Serving 15+ Industries.',
-    background: PLACEHOLDER_URLS.worldMap,
+    background: 'https://videos.openai.com/vg-assets/assets%2Ftask_01k187gcccextszkqf1n23hkqk%2F1753696840_img_1.webp?st=2025-07-28T08%3A55%3A49Z&se=2025-08-03T09%3A55%3A49Z&sks=b&skt=2025-07-28T08%3A55%3A49Z&ske=2025-08-03T09%3A55%3A49Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=aa5ddad1-c91a-4f0a-9aca-e20682cc8969&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=3YpprX0vap1PBumj3chf%2B97KLMIjsRjwDCU%2Bk1ZSTvI%3D&az=oaivgprodscus',
     isVideo: false,
-    headline: 'Operating in 20+ Countries. Serving 15+ Industries.',
+    headline: 'Operating in 20+ Countries.\nServing 15+ Industries.',
     subtext: 'Our global network and local expertise keep your supply chain agile.',
     ctaText: 'View Our Global Presence',
-    ctaLink: '/global-presence',
+    ctaLink: '/about',
     animatedStats: [
       { value: 20, suffix: '+', label: 'Countries' },
       { value: 15, suffix: '+', label: 'Industries' },
       { value: 100000, suffix: 'K+', label: 'Tons Delivered' }
-    ]
+    ],
+    tagline: 'GLOBAL'
   },
   // {
   //   ariaLabel: 'Global Footprint & Animated Stats',
@@ -108,7 +117,9 @@ export default function HeroCarousel() {
   const [activeSlide, setActiveSlide] = useState(0);
   const [isAnimationStarted, setIsAnimationStarted] = useState(false);
   const [slideAnimationStates, setSlideAnimationStates] = useState(Array(slides.length).fill(false));
+  const [progress, setProgress] = useState(0);
   const swiperRef = useRef(null);
+  const progressIntervalRef = useRef(null);
 
   // Handle animation start for counters
   useEffect(() => {
@@ -122,10 +133,35 @@ export default function HeroCarousel() {
     const newAnimationStates = Array(slides.length).fill(false);
     newAnimationStates[activeSlide] = true;
     setSlideAnimationStates(newAnimationStates);
+
+    // Start with full progress (100%) and countdown to 0
+    setProgress(0);
+    
+    // Clear existing interval
+    if (progressIntervalRef.current) {
+      clearInterval(progressIntervalRef.current);
+    }
+
+    // Start countdown progress animation
+    progressIntervalRef.current = setInterval(() => {
+      setProgress(prev => {
+        if (prev <= 100) {
+          return prev + (100 / 60);
+        } else {
+          return 0;
+        }
+      });
+    }, 100);
+
+    return () => {
+      if (progressIntervalRef.current) {
+        clearInterval(progressIntervalRef.current);
+      }
+    };
   }, [activeSlide]);
 
   return (
-    <div className="relative bg-[#fbfbfb] text-times-new-roman from-[#0719A1] to-[#0520F1] w-full h-screen overflow-hidden">
+    <div className="relative text-times-new-roman w-full h-screen overflow-hidden">
       <Swiper
         modules={[Autoplay, Pagination, Navigation, EffectFade]}
         effect="fade"
@@ -163,58 +199,56 @@ export default function HeroCarousel() {
             {slide.isCustomComponent ? (
               <slide.component />
             ) : (
-              /* Responsive two-half layout container */
+              /* Full width layout container with overlapping title */
               <div className="flex flex-col md:flex-row w-full h-full relative">
-                {/* Content half (bottom on mobile, left on desktop) */}
-                <div className="w-full md:w-1/2 h-2/3 md:h-full flex flex-col justify-start md:justify-center items-start px-4 text-left order-2 md:order-1">
-                  <div className="max-w-xl ml-0 mt-10 md:mt-0 flex flex-col items-start  gap-4 md:block  md:ml-auto md:mr-0 md:pr-8 lg:pr-16">
-                    <SlideRevealText
-                      text={slide.headline}
-                      className="text-[#000000] text-lato font-semibold text-[42px] md:text-[42px] leading-tight"
-                      startAnimation={slideAnimationStates[idx]}
-                      delay={0}
+                {/* Media half (top on mobile, right on desktop) */}
+                <div className="w-full md:w-[60%] h-1/2 md:h-full relative order-1 md:order-2">
+                  {/* Background Content - Video or Image */}
+                  {slide.isVideo ? (
+                    <video
+                      src={slide.background}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="absolute inset-0 w-full h-full object-cover"
+                      preload="metadata"
                     />
-                    
-                    <div className="mt-4">
-                      <SlideRevealText
-                        text={slide.subtext}
-                        className="text-[#121212] text-onest font-light text-[18px] md:text-[20px] max-w-2xl"
+                  ) : (
+                    <div
+                      className="absolute inset-0 w-full h-full bg-cover object-contain bg-center"
+                      style={{ backgroundImage: `url(${slide.background})` }}
+                    />
+                  )}
+                  
+                  {/* Dark overlay gradient */}
+                  {/* <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" /> */}
+                </div>
+
+                {/* Black content area (bottom on mobile, left on desktop) */}
+                <div className="w-full md:w-[40%] h-1/2 md:h-full bg-black flex flex-col justify-start md:justify-center items-start px-4 text-left order-2 md:order-1 relative">
+                  
+                </div>
+
+                {/* Overlapping title that extends beyond the black area */}
+                <div className="absolute left-4 md:left-[8%]  md:grid md:grid-rows-2 md:gap-0 top-[69%] md:top-[55%] transform -translate-y-[50%] z-20">
+                  
+                  <div className="max-w-none pt-[15px] md:pt-0 lg:max-w-[50vw] pointer-events-none">
+                    <SlideRevealText
+                        text={slide.tagline}
+                        className="text-gray-500 pl-[2px] text-sm font-onest  font-bold tracking-[3px] md:text-[20px] md:tracking-[3px] opacity-80 mb-[10px]"
                         startAnimation={slideAnimationStates[idx]}
-                        delay={200}
+                        delay={0}
                       />
-                    </div>
-                    
-                    {/* Animated Stats (for Slide 4) */}
-                    {slide.animatedStats && (
-                      <div className="mt-8 flex flex-wrap justify-start gap-8">
-                        {slide.animatedStats.map((stat, i) => (
-                          <div key={i} className="text-[#1E3157] text-opacity-50 text-onest font-semibold text-left">
-                            <div className="text-3xl md:text-5xl font-bold">
-                              {activeSlide === 3 && isAnimationStarted ? (
-                                <CountUp 
-                                  start={0} 
-                                  end={stat.value} 
-                                  duration={2.5} 
-                                  separator="," 
-                                  suffix={stat.suffix || ''}
-                                />
-                              ) : (
-                                <span>{stat.value}{stat.suffix || ''}</span>
-                              )}
-                            </div>
-                            <div className="text-sm text-onest font-light md:text-[20px] text-black mt-2">
-                              <SlideRevealText
-                                text={stat.label}
-                                className="block"
-                                startAnimation={slideAnimationStates[idx] && activeSlide === 3}
-                                delay={400 + i * 100}
-                              />
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                    
+                      <SlideRevealText
+                        text={slide.headline}
+                        className="text-[#fbfbfb] font-lato font-semibold text-[32px] leading-[34px] lg:tracking-wide md:text-[48px] lg:text-[55px] lg:leading-[60px] xl:text-[55px] leading-[1.1] tracking-tight whitespace-pre-line"
+                        startAnimation={slideAnimationStates[idx]}
+                        delay={0}
+                      />
+                  </div>
+                  
+                  <div className="max-w-xl ml-0 mt-10 md:mt-0 flex flex-col items-start gap-4 md:block md:mt-[0vh] md:mr-0 md:pr-8 lg:pr-0 relative z-10 pointer-events-auto"> 
                     {/* Supplemental Logos (for Slide 3) */}
                     {slide.supplementalLogos && (
                       <div className="mt-8 flex flex-wrap justify-start gap-8">
@@ -239,46 +273,17 @@ export default function HeroCarousel() {
                       </div>
                     )}
                     
-                    {/* CTA Button */}
-                    <div className="mt-6 md:mt-[48px]">
+                    {/* CTA Button - Rectangular style */}
+                    <div className="mt-auto mb-8 md:mt-[30px]">
                       <ButtonReveal
                         startAnimation={slideAnimationStates[idx]}
                         delay={300}
                         duration={800}
-                      >
-                        <Link
-                          href={slide.ctaLink}
-                          className="bg-black/90 hover:bg-gray-200 text-[#fbfbfb] hover:text-[#121212] px-6 py-3 transition-colors duration-300 inline-block font-medium md:text-[18px] font-onest font-light"
-                        >
-                          {slide.ctaText}
-                        </Link>
-                      </ButtonReveal>
+                          ctaLink={slide.ctaLink}
+                        ctaText={slide.ctaText}
+                      />
                     </div>
                   </div>
-                </div>
-                
-                {/* Media half (top on mobile, right on desktop) */}
-                <div className="w-full md:w-1/2 h-1/3 md:h-full relative order-1 md:order-2">
-                  {/* Background Content - Video or Image */}
-                  {slide.isVideo ? (
-                    <video
-                      src={slide.background}
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      className="absolute inset-0 w-full h-full object-cover"
-                      preload="metadata"
-                    />
-                  ) : (
-                    <div
-                      className="absolute inset-0 w-full h-full bg-cover object-contain bg-center"
-                      style={{ backgroundImage: `url(${slide.background})` }}
-                    />
-                  )}
-                  
-                  {/* Dark overlay gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-transparent" />
                 </div>
               </div>
             )}
@@ -286,44 +291,44 @@ export default function HeroCarousel() {
         ))}
       </Swiper>
       
+      {/* Navigation controls positioned like in the reference */}
+      <div className="absolute bottom-8 left-[10%] md:left-[8%] z-30 flex items-center gap-8">
+        <button 
+          onClick={() => swiperRef.current?.slidePrev()} 
+          className="text-[#fbfbfb] cursor-pointer  font-lato font-bold text-[18px] lg:text-[20px] hover:text-[#fbfbfb]/80 transition-colors"
+        >
+          Prev
+        </button>
+        <div className="w-32 h-px bg-[#fbfbfb]/30 relative overflow-hidden">
+          <div 
+            className="absolute top-0 left-0 h-full bg-[#fbfbfb] transition-none"
+            style={{
+              width: `${progress}%`
+            }}
+          />
+        </div>
+        <button 
+          onClick={() => swiperRef.current?.slideNext()} 
+          className="text-[#fbfbfb] cursor-pointer font-lato font-bold text-[18px] lg:text-[20px] hover:text-[#fbfbfb]/80 transition-colors"
+        >
+          Next
+        </button>
+      </div>
+      
       {/* Custom styling for the swiper component */}
       <style jsx global>{`
         .hero-swiper {
-          --swiper-theme-color:rgb(17, 17, 18);
+          --swiper-theme-color: rgb(17, 17, 18);
           --swiper-navigation-size: 24px;
         }
         
         .hero-swiper .swiper-button-next,
         .hero-swiper .swiper-button-prev {
-          background-color: rgba(17, 18, 21, 0.3);
-          width: 50px;
-          height: 50px;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          z-index: 30;
-        }
-        
-        .hero-swiper .swiper-button-next:hover,
-        .hero-swiper .swiper-button-prev:hover {
-          background-color: rgba(11, 11, 11, 0.5);
+          display: none; /* Hide default navigation */
         }
         
         .hero-swiper .swiper-pagination {
-          z-index: 30;
-        }
-        
-        .hero-swiper .swiper-pagination-bullet {
-          width: 10px;
-          height: 10px;
-          background: rgba(1, 10, 78, 0.7);
-          opacity: 0.7;
-        }
-        
-        .hero-swiper .swiper-pagination-bullet-active {
-          background: #010A4E;
-          opacity: 1;
+          display: none; /* Hide default pagination */
         }
         
         /* Fix for slide overlap */
@@ -367,4 +372,4 @@ export default function HeroCarousel() {
       `}</style>
     </div>
   );
-} 
+}

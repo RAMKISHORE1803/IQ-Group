@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
+import {motion} from 'framer-motion';
 import Image from 'next/image';
 
 // Use regular img tag for local images to avoid Next.js optimization issues with deployment
@@ -145,6 +146,7 @@ export default function DTREHeroCarousel() {
 
   const nextSlide = () => {
     if (isTransitioning) return;
+    console.log('nextSlide');
     
     const nextIndex = (currentSlide + 1) % slides.length;
     setIsPlaying(false);
@@ -154,7 +156,7 @@ export default function DTREHeroCarousel() {
 
   const prevSlide = () => {
     if (isTransitioning) return;
-    
+
     const prevIndex = (currentSlide - 1 + slides.length) % slides.length;
     setIsPlaying(false);
     handleSlideChange(prevIndex);
@@ -235,20 +237,24 @@ export default function DTREHeroCarousel() {
 
       {/* Navigation Arrows */}
       <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 md:right-6 md:top-1/2 md:transform md:-translate-y-1/2 md:left-auto md:bottom-auto flex md:flex-col gap-4 z-20">
-        <button
-          onClick={prevSlide}
+        <motion.button
+          onClick={(e)=>{ e.preventDefault(); prevSlide();}}
+          whileTap={{ scale: 0.9 }}
+         
           className="w-[60px] h-[60px] md:w-12 md:h-12 bg-white/0 hover:bg-white/0 backdrop-blur-sm border border-white/30 rounded-full flex items-center justify-center text-white transition-all duration-300 cursor-pointer"
           aria-label="Previous slide"
         >
           <ChevronLeft size={30} className="md:w-6 md:h-6" />
-        </button>
-        <button
-          onClick={nextSlide}
+        </motion.button>
+        <motion.button
+           onClick={(e)=>{ e.preventDefault(); nextSlide();}}
+          whileTap={{ scale: 0.9 }}
+         
           className="w-[60px] h-[60px] md:w-12 md:h-12 bg-white/0 hover:bg-white/0 backdrop-blur-sm border border-white/30 rounded-full flex items-center justify-center text-white transition-all duration-300 cursor-pointer"
           aria-label="Next slide"
         >
           <ChevronRight size={30} className="md:w-6 md:h-6" />
-        </button>
+        </motion.button>
       </div>
 
       {/* Progress Indicators */}
