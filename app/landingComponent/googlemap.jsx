@@ -3,10 +3,14 @@ import { useEffect, useRef, useState } from 'react';
 
 export default function GoogleMapConnections() {
     const mapRef = useRef(null);
+    const containerRef = useRef(null);
     const [map, setMap] = useState(null);
     const [mapError, setMapError] = useState(null);
     const connectionsRef = useRef([]);
     const markersRef = useRef([]);
+    const [isMobile, setIsMobile] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
+    const mapInitializedRef = useRef(false);
 
     // Configuration - set these according to your needs
     const USE_MAP_ID = false; // Set to true if you want to use Map ID, false for styles
@@ -209,7 +213,58 @@ export default function GoogleMapConnections() {
         }
     ];
 
+    // Setup Intersection Observer to detect when map comes into view
     useEffect(() => {
+        if (typeof window === 'undefined' || !containerRef.current) return;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                // When component becomes visible
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                }
+            },
+            {
+                root: null, // viewport
+                rootMargin: '0px',
+                threshold: 0.1, // Trigger when 10% of the element is visible
+            }
+        );
+
+        observer.observe(containerRef.current);
+
+        return () => {
+            if (containerRef.current) {
+                observer.unobserve(containerRef.current);
+            }
+        };
+    }, []);
+
+    // Check if the screen is mobile
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+        
+        if (typeof window !== 'undefined') {
+            checkMobile();
+            window.addEventListener('resize', checkMobile);
+        }
+        
+        return () => {
+            if (typeof window !== 'undefined') {
+                window.removeEventListener('resize', checkMobile);
+            }
+        };
+    }, []);
+
+    // Load Google Maps API and initialize map when component becomes visible
+    useEffect(() => {
+        // Only proceed if component is visible and map hasn't been initialized yet
+        if (!isVisible || mapInitializedRef.current) return;
+        
+        mapInitializedRef.current = true;
+        
         // Load Google Maps script with global loading prevention
         const loadGoogleMaps = () => {
             // Check if API is already loaded
@@ -271,7 +326,7 @@ export default function GoogleMapConnections() {
 
                 let mapOptions = {
                     center: { lat: 20, lng: 0 },
-                    zoom: 2,
+                    zoom: isMobile ? 0 : 2, // Reduce zoom level further on mobile
                     mapTypeControl: false,
                     streetViewControl: false,
                     fullscreenControl: false,
@@ -286,8 +341,8 @@ export default function GoogleMapConnections() {
                     disableScrollWheelZoom: true,
                     gestureHandling: 'none',
                     disableDragging: true,
-                    minZoom: 2,
-                    maxZoom: 2,
+                    minZoom: isMobile ? 0 : 2,
+                    maxZoom: isMobile ? 0 : 2,
                     restriction: {
                         latLngBounds: {
                             north: 85,
@@ -346,7 +401,7 @@ export default function GoogleMapConnections() {
                 setMap(null);
             }
         };
-    }, []); // Empty dependency array to run only once
+    }, [isVisible, isMobile]); // Added isVisible to dependency array
 
     const addMarkersAndConnections = (mapInstance) => {
         try {
@@ -363,6 +418,11 @@ export default function GoogleMapConnections() {
             locations.forEach((location, index) => {
                 setTimeout(() => {
                     try {
+                        // Scale markers based on device size
+                        const markerSize = isMobile ? 
+                            (location.isHub ? 16 : 12) : // smaller on mobile
+                            (location.isHub ? 24 : 20);  // normal size on desktop
+                            
                         const marker = new window.google.maps.Marker({
                             position: { lat: location.lat, lng: location.lng },
                             map: mapInstance,
@@ -380,8 +440,8 @@ export default function GoogleMapConnections() {
                                             <circle cx="10" cy="10" r="6" fill="#00d4ff" stroke="#ffffff" stroke-width="2"/>
                                         </svg>
                                     `),
-                                scaledSize: new window.google.maps.Size(location.isHub ? 24 : 20, location.isHub ? 24 : 20),
-                                anchor: new window.google.maps.Point(location.isHub ? 12 : 10, location.isHub ? 12 : 10)
+                                scaledSize: new window.google.maps.Size(markerSize, markerSize),
+                                anchor: new window.google.maps.Point(markerSize/2, markerSize/2)
                             }
                         });
 
@@ -419,12 +479,12 @@ export default function GoogleMapConnections() {
                             geodesic: true,
                             strokeColor: '#00d4ff',
                             strokeOpacity: 0.8,
-                            strokeWeight: 3,
+                            strokeWeight: isMobile ? 1.5 : 3, // Thinner lines on mobile
                             map: mapInstance,
                             icons: [{
                                 icon: {
                                     path: window.google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
-                                    scale: 4,
+                                    scale: isMobile ? 2 : 4, // Smaller arrows on mobile
                                     fillColor: '#00d4ff',
                                     fillOpacity: 1,
                                     strokeColor: '#ffffff',
@@ -452,20 +512,24 @@ export default function GoogleMapConnections() {
                     try {
                         console.log(`Creating marker for ${office.name} at lat: ${office.lat}, lng: ${office.lng}`);
                         
+                        // Scale office markers based on device size and office type
+                        let markerSize;
+                        if (isMobile) {
+                            markerSize = office.type === 'head_office' ? 20 : 
+                                         office.type === 'international_office' ? 16 : 14;
+                        } else {
+                            markerSize = office.type === 'head_office' ? 32 : 
+                                         office.type === 'international_office' ? 28 : 24;
+                        }
+                        
                         const marker = new window.google.maps.Marker({
                             position: { lat: office.lat, lng: office.lng },
                             map: mapInstance,
                             title: office.name,
                             icon: {
                                 url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(getOfficeIcon(office.type)),
-                                scaledSize: new window.google.maps.Size(
-                                    office.type === 'head_office' ? 32 : office.type === 'international_office' ? 28 : 24,
-                                    office.type === 'head_office' ? 32 : office.type === 'international_office' ? 28 : 24
-                                ),
-                                anchor: new window.google.maps.Point(
-                                    office.type === 'head_office' ? 16 : office.type === 'international_office' ? 14 : 12,
-                                    office.type === 'head_office' ? 16 : office.type === 'international_office' ? 14 : 12
-                                )
+                                scaledSize: new window.google.maps.Size(markerSize, markerSize),
+                                anchor: new window.google.maps.Point(markerSize/2, markerSize/2)
                             },
                             zIndex: 1000 // High z-index to ensure visibility
                         });
@@ -517,7 +581,7 @@ export default function GoogleMapConnections() {
 
     if (mapError) {
         return (
-            <div className="w-full h-[600px] flex items-center justify-center bg-gray-100 rounded-lg">
+            <div className="w-full h-[250px] md:h-[600px] flex items-center justify-center bg-gray-100 rounded-lg">
                 <div className="text-center">
                     <p className="text-red-600 mb-2">Error loading map: {mapError}</p>
                     <button 
@@ -532,36 +596,25 @@ export default function GoogleMapConnections() {
     }
 
     return (
-        <div className="w-full h-full relative">
+        <div ref={containerRef} className="w-full h-full relative">
             {/* Map Container */}
             <div 
                 ref={mapRef} 
-                className="w-full max-h-[250px] md:max-h-[600px] lg:max-w-[50vw] rounded-lg shadow-lg"
-                style={{ minHeight: '600px' }}
+                className="w-full h-full rounded-lg shadow-lg"
+                style={{ 
+                    height: isMobile ? '250px' : '600px',
+                    maxWidth: '100%'
+                }}
             />
 
-            {/* Info Panel */}
-            <div className="absolute bottom-1 left-2 bg-black bg-opacity-80 text-white p-4 rounded-lg max-w-sm">
-                <h3 className="text-lg font-bold mb-2">Global Connections from India</h3>
-                <p className="text-sm text-gray-300">
-                    Interactive map showing business connections from IQ Groups, India to major global markets.
-                </p>
-                
-                {/* Legend */}
-                {/* <div className="mt-3 space-y-1">
-                    <div className="flex items-center space-x-2">
-                        <div className="w-4 h-4 bg-yellow-400 rounded-full border border-white"></div>
-                        <span className="text-xs">Head Office</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                        <div className="w-4 h-4 bg-green-400 rounded-full border border-white"></div>
-                        <span className="text-xs">International Office</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                        <div className="w-4 h-4 bg-red-400 rounded-full border border-white"></div>
-                        <span className="text-xs">Branch Office</span>
-                    </div>
-                </div> */}
+            {/* Info Panel - Adjusted for mobile */}
+            <div className={`absolute bottom-1 left-2 bg-black bg-opacity-80 text-white p-2 md:p-4 rounded-lg ${isMobile ? 'max-w-[90%] text-xs' : 'max-w-sm'}`}>
+                <h3 className={`${isMobile ? 'text-xs font-medium' : 'text-lg font-bold'} mb-1 md:mb-2`}>Global Connections from India</h3>
+                {!isMobile && (
+                    <p className="text-sm text-gray-300">
+                        Interactive map showing business connections from IQ Groups, India to major global markets.
+                    </p>
+                )}
             </div>
         </div>
     );
