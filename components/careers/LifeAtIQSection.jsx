@@ -263,7 +263,7 @@ const LifeAtIQSection = () => {
   return (
     <section 
       ref={sectionRef}
-      className="w-full max-w-7xl md:max-w-[1300px] mx-auto px-4 py-16 pb-8 md:py-24 md:pb-12 bg-[#ffffff]"
+      className="w-full max-w-7xl md:max-w-[1300px] mx-auto px-4 py-16 pb-8 md:py-24 md:pb-12 lg:py-0 bg-[#ffffff]"
     >
       {/* Section Title with fade-in animation */}
       <h2 

@@ -2,7 +2,7 @@
 import { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { MapPin, Phone, Mail, ExternalLink, ChevronDown } from 'lucide-react';
+import { MapPin, Phone, Mail, ExternalLink, ChevronDown, Warehouse } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 // Register GSAP plugins
@@ -10,42 +10,60 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-// Office locations data from https://www.iqgroup.in/contact.html
-const offices = [
-  {
-    id: "mumbai",
-    city: "Mumbai",
-    country: "India",
-    address: "714 – Samartha Aishwarya, Off. New Link Road, Opp. Highland Park, Andheri-W, Mumbai – 400053",
-    phone: "+91-9987998036",
-    email: "info@iqgroup.in",
-    isHeadquarters: true,
-    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3769.2130606086077!2d72.8251698!3d19.1463518!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b7a7a7a7a7a7%3A0x3be7b7a7a7a7a7a7!2s714%20%E2%80%93%20Samartha%20Aishwarya%2C%20Off.%20New%20Link%20Road%2C%20Opp.%20Highland%20Park%2C%20Andheri-W%2C%20Mumbai%20%E2%80%93%20400053!5e0!3m2!1sen!2sin!4v1654612031797!5m2!1sen!2sin"
-  },
-  {
-    id: "hongkong",
-    city: "Hong Kong",
-    country: "China",
-    address: "1611B, 16/F, HO KING COMMERCIAL CENTRE, 2-16 FA YUEN, STREET, MONGKOK, KOWLOON, HONGKONG",
-    phone: "+91-9987998037",
-    email: "hongkong@iqgroup.in",
-    isHeadquarters: false,
-    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.0649872311106!2d114.1682325!3d22.3178332!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x340400eeeeeeeeee%3A0x340400eeeeeeeeee!2s1611B%2C%2016%2FF%2C%20HO%20KING%20COMMERCIAL%20CENTRE%2C%202-16%20FA%20YUEN%2C%20STREET%2C%20MONGKOK%2C%20KOWLOON%2C%20HONGKONG!5e0!3m2!1sen!2sin!4v1654612031797!5m2!1sen!2sin"
-  },
-  {
-    id: "taiyuan",
-    city: "Taiyuan",
-    country: "China",
-    address: "296, Beida Street, Xinghualing District 030009, Taiyuan, China",
-    phone: "+91-2235112519",
-    email: "china@iqgroup.in",
-    isHeadquarters: false,
-    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3067.3925952562997!2d112.5665359!3d37.8706503!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3611a2d2d2d2d2d2%3A0x3611a2d2d2d2d2d2!2s296%2C%20Beida%20Street%2C%20Xinghualing%20District%20030009%2C%20Taiyuan%2C%20China!5e0!3m2!1sen!2sin!4v1654612031797!5m2!1sen!2sin"
-  }
+// Warehouse locations data
+const warehouses = [
+    // {
+    //     id: "mumbai",
+    //     city: "Mumbai",
+    //     country: "India",
+    //     address: "Plot No. 5, JNPT SEZ, Navi Mumbai, Maharashtra - 400707",
+    //     phone: "+91-9987998036",
+    //     email: "warehouse.mumbai@iqgroup.in",
+    //     isPrimary: true,
+    //     mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3772.6930606086077!2d72.9651698!3d18.9563518!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c1d1d1d1d1d1%3A0x3be7c1d1d1d1d1d1!2sJNPT%20SEZ%2C%20Navi%20Mumbai%2C%20Maharashtra%20-%20400707!5e0!3m2!1sen!2sin!4v1654612031797!5m2!1sen!2sin",
+    //     capacity: "50,000 sq. ft.",
+    //     specialization: "Bulk Materials, Alloys, Minerals"
+    // },
+    {
+        id: "vizag",
+        city: "Visakhapatnam",
+        country: "India",
+        address: "Plot No. 42, VSEZ, Duvvada, Visakhapatnam, Andhra Pradesh - 530046",
+        phone: "+91-2235112520",
+        email: "warehouse.vizag@iqgroup.in",
+        isPrimary: false,
+        mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3800.2130606086077!2d83.1551698!3d17.6863518!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a39431389f3f3f3%3A0x3a39431389f3f3f3!2sVSEZ%2C%20Duvvada%2C%20Visakhapatnam%2C%20Andhra%20Pradesh%20-%20530046!5e0!3m2!1sen!2sin!4v1654612031797!5m2!1sen!2sin",
+        capacity: "35,000 sq. ft.",
+        specialization: "Ferro Alloys, Minerals"
+    },
+    {
+        id: "chennai",
+        city: "Chennai",
+        country: "India",
+        address: "Plot No. 23, Chennai Port Trust, Chennai, Tamil Nadu - 600001",
+        phone: "+91-9987998037",
+        email: "warehouse.chennai@iqgroup.in",
+        isPrimary: false,
+        mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.2130606086077!2d80.2851698!3d13.0963518!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52671d1d1d1d1d%3A0x3a52671d1d1d1d1d!2sChennai%20Port%20Trust%2C%20Chennai%2C%20Tamil%20Nadu%20-%20600001!5e0!3m2!1sen!2sin!4v1654612031797!5m2!1sen!2sin",
+        capacity: "25,000 sq. ft.",
+        specialization: "Coke & Coal, Noble Alloys"
+    },
+    {
+        id: "kolkata",
+        city: "Kolkata",
+        country: "India",
+        address: "Plot No. 17, Kolkata Port Trust, Kolkata, West Bengal - 700001",
+        phone: "+91-9987998038",
+        email: "warehouse.kolkata@iqgroup.in",
+        isPrimary: false,
+        mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684.2130606086077!2d88.3251698!3d22.5463518!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a027747474747%3A0x3a027747474747!2sKolkata%20Port%20Trust%2C%20Kolkata%2C%20West%20Bengal%20-%20700001!5e0!3m2!1sen!2sin!4v1654612031797!5m2!1sen!2sin",
+        capacity: "30,000 sq. ft.",
+        specialization: "Minerals & Metals, Ferro Alloys"
+    }
 ];
 
 // Accordion Item Component
-function AccordionItem({ id, city, country, address, phone, email, isHeadquarters, isActive, onMouseEnter, index, mapUrl }) {
+function AccordionItem({ id, city, country, address, phone, email, isPrimary, isActive, onMouseEnter, index, mapUrl, capacity, specialization }) {
   return (
     <div 
       className="border-b border-gray-200 last:border-b-0"
@@ -57,9 +75,9 @@ function AccordionItem({ id, city, country, address, phone, email, isHeadquarter
         <div className="flex items-center">
           <span className="font-lato lg:text-[28px] font-bold text-[#324390]">
             {city}, {country}
-            {isHeadquarters && (
+            {isPrimary && (
               <span className="ml-3 bg-[#324390] text-white text-xs px-2 py-1 rounded-full">
-                Headquarters
+                Primary Warehouse
               </span>
             )}
           </span>
@@ -102,6 +120,13 @@ function AccordionItem({ id, city, country, address, phone, email, isHeadquarter
                 {email}
               </a>
             </div>
+
+            <div className="flex items-center">
+              <Warehouse size={18} className="text-[#324390] mr-3 flex-shrink-0" />
+              <span className="text-gray-700 font-onest">
+                <strong>Capacity:</strong> {capacity} | <strong>Specialization:</strong> {specialization}
+              </span>
+            </div>
             
             {/* Map iframe for mobile view */}
             <div className="lg:hidden mt-4">
@@ -114,7 +139,7 @@ function AccordionItem({ id, city, country, address, phone, email, isHeadquarter
                   allowFullScreen=""
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title={`IQ Group ${city} Office`}
+                  title={`IQ Group ${city} Warehouse`}
                   className="absolute inset-0 w-full h-full shadow-md"
                 ></iframe>
               </div>
@@ -137,46 +162,46 @@ function AccordionItem({ id, city, country, address, phone, email, isHeadquarter
   );
 }
 
-export default function OfficeLocationsSection() {
+export default function WarehouseLocations() {
   const sectionRef = useRef(null);
   const titleRef = useRef(null);
   const subtitleRef = useRef(null);
   const leftColRef = useRef(null);
   const rightColRef = useRef(null);
-  const [activeOffice, setActiveOffice] = useState("mumbai"); // Default to Mumbai (headquarters)
+  const [activeWarehouse, setActiveWarehouse] = useState("mumbai"); // Default to Mumbai (primary)
   const [isMapTransitioning, setIsMapTransitioning] = useState(false);
   const [displayedMap, setDisplayedMap] = useState(null);
   
-  // Handle office accordion hover
-  const handleOfficeHover = (id) => {
-    if (activeOffice === id) return; // Don't transition if hovering the same item
+  // Handle warehouse accordion hover
+  const handleWarehouseHover = (id) => {
+    if (activeWarehouse === id) return; // Don't transition if hovering the same item
     
     setIsMapTransitioning(true);
-    // Set the new active office
-    setActiveOffice(id);
+    // Set the new active warehouse
+    setActiveWarehouse(id);
   };
   
-  // Find the active office
-  const activeOfficeData = offices.find(office => office.id === activeOffice) || offices[0];
+  // Find the active warehouse
+  const activeWarehouseData = warehouses.find(warehouse => warehouse.id === activeWarehouse) || warehouses[0];
   
   // Handle map preloading and transitions
   useEffect(() => {
     // Set the initial displayed map
     if (!displayedMap) {
-      setDisplayedMap(activeOfficeData);
+      setDisplayedMap(activeWarehouseData);
       return;
     }
 
     // If transitioning, wait for fade out then update the displayed map
     if (isMapTransitioning) {
       const timer = setTimeout(() => {
-        setDisplayedMap(activeOfficeData);
+        setDisplayedMap(activeWarehouseData);
         setIsMapTransitioning(false);
       }, 300); // Match this with the CSS transition duration
       
       return () => clearTimeout(timer);
     }
-  }, [activeOffice, isMapTransitioning, displayedMap, activeOfficeData]);
+  }, [activeWarehouse, isMapTransitioning, displayedMap, activeWarehouseData]);
   
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -239,9 +264,9 @@ export default function OfficeLocationsSection() {
   
   return (
     <section 
-      id="office-locations" 
+      id="warehouse-locations" 
       ref={sectionRef}
-      className="py-24 bg-[#f5f5f5]"
+      className="py-24 bg-white"
     >
       <div className="container mx-auto px-4 md:px-8">
         <div className="max-w-3xl mx-auto text-center mb-16">
@@ -249,13 +274,13 @@ export default function OfficeLocationsSection() {
             ref={titleRef}
             className="text-3xl md:text-4xl lg:text-5xl font-bold font-lato text-[#324390] mb-4"
           >
-            Our Global Presence
+            Our Warehouse Network
           </h2>
           <p 
             ref={subtitleRef}
             className="text-gray-700 font-onest text-lg"
           >
-            With offices strategically located across the globe, we ensure seamless operations and local expertise.
+            With strategically located warehouses across India, we ensure efficient storage and timely delivery of materials.
           </p>
         </div>
         
@@ -274,7 +299,7 @@ export default function OfficeLocationsSection() {
                     allowFullScreen=""
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    title={`IQ Group ${displayedMap.city} Office`}
+                    title={`IQ Group ${displayedMap.city} Warehouse`}
                     className={`absolute inset-0 w-full h-full shadow-lg transition-opacity duration-300 ease-in-out ${isMapTransitioning ? 'opacity-0' : 'opacity-100'}`}
                     onLoad={() => setIsMapTransitioning(false)}
                   ></iframe>
@@ -283,11 +308,15 @@ export default function OfficeLocationsSection() {
               <div className="bg-[#324390]/10 p-6 rounded-lg transition-all duration-300 ease-in-out">
                 <h3 className="font-lato font-bold text-[#324390] mb-4 lg:text-[24px] transition-opacity duration-300 ease-in-out">
                   {displayedMap?.city}, {displayedMap?.country}
-                  {displayedMap?.isHeadquarters && " - Global Headquarters"}
+                  {displayedMap?.isPrimary && " - Primary Warehouse"}
                 </h3>
                 <p className="text-gray-700 font-onest font-light lg:text-[18px] transition-opacity duration-300 ease-in-out">
-                  Our offices are strategically positioned to serve clients across industries and geographies, ensuring responsive service and local expertise with global reach.
+                  Our warehouses are strategically positioned near major ports and industrial hubs, ensuring efficient storage and timely delivery of materials to our clients.
                 </p>
+                <div className="mt-4 text-gray-700 font-onest">
+                  <p><strong>Capacity:</strong> {displayedMap?.capacity}</p>
+                  <p><strong>Specialization:</strong> {displayedMap?.specialization}</p>
+                </div>
                 <div className="mt-6">
                   <a 
                     href={`https://www.google.com/maps/search/${encodeURIComponent(displayedMap?.address || '')}`}
@@ -304,20 +333,22 @@ export default function OfficeLocationsSection() {
             
             {/* Right column - Accordion - Scrollable */}
             <div ref={rightColRef} className="space-y-0 max-h-[800px] lg:overflow-y-auto lg:pr-4 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
-              {offices.map((office, index) => (
+              {warehouses.map((warehouse, index) => (
                 <AccordionItem
-                  key={office.id}
-                  id={office.id}
-                  city={office.city}
-                  country={office.country}
-                  address={office.address}
-                  phone={office.phone}
-                  email={office.email}
-                  isHeadquarters={office.isHeadquarters}
-                  isActive={activeOffice === office.id}
-                  onMouseEnter={handleOfficeHover}
+                  key={warehouse.id}
+                  id={warehouse.id}
+                  city={warehouse.city}
+                  country={warehouse.country}
+                  address={warehouse.address}
+                  phone={warehouse.phone}
+                  email={warehouse.email}
+                  isPrimary={warehouse.isPrimary}
+                  isActive={activeWarehouse === warehouse.id}
+                  onMouseEnter={handleWarehouseHover}
                   index={index}
-                  mapUrl={office.mapUrl}
+                  mapUrl={warehouse.mapUrl}
+                  capacity={warehouse.capacity}
+                  specialization={warehouse.specialization}
                 />
               ))}
             </div>

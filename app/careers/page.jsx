@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import OpenPositionsCarousel from "@/components/careers/OpenPositionsCarousel";
 import LifeAtIQSection from "@/components/careers/LifeAtIQSection";
+import SectionNavigation from "@/components/companies/SectionNavigation";
 
 // Register GSAP plugins
 if (typeof window !== "undefined") {
@@ -447,11 +448,11 @@ const ApplicationForm = () => {
   }, []);
 
   return (
-    <div className="flex flex-col md:flex-row min-h-screen" id="apply-now" ref={formRef}>
+    <div className="flex flex-col md:flex-row h-screen overflow-hidden" id="apply-now" ref={formRef}>
       {/* Left side - Image */}
       <div className="w-full md:w-2/5 relative" ref={leftSideRef}>
         <div 
-          className="h-[50vh] md:h-full bg-cover bg-center"
+          className="h-full bg-cover bg-center"
           style={{ 
             backgroundImage: `url('https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?q=80&w=2047&auto=format&fit=crop')`,
             position: 'sticky',
@@ -461,17 +462,17 @@ const ApplicationForm = () => {
       </div>
 
       {/* Right side - Application Form */}
-      <div className="w-full md:w-3/5 bg-[#f7f9fc] z-10 font-lato px-4 py-12 md:p-16 lg:p-24">
+      <div className="w-full md:w-3/5 bg-[#f7f9fc] z-10 font-lato px-4 py-6 md:p-8 lg:p-12 overflow-y-auto">
         <div className="max-w-4xl mx-auto" ref={formContentRef}>
-          <div className="flex flex-col md:flex-row gap-8 md:gap-16 mb-12">
+          <div className="flex flex-col md:flex-row gap-6 md:gap-12">
             {/* Left column - Career sections */}
             <div className="md:w-2/5">
               {/* Career Opportunities Section */}
-              <div className="mb-12">
-                <div className="inline-block bg-[#e9f0f9] px-4 py-2 mb-4">
+              <div className="mb-6">
+                <div className="inline-block bg-[#e9f0f9] px-4 py-1 mb-2">
                   <span className="text-[#203663] font-medium text-sm">CAREER OPPORTUNITIES</span>
                 </div>
-                <div className="mt-4">
+                <div className="mt-2">
                   <p className="text-gray-700">careers@iqgroup.com</p>
                   <p className="text-gray-700">+91 22 4005 4242</p>
                 </div>
@@ -479,10 +480,10 @@ const ApplicationForm = () => {
 
               {/* Internship Enquiries Section */}
               <div>
-                <div className="inline-block bg-[#e9f0f9] px-4 py-2 mb-4">
+                <div className="inline-block bg-[#e9f0f9] px-4 py-1 mb-2">
                   <span className="text-[#203663] font-medium text-sm">INTERNSHIP ENQUIRIES</span>
                 </div>
-                <div className="mt-4">
+                <div className="mt-2">
                   <p className="text-gray-700 font-medium">HR Department</p>
                   <p className="text-gray-700">internships@iqgroup.com</p>
                   <p className="text-gray-700">+91 22 4005 4243</p>
@@ -494,13 +495,13 @@ const ApplicationForm = () => {
             <div className="md:w-3/5">
               <h2 
                 ref={titleRef}
-                className="text-3xl md:text-4xl font-bold font-lato text-[#203663] mb-8"
+                className="text-2xl md:text-3xl font-bold font-lato text-[#203663] mb-4"
               >
                 Apply Now
               </h2>
-              <form onSubmit={handleSubmit}>
-                <div className="mb-6">
-                  <label htmlFor="firstName" className="block text-[#203663] mb-2">
+              <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-3">
+                <div className="mb-2 md:col-span-1">
+                  <label htmlFor="firstName" className="block text-[#203663] text-sm mb-1">
                     First Name <span className="text-[#203663]">*</span>
                   </label>
                   <input
@@ -510,12 +511,12 @@ const ApplicationForm = () => {
                     value={formData.firstName}
                     onChange={handleChange}
                     required
-                    className="w-full border-b border-gray-300 py-2 px-1 focus:outline-none focus:border-[#203663] transition-colors bg-transparent"
+                    className="w-full border-b border-gray-300 py-1 px-1 focus:outline-none focus:border-[#203663] transition-colors bg-transparent"
                   />
                 </div>
 
-                <div className="mb-6">
-                  <label htmlFor="surname" className="block text-[#203663] mb-2">
+                <div className="mb-2 md:col-span-1">
+                  <label htmlFor="surname" className="block text-[#203663] text-sm mb-1">
                     Surname <span className="text-[#203663]">*</span>
                   </label>
                   <input
@@ -525,26 +526,12 @@ const ApplicationForm = () => {
                     value={formData.surname}
                     onChange={handleChange}
                     required
-                    className="w-full border-b border-gray-300 py-2 px-1 focus:outline-none focus:border-[#203663] transition-colors bg-transparent"
+                    className="w-full border-b border-gray-300 py-1 px-1 focus:outline-none focus:border-[#203663] transition-colors bg-transparent"
                   />
                 </div>
 
-                {/* <div className="mb-6">
-                  <label htmlFor="company" className="block text-[#203663] mb-2">
-                    Current Company
-                  </label>
-                  <input
-                    type="text"
-                    id="company"
-                    name="company"
-                    value={formData.company}
-                    onChange={handleChange}
-                    className="w-full border-b border-gray-300 py-2 px-1 focus:outline-none focus:border-[#203663] transition-colors bg-transparent"
-                  />
-                </div> */}
-
-                <div className="mb-6">
-                  <label htmlFor="email" className="block text-[#203663] mb-2">
+                <div className="mb-2 md:col-span-1">
+                  <label htmlFor="email" className="block text-[#203663] text-sm mb-1">
                     Email <span className="text-[#203663]">*</span>
                   </label>
                   <input
@@ -554,12 +541,12 @@ const ApplicationForm = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full border-b border-gray-300 py-2 px-1 focus:outline-none focus:border-[#203663] transition-colors bg-transparent"
+                    className="w-full border-b border-gray-300 py-1 px-1 focus:outline-none focus:border-[#203663] transition-colors bg-transparent"
                   />
                 </div>
 
-                <div className="mb-6">
-                  <label htmlFor="telephone" className="block text-[#203663] mb-2">
+                <div className="mb-2 md:col-span-1">
+                  <label htmlFor="telephone" className="block text-[#203663] text-sm mb-1">
                     Telephone <span className="text-[#203663]">*</span>
                   </label>
                   <input
@@ -569,12 +556,12 @@ const ApplicationForm = () => {
                     value={formData.telephone}
                     onChange={handleChange}
                     required
-                    className="w-full border-b border-gray-300 py-2 px-1 focus:outline-none focus:border-[#203663] transition-colors bg-transparent"
+                    className="w-full border-b border-gray-300 py-1 px-1 focus:outline-none focus:border-[#203663] transition-colors bg-transparent"
                   />
                 </div>
 
-                <div className="mb-6">
-                  <label htmlFor="position" className="block text-[#203663] mb-2">
+                <div className="mb-2 md:col-span-1">
+                  <label htmlFor="position" className="block text-[#203663] text-sm mb-1">
                     Position Applying For <span className="text-[#203663]">*</span>
                   </label>
                   <select
@@ -583,7 +570,7 @@ const ApplicationForm = () => {
                     value={formData.position}
                     onChange={handleChange}
                     required
-                    className="w-full border-b border-gray-300 py-2 px-1 focus:outline-none focus:border-[#203663] transition-colors bg-transparent"
+                    className="w-full border-b border-gray-300 py-1 px-1 focus:outline-none focus:border-[#203663] transition-colors bg-transparent"
                   >
                     <option value="">Select a position</option>
                     <option value="sales">Sales Manager</option>
@@ -596,8 +583,8 @@ const ApplicationForm = () => {
                   </select>
                 </div>
 
-                <div className="mb-6">
-                  <label htmlFor="experience" className="block text-[#203663] mb-2">
+                <div className="mb-2 md:col-span-1">
+                  <label htmlFor="experience" className="block text-[#203663] text-sm mb-1">
                     Years of Experience <span className="text-[#203663]">*</span>
                   </label>
                   <select
@@ -606,7 +593,7 @@ const ApplicationForm = () => {
                     value={formData.experience}
                     onChange={handleChange}
                     required
-                    className="w-full border-b border-gray-300 py-2 px-1 focus:outline-none focus:border-[#203663] transition-colors bg-transparent"
+                    className="w-full border-b border-gray-300 py-1 px-1 focus:outline-none focus:border-[#203663] transition-colors bg-transparent"
                   >
                     <option value="">Select experience</option>
                     <option value="0-1">0-1 years</option>
@@ -617,8 +604,8 @@ const ApplicationForm = () => {
                   </select>
                 </div>
 
-                <div className="mb-6">
-                  <label htmlFor="resume" className="block text-[#203663] mb-2">
+                <div className="mb-2 md:col-span-2">
+                  <label htmlFor="resume" className="block text-[#203663] text-sm mb-1">
                     Upload Resume (PDF) <span className="text-[#203663]">*</span>
                   </label>
                   <input
@@ -628,12 +615,12 @@ const ApplicationForm = () => {
                     accept=".pdf,.doc,.docx"
                     onChange={handleFileChange}
                     required
-                    className="w-full border-b border-gray-300 py-2 px-1 focus:outline-none focus:border-[#203663] transition-colors bg-transparent"
+                    className="w-full border-b border-gray-300 py-1 px-1 focus:outline-none focus:border-[#203663] transition-colors bg-transparent text-sm"
                   />
                 </div>
 
-                <div className="mb-8">
-                  <label htmlFor="message" className="block text-[#203663] mb-2">
+                <div className="mb-2 md:col-span-2">
+                  <label htmlFor="message" className="block text-[#203663] text-sm mb-1">
                     Cover Letter / Message
                   </label>
                   <textarea
@@ -641,30 +628,30 @@ const ApplicationForm = () => {
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    rows="4"
-                    className="w-full border-b border-gray-300 py-2 px-1 focus:outline-none focus:border-[#203663] transition-colors bg-transparent"
+                    rows="2"
+                    className="w-full border-b border-gray-300 py-1 px-1 focus:outline-none focus:border-[#203663] transition-colors bg-transparent"
                     placeholder="Tell us why you want to join IQ Group..."
                   ></textarea>
                 </div>
 
-                <div className="mb-8 flex items-start">
+                <div className="mb-4 md:col-span-2 flex items-start">
                   <input
                     type="checkbox"
                     id="newsletter"
                     name="newsletter"
                     checked={formData.newsletter}
                     onChange={handleChange}
-                    className="mt-1 mr-3"
+                    className="mt-1 mr-2"
                   />
-                  <label htmlFor="newsletter" className="text-gray-700 text-sm">
+                  <label htmlFor="newsletter" className="text-gray-700 text-xs">
                     Sign me up for the IQ Group career updates and opportunities
                   </label>
                 </div>
 
-                <div className="text-right">
+                <div className="md:col-span-2 text-right">
                   <button
                     type="submit"
-                    className="bg-[#203663] border border-[#203663] hover:bg-[#fbfbfb] cursor-pointer hover:text-[#203663] text-white px-8 py-4 transition-colors flex items-center"
+                    className="bg-[#203663] border border-[#203663] hover:bg-[#fbfbfb] cursor-pointer hover:text-[#203663] text-white px-6 py-2 transition-colors flex items-center ml-auto"
                   >
                     <span>Submit Application</span>
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -680,6 +667,25 @@ const ApplicationForm = () => {
     </div>
   );
 };
+
+const sectionLinks = [
+  {
+    title: "Life at IQ Group",
+    link: "#life-at-iq-group"
+  },
+  {
+    title: "Why Join Us",
+    link: "#why-join-us"
+  },
+  {
+    title: "Open Positions",
+    link: "#open-positions"
+  },
+  {
+    title: "Apply Now",
+    link: "#apply-now"
+  }
+];
 
 export default function CareerPage() {
   const introRef = useRef(null);
@@ -740,23 +746,33 @@ export default function CareerPage() {
             We don't just offer jobs. We craft careers. Develop skills that matter, gain experiences that count, and build a future that rewards.
           </div>
          </div>
+
+         <SectionNavigation links={sectionLinks} title="IN THIS SECTION" />
         
         {/* Life at IQ Group Section */}
-        <FadeInSection>
+        <FadeInSection >
+          <div id="life-at-iq-group">
           <LifeAtIQSection />
+          </div>
         </FadeInSection>
         
         {/* Why Join Us Section */}
+        <div id="why-join-us">
         <WhyJoinUs />
+        </div>
         
         {/* Open Positions Carousel */}
         <FadeInSection>
+          <div id="open-positions">
           <OpenPositionsCarousel />
+          </div>
         </FadeInSection>
       </div>
       
       {/* Application Form */}
+      <div id="apply-now">
       <ApplicationForm />
+      </div>
     </main>
   );
 }

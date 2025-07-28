@@ -16,25 +16,11 @@ if (typeof window !== 'undefined') {
 // Company data
 const companies = [
   {
-    id: 'international',
-    name: 'IQ International',
-    description: 'Leading the global chemical supply sector by combining bold entrepreneurship with modern strategy and a network built on trust.',
-    image: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-    link: '/companies/international'
-  },
-  {
     id: 'minerals-metals',
     name: 'IQ Minerals & Metals',
     description: 'Powering industries across 20+ nations with high-quality minerals and metals backed by two decades of global supply expertise.',
     image: 'https://images.pexels.com/photos/1267338/pexels-photo-1267338.jpeg?auto=compress&cs=tinysrgb&w=800&h=1200',
     link: '/companies/minerals-metals'
-  },
-  {
-    id: 'noble-alloys',
-    name: 'IQ Noble Alloys',
-    description: 'Delivering high-grade noble alloys through an exclusive global distribution network for industries that shape the future.',
-    image: 'https://images.unsplash.com/photo-1535813547-99c456a41d4a?q=80&w=2000&auto=format&fit=crop',
-    link: '/companies/noble-alloys'
   },
   {
     id: 'ferro-alloys',
@@ -44,6 +30,13 @@ const companies = [
     link: '/companies/ferro-alloys'
   },
   {
+    id: 'noble-alloys',
+    name: 'IQ Noble Alloys',
+    description: 'Delivering high-grade noble alloys through an exclusive global distribution network for industries that shape the future.',
+    image: 'https://images.unsplash.com/photo-1535813547-99c456a41d4a?q=80&w=2000&auto=format&fit=crop',
+    link: '/companies/noble-alloys'
+  },
+  {
     id: 'coke-coal',
     name: 'IQ Coke & Coal',
     description: 'Carbon materials delivered with precision, power, and consistency for global industrial applications.',
@@ -51,11 +44,11 @@ const companies = [
     link: '/companies/coke-coal'
   },
   {
-    id: 'green-energy',
-    name: 'IQ Green Energy',
-    description: 'Hybrid wind and solar solutions for a cleaner, more sustainable future with innovative technology.',
-    image: 'https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-    link: '/companies/green-energy'
+    id: 'international',
+    name: 'IQ International',
+    description: 'Leading the global chemical supply sector by combining bold entrepreneurship with modern strategy and a network built on trust.',
+    image: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+    link: '/companies/international'
   },
   {
     id: 'angel-investments',
@@ -63,6 +56,13 @@ const companies = [
     description: 'Fueling the next generation of innovators with capital, mentoring, and market access since 2016.',
     image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
     link: '/companies/angel-investments'
+  },
+  {
+    id: 'green-energy',
+    name: 'IQ Green Energy',
+    description: 'Hybrid wind and solar solutions for a cleaner, more sustainable future with innovative technology.',
+    image: 'https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+    link: '/companies/green-energy'
   },
   {
     id: 'dab-worldwide',

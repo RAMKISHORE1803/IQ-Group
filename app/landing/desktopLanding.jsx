@@ -29,69 +29,55 @@ const debounce = (func, wait) => {
   };
 };
 
-export default function LandingPage() {
+export default function DesktopLandingPage() {
   const globalMapWrapperRef = useRef(null);
   const globalMapContentRef = useRef(null);
   const industriesRef = useRef(null);
-  const scrollTriggersRef = useRef([]); // Track our specific triggers
+  const scrollTriggersRef = useRef([]);
   const contentWrapperRef = useRef(null);
   const footerRef = useRef(null);
   const [footerTransform, setFooterTransform] = useState('translateY(100%)');
-  const [isMobile, setIsMobile] = useState(false);
-  const [isAnimating, setIsAnimating] = useState(false); // Track if GSAP animation is active
+  const [isGlobalMapAnimating, setIsGlobalMapAnimating] = useState(false);
+  const [isIndustriesAnimating, setIsIndustriesAnimating] = useState(false);
+  const lastScrollTopRef = useRef(0);
 
-  // Check if device is mobile
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    if (typeof window !== 'undefined') {
-      checkMobile();
-      window.addEventListener('resize', checkMobile);
-    }
-    
-    return () => {
-      if (typeof window !== 'undefined') {
-        window.removeEventListener('resize', checkMobile);
-      }
-    };
-  }, []);
-
-  // Calculate footer position based on scroll
+  // Enhanced footer scroll handler for desktop
   const handleFooterScroll = useCallback(() => {
     if (!contentWrapperRef.current || !footerRef.current) return;
     
-    // Hide footer completely during GSAP animations
-    if (isAnimating) {
+    const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const isScrollingUp = currentScrollTop < lastScrollTopRef.current;
+    lastScrollTopRef.current = currentScrollTop;
+    
+    // Hide footer during any GSAP animations
+    if (isGlobalMapAnimating || isIndustriesAnimating) {
       setFooterTransform('translateY(100%)');
       return;
     }
     
-    // Use document scroll position instead of getBoundingClientRect during animations
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    // Use a more conservative approach for desktop
     const documentHeight = document.documentElement.scrollHeight;
     const viewportHeight = window.innerHeight;
-    
-    // Calculate how close we are to the bottom of the document
     const scrollableHeight = documentHeight - viewportHeight;
-    const triggerDistance = 300;
-    const distanceFromBottom = scrollableHeight - scrollTop;
+    const triggerDistance = 400; // Larger trigger distance for desktop
+    const distanceFromBottom = scrollableHeight - currentScrollTop;
     
+    // Hide footer if scrolling up and not near bottom
+    if (isScrollingUp && distanceFromBottom > triggerDistance) {
+      setFooterTransform('translateY(100%)');
+      return;
+    }
+    
+    // Show footer when approaching bottom
     if (distanceFromBottom <= triggerDistance && distanceFromBottom >= 0) {
-      // Calculate progress (0 to 1) based on how close we are to the bottom
       const progress = 1 - (distanceFromBottom / triggerDistance);
-      
-      // Apply transform based on progress
       setFooterTransform(`translateY(${100 - (progress * 100)}%)`);
     } else if (distanceFromBottom < 0) {
-      // Fully show footer when we've scrolled past the end
       setFooterTransform('translateY(0%)');
     } else {
-      // Hide footer when we're not near the end
       setFooterTransform('translateY(100%)');
     }
-  }, [isAnimating]);
+  }, [isGlobalMapAnimating, isIndustriesAnimating]);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -101,29 +87,29 @@ export default function LandingPage() {
     const setupCurtainReveal = () => {
       if (!globalMapWrapperRef.current || !globalMapContentRef.current) return;
 
-      // Clear only OUR triggers, not all triggers
+      // Clear previous triggers
       scrollTriggersRef.current.forEach(trigger => trigger.kill());
       scrollTriggersRef.current = [];
 
-      // Reset any previous animations
+      // Reset animations
       gsap.set([globalMapWrapperRef.current, globalMapContentRef.current], {
         clearProps: "all"
       });
 
-      // Mobile-specific adjustments
-      const wrapperHeight = isMobile ? '100vh' : '100vh';
-      const initialOffset = isMobile ? '-10vh' : '-20vh'; // Less dramatic offset on mobile
-      const startPosition = isMobile ? "top 95%" : "top 90%"; // Start later on mobile
-      const endPosition = isMobile ? "top 20%" : "top 10%"; // End later on mobile
+      // Desktop settings
+      const wrapperHeight = '100vh';
+      const initialOffset = '-20vh';
+      const startPosition = "top 90%";
+      const endPosition = "top 10%";
 
-      // Set up wrapper - acts as a viewport window during animation only
+      // Set up wrapper
       gsap.set(globalMapWrapperRef.current, {
         overflow: 'hidden',
         position: 'relative',
         height: wrapperHeight
       });
 
-      // Set initial position - content starts just above the viewport
+      // Set initial position
       gsap.set(globalMapContentRef.current, {
         y: initialOffset,
         willChange: 'transform'
@@ -134,22 +120,22 @@ export default function LandingPage() {
         trigger: globalMapWrapperRef.current,
         start: startPosition,
         end: endPosition,
-        scrub: isMobile ? 0.5 : 1, // Smoother scrub on mobile
+        scrub: 1,
         markers: false,
         invalidateOnRefresh: true,
-        refreshPriority: -1, // Lower priority to avoid conflicts
+        refreshPriority: -1,
         animation: gsap.to(globalMapContentRef.current, {
           y: 0,
           ease: "none",
         }),
         
         onEnter: () => {
-          setIsAnimating(true);
+          setIsGlobalMapAnimating(true);
         },
         
         onLeave: () => {
-          console.log("GlobalMap animation complete - releasing constraints");
-          setIsAnimating(false);
+          console.log("GlobalMap animation complete");
+          setIsGlobalMapAnimating(false);
           
           gsap.set(globalMapWrapperRef.current, {
             height: 'auto',
@@ -163,15 +149,14 @@ export default function LandingPage() {
             willChange: 'auto'
           });
           
-          // Refresh with a small delay to ensure proper layout
           setTimeout(() => {
             ScrollTrigger.refresh();
           }, 100);
         },
         
         onEnterBack: () => {
-          console.log("Re-entering GlobalMap animation area");
-          setIsAnimating(true);
+          console.log("Re-entering GlobalMap animation");
+          setIsGlobalMapAnimating(true);
           
           gsap.set(globalMapWrapperRef.current, {
             height: wrapperHeight,
@@ -185,7 +170,7 @@ export default function LandingPage() {
         },
         
         onLeaveBack: () => {
-          setIsAnimating(false);
+          setIsGlobalMapAnimating(false);
         }
       });
 
@@ -194,9 +179,6 @@ export default function LandingPage() {
 
     const setupIndustriesAnimation = () => {
       if (!industriesRef.current || !globalMapContentRef.current) return;
-      
-      // Skip industries pinning on mobile for better performance
-      if (isMobile) return;
       
       const trigger2 = ScrollTrigger.create({
         trigger: globalMapContentRef.current,
@@ -207,7 +189,7 @@ export default function LandingPage() {
         pinSpacing: false,
         scrub: 1.5,
         markers: false,
-        refreshPriority: -2, // Even lower priority
+        refreshPriority: -2,
         animation: gsap.fromTo(industriesRef.current, {
           yPercent: 0,
           willChange: 'transform'
@@ -217,19 +199,19 @@ export default function LandingPage() {
         }),
         
         onEnter: () => {
-          setIsAnimating(true);
+          setIsIndustriesAnimating(true);
         },
         
         onLeave: () => {
-          setIsAnimating(false);
+          setIsIndustriesAnimating(false);
         },
         
         onEnterBack: () => {
-          setIsAnimating(true);
+          setIsIndustriesAnimating(true);
         },
         
         onLeaveBack: () => {
-          setIsAnimating(false);
+          setIsIndustriesAnimating(false);
         }
       });
 
@@ -240,7 +222,6 @@ export default function LandingPage() {
       setupCurtainReveal();
       setupIndustriesAnimation();
       
-      // Force a refresh after setup to ensure proper positioning
       setTimeout(() => {
         ScrollTrigger.refresh();
       }, 200);
@@ -248,12 +229,9 @@ export default function LandingPage() {
 
     // Add scroll event listener for footer
     window.addEventListener('scroll', handleFooterScroll, { passive: true });
-    
-    // Initial check
     handleFooterScroll();
 
     const handleResize = debounce(() => {
-      // Kill all triggers before recreating
       scrollTriggersRef.current.forEach(trigger => trigger.kill());
       scrollTriggersRef.current = [];
       
@@ -261,7 +239,6 @@ export default function LandingPage() {
       setupIndustriesAnimation();
       handleFooterScroll();
       
-      // Refresh after resize
       setTimeout(() => {
         ScrollTrigger.refresh();
       }, 300);
@@ -274,71 +251,56 @@ export default function LandingPage() {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('scroll', handleFooterScroll);
       
-      // Clean up only OUR ScrollTriggers
       scrollTriggersRef.current.forEach(trigger => trigger.kill());
       scrollTriggersRef.current = [];
     };
-  }, [handleFooterScroll, isMobile]);
+  }, [handleFooterScroll]);
 
   return (
     <div className="bg-[#000000] z-[2]">
       <main className="relative" ref={contentWrapperRef}>
         {/* Normal scrolling sections */}
         <DTREHeroCarousel />
-          <AboutSection />
+        <AboutSection />
           
-        {/* <QualitySection /> */}
         <div className='bg-[#fbfbfb]'>
-          
           <CompanySection />
           <CustomerMarqueeSection />
-          
         </div>
         
-        {/* GlobalMap wrapper */}
+        {/* GlobalMap wrapper with animation */}
         <div ref={globalMapWrapperRef} className="relative">
-          <div className={`${isMobile ? 'h-[8vh]' : 'h-[15vh]'} bg-[#000]`}></div>
+          <div className="h-[15vh] bg-[#000]"></div>
           <div ref={globalMapContentRef} className="will-change-transform">
             <GlobalConstructionPlatform />
-            <div className={`${isMobile ? 'h-[5vh]' : 'h-[10vh]'} bg-[#000]`}></div>
+            <div className="h-[10vh] bg-[#000]"></div>
           </div>
         </div>
         
         {/* Industries section */}
-        <div ref={industriesRef} className="min-h-[70vh] xl:min-h-[100vh] bg-[#fbfbfb] text-white text-4xl">
-          {/* <Associates /> */}
-        
-            <Associates/>
-
-        
+        <div ref={industriesRef} className="min-h-[100vh] bg-[#fbfbfb] text-white text-4xl">
+          <Associates/>
           <IndustriesSection/>
-          
           <BCGCareersSection />
-         
-           
-           <InsightsSection/>
-
-           <HomepageTweetMarquee />
-           
-           {/* <div className="h-[5vh]"></div> */}
+          <InsightsSection/>
+          <HomepageTweetMarquee />
           <QualityCertificationsSection />
           <div className="h-[5vh]"></div>
           <BusinessStatistics/>
-          
         </div>
         
-        {/* Spacer to ensure content is tall enough */}
+        {/* Spacer */}
         <div style={{ height: '40vh' }}></div>
       </main>
       
-      {/* Footer - fixed position at bottom */}
+      {/* Footer */}
       <div 
         ref={footerRef} 
         className="fixed bottom-0 left-0 w-full z-40"
         style={{ 
           transform: footerTransform,
           transition: 'transform 0.1s linear',
-          willChange: 'transform, opacity'
+          willChange: 'transform'
         }}
       >
         <IQGroupFooter />

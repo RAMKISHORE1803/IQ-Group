@@ -10,6 +10,7 @@ import OurValuesSection from '@/components/about/OurValuesSection';
 import LeadershipSection from '@/components/about/LeadershipSection';
 import OfficeLocationsSection from '@/components/about/OfficeLocationsSection';
 import SectionNavigation from '@/components/companies/SectionNavigation';
+import WarehouseLocations from './warehouseLocations';
 
 // Register GSAP plugins
 if (typeof window !== 'undefined') {
@@ -37,6 +38,10 @@ const sectionLinks = [
   {
     title: "Global Presence",
     link: "#office-locations"
+  },
+  {
+    title: "Warehouse Network",
+    link: "#warehouse-locations"
   }
 ];
 
@@ -90,8 +95,8 @@ export default function AboutPage() {
       <OurValuesSection />
         
         <LeadershipSection />
-        
-        <OfficeLocationsSection />
+        <OfficeLocationsSection/>
+        <WarehouseLocations />
         <div className="h-[20vh] md:hidden bg-[#fbfbfb]"></div>
       </div>
     </div>
