@@ -181,7 +181,7 @@ export default function DTREHeroCarousel() {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 mt-0 mt-[-7vh]  mx-auto md:mt-[-100px] px-6 lg:px-8 w-full">
+      <div className="relative z-10 mt-0 mt-[-7vh]  mx-auto md:mt-[-50px] px-6 lg:px-8 w-full">
         <div className="max-w-3xl pt-20 lg:max-w-[800px] md:pl-[20px] md:pt-0">
           {/* Headline */}
           <h1 className="text-[30px] sm:text-[40px] md:text-[50px] lg:text-[50px] lg:leading-[1.05] xl:text-[55px] font-lato font-bold text-white leading-tight mb-4 md:mb-6">

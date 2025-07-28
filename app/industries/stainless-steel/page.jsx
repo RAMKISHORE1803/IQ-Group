@@ -91,7 +91,7 @@ export default function StainlessSteelIndustryPage() {
     <IndustryPageTemplate
       title="Stainless Steel Industry"
       subtitle="Supplying premium alloying elements for stainless steel production with exceptional quality and technical expertise."
-      backgroundImage="https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3"
+      backgroundImage="https://www.shyammetalics.com/wp-content/uploads/2024/07/blog_img_1_07.jpg"
       sideText="STAINLESS STEEL"
       overviewData={{
         subtitle: "Empowering stainless innovation with precision-engineered alloying elements and metallurgical expertise",

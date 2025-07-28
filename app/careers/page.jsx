@@ -448,7 +448,7 @@ const ApplicationForm = () => {
   }, []);
 
   return (
-    <div className="flex flex-col md:flex-row h-screen overflow-hidden" id="apply-now" ref={formRef}>
+    <div className="flex flex-col md:flex-row min-h-[100vh] md:max-h-[105vh] overflow-hidden" id="apply-now" ref={formRef}>
       {/* Left side - Image */}
       <div className="w-full md:w-2/5 relative" ref={leftSideRef}>
         <div 
@@ -462,7 +462,7 @@ const ApplicationForm = () => {
       </div>
 
       {/* Right side - Application Form */}
-      <div className="w-full md:w-3/5 bg-[#f7f9fc] z-10 font-lato px-4 py-6 md:p-8 lg:p-12 overflow-y-auto">
+      <div className="w-full md:w-3/5 bg-[#f7f9fc] z-10 font-lato px-4 py-6 md:p-8 lg:p-12">
         <div className="max-w-4xl mx-auto" ref={formContentRef}>
           <div className="flex flex-col md:flex-row gap-6 md:gap-12">
             {/* Left column - Career sections */}
@@ -495,11 +495,11 @@ const ApplicationForm = () => {
             <div className="md:w-3/5">
               <h2 
                 ref={titleRef}
-                className="text-2xl md:text-3xl font-bold font-lato text-[#203663] mb-4"
+                className="text-2xl md:text-3xl lg:text-[42px] font-bold font-lato text-[#203663] mb-4"
               >
                 Apply Now
               </h2>
-              <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-3">
+              <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-x-[10px] gap-y-[40px]">
                 <div className="mb-2 md:col-span-1">
                   <label htmlFor="firstName" className="block text-[#203663] text-sm mb-1">
                     First Name <span className="text-[#203663]">*</span>
@@ -572,7 +572,7 @@ const ApplicationForm = () => {
                     required
                     className="w-full border-b border-gray-300 py-1 px-1 focus:outline-none focus:border-[#203663] transition-colors bg-transparent"
                   >
-                    <option value="">Select a position</option>
+                    <option value="" className="text-gray-600">Select a position</option>
                     <option value="sales">Sales Manager</option>
                     <option value="supply">Supply Chain Analyst</option>
                     <option value="marketing">Marketing Specialist</option>
@@ -664,6 +664,7 @@ const ApplicationForm = () => {
           </div>
         </div>
       </div>
+      <div className="h-[10vh] md:hidden bg-[#000]"></div>
     </div>
   );
 };

@@ -8,6 +8,7 @@ import SectionWithCards from '@/components/companies/SectionWithCards';
 import Image from 'next/image';
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import SectionNavigation from "@/components/companies/SectionNavigation";
 
 // Register GSAP plugins
 if (typeof window !== "undefined") {
@@ -110,6 +111,21 @@ export default function QualityInsightsPage() {
       imageUrl: "https://www.iqgroup.in/image/certificate/4.jpg",
       issuedBy: "ASSOCHAM India",
       validUntil: "Active Membership"
+    }
+  ];
+
+  const sectionLinks = [
+    {
+      title: "Our Certifications",
+      link: "#certifications"
+    },
+    {
+      title: "Quality Policy",
+      link: "#quality-policy"
+    },
+    {
+      title: "Our Quality Commitment",
+      link: "#quality-commitment"
     }
   ];
   
@@ -282,6 +298,7 @@ export default function QualityInsightsPage() {
       <div 
         className="border-b border-gray-200 last:border-b-0"
         onMouseEnter={() => onMouseEnter(id)}
+        onClick={() => onMouseEnter(id)}
       >
         <div
           className="w-full py-6 flex cursor-pointer items-center justify-between text-left focus:outline-none"
@@ -310,6 +327,19 @@ export default function QualityInsightsPage() {
           className="overflow-hidden"
         >
           <div className="pb-4 text-[17px] font-onest text-gray-700 leading-relaxed">
+            {/* Mobile Image - Only show on mobile when accordion is active */}
+            <div className="lg:hidden mb-6">
+              <div className="aspect-w-16 aspect-h-9 overflow-hidden rounded-lg relative h-[300px] sm:h-[400px]">
+                <Image
+                  src={certificates.find(cert => cert.id === id)?.imageUrl || ""}
+                  alt={`${title} Certificate`}
+                  fill
+                  className="object-contain"
+                  priority={isActive}
+                />
+              </div>
+            </div>
+            
             <div className="space-y-3">
               <div className="flex items-start">
                 <svg xmlns="http://www.w3.org/2000/svg" className="text-[#324390] mt-1 mr-3 flex-shrink-0 h-[18px] w-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -318,14 +348,14 @@ export default function QualityInsightsPage() {
                 <p className="text-gray-700 font-onest">{description}</p>
               </div>
               
-              <div className="flex items-center">
+              <div className="flex hidden md:flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" className="text-[#324390] mr-3 flex-shrink-0 h-[18px] w-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                 </svg>
                 <p className="text-gray-700 font-onest">Issued By: <span className="hover:text-[#324390]">{issuedBy}</span></p>
               </div>
               
-              <div className="flex items-center">
+              <div className="flex hidden md:flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" className="text-[#324390] mr-3 flex-shrink-0 h-[18px] w-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
@@ -346,10 +376,10 @@ export default function QualityInsightsPage() {
         sideText="QUALITY & INSIGHTS"
         navTitle="QUALITY & INSIGHTS"
       />
-      <div className="relative z-20 bg-white lg:pt-[2vh]"> 
+      <div className="relative z-20 bg-white lg:pt-[2vh] "> 
         <div 
           ref={introRef}
-          className="w-full max-w-7xl md:max-w-[1300px] flex flex-wrap justify-between mx-auto px-4 py-12 bg-[#ffffff]"
+          className="w-full max-w-7xl md:max-w-[1300px] flex flex-wrap justify-between lg:mb-[3vh] mx-auto px-4 py-12 bg-[#ffffff]"
         >
           <div className="w-full md:w-1/2 lg:text-[38px] font-lato leading-[1.1] text-[#1a365d] font-bold animate-item">
             Excellence in Every Step of Our Quality Journey
@@ -358,58 +388,30 @@ export default function QualityInsightsPage() {
             At IQ Group, quality is not just a policy—it's our foundation. Being ISO 9001:2008 certified, we maintain our promise of delivering quality raw materials following international quality standards in all our supplies.
           </div>
         </div>
-        
-        {/* Quality Policy Section */}
-        <FadeInSection>
-          <SectionWithCards
-            id="quality-policy"
-            title="Quality Policy"
-            subtitle="Our commitment to excellence in every aspect of our operations"
-            cards={qualityPolicyCards}
-            hasDivider={false}
-            sectionNumber="01"
-          />
-        </FadeInSection>
-        
-        {/* Quality Commitment Section */}
-        <FadeInSection>
-          <SectionWithCards
-            id="quality-commitment"
-            title="Our Quality Commitment"
-            subtitle="Core principles that guide our quality management system"
-            cards={qualityCommitmentCards}
-            background="gray"
-            sectionNumber="02"
-          />
-        </FadeInSection>
+
+        <SectionNavigation links={sectionLinks} title="IN THIS SECTION" />
         
         {/* Certifications Section */}
         <section 
           id="certifications" 
           ref={certificateSectionRef}
-          className="py-24 bg-[#f5f5f5]"
+          className="py-8 bg-white"
         >
-          <div className="container mx-auto px-4 ">
-            <div className="max-w-3xl  text-left mb-8">
-              {/* <p className="text-sm uppercase tracking-wider font-lato text-left text-gray-500 mb-2">IN THIS SECTION</p> */}
-              <span className="text-4xl font-bold font-lato text-[#324390] block mb-4">03</span>
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl text-left mb-8">
+              <span className="text-4xl font-bold font-lato text-[#203663] block mb-4">01</span>
               <h2 
                 ref={certificateTitleRef}
-                className="text-3xl uppercase md:text-4xl font-bold font-lato text-[#324390] mb-4"
+                className="text-3xl uppercase md:text-4xl font-bold font-lato text-[#203663] mb-4"
               >
                 Our Certifications
               </h2>
-              {/* <p 
-                className="text-gray-700 font-onest text-lg"
-              >
-                Recognition of our commitment to quality, compliance, and excellence in business practices
-              </p> */}
             </div>
             
             <div className="max-w-7xl mx-auto">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 relative">
-                {/* Left column - Certificate Image - Sticky */}
-                <div ref={certificateLeftColRef} className="lg:sticky lg:top-24 lg:self-start">
+                {/* Left column - Certificate Image - Sticky - Hidden on mobile */}
+                <div ref={certificateLeftColRef} className="hidden lg:block lg:sticky lg:top-24 lg:self-start">
                   <div className="aspect-w-16 aspect-h-9 mb-8 overflow-hidden rounded-lg relative h-[580px]">
                     {displayedCertificate && (
                       <div 
@@ -427,11 +429,10 @@ export default function QualityInsightsPage() {
                       </div>
                     )}
                   </div>
-                 
                 </div>
                 
-                {/* Right column - Accordion - Scrollable */}
-                <div ref={certificateRightColRef} className="space-y-0 max-h-[800px] lg:overflow-y-auto lg:pr-4 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
+                {/* Right column - Accordion - Full width on mobile */}
+                <div ref={certificateRightColRef} className="space-y-0 lg:max-h-[800px] lg:overflow-y-auto lg:pr-4 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
                   {certificates.map((certificate) => (
                     <CertificateAccordionItem
                       key={certificate.id}
@@ -449,7 +450,33 @@ export default function QualityInsightsPage() {
             </div>
           </div>
         </section>
+
+        {/* Quality Policy Section */}
+        <FadeInSection>
+          <SectionWithCards
+            id="quality-policy"
+            title="Quality Policy"
+            subtitle="Our commitment to excellence in every aspect of our operations"
+            cards={qualityPolicyCards}
+            hasDivider={false}
+            background="gray"
+            sectionNumber="02"
+          />
+        </FadeInSection>
+
+        {/* Quality Commitment Section */}
+        <FadeInSection>
+          <SectionWithCards
+            id="quality-commitment"
+            title="Our Quality Commitment"
+            subtitle="Core principles that guide our quality management system"
+            cards={qualityCommitmentCards}
+            background="white"
+            sectionNumber="03"
+          />
+          <div className="h-[13vh] bg-white"></div>
+        </FadeInSection>
       </div>
     </main>
   );
-} 
+}

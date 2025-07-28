@@ -37,46 +37,26 @@ export default function LandingPage() {
   const contentWrapperRef = useRef(null);
   const footerRef = useRef(null);
   const [footerTransform, setFooterTransform] = useState('translateY(100%)');
-  const [isMobile, setIsMobile] = useState(false);
-  const [isAnimating, setIsAnimating] = useState(false); // Track if GSAP animation is active
-
-  // Check if device is mobile
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    if (typeof window !== 'undefined') {
-      checkMobile();
-      window.addEventListener('resize', checkMobile);
-    }
-    
-    return () => {
-      if (typeof window !== 'undefined') {
-        window.removeEventListener('resize', checkMobile);
-      }
-    };
-  }, []);
 
   // Calculate footer position based on scroll
   const handleFooterScroll = useCallback(() => {
     if (!contentWrapperRef.current || !footerRef.current) return;
     
-    // Hide footer completely during GSAP animations
-    if (isAnimating) {
-      setFooterTransform('translateY(100%)');
-      return;
-    }
-    
-    // Use document scroll position instead of getBoundingClientRect during animations
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const documentHeight = document.documentElement.scrollHeight;
-    const viewportHeight = window.innerHeight;
+    // Get total document height and scroll position
+    const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+    const windowHeight = window.innerHeight;
+    const documentHeight = Math.max(
+      document.body.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.clientHeight,
+      document.documentElement.scrollHeight,
+      document.documentElement.offsetHeight
+    );
     
     // Calculate how close we are to the bottom of the document
-    const scrollableHeight = documentHeight - viewportHeight;
+    // Start showing footer when we're 300px from reaching the end
+    const distanceFromBottom = documentHeight - (scrollPosition + windowHeight);
     const triggerDistance = 300;
-    const distanceFromBottom = scrollableHeight - scrollTop;
     
     if (distanceFromBottom <= triggerDistance && distanceFromBottom >= 0) {
       // Calculate progress (0 to 1) based on how close we are to the bottom
@@ -91,7 +71,7 @@ export default function LandingPage() {
       // Hide footer when we're not near the end
       setFooterTransform('translateY(100%)');
     }
-  }, [isAnimating]);
+  }, []);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -110,46 +90,34 @@ export default function LandingPage() {
         clearProps: "all"
       });
 
-      // Mobile-specific adjustments
-      const wrapperHeight = isMobile ? '100vh' : '100vh';
-      const initialOffset = isMobile ? '-10vh' : '-20vh'; // Less dramatic offset on mobile
-      const startPosition = isMobile ? "top 95%" : "top 90%"; // Start later on mobile
-      const endPosition = isMobile ? "top 20%" : "top 10%"; // End later on mobile
-
       // Set up wrapper - acts as a viewport window during animation only
       gsap.set(globalMapWrapperRef.current, {
         overflow: 'hidden',
         position: 'relative',
-        height: wrapperHeight
+        height: '100vh'
       });
 
       // Set initial position - content starts just above the viewport
       gsap.set(globalMapContentRef.current, {
-        y: initialOffset,
+        y: '-20vh', // More moderate offset
         willChange: 'transform'
       });
 
       // Create the reveal animation
       const trigger1 = ScrollTrigger.create({
         trigger: globalMapWrapperRef.current,
-        start: startPosition,
-        end: endPosition,
-        scrub: isMobile ? 0.5 : 1, // Smoother scrub on mobile
+        start: "top 90%",    // Start even earlier
+        end: "top 10%",      // End even later
+        scrub: 1,             // True scroll sync
         markers: false,
         invalidateOnRefresh: true,
-        refreshPriority: -1, // Lower priority to avoid conflicts
         animation: gsap.to(globalMapContentRef.current, {
           y: 0,
-          ease: "none",
+          ease: "none", // Perfect scroll sync
         }),
-        
-        onEnter: () => {
-          setIsAnimating(true);
-        },
         
         onLeave: () => {
           console.log("GlobalMap animation complete - releasing constraints");
-          setIsAnimating(false);
           
           gsap.set(globalMapWrapperRef.current, {
             height: 'auto',
@@ -163,18 +131,15 @@ export default function LandingPage() {
             willChange: 'auto'
           });
           
-          // Refresh with a small delay to ensure proper layout
-          setTimeout(() => {
-            ScrollTrigger.refresh();
-          }, 100);
+          // Only refresh our specific area, not everything
+          ScrollTrigger.refresh();
         },
         
         onEnterBack: () => {
           console.log("Re-entering GlobalMap animation area");
-          setIsAnimating(true);
           
           gsap.set(globalMapWrapperRef.current, {
-            height: wrapperHeight,
+            height: '100vh',
             overflow: 'hidden',
             position: 'relative'
           });
@@ -182,10 +147,6 @@ export default function LandingPage() {
           gsap.set(globalMapContentRef.current, {
             willChange: 'transform'
           });
-        },
-        
-        onLeaveBack: () => {
-          setIsAnimating(false);
         }
       });
 
@@ -195,9 +156,6 @@ export default function LandingPage() {
     const setupIndustriesAnimation = () => {
       if (!industriesRef.current || !globalMapContentRef.current) return;
       
-      // Skip industries pinning on mobile for better performance
-      if (isMobile) return;
-      
       const trigger2 = ScrollTrigger.create({
         trigger: globalMapContentRef.current,
         start: "bottom bottom",
@@ -205,32 +163,15 @@ export default function LandingPage() {
         end: "top top",
         pin: globalMapContentRef.current,
         pinSpacing: false,
-        scrub: 1.5,
+        scrub: 1.5,  // Increased scrub value for smoother animation
         markers: false,
-        refreshPriority: -2, // Even lower priority
         animation: gsap.fromTo(industriesRef.current, {
           yPercent: 0,
           willChange: 'transform'
         }, {
           y: 0,
-          ease: "power2.inOut",
-        }),
-        
-        onEnter: () => {
-          setIsAnimating(true);
-        },
-        
-        onLeave: () => {
-          setIsAnimating(false);
-        },
-        
-        onEnterBack: () => {
-          setIsAnimating(true);
-        },
-        
-        onLeaveBack: () => {
-          setIsAnimating(false);
-        }
+          ease: "power2.inOut", // Changed to power2.inOut for smoother transition
+        })
       });
 
       scrollTriggersRef.current.push(trigger2);
@@ -239,32 +180,18 @@ export default function LandingPage() {
     const initTimeout = setTimeout(() => {
       setupCurtainReveal();
       setupIndustriesAnimation();
-      
-      // Force a refresh after setup to ensure proper positioning
-      setTimeout(() => {
-        ScrollTrigger.refresh();
-      }, 200);
     }, 100);
 
     // Add scroll event listener for footer
-    window.addEventListener('scroll', handleFooterScroll, { passive: true });
+    window.addEventListener('scroll', handleFooterScroll);
     
     // Initial check
     handleFooterScroll();
 
     const handleResize = debounce(() => {
-      // Kill all triggers before recreating
-      scrollTriggersRef.current.forEach(trigger => trigger.kill());
-      scrollTriggersRef.current = [];
-      
       setupCurtainReveal();
       setupIndustriesAnimation();
       handleFooterScroll();
-      
-      // Refresh after resize
-      setTimeout(() => {
-        ScrollTrigger.refresh();
-      }, 300);
     }, 250);
     
     window.addEventListener('resize', handleResize);
@@ -278,7 +205,7 @@ export default function LandingPage() {
       scrollTriggersRef.current.forEach(trigger => trigger.kill());
       scrollTriggersRef.current = [];
     };
-  }, [handleFooterScroll, isMobile]);
+  }, [handleFooterScroll]);
 
   return (
     <div className="bg-[#000000] z-[2]">
@@ -296,13 +223,20 @@ export default function LandingPage() {
         </div>
         
         {/* GlobalMap wrapper */}
-        <div ref={globalMapWrapperRef} className="relative">
-          <div className={`${isMobile ? 'h-[8vh]' : 'h-[15vh]'} bg-[#000]`}></div>
+        <div ref={globalMapWrapperRef} className="relative hidden md:block">
+          <div className='md:block hidden h-[15vh] bg-[#000]'></div>
           <div ref={globalMapContentRef} className="will-change-transform">
-            <GlobalConstructionPlatform />
-            <div className={`${isMobile ? 'h-[5vh]' : 'h-[10vh]'} bg-[#000]`}></div>
+          <GlobalConstructionPlatform />
+          <div className='md:block hidden h-[10vh] bg-[#000]'></div>
           </div>
+          
         </div>
+
+       <div className='md:hidden block '>
+        
+        <GlobalConstructionPlatform />
+        <div className='h-[10vh]'></div>
+       </div>
         
         {/* Industries section */}
         <div ref={industriesRef} className="min-h-[70vh] xl:min-h-[100vh] bg-[#fbfbfb] text-white text-4xl">
@@ -328,7 +262,7 @@ export default function LandingPage() {
         </div>
         
         {/* Spacer to ensure content is tall enough */}
-        <div style={{ height: '40vh' }}></div>
+        {/* <div style={{ height: '30vh' }}></div> */}
       </main>
       
       {/* Footer - fixed position at bottom */}
@@ -338,11 +272,11 @@ export default function LandingPage() {
         style={{ 
           transform: footerTransform,
           transition: 'transform 0.1s linear',
-          willChange: 'transform, opacity'
+          willChange: 'transform'
         }}
       >
         <IQGroupFooter />
       </div>
     </div>
   );
-}
+} 

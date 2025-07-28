@@ -327,7 +327,7 @@ const IndustryCardsSection = () => {
         
         {/* Expanded content - visible when active on mobile or hovered on desktop */}
         <motion.div
-          className="px-4 pb-4"
+          className="px-4 pb-4 w-full h-full"
           initial={{ opacity: 0, y: 20 }}
           animate={{ 
             opacity: (isMobile && isActive) ? 1 : 0, 
@@ -351,9 +351,9 @@ const IndustryCardsSection = () => {
     <section 
       ref={sectionRef}
       id="industry-cards" 
-      className="py-16 md:py-24 lg:py-32 px-2 md:px-4 lg:px-8"
+      className="py-4 md:py-4 lg:py-0  px-2 md:px-4 lg:px-8"
     >
-      <div className="max-w-[1400px] mx-auto">
+      <div className="max-w-[1400px]  mx-auto">
         {/* Section heading */}
         {/* <div className="mb-12 md:mb-16 lg:mb-20">
           <h2 

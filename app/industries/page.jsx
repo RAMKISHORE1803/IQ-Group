@@ -22,13 +22,14 @@ const sectionLinks = [
     link: "#industries-overview"
   },
   {
+    title: "Industry Expertise",
+    link: "#industry-cards"
+  },
+  {
     title: "Global Industries",
     link: "#global-industries"
   },
-  {
-    title: "Industry Expertise",
-    link: "#industry-cards"
-  }
+  
 ];
 
 // Global industries overview cards
@@ -126,7 +127,7 @@ export default function IndustriesPage() {
         title=""
         subtitle="We power industries with premium raw materials—precise, reliable, and tailored for every need.
 "
-        backgroundImage="https://images.unsplash.com/photo-1533750516457-a7f992034fec?q=80&w=2106&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        backgroundImage="https://videos.openai.com/vg-assets/assets%2Ftask_01k18h2hqwf08tgb7q2sh4ts6p%2F1753706979_img_0.webp?st=2025-07-28T11%3A40%3A07Z&se=2025-08-03T12%3A40%3A07Z&sks=b&skt=2025-07-28T11%3A40%3A07Z&ske=2025-08-03T12%3A40%3A07Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=aa5ddad1-c91a-4f0a-9aca-e20682cc8969&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=4CWYFUGjNRRo8Eld8QQ5vfa275q974kop5OO%2FTjolPg%3D&az=oaivgprodscus"
         sideText="INDUSTRIES"
         navTitle="INDUSTRIES"
       />
@@ -147,26 +148,14 @@ export default function IndustriesPage() {
             sectionNumber="01"
           />
         </div>
-        
-        {/* Global Industries Section */}
-        <div ref={globalIndustriesRef} id="global-industries">
-          <SectionWithCards
-            title="Serving Global Industries"
-            subtitle="Delivering premium materials and technical expertise to diverse industries worldwide"
-            cards={globalIndustriesCards}
-            background="gray"
-            sectionNumber="02"
-          />
-        </div>
-        
-        {/* Industry Cards Section */}
+
         <div ref={industryCardsRef} id="industry-cards">
-          <section className="py-16 md:py-24 lg:py-32 px-4 md:px-8 lg:px-24 bg-white">
+          <section className="py-4 lg:py-4 px-4 md:px-8 lg:px-24 bg-gray">
             <div className="max-w-7xl mx-auto">
               <div className="mb-12">
                 <div className="mb-8">
                   <p className="text-sm uppercase tracking-wider font-lato text-gray-500 mb-2">IN THIS SECTION</p>
-                  <span className="text-4xl font-bold font-lato text-[#203663]">03</span>
+                  <span className="text-4xl font-bold font-lato text-[#203663]">02</span>
                 </div>
                 <h2 className="text-3xl uppercase md:text-4xl font-bold font-lato text-[#203663] mb-6">Industry Expertise</h2>
                 <p className="text-xl text-gray-700 font-lato">Specialized solutions for diverse industrial sectors with tailored materials and technical support</p>
@@ -175,6 +164,20 @@ export default function IndustriesPage() {
             </div>
           </section>
         </div>
+        
+        {/* Global Industries Section */}
+        <div ref={globalIndustriesRef} id="global-industries">
+          <SectionWithCards
+            title="Serving Global Industries"
+            subtitle="Delivering premium materials and technical expertise to diverse industries worldwide"
+            cards={globalIndustriesCards}
+            background="white"
+            sectionNumber="03"
+          />
+        </div>
+        
+        {/* Industry Cards Section */}
+       
       </div>
     </div>
   );

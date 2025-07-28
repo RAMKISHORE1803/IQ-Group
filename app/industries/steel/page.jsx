@@ -299,7 +299,7 @@ export default function SteelIndustryPage() {
         title=""
         subtitle="Empowering steel with premium raw materials—driving performance in carbon, alloy, and stainless steel.
 "
-        backgroundImage="https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3"
+        backgroundImage="https://rmi.org/wp-content/uploads/2023/02/steel-forge-worker-melting-metal-iStock-1147790557-1700x1063.jpg"
         sideText="STEEL INDUSTRY"
         navTitle="INDUSTRIES"
       />

@@ -150,7 +150,7 @@ const HeroSection = ({
     <>
       <section 
         ref={heroRef} 
-        className="relative w-full h-[100svh] md:h-screen lg:max-h-[83vh] bg-white overflow-hidden"
+        className="relative w-full h-[93vh] md:h-screen lg:max-h-[83vh] bg-white overflow-hidden"
       >
         {/* Fixed Background Image */}
         <div 
@@ -172,7 +172,7 @@ const HeroSection = ({
         {/* Mobile Top Bar with Text (Horizontal) */}
         <div 
           ref={mobileSideTextRef}
-          className="absolute top-6 left-4 md:hidden z-10"
+          className="absolute top-[40vh] left-4 md:hidden z-10"
         >
           <div className="flex items-center">
             <div className="w-8 h-[2px] bg-white mr-3"></div>
