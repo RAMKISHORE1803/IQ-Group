@@ -91,7 +91,7 @@ export default function FoundriesIndustryPage() {
     <IndustryPageTemplate
       title="Foundries"
       subtitle="Supplying premium quality raw materials for metal casting operations with exceptional consistency and technical support."
-      backgroundImage="https://images.unsplash.com/photo-1605197384465-b93a3f3a16cb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3"
+      backgroundImage="https://images.pexels.com/photos/3730670/pexels-photo-3730670.jpeg"
       sideText="FOUNDRIES"
       overviewData={{
         subtitle: "Empowering casting excellence with precisely engineered materials and metallurgical expertise",

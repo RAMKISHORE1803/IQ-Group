@@ -91,7 +91,7 @@ export default function CeramicIndustryPage() {
     <IndustryPageTemplate
       title="Ceramic Industry"
       subtitle="Supplying premium raw materials for ceramic manufacturing with exceptional purity and consistent quality."
-      backgroundImage="https://images.unsplash.com/photo-1565193298357-c5f6b0ac8ab4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3"
+      backgroundImage="https://images.unsplash.com/photo-1481401908818-600b7a676c0d?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       sideText="CERAMIC INDUSTRY"
       overviewData={{
         subtitle: "Powering ceramic innovation with precisely engineered materials and technical expertise",

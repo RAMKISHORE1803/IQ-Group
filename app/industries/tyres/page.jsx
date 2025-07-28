@@ -91,7 +91,7 @@ export default function TyresIndustryPage() {
     <IndustryPageTemplate
       title="Tyres Industry"
       subtitle="Supplying premium raw materials for tire manufacturing with exceptional consistency and technical expertise."
-      backgroundImage="https://images.unsplash.com/photo-1589982334414-c79c022d66e1?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3"
+      backgroundImage="https://assets.lummi.ai/assets/QmeNHGPHEyi8Sjx25eaEwUE9JU3Ko2fZ3EWCpDfz6qd54E?auto=format&w=1500"
       sideText="TYRES INDUSTRY"
       overviewData={{
         subtitle: "Empowering tire innovation with precision-engineered materials and compound expertise",

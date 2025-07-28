@@ -91,7 +91,7 @@ export default function ChemicalIndustryPage() {
     <IndustryPageTemplate
       title="Chemical Industry"
       subtitle="Delivering premium raw materials and reagents for chemical processing with uncompromising purity and consistency."
-      backgroundImage="https://images.unsplash.com/photo-1616661317361-b8a30bef3321?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3"
+      backgroundImage="https://assets.lummi.ai/assets/QmRWrf7RRguRREw1py5ASex7cAGxv3rVYQL6Tw9LFAGRCq?auto=format&w=1500"
       sideText="CHEMICAL INDUSTRY"
       overviewData={{
         subtitle: "Empowering chemical innovation with precisely controlled materials and technical expertise",

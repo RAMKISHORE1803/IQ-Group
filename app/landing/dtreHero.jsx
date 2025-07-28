@@ -4,10 +4,10 @@ import Image from 'next/image';
 
 // Use regular img tag for local images to avoid Next.js optimization issues with deployment
 const PLACEHOLDER_URLS = {
-  port: 'https://www.iqgroup.in/image/slider-lg-a.jpg',
-  isoCert: 'https://dtre.com/_next/image?url=https%3A%2F%2Fdtre-com.s3.eu-west-2.amazonaws.com%2Fdtre-com%2FSciTech%20Cover%20-%20Q1%202025-2.jpg&w=1200&q=75',
-  divisions: 'https://dtre.com/_next/image?url=https%3A%2F%2Fdtre-com.s3.eu-west-2.amazonaws.com%2Fdtre-com%2FDTRE_Industrial_1.jpg&w=750&q=75',
-  worldMap: 'https://dtre.com/_next/image?url=https%3A%2F%2Fdtre-com.s3.eu-west-2.amazonaws.com%2Fdtre-com%2FBBLR_Website_Header.jpg&w=1200&q=75',
+  port: 'https://videos.openai.com/vg-assets/assets%2Ftask_01k17ngnbpftcvpwm2r82dgg3z%2F1753677886_img_1.webp?st=2025-07-28T03%3A23%3A47Z&se=2025-08-03T04%3A23%3A47Z&sks=b&skt=2025-07-28T03%3A23%3A47Z&ske=2025-08-03T04%3A23%3A47Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=aa5ddad1-c91a-4f0a-9aca-e20682cc8969&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=VrE5WvG16pV1zQsqHNDGXlZOtUTfLOsYAWryycDJAck%3D&az=oaivgprodscus',
+  isoCert: 'https://videos.openai.com/vg-assets/assets%2Ftask_01k17n8pk6em3bz8gej9w84chp%2F1753677623_img_1.webp?st=2025-07-28T03%3A24%3A50Z&se=2025-08-03T04%3A24%3A50Z&sks=b&skt=2025-07-28T03%3A24%3A50Z&ske=2025-08-03T04%3A24%3A50Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=aa5ddad1-c91a-4f0a-9aca-e20682cc8969&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=dMGhy3Y6NixrcV2M6BUJ2gtPr68m1ws91JHR5tBHSVs%3D&az=oaivgprodscus',
+  divisions: 'https://videos.openai.com/vg-assets/assets%2Ftask_01k17mzn4fe71tjvgsght9998d%2F1753677333_img_1.webp?st=2025-07-28T03%3A23%3A06Z&se=2025-08-03T04%3A23%3A06Z&sks=b&skt=2025-07-28T03%3A23%3A06Z&ske=2025-08-03T04%3A23%3A06Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=aa5ddad1-c91a-4f0a-9aca-e20682cc8969&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=Klpw5tu3DBcRXnpVbmrjuv3WUEG%2FC3HfHXT0w6QpAEA%3D&az=oaivgprodscus',
+  worldMap: 'https://videos.openai.com/vg-assets/assets%2Ftask_01k17nqgqmfxkrx09dcphksxmt%2F1753678113_img_0.webp?st=2025-07-28T03%3A25%3A05Z&se=2025-08-03T04%3A25%3A05Z&sks=b&skt=2025-07-28T03%3A25%3A05Z&ske=2025-08-03T04%3A25%3A05Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=aa5ddad1-c91a-4f0a-9aca-e20682cc8969&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=ZC9Byu4dppy2D9ZOipWQPh%2Fe1RCthIJoV2Cz75QfaAM%3D&az=oaivgprodscus',
   logoFerro: 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=60&h=40&fit=crop',
   logoGreen: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=60&h=40&fit=crop',
   logoMineral: 'https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=60&h=40&fit=crop'
@@ -176,7 +176,7 @@ export default function DTREHeroCarousel() {
           alt={currentSlideData.ariaLabel}
           className="w-full h-full object-cover transition-all duration-1000"
         />
-        <div className='absolute inset-0 bg-black/50'></div>
+        <div className='absolute inset-0 bg-black/30'></div>
         {/* <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-white/10"></div> */}
       </div>
 

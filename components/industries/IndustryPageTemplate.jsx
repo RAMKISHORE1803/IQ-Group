@@ -7,7 +7,7 @@ import SectionNavigation from '@/components/companies/SectionNavigation';
 import Link from 'next/link';
 import ProductRangeSection from '@/components/companies/ProductRangeSection';
 import SectionWithCards from '@/components/companies/SectionWithCards';
-import HeroSection from '@/components/about/HeroSection';
+import HeroSection from './hero';
 import InfiniteMovingCardsDemo from '@/components/ui/infinite-moving-cards-demo';
 
 // Register GSAP plugins

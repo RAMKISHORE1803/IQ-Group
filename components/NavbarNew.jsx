@@ -2,8 +2,6 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { Menu, X, ChevronDown } from 'lucide-react';
-import Image from 'next/image';
-import NavDropdown from './ui/NavDropdown';
 
 const NavbarNew = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -90,6 +88,20 @@ const NavbarNew = () => {
     };
   }, []);
 
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
+
   // Navigation items with dropdowns based on IQ Group site (exact titles from iq-groups.vercel.app)
   // Split into main nav and right nav
   const mainNavItems = [
@@ -163,15 +175,12 @@ const NavbarNew = () => {
         { name: 'Life at IQ Group', path: '/careers/life' },
         { name: 'Why Join Us', path: '/careers/why-join' },
         { name: 'Open Positions', path: '/careers/positions' },
-       
-        
         { name: 'Application Portal', path: '/careers/apply' }
       ]
     },
     {
       name: 'CSR',
       path: 'https://www.jkbfoundation.com/',
-      
     }
   ];
 
@@ -181,16 +190,19 @@ const NavbarNew = () => {
     path: '/resources',
     megaMenu: 'resources',
     dropdown: [
-      
       { name: 'Insights', path: '/resources#INSIGHTS' },
       { name: 'News', path: '/resources#news' },
     ]
   };
 
-  // Toggle mobile menu
+  // Toggle mobile menu with animation states
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-    if (isMobileMenuOpen) {
+    if (!isMobileMenuOpen) {
+      // Opening menu
+      setIsMobileMenuOpen(true);
+    } else {
+      // Closing menu
+      setIsMobileMenuOpen(false);
       setActiveDropdown(null);
     }
   };
@@ -278,7 +290,7 @@ const NavbarNew = () => {
     return ((rect.left + rect.width / 2) - navRect.left) / navRect.width * 100;
   };
 
-  // Add global styles for 3D animations
+  // Add global styles for 3D animations and mobile menu animations
   const globalStyles = `
     .perspective-500 {
       perspective: 500px;
@@ -343,6 +355,131 @@ const NavbarNew = () => {
     .dropdown-animation {
       animation: fadeIn 0.3s ease forwards;
     }
+
+    /* Mobile Menu Animations - Slide from Right to Left */
+    .mobile-overlay {
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .mobile-overlay.entering {
+      opacity: 0;
+    }
+
+    .mobile-overlay.entered {
+      opacity: 1;
+    }
+
+    .mobile-overlay.exiting {
+      opacity: 0;
+    }
+
+    .mobile-menu {
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateX(100%);
+      will-change: transform;
+    }
+
+    .mobile-menu.entering {
+      transform: translateX(100%);
+    }
+
+    .mobile-menu.entered {
+      transform: translateX(0);
+    }
+
+    .mobile-menu.exiting {
+      transform: translateX(100%);
+    }
+
+    .mobile-menu.slide-in {
+      animation: slideInFromRight 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .mobile-menu.slide-out {
+      animation: slideOutToRight 0.4s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards;
+    }
+
+    @keyframes slideInFromRight {
+      0% {
+        transform: translateX(100%);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideOutToRight {
+      0% {
+        transform: translateX(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateX(100%);
+        opacity: 0.8;
+      }
+    }
+
+    /* Mobile menu items animation - Updated to show content immediately */
+    .mobile-header {
+      opacity: 1;
+      transform: translateY(0);
+      animation: fadeInDown 0.6s ease;
+      animation-delay: 0.2s;
+    }
+
+    .mobile-menu-items {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .mobile-menu-item {
+      opacity: 1;
+      transform: translateX(0);
+      animation: slideInLeft 0.5s ease;
+    }
+
+    @keyframes slideInLeft {
+      0% {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeInDown {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Hamburger button animation */
+    .hamburger-line {
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transform-origin: center;
+    }
+
+    .hamburger-open .hamburger-line:nth-child(1) {
+      transform: rotate(45deg) translate(6px, 6px);
+    }
+
+    .hamburger-open .hamburger-line:nth-child(2) {
+      opacity: 0;
+      transform: scale(0);
+    }
+
+    .hamburger-open .hamburger-line:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
   `;
 
   return (
@@ -368,34 +505,32 @@ const NavbarNew = () => {
         <div className="container mx-auto px-4 lg:px-8 xl:px-12">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            {isScrolled ? (<Link href="/" className="flex items-center">
-              <div className="flex items-center pt-[30px] md:pt-[0px]">
-                <img
-                  src="/logo/3.png"
-                  alt="IQ Groups Logo"
-                  width={60}
-                  style={{
-                    transform: 'scale(1.5)'
-                  }}
-                  height={60}
-                  priority="true"
-                />
-              </div>
-            </Link>) : (
-
-            <Link href="/" className="flex items-center">
-              <div className="flex items-center pt-[50px] md:pt-[0px] lg:mt-[30px]">
-                <img
-                  src="/logo/2.png"
-                  alt="IQ Groups Logo"
-                  width={100}
-                  
-                  height={100}
-                  priority="true"
-                />
-              </div>
-            </Link>)
-            }
+            {isScrolled ? (
+              <Link href="/" className="flex items-center">
+                <div className="flex items-center pt-[30px] md:pt-[0px]">
+                  <img
+                    src="/logo/3.png"
+                    alt="IQ Groups Logo"
+                    width={60}
+                    style={{ transform: 'scale(1.5)' }}
+                    height={60}
+                    priority="true"
+                  />
+                </div>
+              </Link>
+            ) : (
+              <Link href="/" className="flex items-center">
+                <div className="flex items-center pt-[50px] md:pt-[0px] lg:mt-[30px]">
+                  <img
+                    src="/logo/2.png"
+                    alt="IQ Groups Logo"
+                    width={100}
+                    height={100}
+                    priority="true"
+                  />
+                </div>
+              </Link>
+            )}
 
             {/* Desktop Navigation - Main Nav */}
             <nav className="hidden lg:flex items-center justify-center flex-1 mx-4">
@@ -415,8 +550,7 @@ const NavbarNew = () => {
                         className="tracking-wide py-2 group relative perspective-500"
                         aria-expanded={hoveredItem === item.megaMenu}
                       >
-                        {/* 3D Animation Wrapper */}
-                        <span className=" inline-block">
+                        <span className="inline-block">
                           {item.name}
                         </span>
                         
@@ -447,11 +581,10 @@ const NavbarNew = () => {
                 >
                   <Link 
                     href={item.path}
-                    className="text-base font-medium tracking-wide  py-2 group relative perspective-500"
+                    className="text-base font-medium tracking-wide py-2 group relative perspective-500"
                     aria-expanded={hoveredItem === item.megaMenu}
                   >
-                    {/* 3D Animation Wrapper */}
-                    <span className=" inline-block">
+                    <span className="inline-block">
                       {item.name}
                     </span>
                     
@@ -477,18 +610,22 @@ const NavbarNew = () => {
               </Link>
             </div>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile Menu Button with Custom Hamburger */}
             <div className="lg:hidden">
               <button
                 onClick={toggleMobileMenu}
-                className={`p-2 ${isScrolled || hoveredItem ? 'text-[#0e3364]' : 'text-white'}`}
+                className={`p-2 ${isScrolled || hoveredItem ? 'text-[#0e3364]' : 'text-white'} relative w-8 h-8 flex flex-col justify-center items-center ${isMobileMenuOpen ? 'hamburger-open' : ''}`}
                 aria-label="Toggle mobile menu"
                 aria-expanded={isMobileMenuOpen}
               >
                 {isMobileMenuOpen ? (
                   <X size={24} />
                 ) : (
-                  <Menu size={24} />
+                  <>
+                    <span className="hamburger-line w-6 h-0.5 bg-current mb-1"></span>
+                    <span className="hamburger-line w-6 h-0.5 bg-current mb-1"></span>
+                    <span className="hamburger-line w-6 h-0.5 bg-current"></span>
+                  </>
                 )}
               </button>
             </div>
@@ -607,173 +744,203 @@ const NavbarNew = () => {
           </div>
         )}
 
-        {/* Mobile Navigation Menu */}
+        {/* Mobile Navigation Menu with Smooth Right to Left Slide Animation */}
         {isMobileMenuOpen && (
           <div className="fixed inset-0 z-50 lg:hidden">
-            <div className="absolute inset-0 bg-black opacity-50" onClick={toggleMobileMenu}></div>
-            <nav className="fixed inset-y-0 right-0 h-[100vh] w-80 max-w-[80%] bg-[#0e3364] p-6 overflow-y-auto">
-              <div className="flex justify-between items-center mb-8">
-                <div className="flex items-center space-x-3">
-                  <span className="text-2xl font-bold tracking-tight text-white">IQ Group</span>
+            {/* Animated Overlay */}
+            {/* <div 
+              className="mobile-overlay absolute inset-0 bg-black opacity-50 entered" 
+              onClick={toggleMobileMenu}
+            ></div> */}
+            
+            {/* Animated Sidebar - Slides from Right to Left */}
+            <nav className="mobile-menu fixed inset-y-0 right-0 h-[100vh] w-80 max-w-[80%] bg-[#0e3364] overflow-y-auto slide-in"
+                 style={{
+                   boxShadow: '-10px 0 30px rgba(0, 0, 0, 0.3)',
+                   backdropFilter: 'blur(10px)'
+                 }}>
+              <div className="p-6">
+                {/* Header */}
+                <div className="flex justify-between items-center mb-8 mobile-header">
+                  <div className="flex items-center space-x-3">
+                    <span className="text-2xl font-bold tracking-tight text-white"></span>
+                  </div>
+                  <button 
+                    onClick={toggleMobileMenu} 
+                    className="text-white hover:text-gray-300 transition-colors duration-200 hover:rotate-90 transform transition-transform" 
+                    aria-label="Close menu"
+                  >
+                    <X size={24} />
+                  </button>
                 </div>
-                <button onClick={toggleMobileMenu} className="text-white" aria-label="Close menu">
-                  <X size={24} />
-                </button>
-              </div>
-              
-              <ul className="space-y-4">
-                {/* Resources item at the top for mobile */}
-                <li className="py-2 border-b border-blue-400">
-                  {resourcesItem.dropdown ? (
-                    <div>
-                      <button
-                        onClick={() => handleDropdownToggle('resources')}
-                        className="flex items-center justify-between w-full text-left text-white font-medium"
-                        aria-expanded={activeDropdown === 'resources'}
-                      >
-                        <span className="text-xl">{resourcesItem.name}</span>
-                        <ChevronDown
-                          size={16}
-                          className={`transform transition-transform ${
-                            activeDropdown === 'resources' ? 'rotate-180' : 'rotate-0'
-                          }`}
-                        />
-                      </button>
-                      
-                      {activeDropdown === 'resources' && (
-                        <ul className="mt-3 space-y-2">
-                          {resourcesItem.dropdown.map((dropdownItem, idx) => (
-                            <li key={idx}>
-                              <Link
-                                href={dropdownItem.path}
-                                className="block text-white opacity-80 hover:opacity-100 pl-4"
-                                onClick={toggleMobileMenu}
-                              >
-                                {dropdownItem.name}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
+                
+                {/* Menu Items with Stagger Animation */}
+                <ul className="mobile-menu-items space-y-4">
+                  {/* Resources item at the top for mobile */}
+                  
+
+                  {/* Main navigation items */}
+                  {mainNavItems.map((item, index) => (
+                    <li key={index} 
+                        className="mobile-menu-item py-2 border-b border-blue-400"
+                        style={{ animationDelay: `${0.4 + (index * 0.1)}s` }}>
+                      {item.dropdown ? (
+                        <div>
+                          <button
+                            onClick={() => handleDropdownToggle(item.megaMenu)}
+                            className="flex items-center justify-between w-full text-left text-white font-medium hover:text-gray-300 transition-colors duration-200"
+                            aria-expanded={activeDropdown === item.megaMenu}
+                          >
+                            <span className="text-xl">{item.name}</span>
+                            <ChevronDown
+                              size={16}
+                              className={`transform transition-transform duration-300 ${
+                                activeDropdown === item.megaMenu ? 'rotate-180' : 'rotate-0'
+                              }`}
+                            />
+                          </button>
+                          
+                          <div className={`overflow-hidden transition-all duration-300 ${
+                            activeDropdown === item.megaMenu ? 'max-h-96 mt-3' : 'max-h-0'
+                          }`}>
+                            <ul className="space-y-2">
+                              {item.dropdown.map((dropdownItem, idx) => (
+                                <li key={idx}>
+                                  <Link
+                                    href={dropdownItem.path}
+                                    className="block text-white opacity-80 hover:opacity-100 pl-4 py-1 transition-opacity duration-200 hover:translate-x-1 transform transition-transform"
+                                    onClick={toggleMobileMenu}
+                                  >
+                                    {dropdownItem.name}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+                      ) : (
+                        <Link
+                          href={item.path}
+                          className="block text-white text-xl hover:opacity-80 transition-opacity duration-200 hover:translate-x-1 transform transition-transform"
+                          onClick={toggleMobileMenu}
+                        >
+                          {item.name}
+                        </Link>
                       )}
-                    </div>
-                  ) : (
+                    </li>
+                  ))}
+
+<li className="mobile-menu-item py-2 border-b border-blue-400" style={{ animationDelay: '0.3s' }}>
+                    {resourcesItem.dropdown ? (
+                      <div>
+                        <button
+                          onClick={() => handleDropdownToggle('resources')}
+                          className="flex items-center justify-between w-full text-left text-white font-medium hover:text-gray-300 transition-colors duration-200"
+                          aria-expanded={activeDropdown === 'resources'}
+                        >
+                          <span className="text-xl">{resourcesItem.name}</span>
+                          <ChevronDown
+                            size={16}
+                            className={`transform transition-transform duration-300 ${
+                              activeDropdown === 'resources' ? 'rotate-180' : 'rotate-0'
+                            }`}
+                          />
+                        </button>
+                        
+                        <div className={`overflow-hidden transition-all duration-300 ${
+                          activeDropdown === 'resources' ? 'max-h-96 mt-3' : 'max-h-0'
+                        }`}>
+                          <ul className="space-y-2">
+                            {resourcesItem.dropdown.map((dropdownItem, idx) => (
+                              <li key={idx}>
+                                <Link
+                                  href={dropdownItem.path}
+                                  className="block text-white opacity-80 hover:opacity-100 pl-4 py-1 transition-opacity duration-200 hover:translate-x-1 transform transition-transform"
+                                  onClick={toggleMobileMenu}
+                                >
+                                  {dropdownItem.name}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    ) : (
+                      <Link
+                        href={resourcesItem.path}
+                        className="block text-white text-xl hover:opacity-80 transition-opacity duration-200 hover:translate-x-1 transform transition-transform"
+                        onClick={toggleMobileMenu}
+                      >
+                        {resourcesItem.name}
+                      </Link>
+                    )}
+                  </li>
+
+                  {/* Right navigation items */}
+                  {rightNavItems.map((item, index) => (
+                    <li key={index} 
+                        className="mobile-menu-item py-2 border-b border-blue-400"
+                        style={{ animationDelay: `${0.8 + (index * 0.1)}s` }}>
+                      {item.dropdown ? (
+                        <div>
+                          <button
+                            onClick={() => handleDropdownToggle(item.megaMenu)}
+                            className="flex items-center justify-between w-full text-left text-white font-medium hover:text-gray-300 transition-colors duration-200"
+                            aria-expanded={activeDropdown === item.megaMenu}
+                          >
+                            <span className="text-xl">{item.name}</span>
+                            <ChevronDown
+                              size={16}
+                              className={`transform transition-transform duration-300 ${
+                                activeDropdown === item.megaMenu ? 'rotate-180' : 'rotate-0'
+                              }`}
+                            />
+                          </button>
+                          
+                          <div className={`overflow-hidden transition-all duration-300 ${
+                            activeDropdown === item.megaMenu ? 'max-h-96 mt-3' : 'max-h-0'
+                          }`}>
+                            <ul className="space-y-2">
+                              {item.dropdown.map((dropdownItem, idx) => (
+                                <li key={idx}>
+                                  <Link
+                                    href={dropdownItem.path}
+                                    className="block text-white opacity-80 hover:opacity-100 pl-4 py-1 transition-opacity duration-200 hover:translate-x-1 transform transition-transform"
+                                    onClick={toggleMobileMenu}
+                                  >
+                                    {dropdownItem.name}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+                      ) : (
+                        <Link
+                          href={item.path}
+                          className="block text-white text-xl hover:opacity-80 transition-opacity duration-200 hover:translate-x-1 transform transition-transform"
+                          onClick={toggleMobileMenu}
+                          target={item.name === 'CSR' ? '_blank' : '_self'}
+                          rel={item.name === 'CSR' ? 'noopener noreferrer' : ''}
+                        >
+                          {item.name}
+                        </Link>
+                      )}
+                    </li>
+                  ))}
+
+                  {/* Contact button */}
+                  <li className="mobile-menu-item py-2" style={{ animationDelay: '1.0s' }}>
                     <Link
-                      href={resourcesItem.path}
-                      className="block text-white text-xl hover:opacity-80"
+                      href="/contact"
+                      className="block text-white text-xl hover:opacity-80 transition-opacity duration-200 hover:translate-x-1 transform transition-transform"
                       onClick={toggleMobileMenu}
                     >
-                      {resourcesItem.name}
+                      Contact
                     </Link>
-                  )}
-                </li>
-
-                {/* Main navigation items */}
-                {mainNavItems.map((item, index) => (
-                  <li key={index} className="py-2 border-b border-blue-400">
-                    {item.dropdown ? (
-                      <div>
-                        <button
-                          onClick={() => handleDropdownToggle(item.megaMenu)}
-                          className="flex items-center justify-between w-full text-left text-white font-medium"
-                          aria-expanded={activeDropdown === item.megaMenu}
-                        >
-                          <span className="text-xl">{item.name}</span>
-                          <ChevronDown
-                            size={16}
-                            className={`transform transition-transform ${
-                              activeDropdown === item.megaMenu ? 'rotate-180' : 'rotate-0'
-                            }`}
-                          />
-                        </button>
-                        
-                        {activeDropdown === item.megaMenu && (
-                          <ul className="mt-3 space-y-2">
-                            {item.dropdown.map((dropdownItem, idx) => (
-                              <li key={idx}>
-                                <Link
-                                  href={dropdownItem.path}
-                                  className="block text-white opacity-80 hover:opacity-100 pl-4"
-                                  onClick={toggleMobileMenu}
-                                >
-                                  {dropdownItem.name}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                      </div>
-                    ) : (
-                      <Link
-                        href={item.path}
-                        className="block text-white text-xl hover:opacity-80"
-                        onClick={toggleMobileMenu}
-                      >
-                        {item.name}
-                      </Link>
-                    )}
                   </li>
-                ))}
-
-                {/* Right navigation items */}
-                {rightNavItems.map((item, index) => (
-                  <li key={index} className="py-2 border-b border-blue-400">
-                    {item.dropdown ? (
-                      <div>
-                        <button
-                          onClick={() => handleDropdownToggle(item.megaMenu)}
-                          className="flex items-center justify-between w-full text-left text-white font-medium"
-                          aria-expanded={activeDropdown === item.megaMenu}
-                        >
-                          <span className="text-xl">{item.name}</span>
-                          <ChevronDown
-                            size={16}
-                            className={`transform transition-transform ${
-                              activeDropdown === item.megaMenu ? 'rotate-180' : 'rotate-0'
-                            }`}
-                          />
-                        </button>
-                        
-                        {activeDropdown === item.megaMenu && (
-                          <ul className="mt-3 space-y-2">
-                            {item.dropdown.map((dropdownItem, idx) => (
-                              <li key={idx}>
-                                <Link
-                                  href={dropdownItem.path}
-                                  className="block text-white opacity-80 hover:opacity-100 pl-4"
-                                  onClick={toggleMobileMenu}
-                                >
-                                  {dropdownItem.name}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                      </div>
-                    ) : (
-                      <Link
-                        href={item.path}
-                        className="block text-white text-xl hover:opacity-80"
-                        onClick={toggleMobileMenu}
-                        target={item.name === 'CSR' ? '_blank' : '_self'}
-                        rel={item.name === 'CSR' ? 'noopener noreferrer' : ''}
-                      >
-                        {item.name}
-                      </Link>
-                    )}
-                  </li>
-                ))}
-
-                {/* Contact button */}
-                <li className="py-2">
-                  <Link
-                    href="/contact"
-                    className="block text-white text-xl hover:opacity-80"
-                    onClick={toggleMobileMenu}
-                  >
-                    Contact
-                  </Link>
-                </li>
-              </ul>
+                </ul>
+              </div>
             </nav>
           </div>
         )}

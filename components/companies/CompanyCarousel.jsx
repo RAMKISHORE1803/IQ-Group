@@ -335,7 +335,7 @@ export default function CompanyCarousel() {
   };
 
   return (
-    <section className="bg-[#fbfbfb] min-h-[320px] overflow-hidden sm:overflow-hidden md:min-h-[100vh] pt-2  md:overflow-hidden md:pt-24 md:pb-16">
+    <section className="bg-[#fbfbfb] min-h-[320px] overflow-hidden sm:overflow-hidden md:min-h-[100vh] pt-[40px]  md:overflow-hidden md:pt-24 md:pb-16">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="company-title text-[28px] md:text-[18px] text-[#324390] font-bold mb-4 text-lato font-lato font-bold">EXPLORE OUR COMPANIES</h2>

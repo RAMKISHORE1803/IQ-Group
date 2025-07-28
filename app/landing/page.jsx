@@ -241,6 +241,10 @@ export default function LandingPage() {
         {/* Industries section */}
         <div ref={industriesRef} className="min-h-[70vh] xl:min-h-[100vh] bg-[#fbfbfb] text-white text-4xl">
           {/* <Associates /> */}
+        
+            <Associates/>
+
+        
           <IndustriesSection/>
           
           <BCGCareersSection />

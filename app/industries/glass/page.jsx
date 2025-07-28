@@ -91,7 +91,7 @@ export default function GlassIndustryPage() {
     <IndustryPageTemplate
       title="Glass Industry"
       subtitle="Supplying ultra-pure raw materials for glass manufacturing with exceptional quality and technical expertise."
-      backgroundImage="https://images.unsplash.com/photo-1518893883800-45cd0954574b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3"
+      backgroundImage="https://assets.lummi.ai/assets/QmdjvE5DEVkpGMDUNBQtTgMXXXNBnrxgeBk5Q6RTka9GHM?auto=format&w=1500"
       sideText="GLASS INDUSTRY"
       overviewData={{
         subtitle: "Empowering glass innovation with precision-engineered materials and technical support",

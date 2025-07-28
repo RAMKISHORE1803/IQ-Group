@@ -91,7 +91,7 @@ export default function PaintsIndustryPage() {
     <IndustryPageTemplate
       title="Paints Industry"
       subtitle="Supplying premium raw materials for coating formulations with exceptional quality and technical expertise."
-      backgroundImage="https://images.unsplash.com/photo-1515688594390-b649af70d282?q=80&w=2012&auto=format&fit=crop&ixlib=rb-4.0.3"
+      backgroundImage="https://assets.lummi.ai/assets/QmX9TW1P64SQAyG3ELPsCLCqh9P37VuxphC6yPGwgQLn1R?auto=format&w=1500"
       sideText="PAINTS INDUSTRY"
       overviewData={{
         subtitle: "Empowering coating innovation with precision-engineered materials and formulation support",

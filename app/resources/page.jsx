@@ -208,7 +208,7 @@ const newsCards = [
     title: "TEPA Treaty Revolutionizes India's Steel Future",
     description: "India-EFTA partnership unlocks $100B investment, transforming steel giants into global powerhouses. The revolution starts now.",
     image: "https://media.licdn.com/dms/image/v2/D4D22AQEbT_MwdNSe-w/feedshare-shrink_1280/B4DZf87gwsGsAk-/0/1752295160074?e=1756339200&v=beta&t=2SjWOA53DYS6oTjmFQstGOas9YqXNe87bTxIchfW3dE",
-    link: "#"
+    link: "/resources/insights/tepa-treaty-revolutionizes-india-steel-future"
   },
   {
     type: "Event",
@@ -216,7 +216,7 @@ const newsCards = [
     title: "Siddharth Bothra Leads Chrome Market Insights Amsterdam",
     description: "CEO speaks at prestigious CRU Summit, sharing India's ferrochrome expertise with global leaders. Industry transformation through knowledge leadership.",
     image: "https://media.licdn.com/dms/image/v2/D4E22AQHEQnXaBHARRg/feedshare-shrink_800/B4EZdjikkRHYAk-/0/1749721703107?e=1756339200&v=beta&t=71NYpSDrBey3ld-NzIh8lpTCrRSB-mkxurMe1ENqslE",
-    link: "#"
+    link: "/resources/insights/siddharth-bothra-leads-chrome-market-insights-amsterdam"
   },
   {
     type: "LinkedIn Post",
@@ -224,7 +224,7 @@ const newsCards = [
     title: "Freight Rates Double Overnight Threatening Global Economy",
     description: "Shipping lines abandon India for US profits, doubling container costs. Supply chains collapse while regulators sleep. Action needed now.",
     image: "https://media.licdn.com/dms/image/v2/D4D22AQEk22pW3d_Vrw/feedshare-shrink_800/B4DZcBPNZLGYAo-/0/1748072460719?e=1756339200&v=beta&t=oCheL5nuJUJp7QBWNp7KZVT-PSKSpw9geq7lExRunh4",
-    link: "#"
+    link: "/resources/insights/freight-rates-double-overnight-threatening-global-economy"
   },
   {
     type: "Event",
@@ -232,7 +232,7 @@ const newsCards = [
     title: "Siddharth Bothra Speaks at Dubai Metal Conference",
     description: "IQ Group CEO joins global steel leaders in Dubai, sharing insights on ferro alloys innovation and sustainable supply chains.",
     image: "https://media.licdn.com/dms/image/v2/D4D22AQFQBNYRgp4E0g/feedshare-shrink_800/B4DZbx14AuHEAg-/0/1747814155111?e=1756339200&v=beta&t=mmuQ6eLZIGzbzGf1VW0ZNg52MjpV2m9W8znBWuhUT6o",
-    link: "#"
+    link: "/resources/insights/siddharth-bothra-speaks-dubai-metal-conference"
   },
   {
     type: "LinkedIn Post",
@@ -240,7 +240,7 @@ const newsCards = [
     title: "Freight Wars Disrupt Global Trade Economy Overnight",
     description: "Tariff policies trigger freight chaos, container shortages devastate supply chains. Trade needs agility, not just resilience against volatility.",
     image: "https://media.licdn.com/dms/image/v2/D4D22AQE_t3_8uNkWYg/feedshare-shrink_800/B4DZZCqKFmHwAk-/0/1744875073885?e=1756339200&v=beta&t=R3QOhQQ-VUhlB-WAUVkgNvJT7Zo_O-aTlo9fZIysVR0",
-    link: "#"
+    link: "/resources/insights/freight-wars-disrupt-global-trade-economy-overnight"
   },
   {
     type: "LinkedIn Post",
@@ -248,7 +248,7 @@ const newsCards = [
     title: "Quality Control Orders Silently Destroying India MSMEs",
     description: "BIS certification creates new License Raj, enabling monopolies while strangling small businesses. Regulatory reform needed urgently.",
     image: "https://media.licdn.com/dms/image/v2/D4D22AQFDWrRDFw6xgg/feedshare-shrink_800/B4DZZiiSbUGsAg-/0/1745409882063?e=1756339200&v=beta&t=g8lkuC3mtZf4XS8zprQ9WvGWy7I6FXvKkS31yjFvpzU",
-    link: "#"
+    link: "/resources/insights"
   },
   {
     type: "LinkedIn Post",
@@ -256,7 +256,7 @@ const newsCards = [
     title: "China VAT Crackdown Threatens India With Dumping",
     description: "China's unified tax enforcement stops fraud, redirecting excess production to India. Anti-dumping surveillance urgently needed now.",
     image: "https://media.licdn.com/dms/image/v2/D4D22AQEfxsjkk13S9g/feedshare-shrink_800/B4DZYvfh1CGkAo-/0/1744553517263?e=1756339200&v=beta&t=fcfZuZaJcq6roH0wttyowhdqkgxa-uepn_L7PV8bFaQ",
-    link: "#"
+    link: "/resources/insights"
   },
   {
     type: "Event",
@@ -264,7 +264,7 @@ const newsCards = [
     title: "Siddharth Bothra Headlines CRU Ferroalloys Europe Summit",
     description: "IQ Group CEO joins global industry leaders discussing ferroalloys evolution, market trends, and metal industry transformation opportunities.",
     image: "https://media.licdn.com/dms/image/v2/D4E0BAQH19bKOefRxwg/company-logo_100_100/company-logo_100_100/0/1721050364682/cru_conferences_logo?e=1756339200&v=beta&t=0NvRAITR3hEIFh8A_Vp72ZsuMNUWEPFOdLmp1KChYdw",
-    link: "#"
+    link: "/resources/insights"
   }
 ];
 
@@ -276,7 +276,7 @@ const insightsCards = [
     title: "The Evolution of Supply Chain Resilience in Material Sourcing",
     description: "Decoding the transformation from fragile networks to unbreakable material pathways. Strategic insights that redefine how industry leaders secure critical resources.",
     image: "/conference/3.jpg",
-    link: "#"
+    link: "/resources/insights"
   },
   {
     type: "Report",
@@ -284,7 +284,7 @@ const insightsCards = [
     title: "Material Intelligence: The Competitive Edge in Manufacturing",
     description: "Deep analysis of how material selection drives product differentiation and market leadership. Revolutionary framework for evaluating material impact on performance outcomes.",
     image: "/conference/4.jpg",
-    link: "#"
+    link: "/resources/insights"
   },
   {
     type: "Whitepaper",
@@ -292,7 +292,7 @@ const insightsCards = [
     title: "Decarbonizing Industrial Materials: Pathways to Net Zero",
     description: "Comprehensive roadmap for achieving carbon neutrality without compromising material integrity. Visionary strategies that transform sustainability challenges into innovation catalysts.",
     image: "/conference/1.jpg",
-    link: "#"
+    link: "/resources/insights"
   },
   // {
   //   type: "Analysis",
@@ -343,7 +343,7 @@ const insightsCards2 = [
     title: "The Evolution of Supply Chain Resilience in Material Sourcing",
     description: "Decoding the transformation from fragile networks to unbreakable material pathways. Strategic insights that redefine how industry leaders secure critical resources.",
     image: "/conference/6.jpg", 
-    link: "#"
+    link: "/resources/insights"
   },
   {
     type: "Report",
@@ -351,7 +351,7 @@ const insightsCards2 = [
     title: "Material Intelligence: The Competitive Edge in Manufacturing",    
     description: "Deep analysis of how material selection drives product differentiation and market leadership. Revolutionary framework for evaluating material impact on performance outcomes.",
     image: "/conference/2.jpg",
-    link: "#"
+    link: "/resources/insights"
   },
   {
     type: "Whitepaper",   
@@ -359,7 +359,7 @@ const insightsCards2 = [
     title: "Decarbonizing Industrial Materials: Pathways to Net Zero",
     description: "Comprehensive roadmap for achieving carbon neutrality without compromising material integrity. Visionary strategies that transform sustainability challenges into innovation catalysts.",
     image: "/conference/5.jpg",
-    link: "#"
+    link: "/resources/insights"
   }
 ];
 
@@ -371,6 +371,10 @@ const sectionLinks = [
   {
     title: "LATEST NEWS",
     link: "/resources#news"
+  },
+  {
+    title: "INSIGHTS FROM SIDDHARTH",
+    link: "/resources/insights"
   }
   
 ];

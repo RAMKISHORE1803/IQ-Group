@@ -91,7 +91,7 @@ export default function TextileIndustryPage() {
     <IndustryPageTemplate
       title="Textile Industry"
       subtitle="Supplying premium chemicals and additives for textile processing with exceptional quality and technical support."
-      backgroundImage="https://images.unsplash.com/photo-1620208923217-62e0f24f0277?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3"
+      backgroundImage="https://assets.lummi.ai/assets/QmNpyxgXoXt78SXLsfBTdqADVQzN7DBv9WFqu5bfkaRDGF?auto=format&w=1500"
       sideText="TEXTILE INDUSTRY"
       overviewData={{
         subtitle: "Empowering textile innovation with precision-engineered materials and processing expertise",

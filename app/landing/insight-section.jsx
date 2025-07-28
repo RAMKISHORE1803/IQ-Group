@@ -191,7 +191,7 @@ const InsightsSection = () => {
       <motion.h2 
       initial = {{opacity:0 , x:-30}}
       whileInView = {{opacity:1 , x:0}}
-      viewport = {{once: true , amount: 0.4}}
+      viewport = {{once: false , amount: 0.4}}
       transition = {{duration: 0.4 , delay: .1}}
       className="text-[28px] text-center md:text-left md:text-5xl font-lato uppercase font-bold text-[#1e3157] mb-12">
         Our Latest Insights
@@ -202,7 +202,7 @@ const InsightsSection = () => {
         <motion.div
         initial = {{opacity:0 , x:30}}
         whileInView = {{opacity:1 , x:0}}
-        viewport = {{once: true , amount: 0.4}}
+        viewport = {{once: false , amount: 0.4}}
         transition = {{duration: 0.4 , delay: .1}}
          className="flex gap-6 overflow-x-hidden mad:min-h-[410px] pb-4 mb-8 scrollbar-hide">
           <style jsx>{`
