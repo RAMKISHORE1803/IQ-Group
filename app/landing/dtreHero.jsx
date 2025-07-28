@@ -165,7 +165,7 @@ export default function DTREHeroCarousel() {
 
   return (
     <div 
-      className="relative w-full min-h-[100vh] max-h-[100vh] md:h-screen flex items-center  md:items-center justify-start overflow-hidden"
+      className="relative w-full min-h-[93vh] max-h-[100vh] md:h-screen flex items-center  md:items-center justify-start overflow-hidden"
       onMouseEnter={() => setIsPlaying(false)}
       onMouseLeave={() => setIsPlaying(true)}
     >
@@ -234,7 +234,7 @@ export default function DTREHeroCarousel() {
       </div>
 
       {/* Navigation Arrows */}
-      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 md:right-6 md:top-1/2 md:transform md:-translate-y-1/2 md:left-auto md:bottom-auto flex md:flex-col gap-4 z-20">
+      <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 md:right-6 md:top-1/2 md:transform md:-translate-y-1/2 md:left-auto md:bottom-auto flex md:flex-col gap-4 z-20">
         <button
           onClick={prevSlide}
           className="w-[60px] h-[60px] md:w-12 md:h-12 bg-white/0 hover:bg-white/0 backdrop-blur-sm border border-white/30 rounded-full flex items-center justify-center text-white transition-all duration-300 cursor-pointer"
