@@ -77,6 +77,7 @@ const MultiplexNavbar = () => {
       path: '/about',
       megaMenu: 'about',
       dropdown: [
+        {name: 'Overview', path: '/about'},
         { name: 'What We Do', path: '/about#what-we-do' },
         { name: 'How We Do', path: '/about#how-we-do' },
         { name: 'Our Values', path: '/about#our-values' },
@@ -89,6 +90,7 @@ const MultiplexNavbar = () => {
       path: '/companies',
       megaMenu: 'companies',
       dropdown: [
+        {name: 'Overview', path: '/companies'},
         { name: 'IQ Minerals & Metals', path: '/companies/minerals-metals' },
         { name: 'IQ Ferro Alloys', path: '/companies/ferro-alloys' },
         { name: 'IQ Noble Alloys', path: '/companies/noble-alloys' },
@@ -103,6 +105,7 @@ const MultiplexNavbar = () => {
       path: '/industries',
       megaMenu: 'industries',
       dropdown: [
+        {name: 'Overview', path: '/industries'},
         { name: 'Steel Industries', path: '/industries/steel' },
         { name: 'Foundries', path: '/industries/foundries' },
         { name: 'Refractory', path: '/industries/refractory' },
@@ -125,6 +128,7 @@ const MultiplexNavbar = () => {
       path: '/quality-insights',
       megaMenu: 'quality',
       dropdown: [
+        {name: 'Overview', path: '/quality-insights'},
         { name: 'Quality Policy', path: '/quality-insights#quality-policy' },
         { name: 'Certifications', path: '/quality-insights#certifications' }
       ]
@@ -137,6 +141,7 @@ const MultiplexNavbar = () => {
       path: '/careers',
       megaMenu: 'careers',
       dropdown: [
+        {name: 'Overview', path: '/careers'},
         { name: 'Life at IQ Group', path: '/careers/life' },
         { name: 'Why Join Us', path: '/careers/why-join' },
         { name: 'Open Positions', path: '/careers/positions' },
@@ -155,6 +160,7 @@ const MultiplexNavbar = () => {
     path: '/resources',
     megaMenu: 'resources',
     dropdown: [
+      {name: 'Overview', path: '/resources'},
       { name: 'Insights', path: '/resources#INSIGHTS' },
       { name: 'News', path: '/resources#news' },
     ]

@@ -60,16 +60,16 @@ function CompanyCard({ company, isCenter, position, scale, xOffset, yOffset, onC
     if (!category) return '/iqwebsitevideos/Ferro Alloy Video.mp4'; // Default if category is undefined
     
     const categoryMap = {
-      'Ferro Alloys': '/iqwebsitevideos/Ferro Alloy Video.mp4',
+      'Ferro Alloys': '/iqwebsitevideos/Ferro Alloy.mp4',
       'Metals': '/iqwebsitevideos/Metals Video.mp4',
       'Minerals': '/iqwebsitevideos/Minerals Video.mp4',
       'Chemicals': '/iqwebsitevideos/Chemical & Metal.mp4',
       'Coal': '/iqwebsitevideos/Coal Video.mp4',
-      'Acid': '/iqwebsitevideos/Acid Video.mp4',
-      'Investments': '/iqwebsitevideos/Ferro Alloy Video.mp4' // Default for Investments
+      'Noble Alloys': '/iqwebsitevideos/Metals Video.mp4',
+      'Investments': '' // Default for Investments
     };
     
-    return categoryMap[category] || '/iqwebsitevideos/Ferro Alloy Video.mp4'; // Default video
+    return categoryMap[category] ; // Default video
   };
   
   // Handle video errors
