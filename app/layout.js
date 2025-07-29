@@ -6,6 +6,7 @@ import "./globals.css";
 import IQGroupNavbar from "../components/navbar";
 import IQGroupFooter from "./landing/footer";
 import NavbarNew from "../components/NavbarNew";
+import MultiplexNavbar from "../components/Navbar/multiplexNavbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -62,7 +63,7 @@ export default function RootLayout({ children }) {
       >
         {/* Navbar */}
         <header className="relative z-50">
-          <NavbarNew />
+          <MultiplexNavbar />
         </header>
         
         {/* Main content */}
