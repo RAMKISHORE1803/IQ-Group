@@ -341,8 +341,8 @@ export default function GoogleMapConnections() {
                     disableScrollWheelZoom: true,
                     gestureHandling: 'none',
                     disableDragging: true,
-                    minZoom: isMobile ? 0 : 2,
-                    maxZoom: isMobile ? 0 : 2,
+                    minZoom: isMobile ? 1 : 2,
+                    maxZoom: isMobile ? 1 : 2,
                     restriction: {
                         latLngBounds: {
                             north: 85,
@@ -442,35 +442,76 @@ export default function GoogleMapConnections() {
                                     `),
                                 scaledSize: new window.google.maps.Size(markerSize, markerSize),
                                 anchor: new window.google.maps.Point(markerSize/2, markerSize/2)
-                            }
+                            },
+                            cursor: 'pointer' // Add pointer cursor to indicate interactive element
                         });
 
                         markersRef.current.push(marker);
 
                         // Add info window
                         const infoWindow = new window.google.maps.InfoWindow({
-                            content: `<div style="color: #333; font-weight: bold;">${location.name}</div>`
+                            content: `<div style="color: #333; font-weight: bold;">${location.name}</div>`,
+                            disableAutoPan: true, // Prevent map from panning to the info window
+                            pixelOffset: new window.google.maps.Size(0, -5) // Slight upward offset
+                        });
+                        
+                        // Remove the close button after the info window is opened
+                        infoWindow.addListener('domready', () => {
+                            // Find and remove the close button element
+                            const closeButtons = document.querySelectorAll('.gm-ui-hover-effect');
+                            closeButtons.forEach(button => {
+                                button.style.display = 'none';
+                            });
                         });
 
-                        marker.addListener('click', () => {
+                        // Show info window on hover instead of click
+                        marker.addListener('mouseover', () => {
                             infoWindow.open(mapInstance, marker);
                         });
+                        
+                        // Close info window when mouse leaves
+                        marker.addListener('mouseout', () => {
+                            infoWindow.close();
+                        });
+                        
+                        // For mobile devices, use click since hover isn't available
+                        if (isMobile) {
+                            marker.addListener('click', () => {
+                                infoWindow.open(mapInstance, marker);
+                                
+                                // Auto close after 2 seconds on mobile
+                                setTimeout(() => {
+                                    infoWindow.close();
+                                }, 2000);
+                            });
+                        }
                     } catch (error) {
                         console.error(`Error creating marker for ${location.name}:`, error);
                     }
                 }, index * 100);
             });
 
-            // Add connection lines - all at the same time
+            // Add connection lines - one after another
+            // Wait for all markers to be placed before starting connections
             setTimeout(() => {
-                destinations.forEach((destination) => {
+                // Create and animate connections sequentially
+                const animateConnections = (index) => {
+                    // If we've animated all connections, start adding office markers
+                    if (index >= destinations.length) {
+                        addCompanyOffices(mapInstance);
+                        return;
+                    }
+                    
                     try {
+                        const destination = destinations[index];
+                        
                         // Double-check map instance is still valid
                         if (!mapInstance || typeof mapInstance.getCenter !== 'function') {
                             console.error("Map instance became invalid");
                             return;
                         }
 
+                        // Create the polyline with no visible stroke initially
                         const flightPath = new window.google.maps.Polyline({
                             path: [
                                 { lat: indiaLocation.lat, lng: indiaLocation.lng },
@@ -478,7 +519,7 @@ export default function GoogleMapConnections() {
                             ],
                             geodesic: true,
                             strokeColor: '#00d4ff',
-                            strokeOpacity: 0.8,
+                            strokeOpacity: 0,
                             strokeWeight: isMobile ? 1.5 : 3, // Thinner lines on mobile
                             map: mapInstance,
                             icons: [{
@@ -486,20 +527,64 @@ export default function GoogleMapConnections() {
                                     path: window.google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
                                     scale: isMobile ? 2 : 4, // Smaller arrows on mobile
                                     fillColor: '#00d4ff',
-                                    fillOpacity: 1,
+                                    fillOpacity: 0, // Start with invisible arrow
                                     strokeColor: '#ffffff',
                                     strokeWeight: 1
                                 },
-                                offset: '50%'
+                                offset: '0%' // Start at beginning
                             }]
                         });
 
                         connectionsRef.current.push(flightPath);
+                        
+                        // Animate the line drawing
+                        let count = 0;
+                        const animationDuration = 200; // 1.5 seconds per connection
+                        const animationSteps = 20;
+                        const interval = animationDuration / animationSteps;
+                        
+                        const lineAnimation = setInterval(() => {
+                            count = (count + 1) % animationSteps;
+                            
+                            // Gradually increase opacity as animation progresses
+                            const progress = count / animationSteps;
+                            flightPath.setOptions({
+                                strokeOpacity: progress * 0.8 // Max opacity 0.8
+                            });
+                            
+                            // Move the arrow along the line
+                            const icons = flightPath.get('icons');
+                            icons[0].offset = (count * 100 / animationSteps) + '%';
+                            
+                            // Make arrow visible once animation starts
+                            if (count === 1) {
+                                icons[0].icon.fillOpacity = 1;
+                            }
+                            
+                            flightPath.set('icons', icons);
+                            
+                            // When animation completes, start the next connection
+                            if (count === animationSteps - 1) {
+                                clearInterval(lineAnimation);
+                                
+                                // Wait a short moment before starting the next connection
+                                setTimeout(() => {
+                                    animateConnections(index + 1);
+                                }, 300);
+                            }
+                        }, interval);
+                        
                     } catch (error) {
-                        console.error(`Error creating connection line to ${destination.name}:`, error);
+                        console.error(`Error creating connection line to ${destinations[index]?.name}:`, error);
+                        // If there's an error, still try to animate the next connection
+                        animateConnections(index + 1);
                     }
-                });
-            }, locations.length * 100); // Start all connections at the same time after markers
+                };
+                
+                // Start the sequential animation with the first connection
+                animateConnections(0);
+                
+            }, locations.length * 100 + 500); // Start connections after all markers are placed, with a small extra delay
         } catch (error) {
             console.error("Error in addMarkersAndConnections:", error);
         }
@@ -507,73 +592,130 @@ export default function GoogleMapConnections() {
 
     const addCompanyOffices = (mapInstance) => {
         try {
-            companyOffices.forEach((office, index) => {
-                setTimeout(() => {
-                    try {
-                       
-                        
-                        // Scale office markers based on device size and office type
-                        let markerSize;
-                        if (isMobile) {
-                            markerSize = office.type === 'head_office' ? 20 : 
-                                         office.type === 'international_office' ? 16 : 14;
-                        } else {
-                            markerSize = office.type === 'head_office' ? 32 : 
-                                         office.type === 'international_office' ? 28 : 24;
-                        }
-                        
-                        const marker = new window.google.maps.Marker({
-                            position: { lat: office.lat, lng: office.lng },
-                            map: mapInstance,
-                            title: office.name,
-                            icon: {
-                                url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(getOfficeIcon(office.type)),
-                                scaledSize: new window.google.maps.Size(markerSize, markerSize),
-                                anchor: new window.google.maps.Point(markerSize/2, markerSize/2)
-                            },
-                            zIndex: 1000 // High z-index to ensure visibility
-                        });
+            // Add office markers sequentially
+            const addOfficeMarker = (index) => {
+                // If we've added all office markers, we're done
+                if (index >= companyOffices.length) {
+                    return;
+                }
+                
+                const office = companyOffices[index];
+                
+                try {
+                    // Scale office markers based on device size and office type
+                    let markerSize;
+                    if (isMobile) {
+                        markerSize = office.type === 'head_office' ? 20 : 
+                                     office.type === 'international_office' ? 16 : 14;
+                    } else {
+                        markerSize = office.type === 'head_office' ? 32 : 
+                                     office.type === 'international_office' ? 28 : 24;
+                    }
+                    
+                    const marker = new window.google.maps.Marker({
+                        position: { lat: office.lat, lng: office.lng },
+                        map: mapInstance,
+                        title: office.name,
+                        icon: {
+                            url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(getOfficeIcon(office.type)),
+                            scaledSize: new window.google.maps.Size(markerSize, markerSize),
+                            anchor: new window.google.maps.Point(markerSize/2, markerSize/2)
+                        },
+                        zIndex: 1000, // High z-index to ensure visibility
+                        // Start with opacity 0
+                        opacity: 0,
+                        cursor: 'pointer' // Add pointer cursor to indicate interactive element
+                    });
 
-                        markersRef.current.push(marker);
-        
-                        // Create detailed info window for offices
-                        const officeInfo = `
-                            <div style="max-width: 300px; color: #333; font-family: Arial, sans-serif;">
-                                <h3 style="margin: 0 0 8px 0; color: #1e3056; font-size: 16px; font-weight: bold;">
-                                    ${office.name}
-                                </h3>
-                                <p style="margin: 0 0 8px 0; font-size: 12px; line-height: 1.4;">
-                                    <strong>Address:</strong><br>
-                                    ${office.address}
+                    markersRef.current.push(marker);
+    
+                    // Create detailed info window for offices
+                    const officeInfo = `
+                        <div style="max-width: 300px; color: #333; font-family: Arial, sans-serif;">
+                            <h3 style="margin: 0 0 8px 0; color: #1e3056; font-size: 16px; font-weight: bold;">
+                                ${office.name}
+                            </h3>
+                            <p style="margin: 0 0 8px 0; font-size: 12px; line-height: 1.4;">
+                                <strong>Address:</strong><br>
+                                ${office.address}
+                            </p>
+                            ${office.contact ? `
+                                <p style="margin: 0 0 4px 0; font-size: 12px;">
+                                    <strong>Contact:</strong> ${office.contact}
                                 </p>
-                                ${office.contact ? `
-                                    <p style="margin: 0 0 4px 0; font-size: 12px;">
-                                        <strong>Contact:</strong> ${office.contact}
-                                    </p>
-                                ` : ''}
-                                ${office.email ? `
-                                    <p style="margin: 0; font-size: 12px;">
-                                        <strong>Email:</strong> ${office.email}
-                                    </p>
-                                ` : ''}
-                            </div>
-                        `;
-        
-                        const infoWindow = new window.google.maps.InfoWindow({
-                            content: officeInfo
+                            ` : ''}
+                            ${office.email ? `
+                                <p style="margin: 0; font-size: 12px;">
+                                    <strong>Email:</strong> ${office.email}
+                                </p>
+                            ` : ''}
+                        </div>
+                    `;
+    
+                    const infoWindow = new window.google.maps.InfoWindow({
+                        content: officeInfo,
+                        disableAutoPan: true, // Prevent map from panning to the info window
+                        pixelOffset: new window.google.maps.Size(0, -5) // Slight upward offset
+                    });
+    
+                    // Remove the close button after the info window is opened
+                    infoWindow.addListener('domready', () => {
+                        // Find and remove the close button element
+                        const closeButtons = document.querySelectorAll('.gm-ui-hover-effect');
+                        closeButtons.forEach(button => {
+                            button.style.display = 'none';
                         });
-        
+                    });
+    
+                    // Show info window on hover instead of click
+                    marker.addListener('mouseover', () => {
+                        infoWindow.open(mapInstance, marker);
+                    });
+                    
+                    // Close info window when mouse leaves
+                    marker.addListener('mouseout', () => {
+                        infoWindow.close();
+                    });
+                    
+                    // For mobile devices, use click since hover isn't available
+                    if (isMobile) {
                         marker.addListener('click', () => {
                             infoWindow.open(mapInstance, marker);
+                            
+                            // Auto close after 3 seconds on mobile
+                            setTimeout(() => {
+                                infoWindow.close();
+                            }, 3000);
                         });
-
-                       
-        
-                    } catch (error) {
-                        console.error(`Error creating marker for ${office.name}:`, error);
                     }
-                }, (index + locations.length) * 150); // Stagger office markers after connections
-            });
+                    
+                    // Animate marker appearance
+                    let fadeInCount = 0;
+                    const fadeInSteps = 10;
+                    const fadeInInterval = setInterval(() => {
+                        fadeInCount++;
+                        marker.setOpacity(fadeInCount / fadeInSteps);
+                        
+                        if (fadeInCount >= fadeInSteps) {
+                            clearInterval(fadeInInterval);
+                            
+                            // Add the next office marker after a delay
+                            setTimeout(() => {
+                                addOfficeMarker(index + 1);
+                            }, 150);
+                        }
+                    }, 50);
+                } catch (error) {
+                    console.error(`Error creating marker for ${office.name}:`, error);
+                    // If there's an error, still try to add the next office marker
+                    setTimeout(() => {
+                        addOfficeMarker(index + 1);
+                    }, 150);
+                }
+            };
+            
+            // Start adding office markers
+            addOfficeMarker(0);
         } catch (error) {
             console.error("Error in addCompanyOffices:", error);
         }
@@ -609,7 +751,7 @@ export default function GoogleMapConnections() {
 
             {/* Info Panel - Adjusted for mobile */}
             <div className={`absolute bottom-1 left-2 bg-black bg-opacity-80 text-white p-2 md:p-4 rounded-lg ${isMobile ? 'max-w-[90%] text-xs' : 'max-w-sm'}`}>
-                <h3 className={`${isMobile ? 'text-xs font-medium' : 'text-lg font-bold'} mb-1 md:mb-2`}>Global Connections from India</h3>
+                <h3 className={`${isMobile ? 'text-[18px] ml-[-7%] font-medium' : 'text-lg font-bold'} mb-1 md:mb-2`}>Global Connections from India</h3>
                 {!isMobile && (
                     <p className="text-sm text-gray-300">
                         Interactive map showing business connections from IQ Groups, India to major global markets.

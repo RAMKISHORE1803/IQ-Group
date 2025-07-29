@@ -2,14 +2,21 @@
 
 import React from "react";
 import { CustomerMarquee } from "./ui/customer-marquee";
+import { motion } from "framer-motion";
 
 export default function CustomerMarqueeSection() {
   return (
     <section className="bg-[#fbfbfb] py-16 md:pt-4">
       <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-[1350px]">
-        <h2 className="text-[28px] md:text-4xl font-bold font-lato text-center text-[#203663] mb-12">
-          OUR CUSTOMERS
-        </h2>
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true , amount:0.4 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-[28px] md:text-4xl font-bold font-lato text-center text-[#203663] mb-12"
+        >
+          WE ARE TRUSTED BY
+        </motion.h2>
       
         {/* First marquee strip - 7 logos */}
         <div className="mb-2 md:mb-8 max-w-[1350px] mx-auto overflow-hidden">

@@ -33,7 +33,7 @@ export default function Associates() {
                 WE ARE PART OF 
             </motion.h2>
         </div>
-      <CustomerMarquee items={associates} direction="right" speed="fast" className='bg-[#fbfbfb] w-full h-full lg:w-full grayscale-none' />
+      <CustomerMarquee items={associates} direction="left" speed="fast" className='bg-[#fbfbfb] w-full h-full lg:w-full grayscale-none' />
     </div>
   )
 }

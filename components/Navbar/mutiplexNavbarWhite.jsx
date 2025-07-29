@@ -37,22 +37,6 @@ const MultiplexNavbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
-  // Lock/unlock body scroll when mobile menu is open/closed
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      // Lock the body scroll when mobile menu is open
-      document.body.style.overflow = 'hidden';
-    } else {
-      // Restore body scroll when mobile menu is closed
-      document.body.style.overflow = '';
-    }
-    
-    // Cleanup function to ensure body scroll is restored when component unmounts
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isMobileMenuOpen]);
-
   // Handle dropdown toggle
   const toggleDropdown = (itemName) => {
     // If clicking on the active dropdown, close it
@@ -180,7 +164,7 @@ const MultiplexNavbar = () => {
           duration: 0.3,
           ease: 'easeInOut'
         }}
-        className="fixed top-0 left-0 right-0 z-50 px-6 lg:px-12 py-6 overflow-y-auto overflow-y-hidden"
+        className="fixed top-0 left-0 right-0 z-50 px-6 lg:px-12 py-6 overflow-hidden"
         style={{
           backdropFilter: isScrolled ? 'blur(10px)' : 'none',
         }}
@@ -252,7 +236,7 @@ const MultiplexNavbar = () => {
                 duration: 0.4,
                 ease: [0.25, 0.46, 0.45, 0.94]
               }}
-              className="fixed top-0 right-0 h-full w-full max-w-md lg:max-w-[590px] bg-black z-[100] overflow-hidden"
+              className="fixed top-0 right-0 h-full w-full max-w-md lg:max-w-[590px] bg-black z-[100] overflow-y-hidden"
             >
               <div className="px-8 py-6 min-h-full overflow-hidden flex flex-col">
                 {/* Header with Close Button positioned at top right */}
@@ -281,8 +265,8 @@ const MultiplexNavbar = () => {
                 </div>
 
                 {/* Navigation Items - Limited to 85vh for more accordion space */}
-                <div className='min-w-[300px] lg:max-w-[584px] mx-auto overflow-hidden'>
-                <nav className="space-y-0 flex-1 flex flex-col lg:min-w-[492px] overflow-hidden scrollbar-hide" style={{ maxHeight: '85vh', overflowY: 'auto', scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                <div className=' min-w-[300px] lg:max-w-[584px] mx-auto overflow-hidden'>
+                <nav className="space-y-0 flex-1 flex flex-col lg:min-w-[492px]  overflow-hidden scrollbar-hide " style={{ maxHeight: '85vh', overflowY: 'auto' }}>
                   {allNavItems.map((item, index) => (
                     <motion.div
                       key={item.name}
@@ -483,24 +467,3 @@ const MultiplexNavbar = () => {
 };
 
 export default MultiplexNavbar;
-
-// Add a style tag at the end of the file
-const styles = `
-  /* Hide scrollbar for Chrome, Safari and Opera */
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
-  
-  /* Hide scrollbar for IE, Edge and Firefox */
-  .scrollbar-hide {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-  }
-`;
-
-if (typeof document !== 'undefined') {
-  // Only run in browser environment
-  const styleElement = document.createElement('style');
-  styleElement.textContent = styles;
-  document.head.appendChild(styleElement);
-}

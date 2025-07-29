@@ -13,7 +13,7 @@ export const companies = [
     name: 'IQ Minerals & Metals',
     category: 'Minerals',
     description: 'Global supplier of premium minerals for various industrial applications.',
-    image: 'https://images.pexels.com/photos/1267338/pexels-photo-1267338.jpeg?auto=compress&cs=tinysrgb&w=800&h=1200',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/e/e9/SiliconCroda.jpg',
     commodities: ['Industrial Minerals', 'Rare Earth Elements', 'Silica', 'Limestone']
   },
   {
@@ -33,30 +33,18 @@ export const companiesSecondSet = [
     name: 'IQ Ferro Alloys',
     category: 'Ferro Alloys',
     description: 'Leading supplier of high-quality ferro alloys for steel manufacturing and various industrial applications.',
-    image: 'https://images.pexels.com/photos/2760243/pexels-photo-2760243.jpeg?auto=compress&cs=tinysrgb&w=800&h=1200',
+    image: 'https://zxferroalloy.com/wp-content/uploads/2023/07/high-carbon-ferro-manganese.jpg',
     commodities: ['Ferro Silicon', 'Ferro Manganese', 'Silico Manganese', 'Ferro Chrome']
   },
   {
     id: 5,
-    name: 'IQ Metals',
-    category: 'Metals',
-    description: 'Specialized in manufacturing and supplying premium metals for advanced technological applications.',
+    name: 'IQ Noble Alloys',
+    category: 'Noble Alloys',
+    description: 'exclusive raw material distribution company dealing in noble alloys.',
     image: 'https://www.iqgroup.in/image/banner/nobel.jpg',
-    commodities: ['Titanium', 'Nickel', 'Cobalt', 'Platinum Group Metals']
+    commodities: ['Ferro Titanium', 'Ferro Niobium', 'Ferro Vanadium', 'Molybdenum']
   },
-  // {
-  //   id: 6,
-  //   name: 'IQ Acid Solutions',
-  //   category: 'Acid',
-  //   description: 'Providing high-quality acid solutions for industrial applications with cutting-edge technology.',
-  //   image: 'https://images.pexels.com/photos/2800832/pexels-photo-2800832.jpeg?auto=compress&cs=tinysrgb&w=800&h=1200',
-  //   commodities: [
-  //     'Sulfuric Acid',
-  //     'Hydrochloric Acid',
-  //     'Nitric Acid',
-  //     'Phosphoric Acid'
-  //   ]
-  // }
+  
 ];
 
 // Third set of companies

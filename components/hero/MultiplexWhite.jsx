@@ -45,13 +45,13 @@ const ButtonReveal = ({ startAnimation = false, delay = 0, duration = 800, ctaLi
           transition: `clip-path ${duration}ms ease-out ${delay}ms`,
           willChange: 'clip-path'
         }}
-        className="bg-[#fbfbfb] hover:bg-transparent border border-solid border-[#fbfbfb] hover:text-[#fbfbfb] text-[#121212] px-6 py-3 group transition-colors duration-300 font-medium text-[16px] font-onest font-light cursor-pointer"
+        className="bg-[#000] hover:bg-transparent border border-solid border-[#000] hover:text-[#000] text-[#fbfbfb] px-6 py-3 group transition-colors duration-300 font-medium text-[16px] font-onest font-light cursor-pointer"
       >
         <div className="flex items-center gap-2 lg:text-[18px]">
           {ctaText}
           <ArrowUpRight 
             
-            className="w-4 h-4 lg:w-5 lg:h-5  transition-all duration-300 text-black group-hover:text-white hover:block" 
+            className="w-4 h-4 lg:w-5 lg:h-5  transition-all duration-300 text-white group-hover:text-black hover:block" 
           />
         </div>
       </button>
@@ -226,7 +226,7 @@ export default function HeroCarousel() {
                 </div>
 
                 {/* Black content area (bottom on mobile, left on desktop) */}
-                <div className="w-full md:w-[40%] h-1/2 md:h-full bg-black flex flex-col justify-start md:justify-center items-start px-4 text-left order-2 md:order-1 relative">
+                <div className="w-full md:w-[40%] h-1/2 md:h-full bg-gray-300 flex flex-col justify-start md:justify-center items-start px-4 text-left order-2 md:order-1 relative">
                   
                 </div>
 
@@ -238,14 +238,13 @@ export default function HeroCarousel() {
                         text={slide.tagline}
                         className="text-gray-500 pl-[2px] text-sm font-onest  font-bold tracking-[3px] md:text-[20px] md:tracking-[3px] opacity-80 mb-[10px]"
                         startAnimation={slideAnimationStates[idx]}
-                        delay={200}
-                        duration={800}
+                        delay={0}
                       />
                       <SlideRevealText
                         text={slide.headline}
-                        className="text-[#fbfbfb] font-lato font-semibold text-[32px] leading-[34px] lg:tracking-wide md:text-[48px] lg:text-[55px] lg:leading-[60px] xl:text-[55px] leading-[1.1] tracking-tight whitespace-pre-line"
+                        className="text-[#000000] font-lato font-semibold text-[32px] leading-[34px] lg:tracking-wide md:text-[48px] lg:text-[55px] lg:leading-[60px] xl:text-[55px] leading-[1.1] tracking-tight whitespace-pre-line"
                         startAnimation={slideAnimationStates[idx]}
-                        delay={800}
+                        delay={0}
                       />
                   </div>
                   
@@ -278,7 +277,7 @@ export default function HeroCarousel() {
                     <div className="mt-auto mb-8 md:mt-[30px]">
                       <ButtonReveal
                         startAnimation={slideAnimationStates[idx]}
-                        delay={1200}
+                        delay={300}
                         duration={800}
                           ctaLink={slide.ctaLink}
                         ctaText={slide.ctaText}
@@ -296,13 +295,13 @@ export default function HeroCarousel() {
       <div className="absolute bottom-8 left-[10%] md:left-[8%] z-30 flex items-center gap-8">
         <button 
           onClick={() => swiperRef.current?.slidePrev()} 
-          className="text-[#fbfbfb] cursor-pointer  font-lato font-bold text-[18px] lg:text-[20px] hover:text-[#fbfbfb]/80 transition-colors"
+          className="text-[#000] cursor-pointer  font-lato font-bold text-[18px] lg:text-[20px] hover:text-[#fbfbfb]/80 transition-colors"
         >
           Prev
         </button>
-        <div className="w-32 h-px bg-[#fbfbfb]/30 relative overflow-hidden">
+        <div className="w-32 h-px bg-[#000000]/30 relative overflow-hidden">
           <div 
-            className="absolute top-0 left-0 h-full bg-[#fbfbfb] transition-none"
+            className="absolute top-0 left-0 h-full bg-[#000] transition-none"
             style={{
               width: `${progress}%`
             }}
@@ -310,7 +309,7 @@ export default function HeroCarousel() {
         </div>
         <button 
           onClick={() => swiperRef.current?.slideNext()} 
-          className="text-[#fbfbfb] cursor-pointer font-lato font-bold text-[18px] lg:text-[20px] hover:text-[#fbfbfb]/80 transition-colors"
+          className="text-[#000] cursor-pointer font-lato font-bold text-[18px] lg:text-[20px] hover:text-[#fbfbfb]/80 transition-colors"
         >
           Next
         </button>

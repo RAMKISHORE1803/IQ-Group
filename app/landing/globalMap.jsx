@@ -1,8 +1,6 @@
 "use client"
 import React from 'react';
 import { useState, useRef, useEffect } from 'react';
-import Image from 'next/image';
-import Map from './mapSVG';
 import GoogleMapConnections from '../landingComponent/googlemap';
 
 
@@ -31,18 +29,7 @@ const GlobalConstructionPlatform = () => {
     };
   }, []);
 
-  const handleCountryClick = (countryCode, e) => {
-    // Only proceed if we have data for this country
-    if (!countryData[countryCode]) return;
-
-    // Calculate position for popup
-    const rect = mapRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top - 150; // Position above the click point
-    
-    setPopupPosition({ x, y });
-    setActiveCountry(countryCode);
-  };
+ 
 
   const closePopup = () => {
     setActiveCountry(null);
@@ -56,12 +43,12 @@ const GlobalConstructionPlatform = () => {
       <div className="container mx-auto px-4 lg:px-12 flex-grow flex flex-col md:flex-row">
         <div className="flex flex-col md:flex-row w-full">
           {/* Left Content Area - On mobile, this will be below the map */}
-          <div className="w-full md:w-[40%] flex flex-col justify-between pr-0 md:pr-4 mb-8 md:mb-0 order-2 md:order-1">
+          <div className="w-full mt-[290px] md:mt-0 md:w-[40%] flex flex-col justify-between pr-0 md:pr-4 mb-8 md:mb-0 order-2 md:order-1">
             <div>
-              <h1 className="text-2xl md:text-4xl lg:text-5xl font-light mb-4 md:mb-6">
+              <h1 className=" text-[24px] md:text-[32px] lg:text-[32px] lg:leading-[33px] font-light mb-4 md:mb-6">
               20+ Years of Bridging Raw Material Supply with Industrial Innovation
               </h1>
-              <p className="text-gray-300 text-sm md:text-lg lg:text-[24px] font-light leading-relaxed mb-6 md:mb-8 max-w-md">
+              <p className="text-gray-300  lg:text-[20px] font-light leading-relaxed mb-6 md:mb-8 max-w-md">
               With over 20 years of industry leadership, we have established a robust international network that bridges the gap between premium raw material sources and diverse industrial applications worldwide.
               </p>
             </div>
@@ -92,7 +79,7 @@ const GlobalConstructionPlatform = () => {
           {/* Right Map Area - On mobile, this will be at the top */}
           <div className="w-full md:w-[60%] relative h-[0px] md:h-auto order-1 md:order-2 mb-6 md:mb-0" ref={mapRef}>
             {/* Map Component */}
-            <div className="w-full h-full flex items-center justify-center">
+            <div className="w-full mt-[50px] md:mt-0 h-full flex items-center justify-center">
               <GoogleMapConnections/>
             </div>
             

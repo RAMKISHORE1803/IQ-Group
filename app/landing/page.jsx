@@ -249,7 +249,7 @@ export default function LandingPage() {
         
           <IndustriesSection/>
           
-          <BCGCareersSection />
+         
          
            
            <InsightsSection/>
@@ -259,6 +259,8 @@ export default function LandingPage() {
            {/* <div className="h-[5vh]"></div> */}
           <QualityCertificationsSection />
           <div className="h-[5vh]"></div>
+          <BCGCareersSection />
+          <div className='md:h-[6vh]'></div>
           <BusinessStatistics/>
           
         </div>
