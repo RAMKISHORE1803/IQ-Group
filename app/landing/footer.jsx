@@ -7,9 +7,9 @@ import Image from 'next/image';
 
 const IQGroupFooter = () => {
   return (
-    <footer className="bg-[#203663] min-h-[90vh] z-100 md:rounded-t-3xl text-[#203663]">
+    <footer className="bg-[#172747] min-h-[90vh] z-100 md:rounded-t-3xl text-[#203663]">
       {/* DTRE-Style Footer Section */}
-      <div className="bg-[#203663]  md:rounded-t-3xl text-[#fbfbfb] py-10">
+      <div className="bg-[#172747]  md:rounded-t-3xl text-[#fbfbfb] py-10">
         <div className="container mx-auto px-4 sm:px-6">
           {/* Main Content - Form and Office Locations Side by Side */}
           <div className="flex flex-col lg:flex-row lg:space-x-16 mb-10">

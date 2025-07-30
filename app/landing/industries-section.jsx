@@ -1,8 +1,9 @@
 "use-client"
 import React, { useState, useEffect, useRef } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ArrowUpRight, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { AnimatePresence } from 'framer-motion';
+import Link from 'next/link';
 
 const IndustriesSection = () => {
     const sectors = [
@@ -153,7 +154,7 @@ const IndustriesSection = () => {
         </div>
 
         {/* Desktop View */}
-        <div className="hidden md:block relative lg:mb-[40px] ">
+        <div className="hidden md:block relative lg:mb-[20px] ">
           <motion.div 
           initial={{opacity: 0, y:30}}
           whileInView={{opacity: 1, y:0}}
@@ -192,6 +193,20 @@ const IndustriesSection = () => {
               ))}
             </div>
           </motion.div>
+
+            <div className=" hidden md:block md:absolute left-0 cursor-pointer bottom-0 md:bottom-[-80px] font-onest lg:text-lg">
+            <motion.button
+          className="bg-[#1E3157] cursor-pointer text-white hover:bg-[#fbfbfb] hover:text-[#1E3157] border-2 border-[#1E3157] hover:border-[#1E3157] font-onest text-[20px] font-light text-black font-medium px-4 py-3  transition-colors duration-200 flex items-center gap-2"
+         
+        >
+          <Link href="/industries" className="flex items-center gap-2">
+          LEARN MORE
+            <span className="text-lg">
+              <ArrowUpRight size={28} />
+            </span>
+          </Link>
+        </motion.button>
+          </div>
           
           {/* Desktop Navigation */}
           <div className="absolute right-0 bottom-0 md:bottom-[-80px] flex gap-3 mb-4 mr-4">

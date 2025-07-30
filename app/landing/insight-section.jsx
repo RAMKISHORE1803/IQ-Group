@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useAnimate } from 'framer-motion';
 import Link from 'next/link';
+import { ChevronRight, ArrowUpRight } from 'lucide-react';
 
 const InsightsSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -275,9 +276,11 @@ const InsightsSection = () => {
           className="bg-[#1E3157] cursor-pointer text-white hover:bg-[#fbfbfb] hover:text-[#1E3157] border-2 border-[#1E3157] hover:border-[#1E3157] font-onest text-[20px] font-light text-black font-medium px-6 py-3  transition-colors duration-200 flex items-center gap-2"
          
         >
-          <Link href="/resources">
+          <Link href="/resources" className="flex items-center gap-2">
           VIEW ALL
-          <span className="text-lg">→</span>
+            <span className="text-lg">
+              <ArrowUpRight size={28} />
+            </span>
           </Link>
         </motion.button>
       </div>

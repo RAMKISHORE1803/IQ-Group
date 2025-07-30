@@ -611,48 +611,48 @@ export default function GoogleMapConnections() {
                         markerSize = office.type === 'head_office' ? 32 : 
                                      office.type === 'international_office' ? 28 : 24;
                     }
-                    
-                    const marker = new window.google.maps.Marker({
-                        position: { lat: office.lat, lng: office.lng },
-                        map: mapInstance,
-                        title: office.name,
-                        icon: {
-                            url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(getOfficeIcon(office.type)),
+                        
+                        const marker = new window.google.maps.Marker({
+                            position: { lat: office.lat, lng: office.lng },
+                            map: mapInstance,
+                            title: office.name,
+                            icon: {
+                                url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(getOfficeIcon(office.type)),
                             scaledSize: new window.google.maps.Size(markerSize, markerSize),
                             anchor: new window.google.maps.Point(markerSize/2, markerSize/2)
-                        },
+                            },
                         zIndex: 1000, // High z-index to ensure visibility
                         // Start with opacity 0
                         opacity: 0,
                         cursor: 'pointer' // Add pointer cursor to indicate interactive element
-                    });
+                        });
 
-                    markersRef.current.push(marker);
-    
-                    // Create detailed info window for offices
-                    const officeInfo = `
-                        <div style="max-width: 300px; color: #333; font-family: Arial, sans-serif;">
-                            <h3 style="margin: 0 0 8px 0; color: #1e3056; font-size: 16px; font-weight: bold;">
-                                ${office.name}
-                            </h3>
-                            <p style="margin: 0 0 8px 0; font-size: 12px; line-height: 1.4;">
-                                <strong>Address:</strong><br>
-                                ${office.address}
-                            </p>
-                            ${office.contact ? `
-                                <p style="margin: 0 0 4px 0; font-size: 12px;">
-                                    <strong>Contact:</strong> ${office.contact}
+                        markersRef.current.push(marker);
+        
+                        // Create detailed info window for offices
+                        const officeInfo = `
+                            <div style="max-width: 300px; color: #333; font-family: Arial, sans-serif;">
+                                <h3 style="margin: 0 0 8px 0; color: #1e3056; font-size: 16px; font-weight: bold;">
+                                    ${office.name}
+                                </h3>
+                                <p style="margin: 0 0 8px 0; font-size: 12px; line-height: 1.4;">
+                                    <strong>Address:</strong><br>
+                                    ${office.address}
                                 </p>
-                            ` : ''}
-                            ${office.email ? `
-                                <p style="margin: 0; font-size: 12px;">
-                                    <strong>Email:</strong> ${office.email}
-                                </p>
-                            ` : ''}
-                        </div>
-                    `;
-    
-                    const infoWindow = new window.google.maps.InfoWindow({
+                                ${office.contact ? `
+                                    <p style="margin: 0 0 4px 0; font-size: 12px;">
+                                        <strong>Contact:</strong> ${office.contact}
+                                    </p>
+                                ` : ''}
+                                ${office.email ? `
+                                    <p style="margin: 0; font-size: 12px;">
+                                        <strong>Email:</strong> ${office.email}
+                                    </p>
+                                ` : ''}
+                            </div>
+                        `;
+        
+                        const infoWindow = new window.google.maps.InfoWindow({
                         content: officeInfo,
                         disableAutoPan: true, // Prevent map from panning to the info window
                         pixelOffset: new window.google.maps.Size(0, -5) // Slight upward offset
@@ -705,8 +705,8 @@ export default function GoogleMapConnections() {
                             }, 150);
                         }
                     }, 50);
-                } catch (error) {
-                    console.error(`Error creating marker for ${office.name}:`, error);
+                    } catch (error) {
+                        console.error(`Error creating marker for ${office.name}:`, error);
                     // If there's an error, still try to add the next office marker
                     setTimeout(() => {
                         addOfficeMarker(index + 1);
@@ -753,9 +753,9 @@ export default function GoogleMapConnections() {
             <div className={`absolute bottom-1 left-2 bg-black bg-opacity-80 text-white p-2 md:p-4 rounded-lg ${isMobile ? 'max-w-[90%] text-xs' : 'max-w-sm'}`}>
                 <h3 className={`${isMobile ? 'text-[18px] ml-[-7%] font-medium' : 'text-lg font-bold'} mb-1 md:mb-2`}>Global Connections from India</h3>
                 {!isMobile && (
-                    <p className="text-sm text-gray-300">
-                        Interactive map showing business connections from IQ Groups, India to major global markets.
-                    </p>
+                <p className="text-sm text-gray-300">
+                    Interactive map showing business connections from IQ Groups, India to major global markets.
+                </p>
                 )}
             </div>
         </div>

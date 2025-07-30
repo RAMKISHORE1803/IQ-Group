@@ -1,189 +1,172 @@
-"use client";
+'use client'
 
-import { useEffect, useRef, useState, Suspense } from "react";
-import TweetEmbed from "./TweetEmbed";
+import { useRef, useEffect } from 'react'
+import { gsap } from 'gsap'
 
-// Loading skeleton component for tweets
-const TweetSkeleton = () => (
-  <div className="animate-pulse bg-white rounded-lg shadow-md md:max-h-[400px] max-h-[300px] overflow-hidden p-4">
-    <div className="flex items-center mb-4">
-      <div className="w-12 h-12 rounded-full bg-gray-200 mr-3"></div>
-      <div className="flex-1">
-        <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
-        <div className="h-3 bg-gray-200 rounded w-1/2"></div>
-      </div>
-    </div>
-    <div className="space-y-2">
-      <div className="h-4 bg-gray-200 rounded w-full"></div>
-      <div className="h-4 bg-gray-200 rounded w-full"></div>
-      <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-    </div>
-    <div className="mt-4 flex justify-between">
-      <div className="h-4 bg-gray-200 rounded w-16"></div>
-      <div className="h-4 bg-gray-200 rounded w-16"></div>
-      <div className="h-4 bg-gray-200 rounded w-16"></div>
-    </div>
-  </div>
-);
-
-const TweetMarquee = ({
-  tweetUrls = [],
-  title = "LATEST UPDATES FROM TWITTER",
+// Client Component wrapper that handles GSAP animations only
+const TweetMarqueeWrapper = ({ 
+  children,
   direction = "left",
   speed = "normal",
   pauseOnHover = true,
   className = "",
-  showTitle = true,
+  title = "LATEST UPDATES FROM TWITTER",
+  showTitle = true 
 }) => {
   const containerRef = useRef(null);
   const scrollerRef = useRef(null);
-  const [start, setStart] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const animationRef = useRef(null);
 
-  // Convert x.com URLs to twitter.com URLs
-  const normalizedTweetUrls = tweetUrls?.map(url => 
-    url?.replace('x.com', 'twitter.com') || ""
-  ).filter(url => url.length > 0);
-  
-  // Initialize animation after component mounts
   useEffect(() => {
-    if (!normalizedTweetUrls || normalizedTweetUrls.length === 0) {
-      setError("No valid tweet URLs provided");
-      setLoading(false);
-      return;
-    }
-    
-    // Give time for tweets to render before starting animation
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2000); // Increased timeout for better loading chance
-    
-    return () => clearTimeout(timer);
-  }, [normalizedTweetUrls]);
+    if (!scrollerRef.current) return;
 
-  // Set up animation after loading state changes
-  useEffect(() => {
-    if (error || loading || !scrollerRef.current) return;
-    
-    try {
-      // Clone the content for seamless looping
-      if (scrollerRef.current && scrollerRef.current.children.length > 0) {
-        const scrollerContent = Array.from(scrollerRef.current.children);
+    // GSAP Infinite Loop Carousel Animation
+    const setupInfiniteCarousel = () => {
+      const scroller = scrollerRef.current;
+      if (!scroller) return;
+
+      // Kill existing animation
+      if (animationRef.current) {
+        animationRef.current.kill();
+      }
+
+      // Wait for tweets to load before setting up animation
+      const checkAndSetup = () => {
+        const children = Array.from(scroller.children);
         
-        // Only clone if we have actual content
-        if (scrollerContent.length > 0) {
-          scrollerContent.forEach((item) => {
-            if (item && scrollerRef.current) {
-              const duplicatedItem = item.cloneNode(true);
-              scrollerRef.current.appendChild(duplicatedItem);
+        // Check if tweets are loaded by looking for tweet content
+        const loadedTweets = scroller.querySelectorAll('[data-testid="tweet"]');
+        const hasSkeletons = scroller.querySelectorAll('[data-testid="tweetSkeleton"]');
+        
+        // Wait if we still have skeletons or no tweets loaded
+        if (children.length === 0 || (loadedTweets.length === 0 && hasSkeletons.length > 0)) {
+          setTimeout(checkAndSetup, 200);
+          return;
+        }
+
+        // Get the original tweet count (before cloning)
+        const originalTweetCount = children.length;
+        
+        // Remove any existing clones first
+        const existingClones = scroller.querySelectorAll('[data-clone="true"]');
+        existingClones.forEach(clone => clone.remove());
+        
+        // Clone children for seamless loop
+        const originalChildren = Array.from(scroller.children);
+        const clonedChildren = originalChildren.map(child => {
+          const clone = child.cloneNode(true);
+          clone.setAttribute('data-clone', 'true');
+          return clone;
+        });
+        
+        // Append cloned children for seamless loop
+        clonedChildren.forEach(clone => {
+          scroller.appendChild(clone);
+        });
+
+        // Calculate distances
+        const firstChild = originalChildren[0];
+        if (!firstChild) return;
+        
+        const itemWidth = firstChild.getBoundingClientRect().width + 16; // 16px gap
+        const totalItemsWidth = itemWidth * originalChildren.length;
+
+        // Speed mapping (pixels per second)
+        const speedMap = {
+          slow: 50,
+          normal: 100,
+          fast: 200
+        };
+        const pixelsPerSecond = speedMap[speed] || 100;
+        const duration = totalItemsWidth / pixelsPerSecond;
+
+        // Set initial position
+        gsap.set(scroller, {
+          x: direction === 'left' ? 0 : -totalItemsWidth
+        });
+
+        // Create infinite loop animation
+        animationRef.current = gsap.to(scroller, {
+          x: direction === 'left' ? -totalItemsWidth : 0,
+          duration: duration,
+          ease: "none",
+          repeat: -1,
+          modifiers: {
+            x: function(x) {
+              // Create seamless loop by resetting position
+              const xNum = parseFloat(x);
+              if (direction === 'left') {
+                return ((xNum % totalItemsWidth) + totalItemsWidth) % totalItemsWidth - totalItemsWidth + "px";
+              } else {
+                return ((xNum % totalItemsWidth) - totalItemsWidth) % totalItemsWidth + "px";
+              }
             }
-          });
+          }
+        });
+
+        // Pause on hover if enabled
+        if (pauseOnHover && containerRef.current) {
+          const container = containerRef.current;
+          
+          const handleMouseEnter = () => {
+            if (animationRef.current) animationRef.current.pause();
+          };
+          
+          const handleMouseLeave = () => {
+            if (animationRef.current) animationRef.current.play();
+          };
+
+          container.addEventListener('mouseenter', handleMouseEnter);
+          container.addEventListener('mouseleave', handleMouseLeave);
+
+          // Cleanup event listeners
+          return () => {
+            container.removeEventListener('mouseenter', handleMouseEnter);
+            container.removeEventListener('mouseleave', handleMouseLeave);
+          };
         }
+      };
+
+      // Initial setup with longer delay to ensure server components are rendered
+      setTimeout(checkAndSetup, 1000);
+    };
+
+    // Setup animation after a brief delay to ensure DOM is ready
+    const timeoutId = setTimeout(setupInfiniteCarousel, 100);
+
+    return () => {
+      clearTimeout(timeoutId);
+      if (animationRef.current) {
+        animationRef.current.kill();
       }
-      
-      // Set animation properties
-      if (containerRef.current) {
-        // Set direction
-        containerRef.current.style.setProperty(
-          "--animation-direction",
-          direction === "left" ? "forwards" : "reverse"
-        );
-        
-        // Set speed
-        let animationDuration = "50s";
-        if (speed === "fast") {
-          animationDuration = "45s";
-        } else if (speed === "slow") {
-          animationDuration = "100s";
-        }
-        containerRef.current.style.setProperty("--animation-duration", animationDuration);
-        
-        // Start animation
-        setStart(true);
-      }
-    } catch (err) {
-      console.error("Error setting up animation:", err);
-      setError("Failed to set up animation");
-    }
-  }, [loading, direction, speed]);
-  
-  // If we have an error, show it
-  if (error && !loading) {
-    return (
-      <div className={`tweet-marquee-container py-8 ${className}`}>
-        {showTitle && (
-          <div className="container mx-auto px-4 md:px-0 mb-8">
-            <h2 className="font-bold font-lato text-left text-[#203663] mb-4 md:pt-4 lg:text-[40px]">
-              {title}
-            </h2>
-          </div>
-        )}
-        <div className="bg-red-50 border border-red-200 text-red-700 p-4 rounded-md">
-          Error loading tweets: {error}
-        </div>
-      </div>
-    );
-  }
-  
-  // If we have no tweets, don't render anything
-  if (!normalizedTweetUrls || normalizedTweetUrls.length === 0) {
-    return null;
-  }
-  
+    };
+  }, [direction, speed, pauseOnHover, children]);
+
   return (
     <div className={`tweet-marquee-container py-8 ${className}`}>
       {/* Title Section */}
-      {/* {showTitle && (
+      {showTitle && (
         <div className="container mx-auto px-4 md:px-0 mb-8">
           <h2 className="font-bold font-lato text-left text-[#203663] mb-4 md:pt-4 lg:text-[40px]">
             {title}
           </h2>
         </div>
-      )} */}
+      )}
       
       {/* Marquee Section */}
       <div
         ref={containerRef}
         className="scroller relative z-20 w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]"
       >
-        {loading ? (
-          <div className="flex w-max min-w-full shrink-0 flex-nowrap gap-8 py-4">
-            {Array(4).fill(0).map((_, idx) => (
-              <div
-                className="relative w-[400px] max-w-full  flex-shrink-0 px-4"
-                key={`skeleton-${idx}`}
-              >
-                <div className="tweet-card bg-white rounded-lg shadow-md overflow-hidden h-full">
-                  <TweetSkeleton />
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div
-            ref={scrollerRef}
-            className={`flex w-max min-w-full shrink-0 flex-nowrap gap-4 py-4 ${
-              start ? "animate-scroll" : ""
-            } ${pauseOnHover ? "hover:[animation-play-state:paused]" : ""}`}
-          >
-            {normalizedTweetUrls.map((url, idx) => (
-              <div
-                className="relative w-[500px] max-w-full flex-shrink-0 "
-                key={`tweet-${idx}`}
-              >
-                <div className="tweet-card bg-white shadow-md overflow-hidden min-h-[400px] md:min-h-[600px] md:max-h-[600px] max-h-[300px] ">
-                  <Suspense fallback={<TweetSkeleton />}>
-                    <TweetEmbed tweetUrl={url} className="h-full w-full"/>
-                  </Suspense>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
+        <div
+          ref={scrollerRef}
+          className="flex w-max min-w-full shrink-0 flex-nowrap gap-4 py-4"
+        >
+          {children}
+        </div>
       </div>
     </div>
   );
 };
 
-export default TweetMarquee; 
+export default TweetMarqueeWrapper;

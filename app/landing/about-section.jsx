@@ -6,6 +6,8 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
 import { cn } from "@/lib/utils";
+import { ArrowUpRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export default function AboutSection() {
   const sectionRef = useRef(null);
@@ -146,11 +148,19 @@ export default function AboutSection() {
             <p className="text-gray-700 text-onest font-light text-[20px] sm:text-[24px] md:text-[18px] lg:text-[20px] xl:text-[25px]">
             IQ Group fuels industries worldwide with premium raw materials—from alloys to minerals—delivered with precision, integrity, and speed.            </p>
             <p className="sm:text-[24px] text-[20px] md:text-[17px] lg:text-[21px] xl:text-[25px] text-[#1E3157] font-onest font-light leading-relaxed">Trusted by leading sectors including steel, aerospace, ceramics, and battery manufacturing.</p>
-            <Link href="/about">
-            <button className="md:mt-6 cursor-pointer border bg-[#324390] text-[#fbfbfb] hover:bg-[#fbfbfb] border-2 border-[#2D4BD2] hover:border-[#2D4BD2] hover:text-[#2D4BD2] px-6 py-3 transition-all duration-300">
-              Learn More
-            </button>
-            </Link>
+            
+            <motion.button
+          className="bg-[#1E3157] cursor-pointer text-white hover:bg-[#fbfbfb] hover:text-[#1E3157] border-2 border-[#1E3157] hover:border-[#1E3157] font-onest text-[20px] font-light text-black font-medium px-3 py-2  transition-colors duration-200 flex items-center gap-2"
+         
+        >
+            <Link href="/about" className="flex items-center text-[16px] gap-2">
+                  LEARN MORE
+                    <span className="text-[20px]">
+                      <ArrowUpRight size={20} />
+                    </span>
+                  </Link>
+                </motion.button>
+        
           </div>
         </div>
       </div>

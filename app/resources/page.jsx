@@ -271,25 +271,25 @@ const newsCards = [
 // Insights section data
 const insightsCards = [
   {
-    type: "Article",
-    date: "July 19, 2023",
-    title: "The Evolution of Supply Chain Resilience in Material Sourcing",
+    type: "Scottlsdale, Arizona",
+    date: "2022",
+    title: "Speaking at Ferro Alloys USA 2022 Conference",
     description: "Decoding the transformation from fragile networks to unbreakable material pathways. Strategic insights that redefine how industry leaders secure critical resources.",
     image: "/conference/3.jpg",
     link: "/resources/insights"
   },
   {
-    type: "Report",
-    date: "July 15, 2023",
-    title: "Material Intelligence: The Competitive Edge in Manufacturing",
+    type: "Istanbul, Turkey",
+    date: "2022",
+    title: "Speaking at Metal Expert Ferro Alloys Conference",
     description: "Deep analysis of how material selection drives product differentiation and market leadership. Revolutionary framework for evaluating material impact on performance outcomes.",
     image: "/conference/4.jpg",
     link: "/resources/insights"
   },
   {
-    type: "Whitepaper",
-    date: "July 9, 2023",
-    title: "Decarbonizing Industrial Materials: Pathways to Net Zero",
+    type: "Dubai, UAE",
+    date: "2022",
+    title: "Fastmarkets Asian Ferro Alloys Conference",
     description: "Comprehensive roadmap for achieving carbon neutrality without compromising material integrity. Visionary strategies that transform sustainability challenges into innovation catalysts.",
     image: "/conference/1.jpg",
     link: "/resources/insights"
@@ -338,30 +338,41 @@ const insightsCards = [
 
 const insightsCards2 = [
   {
-    type: "Article",
-    date: "July 19, 2023",
-    title: "The Evolution of Supply Chain Resilience in Material Sourcing",
+    type: "Cairo, Egypt",
+    date: "2023",
+    title: "Participated as Panelist  at Arab Steel COnference",
     description: "Decoding the transformation from fragile networks to unbreakable material pathways. Strategic insights that redefine how industry leaders secure critical resources.",
     image: "/conference/6.jpg", 
     link: "/resources/insights"
   },
   {
-    type: "Report",
-    date: "July 15, 2023",
-    title: "Material Intelligence: The Competitive Edge in Manufacturing",    
+    type: "Prague, Czech Republic",
+    date: "2022",
+    title: "Speaking at International Ferro Alloys Conference",    
     description: "Deep analysis of how material selection drives product differentiation and market leadership. Revolutionary framework for evaluating material impact on performance outcomes.",
     image: "/conference/2.jpg",
     link: "/resources/insights"
   },
   {
-    type: "Whitepaper",   
+    type: "",   
     date: "July 9, 2023",
-    title: "Decarbonizing Industrial Materials: Pathways to Net Zero",
+    title: "",
     description: "Comprehensive roadmap for achieving carbon neutrality without compromising material integrity. Visionary strategies that transform sustainability challenges into innovation catalysts.",
     image: "/conference/5.jpg",
     link: "/resources/insights"
   }
 ];
+
+const latestNewsCards = [
+  {
+    type: "News Report",
+    date: "July 21, 2023",
+    title: "TEPA Treaty Revolutionizes India's Steel Future",
+    description: "India-EFTA partnership unlocks $100B investment, transforming steel giants into global powerhouses. The revolution starts now.",
+    image: "https://media.licdn.com/dms/image/v2/D4D22AQEbT_MwdNSe-w/feedshare-shrink_1280/B4DZf87gwsGsAk-/0/1752295160074?e=1756339200&v=beta&t=2SjWOA53DYS6oTjmFQstGOas9YqXNe87bTxIchfW3dE",
+    link: "/resources/insights/tepa-treaty-revolutionizes-india-steel-future"
+  }
+]
 
 const sectionLinks = [
   {
@@ -444,9 +455,9 @@ export default function ResourcesPage() {
           links={sectionLinks}
         />
 
-<FadeInSection className="py-16 md:py-24 px-2 md:px-4 bg-[#ffffff]" id="insights">
+<FadeInSection className="py-16 md:py-24 px-2 md:px-4 bg-[#ffffff]" id="media">
           <div className="max-w-7xl mx-auto">
-            <SectionTitle number="01" title="INSIGHTS" />
+            <SectionTitle number="01" title="MEDIA" />
             
             {/* First BentoGrid */}
             <BentoGrid className="mx-auto mb-12">
@@ -454,18 +465,18 @@ export default function ResourcesPage() {
                 <BentoGridItem
                   key={index}
                   header={
-                    <Link href={card.link || "#"} className="block relative w-full h-full min-h-[12rem] overflow-hidden">
+                    
                       <img 
                         src={card.image} 
                         alt={card.title}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover/bento:scale-105"
+                        className="w-full h-full  cursor-pointer object-cover transition-transform duration-500 group-hover/bento:scale-105"
                       />
-                    </Link>
+                    
                   }
                   title={
                     <div className="flex flex-col">
                       <span className="text-xs font-medium text-white/90 mb-1">
-                        {card.type} • {card.date}
+                        {card.type} 
                       </span>
                       <span className="text-lg md:text-xl">{card.title}</span>
                     </div>
@@ -480,13 +491,13 @@ export default function ResourcesPage() {
                 <BentoGridItem
                   key={index}
                   header={
-                    <Link href={card.link || "#"} className="block relative w-full h-full min-h-[12rem] overflow-hidden">
+                    
                       <img 
                         src={card.image} 
                         alt={card.title}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover/bento:scale-105"
+                        className="w-full h-full cursor-pointer transform scale-x-[-1] object-cover transition-transform duration-500"
                       />
-                    </Link>
+                    
                   }
                   title={
                     <div className="flex flex-col transform scale-x-[-1]">
@@ -508,9 +519,9 @@ export default function ResourcesPage() {
 
         
         {/* News Section */}
-        <FadeInSection className="py-16 md:py-24 px-2 md:px-4 bg-white" id="news">
+        <FadeInSection className="py-16 md:py-24 px-2 md:px-4 bg-white" id="insights">
           <div className="max-w-7xl lg:max-w-[1300px] mx-auto">
-            <SectionTitle number="02" title="LATEST NEWS" />
+            <SectionTitle number="02" title="INSIGHTS" />
             <div className="flex flex-wrap -mx-1">
               {newsCards.map((card, index) => (
                 <div key={index} className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 px-1 mb-2">
@@ -521,7 +532,10 @@ export default function ResourcesPage() {
          </div>
         </FadeInSection>
         
-        {/* Insights Section */}
+        {/* latest Section */}
+        <FadeInSection className="py-16 md:py-24 px-2 md:px-4 bg-white" id="news">
+
+        </FadeInSection>
        
       </div>
     </main>

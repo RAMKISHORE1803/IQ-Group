@@ -3,6 +3,7 @@ import { Merriweather } from "next/font/google";
 import { Lato, Open_Sans } from "next/font/google";
 import { Onest } from "next/font/google";
 import "./globals.css";
+import QueryProvider from "../components/ReactQueryProvider";
 import IQGroupNavbar from "../components/navbar";
 import IQGroupFooter from "./landing/footer";
 import NavbarNew from "../components/NavbarNew";
@@ -68,7 +69,9 @@ export default function RootLayout({ children }) {
         
         {/* Main content */}
         <main className="relative flex-1">
-          {children}
+          <QueryProvider>
+            {children}
+          </QueryProvider>
         </main>
         
         {/* Clear separator for debugging */}

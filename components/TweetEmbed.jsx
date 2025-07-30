@@ -6,11 +6,34 @@ const TweetEmbed = ({ tweetUrl }) => {
   const containerRef = useRef(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
+const observerRef = useRef(null);
   
   // Convert x.com URLs to twitter.com URLs if needed
   const normalizedTweetUrl = tweetUrl?.replace('x.com', 'twitter.com') || "";
 
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+    
+    if (observerRef.current) {
+      observer.observe(observerRef.current);
+    }
+    
+    return () => observer.disconnect();
+  }, []);
+  
+
+  useEffect(() => {
+    if (!isVisible) return;
+    
     if (!normalizedTweetUrl) {
       setError("Invalid tweet URL");
       setLoading(false);
@@ -81,7 +104,7 @@ const TweetEmbed = ({ tweetUrl }) => {
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [normalizedTweetUrl, loading]);
+  }, [normalizedTweetUrl, isVisible]);
 
   if (error) {
     return (
