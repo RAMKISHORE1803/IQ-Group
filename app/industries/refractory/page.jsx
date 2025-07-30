@@ -91,7 +91,7 @@ export default function RefractoryIndustryPage() {
     <IndustryPageTemplate
       title="Refractory"
       subtitle="Providing advanced high-temperature materials for the most demanding thermal applications across global industries."
-      backgroundImage="https://www.refractoriesinstitute.org/tri-includes/images/common/what-is-a-refractory-main.jpg"
+      backgroundImage="/industries/refractory.jpeg"
       sideText="REFRACTORY"
       overviewData={{
         subtitle: "Empowering extreme-temperature operations with precisely engineered thermal solutions",

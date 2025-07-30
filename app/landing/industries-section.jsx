@@ -7,16 +7,16 @@ import Link from 'next/link';
 
 const IndustriesSection = () => {
     const sectors = [
-        {"id": 1, "name": "Aerospace", "image": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800", "link": "/industries/aerospace"},
-        {"id": 2, "name": "Steel", "image": "https://images.pexels.com/photos/220237/pexels-photo-220237.jpeg", "link": "/industries/steel"},
+        {"id": 1, "name": "Aerospace", "image": "/industries/aerospace.webp", "link": "/industries/aerospace"},
+        {"id": 2, "name": "Steel", "image": "https://rmi.org/wp-content/uploads/2023/02/steel-forge-worker-melting-metal-iStock-1147790557-1700x1063.jpg", "link": "/industries/steel"},
         {"id": 3, "name": "Automobile", "image": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800", "link": "/industries/automobile"},
         {"id": 4, "name": "Battery", "image": "https://news.mst.edu/files/2025/05/batteries-1260x473.jpeg", "link": "/industries/battery-industries"},
-        {"id": 5, "name": "Ceramic", "image": "https://assets.lummi.ai/assets/QmXVv9yqRL9wsVqUgBDYZF6voys4NLczx2De7xE3FSsKUm?auto=format&w=1500", "link": "/industries/ceramic"},
+        {"id": 5, "name": "Ceramic", "image": "https://images.unsplash.com/photo-1481401908818-600b7a676c0d?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"},
         {"id": 6, "name": "Chemical", "image": "https://assets.lummi.ai/assets/QmRWrf7RRguRREw1py5ASex7cAGxv3rVYQL6Tw9LFAGRCq?auto=format&w=1500", "link": "/industries/chemical"},
         {"id": 7, "name": "Foundries", "image": "https://images.pexels.com/photos/3730670/pexels-photo-3730670.jpeg", "link": "/industries/foundries"},
         {"id": 8, "name": "Glass", "image": "https://assets.lummi.ai/assets/QmdjvE5DEVkpGMDUNBQtTgMXXXNBnrxgeBk5Q6RTka9GHM?auto=format&w=1500", "link": "/industries/glass"},
         {"id": 9, "name": "Paint", "image": "https://assets.lummi.ai/assets/QmX9TW1P64SQAyG3ELPsCLCqh9P37VuxphC6yPGwgQLn1R?auto=format&w=1500", "link": "/industries/paint"},
-        {"id": 10, "name": "Refractory", "image": "https://www.refractoriesinstitute.org/tri-includes/images/common/what-is-a-refractory-main.jpg", "link": "/industries/refractory"},
+        {"id": 10, "name": "Refractory", "image": "/industries/refractory.jpeg", "link": "/industries/refractory"},
         {"id": 11, "name": "Stainless Steel", "image": "https://www.shyammetalics.com/wp-content/uploads/2024/07/blog_img_1_07.jpg", "link": "/industries/stainless-steel"},
         {"id": 12, "name": "Aluminum", "image": "https://images.pexels.com/photos/2691359/pexels-photo-2691359.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", "link": "/industries/aluminum"},
         {"id": 13, "name": "Textile", "image": "https://assets.lummi.ai/assets/QmNpyxgXoXt78SXLsfBTdqADVQzN7DBv9WFqu5bfkaRDGF?auto=format&w=1500", "link": "/industries/textile"},

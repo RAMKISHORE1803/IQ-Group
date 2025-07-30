@@ -91,7 +91,7 @@ export default function AutomobileIndustryPage() {
     <IndustryPageTemplate
       title="Automobile Industry"
       subtitle="Supplying premium materials for automotive manufacturing with exceptional quality and technical expertise."
-      backgroundImage="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3"
+      backgroundImage="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800"
       sideText="AUTOMOBILE INDUSTRY"
       overviewData={{
         subtitle: "Empowering automotive innovation with precision-engineered materials and technical support",

@@ -19,7 +19,7 @@ const industries = [
     category: 'AVIATION',
     name: 'Aerospace',
     description: 'Supplying high-performance alloys and materials meeting strict aerospace industry standards.',
-    image: 'https://images.unsplash.com/photo-1517976487492-5750f3195933?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3',
+    image: '/industries/aerospace.webp',
     link: '/industries/aerospace'
   },
   {
@@ -93,7 +93,7 @@ const industries = [
     category: 'HEAT RESISTANCE',
     name: 'Refractory',
     description: 'Providing high-temperature resistant materials for industrial furnaces and kilns.',
-    image: 'https://www.refractoriesinstitute.org/tri-includes/images/common/what-is-a-refractory-main.jpg',
+    image: '/industries/refractory.jpeg',
     link: '/industries/refractory'
   },
   {
