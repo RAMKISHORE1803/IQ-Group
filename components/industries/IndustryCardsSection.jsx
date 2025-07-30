@@ -134,7 +134,7 @@ const industries = [
     category: 'MANUFACTURING',
     name: 'Paper',
     description: 'Providing chemicals and materials for paper production and processing.',
-    image: 'https://images.unsplash.com/photo-1589998059171-988d887df646?q=80&w=2076&auto=format&fit=crop&ixlib=rb-4.0.3',
+    image: '/industries/paper.jpg',
     link: '/industries/paper'
   }
 ];

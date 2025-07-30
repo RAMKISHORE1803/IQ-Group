@@ -269,7 +269,7 @@ const MultiplexNavbar = () => {
                 duration: 0.4,
                 ease: [0.25, 0.46, 0.45, 0.94]
               }}
-              className="fixed top-0 right-0 h-full w-full max-w-md lg:max-w-[590px] bg-black z-[100] overflow-hidden"
+              className="fixed top-0 right-0 h-full w-full max-w-md lg:max-w-[590px] bg-[#000000] z-[100] overflow-hidden"
             >
               <div className="px-8 py-6 min-h-full overflow-hidden flex flex-col">
                 {/* Header with Close Button positioned at top right */}

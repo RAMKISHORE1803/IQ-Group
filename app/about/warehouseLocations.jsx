@@ -297,7 +297,7 @@ export default function WarehouseLocations() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 relative">
             {/* Left column - Map and description - Sticky - Hidden on mobile */}
             <div ref={leftColRef} className="hidden lg:block lg:sticky lg:top-24 lg:self-start">
-              <div className="aspect-w-16 aspect-h-9 mb-8 overflow-hidden rounded-lg relative h-[400px]">
+              <div className="aspect-w-16 aspect-h-9 mb-8 overflow-hidden rounded-lg relative h-[350px]">
                 {displayedMap && (
                   <iframe
                     key={displayedMap.id}
@@ -322,10 +322,7 @@ export default function WarehouseLocations() {
                 <p className="text-gray-700 font-onest font-light lg:text-[18px] transition-opacity duration-300 ease-in-out">
                   Our warehouses are strategically positioned near major ports and industrial hubs, ensuring efficient storage and timely delivery of materials to our clients.
                 </p>
-                <div className="mt-4 text-gray-700 font-onest">
-                  <p><strong>Capacity:</strong> {displayedMap?.capacity}</p>
-                  <p><strong>Specialization:</strong> {displayedMap?.specialization}</p>
-                </div>
+                
                 <div className="mt-6">
                   <a 
                     href={`https://www.google.com/maps/search/${encodeURIComponent(displayedMap?.address || '')}`}

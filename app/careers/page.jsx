@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import OpenPositionsCarousel from "@/components/careers/OpenPositionsCarousel";
-import LifeAtIQSection from "@/components/careers/LifeAtIQSection";
+import Link from "next/link";
 import SectionNavigation from "@/components/companies/SectionNavigation";
 
 // Register GSAP plugins
@@ -473,13 +473,13 @@ const ApplicationForm = () => {
                   <span className="text-[#203663] font-medium text-sm">CAREER OPPORTUNITIES</span>
                 </div>
                 <div className="mt-2">
-                  <p className="text-gray-700">careers@iqgroup.com</p>
+                  <Link href="mailto:info@iqgroup.in"><p className="text-gray-700">info@iqgroup.in</p></Link>
                   <p className="text-gray-700">+91 22 4005 4242</p>
                 </div>
               </div>
 
               {/* Internship Enquiries Section */}
-              <div>
+              {/* <div>
                 <div className="inline-block bg-[#e9f0f9] px-4 py-1 mb-2">
                   <span className="text-[#203663] font-medium text-sm">INTERNSHIP ENQUIRIES</span>
                 </div>
@@ -488,7 +488,7 @@ const ApplicationForm = () => {
                   <p className="text-gray-700">internships@iqgroup.com</p>
                   <p className="text-gray-700">+91 22 4005 4243</p>
                 </div>
-              </div>
+              </div> */}
             </div>
 
             {/* Right column - Form */}
@@ -670,10 +670,7 @@ const ApplicationForm = () => {
 };
 
 const sectionLinks = [
-  {
-    title: "Life at IQ Group",
-    link: "#life-at-iq-group"
-  },
+  
   {
     title: "Why Join Us",
     link: "#why-join-us"
@@ -738,7 +735,7 @@ export default function CareerPage() {
       <div className="relative z-20 bg-white"> 
         <div 
           ref={introRef}
-          className="w-full max-w-7xl md:max-w-[1300px] flex flex-wrap justify-between mx-auto px-4 py-12 bg-[#ffffff]"
+          className="w-full max-w-7xl md:max-w-[1300px] flex flex-wrap justify-between mx-auto px-4 py-12  bg-[#ffffff]"
         >
           <div className="w-full md:w-1/2 lg:text-[38px] font-lato leading-[1.1] text-[#1a365d] font-bold animate-item">
             There's nowhere like IQ Group to build your legacy.
@@ -751,11 +748,7 @@ export default function CareerPage() {
          <SectionNavigation links={sectionLinks} title="IN THIS SECTION" />
         
         {/* Life at IQ Group Section */}
-        <FadeInSection >
-          <div id="life-at-iq-group">
-          <LifeAtIQSection />
-          </div>
-        </FadeInSection>
+       
         
         {/* Why Join Us Section */}
         <div id="why-join-us">

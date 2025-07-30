@@ -91,7 +91,7 @@ export default function AluminumIndustryPage() {
     <IndustryPageTemplate
       title="Aluminum Industry"
       subtitle="Supplying premium materials for aluminum production with exceptional quality and technical expertise."
-      backgroundImage="https://plus.unsplash.com/premium_photo-1673208484535-66a8f7d05294?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      backgroundImage="/industries/aluminium.jpg"
       sideText="ALUMINUM INDUSTRY"
       overviewData={{
         subtitle: "Empowering aluminum innovation with precision-engineered materials and metallurgical expertise",

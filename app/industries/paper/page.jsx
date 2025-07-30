@@ -91,7 +91,7 @@ export default function PaperIndustryPage() {
     <IndustryPageTemplate
       title="Paper Industry"
       subtitle="Supplying premium chemicals and additives for papermaking with exceptional quality and technical support."
-      backgroundImage="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3"
+      backgroundImage="/industries/paper.jpg"
       sideText="PAPER INDUSTRY"
       overviewData={{
         subtitle: "Empowering paper innovation with precision-engineered materials and processing expertise",

@@ -18,10 +18,10 @@ const IndustriesSection = () => {
         {"id": 9, "name": "Paint", "image": "https://assets.lummi.ai/assets/QmX9TW1P64SQAyG3ELPsCLCqh9P37VuxphC6yPGwgQLn1R?auto=format&w=1500", "link": "/industries/paint"},
         {"id": 10, "name": "Refractory", "image": "/industries/refractory.jpeg", "link": "/industries/refractory"},
         {"id": 11, "name": "Stainless Steel", "image": "https://www.shyammetalics.com/wp-content/uploads/2024/07/blog_img_1_07.jpg", "link": "/industries/stainless-steel"},
-        {"id": 12, "name": "Aluminum", "image": "https://images.pexels.com/photos/2691359/pexels-photo-2691359.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", "link": "/industries/aluminum"},
+        {"id": 12, "name": "Aluminum", "image": "/industries/aluminium.jpg", "link": "/industries/aluminum"},
         {"id": 13, "name": "Textile", "image": "https://assets.lummi.ai/assets/QmNpyxgXoXt78SXLsfBTdqADVQzN7DBv9WFqu5bfkaRDGF?auto=format&w=1500", "link": "/industries/textile"},
         {"id": 14, "name": "Tyre", "image": "https://assets.lummi.ai/assets/QmeNHGPHEyi8Sjx25eaEwUE9JU3Ko2fZ3EWCpDfz6qd54E?auto=format&w=1500", "link": "/industries/tyres"},
-        {"id": 15, "name": "Paper", "image": "https://assets.lummi.ai/assets/QmUevsnAtUyS9mRE61tsC55xddmrsaqVSc7tdF81i6mFJH?auto=format&w=1500", "link": "/industries/paper"}
+        {"id": 15, "name": "Paper", "image": "/industries/paper.jpg", "link": "/industries/paper"}
       ];
 
   const [currentIndex, setCurrentIndex] = useState(0);

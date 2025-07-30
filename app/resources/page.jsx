@@ -294,46 +294,7 @@ const insightsCards = [
     image: "/conference/1.jpg",
     link: "/resources/insights"
   },
-  // {
-  //   type: "Analysis",
-  //   date: "July 5, 2023",
-  //   title: "The Economics of Quality: Premium Materials as Strategic Investment",
-  //   description: "Revealing the hidden ROI metrics of selecting exceptional materials over standard options. Mathematical proof that material excellence delivers exponential value creation.",
-  //   image: "/conference/2.jpg",
-  //   link: "#"
-  // },
-  // {
-  //   type: "Article",
-  //   date: "June 30, 2023",
-  //   title: "Beyond Specifications: The Art of Material Selection",
-  //   description: "Exploring the subtle factors that elevate material choices from adequate to exceptional. Strategic framework for identifying materials that unlock unprecedented product capabilities.",
-  //   image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1470&auto=format&fit=crop",
-  //   link: "#"
-  // },
-  // {
-  //   type: "Report",
-  //   date: "June 26, 2023",
-  //   title: "Material Innovation Index: Industry Benchmarking Study",
-  //   description: "Definitive analysis of innovation metrics across industrial materials sectors worldwide. Data-driven insights revealing tomorrow's material science breakthroughs today.",
-  //   image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1470&auto=format&fit=crop",
-  //   link: "#"
-  // },
-  // {
-  //   type: "Analysis",
-  //   date: "June 22, 2023",
-  //   title: "Geopolitical Shifts and Their Impact on Material Supply Chains",
-  //   description: "Strategic assessment of global dynamics reshaping material availability and pricing. Forward-looking scenarios that prepare industry leaders for tomorrow's supply challenges.",
-  //   image: "https://images.unsplash.com/photo-1533645782036-997947a9d529?q=80&w=1470&auto=format&fit=crop",
-  //   link: "#"
-  // },
-  // {
-  //   type: "Whitepaper",
-  //   date: "June 18, 2023",
-  //   title: "The Quantum Advantage: Next-Generation Materials for Industrial Excellence",
-  //   description: "Exploring the frontier where quantum science meets industrial material development. Visionary perspective on materials engineered at atomic precision for unmatched performance.",
-  //   image: "https://images.unsplash.com/photo-1581093805715-a127be2f3e5f?q=80&w=1470&auto=format&fit=crop",
-  //   link: "#"
-  // }
+  
 ];
 
 const insightsCards2 = [
@@ -363,28 +324,52 @@ const insightsCards2 = [
   }
 ];
 
-const latestNewsCards = [
+const newspaperCards = [
   {
     type: "News Report",
-    date: "July 21, 2023",
-    title: "TEPA Treaty Revolutionizes India's Steel Future",
-    description: "India-EFTA partnership unlocks $100B investment, transforming steel giants into global powerhouses. The revolution starts now.",
-    image: "https://media.licdn.com/dms/image/v2/D4D22AQEbT_MwdNSe-w/feedshare-shrink_1280/B4DZf87gwsGsAk-/0/1752295160074?e=1756339200&v=beta&t=2SjWOA53DYS6oTjmFQstGOas9YqXNe87bTxIchfW3dE",
-    link: "/resources/insights/tepa-treaty-revolutionizes-india-steel-future"
+    date: "February 29, 2020",
+    title: "Compulsory certification of Ferro Silicon might disrupt Indian steel makers",
+    description: "Indian steel manufacturers might face a slight glitch in the supply of Ferro Silicon, as the Ministry of Steel has passed an order to include it under mandatory certification by April 2020.",
+    image: "https://5.imimg.com/data5/SELLER/Default/2022/5/RC/HK/BF/1535304/ferro-silicon.jpg",
+    link: "https://economictimes.indiatimes.com/industry/indl-goods/svs/steel/compulsory-certification-of-ferro-silicon-might-disrupt-indian-steel-makers/articleshow/74408540.cms?from=mdr"
+  },
+  {
+    type: "News Report",
+    date: "April 16, 2021",
+    title: "TATA Steel arm to double FerroChrome manufacturing capacity.",
+    description: "Tata Steel Mining Limited (TSML), a wholly owned subsidiary of Tata Steel, is planning to double its ferrochrome manufacturing capacity in India to 900,000 tonnes a year",
+    image: "https://etimg.etb2bimg.com/photo/117880043.cms",
+    link: "https://economictimes.indiatimes.com/industry/indl-goods/svs/steel/tata-steel-arm-to-double-ferrochrome-manufacturing-capacity/articleshow/82095580.cms?from=mdr"
+  },
+  {
+    type: "News Report",
+    date: "April 22, 2020",
+    title: "Steel Ministry extends deadline to certify steel products as BIS closes laboratories",
+    description: "Ministry of steel has extended the deadline for certification of steel products to three months from April 23rd as the Bureau of Indian Standards (BIS) has shut operations.",
+    image: "https://img.etimg.com/thumb/width-1200,height-900,imgsize-104708,resizemode-75,msid-118901403/industry/indl-goods/svs/steel/steel-companies-may-go-slow-on-capacity-expansion-as-imports-hit-margins-analysts.jpg",
+    link: "https://economictimes.indiatimes.com/industry/indl-goods/svs/steel/steel-ministry-extends-deadline-to-certify-steel-products-as-bis-closes-laboratories/articleshow/75293358.cms?from=mdr"
+  },
+  {
+    type: "News Report",
+    date: "May 13, 2017",
+    title: "Spare us from the steepest slab of 28% under GST",
+    description: "Stamp collectors have written to finance minister Arun Jaitley asking him to spare their hobby from the steepest slab of 28% under the GST, which is expected to be rolled out on July 1.",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZ_1J41ou4mAX4U6Qh9oJfv1xH_UnSHq0jYA&s",
+    link: "https://economictimes.indiatimes.com/news/economy/policy/spare-us-from-steepest-slab-of-28-under-gst-stamp-collectors-to-arun-jaitley/articleshow/58651213.cms"
   }
 ]
 
 const sectionLinks = [
   {
-    title: "INSIGHTS",
+    title: "Media",
     link: "/resources#insights"
   },
   {
-    title: "LATEST NEWS",
+    title: "Insights",
     link: "/resources#news"
   },
   {
-    title: "INSIGHTS FROM SIDDHARTH",
+    title: "News",
     link: "/resources/insights"
   }
   
@@ -524,6 +509,23 @@ export default function ResourcesPage() {
             <SectionTitle number="02" title="INSIGHTS" />
             <div className="flex flex-wrap -mx-1">
               {newsCards.map((card, index) => (
+                <div key={index} className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 px-1 mb-2">
+                  <ResourceCard {...card} />
+                </div>
+              ))}
+          </div>
+         </div>
+        </FadeInSection>
+        
+        {/* latest Section */}
+        
+
+        {/* News Section */}
+        <FadeInSection className="py-16  px-2 md:px-4 bg-white" id="insights">
+          <div className="max-w-7xl lg:max-w-[1300px] mx-auto">
+            <SectionTitle number="03" title="NEWS" />
+            <div className="flex flex-wrap -mx-1">
+              {newspaperCards.map((card, index) => (
                 <div key={index} className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 px-1 mb-2">
                   <ResourceCard {...card} />
                 </div>

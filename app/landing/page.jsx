@@ -3,11 +3,8 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import AboutSection from './about-section';
 import CompanySection from './company-section';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import GlobalConstructionPlatform from './globalMap';
-import IndustriesSection from './industries-section'; 
-import DTREHeroCarousel from './dtreHero';
+import IndustriesSection from './industries-section';
 import BCGCareersSection from './careerSection';
 import InsightsSection from './insight-section';
 import BusinessStatistics from './BusinessStatistics';

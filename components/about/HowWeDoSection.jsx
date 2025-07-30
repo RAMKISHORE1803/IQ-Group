@@ -3,6 +3,8 @@ import { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowUpRight } from 'lucide-react';
 
 // Register GSAP plugins
 if (typeof window !== 'undefined') {
@@ -15,31 +17,31 @@ const processSteps = [
     id: "direct-sourcing",
     title: "Direct Sourcing",
     description: "Mine to market. Zero intermediaries. Quality guaranteed.",
-    image: "/images/mineToMarket.jpg",
+    image: "https://www.innovationnewsnetwork.com/wp-content/uploads/2021/06/iStockugurhan-108352384.jpg",
   },
   {
     id: "quality-verification",
     title: "Quality Verification At Loading Port",
     description: "Molecular precision. Rigorous standards. Certified excellence.",
-    image: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=2070&auto=format&fit=crop",
+    image: "/images/QualityControl.png",
   },
   {
     id: "logistics",
     title: "Logistics",
     description: "Global networks. Real-time tracking. Flawless execution.",
-    image: "https://videos.openai.com/vg-assets/assets%2Ftask_01k1dm60g0eqtbjctqfdy8r7t3%2F1753877914_img_1.webp?st=2025-07-30T10%3A40%3A12Z&se=2025-08-05T11%3A40%3A12Z&sks=b&skt=2025-07-30T10%3A40%3A12Z&ske=2025-08-05T11%3A40%3A12Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=aa5ddad1-c91a-4f0a-9aca-e20682cc8969&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=haTM4RJCKmmAE%2BcjdgxEVQrMeywn6d71sxzH2K4hsUg%3D&az=oaivgprodscus",
+    image: "https://online.uj.ac.za/hs-fs/hubfs/UJ%20Blog%20Logistics.jpeg?width=2700&height=1656&name=UJ%20Blog%20Logistics.jpeg",
   },
   {
     id: "warehousing",
     title: "Warehousing",
     description: "Strategic locations. Climate-controlled. Just-in-time readiness.",
-    image: "https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=2070&auto=format&fit=crop",
+    image: "https://media.npr.org/assets/img/2021/11/15/gettyimages-1346760159-6499f7dea1922080d16a0758c7bab5a27364f042.jpg?s=900&c=85&f=webp",
   },
   {
     id: "end-users",
     title: "End Users",
     description: "Final mile perfection. Production-ready materials. When you need them.",
-    image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=2070&auto=format&fit=crop",
+    image: "/images/endUsers.png",
   }
 ];
 
@@ -184,7 +186,7 @@ export default function HowWeDoSection() {
       <div className="container mx-auto px-4 md:px-0">
         {/* Mobile Header - Only visible on mobile */}
         <div className="md:hidden mb-8">
-          <h2 className="text-3xl font-bold font-lato text-[#203663] mb-4">
+          <h2 className="text-3xl font-bold font-lato text-[#172747] mb-4">
             How We Do
           </h2>
           <p className="text-xl leading-tight font-onest font-light text-gray-700 mb-6">
@@ -195,9 +197,11 @@ export default function HowWeDoSection() {
           
           {/* Mobile CTA Button */}
           <div className="mt-6">
-            <button className="bg-[#203663] text-white hover:bg-[#324390] transition-colors py-3 px-5 text-base font-onest">
-              Contact Our Experts
-            </button>
+            <Link href="/contact">
+              <button className="bg-[#203663] text-white hover:bg-[#324390] transition-colors py-3 px-5 text-base font-onest">
+                Contact Our Experts
+              </button>
+            </Link>
           </div>
         </div>
         
@@ -220,11 +224,17 @@ export default function HowWeDoSection() {
                 </p>
                 
                 {/* CTA Button - More minimalist */}
-                <div className="mt-8">
-                  <button className="bg-[#fbfbfb] cursor-pointer text-[#324390] hover:bg-[#324390] hover:text-[#fbfbfb] transition-colors py-4 px-6 text-lg font-onest">
-                    Contact Our Experts
-                  </button>
-                </div>
+                <button
+          className="bg-[#fbfbfb] cursor-pointer border-1 md:border-[#fbfbfb] text-[#1E3157] hover:bg-[#203663] hover:text-[#fbfbfb] border-2 border-[#1E3157] font-onest text-[20px] font-light text-black font-medium px-6 py-3  transition-colors duration-200 flex items-center gap-2"
+         
+        >
+          <Link href="/resources" className="flex items-center uppercase font-lato font-bold gap-2">
+          Contact Us
+            <span className="text-lg">
+              <ArrowUpRight size={24} />  
+            </span>
+          </Link>
+        </button>
               </div>
             </div>
           </div>

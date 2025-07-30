@@ -11,7 +11,11 @@ const nextConfig = {
       'www.buafoodsplc.com',
       'encrypted-tbn0.gstatic.com',
       'videos.openai.com',
-      'www.jkbfoundation.com'
+      'www.jkbfoundation.com',
+      'www.innovationnewsnetwork.com',
+      'online.uj.ac.za',
+      'media.npr.org',
+      'media-cldnry.s-nbcnews.com'
     ],
   },
 };
