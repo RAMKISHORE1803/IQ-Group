@@ -74,7 +74,8 @@ const products = [
   },
   {
     title: "Ferro Phosphorus",
-    description: "Adds phosphorus to raise tensile strength, wear resistance, and stability at elevated temperatures, ideal for tool steels and HSLA grades."
+    description: "Adds phosphorus to raise tensile strength, wear resistance, and stability at elevated temperatures, ideal for tool steels and HSLA grades.",
+    image:"https://www.amperealloys.com/wp/wp-content/uploads/2017/06/Ferro-Phosphor.jpg"
   },
   {
     title: "Inoculants",

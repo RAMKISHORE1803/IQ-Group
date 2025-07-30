@@ -168,7 +168,7 @@ const ProductRangeSection = ({
       className="relative h-96 bg-cover bg-center bg-no-repeat overflow-hidden group cursor-pointer flex-shrink-0 "
       style={{ 
         backgroundImage: product.image ? `url(${product.image})` : 'none',
-        backgroundColor: product.image ? 'transparent' : getBackgroundColor(product.title)
+       
       }}
       whileHover={{ scale: 1.02 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
