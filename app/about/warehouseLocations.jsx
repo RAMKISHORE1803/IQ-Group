@@ -9,21 +9,30 @@ import { motion } from 'framer-motion';
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
-
 // Warehouse locations data
 const warehouses = [
-    // {
-    //     id: "mumbai",
-    //     city: "Mumbai",
-    //     country: "India",
-    //     address: "Plot No. 5, JNPT SEZ, Navi Mumbai, Maharashtra - 400707",
-    //     phone: "+91-9987998036",
-    //     email: "warehouse.mumbai@iqgroup.in",
-    //     isPrimary: true,
-    //     mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3772.6930606086077!2d72.9651698!3d18.9563518!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c1d1d1d1d1d1%3A0x3be7c1d1d1d1d1d1!2sJNPT%20SEZ%2C%20Navi%20Mumbai%2C%20Maharashtra%20-%20400707!5e0!3m2!1sen!2sin!4v1654612031797!5m2!1sen!2sin",
-    //     capacity: "50,000 sq. ft.",
-    //     specialization: "Bulk Materials, Alloys, Minerals"
-    // },
+    {
+      id:"Bhiwandi",
+      city:"Bhiwandi",
+      country:"India",
+      address:"SURVEY NO. 177, DHANLAXMI COMPOUND, INSIDE DALMILL COMPOUND,OPP. J.K PETRO PUMP, PURANA VILLAGE, THANE BHIWANDI ROAD, DIST.  THANE  - 421302",
+      phone:"",
+      email:"",
+      isPrimary:false,
+      mapUrl:"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30711.41228749536!2d72.98486596396087!3d19.2630600719602!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7bd638c48287d%3A0xf3d6f685ba314a7!2sDHANLAXMI%20WAREHOUSING%20COMPANY!5e0!3m2!1spt-PT!2sin!4v1753870347129!5m2!1spt-PT!2sin",
+      capacity:"50,000 sq. ft.",
+    },
+    {
+        id:"Bhubaneshwar",
+        city:"Bhubaneshwar",
+        country:"India",
+        address:"PLOT-385/2522/3931 TBS TOWER, PATIA ROAD, Patia, Bhubaneshwar - 751024",
+        phone:"",
+        email:"",
+        isPrimary:false,
+        mapUrl:"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d884.5113918116481!2d85.82611452445246!3d20.342135867210306!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a190912f38d3af3%3A0x1f494ea2535cd4a0!2sPatia%20Rd%2C%20Kanan%20Vihar%2C%20Chandrasekharpur%2C%20Bhubaneswar%2C%20Odisha%20751017!5e0!3m2!1spt-PT!2sin!4v1753870894941!5m2!1spt-PT!2sin",
+        capacity:"50,000 sq. ft.",
+    },
     {
         id: "vizag",
         city: "Visakhapatnam",
@@ -114,7 +123,7 @@ function AccordionItem({ id, city, country, address, phone, email, isPrimary, is
               </a>
             </div>
             
-            <div className="flex items-center">
+            {/* <div className="flex items-center">
               <Mail size={18} className="text-[#324390] mr-3 flex-shrink-0" />
               <a href={`mailto:${email}`} className="text-gray-700 font-onest hover:text-[#324390]">
                 {email}
@@ -126,7 +135,7 @@ function AccordionItem({ id, city, country, address, phone, email, isPrimary, is
               <span className="text-gray-700 font-onest">
                 <strong>Capacity:</strong> {capacity} | <strong>Specialization:</strong> {specialization}
               </span>
-            </div>
+            </div> */}
             
             {/* Map iframe for mobile view */}
             <div className="lg:hidden mt-4">

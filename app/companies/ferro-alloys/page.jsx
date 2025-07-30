@@ -118,7 +118,7 @@ export default function FerroAlloysPage() {
         title=""
         subtitle="Powering global steel with premium Ferro Alloys fast, trusted, relentless, world-class delivery.
 "
-        backgroundImage="https://images.unsplash.com/photo-1547555706-54bcf05bbad1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8ZmVycm8lMjBhbGxveXxlbnwwfHwwfHx8MA%3D%3D"
+        backgroundImage="https://images.unsplash.com/photo-1726805868119-2520c00ab432?q=80&w=1190&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         sideText="IQ Ferro Alloys"
         navTitle="COMPANIES"
       />

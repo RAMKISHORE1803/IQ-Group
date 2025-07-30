@@ -203,7 +203,7 @@ export default function MineralsMetalsPage() {
         title=""
         subtitle="20+ years. 20 nations. IQ delivers raw materials with trust, precision, and innovation.
 "
-        backgroundImage="https://images.unsplash.com/photo-1605130284535-11dd9eedc58a?q=80&w=2070&auto=format&fit=crop"
+        backgroundImage="/Herobg/IQMinerals.jpg"
         sideText="IQ Minerals & Metals"
         navTitle="COMPANIES"
         sideTextHeight="280px"

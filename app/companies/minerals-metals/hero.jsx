@@ -26,7 +26,7 @@ if (typeof window !== 'undefined') {
 const HeroSection = ({ 
   title = "", 
   subtitle = "Powering industries with premium raw materials delivered with precision, integrity, and speed.",
-  backgroundImage = "https://images.unsplash.com/photo-1661103391619-46e3175b3152?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  backgroundImage = "/Herobg/IQMinerals.jpg",
   overlayColor = "rgba(0, 0, 0, 0.7)",
   sideText,
   navTitle = "",
@@ -168,11 +168,11 @@ const HeroSection = ({
         {/* Fixed Background Image */}
         <div 
           ref={backgroundRef}
-          className="fixed inset-0 w-full max-h-[90vh] md:h-screen bg-cover bg-center z-0"
+          className="fixed inset-0 w-full max-h-[90vh] md:h-screen bg-cover object-cover object-bottom  bg-center z-0"
           style={{ 
             backgroundImage: `url(${backgroundImage})`,
             backgroundAttachment: isMobile ? 'scroll' : 'fixed',
-            backgroundPosition: isMobile ? 'center center' : 'center center',
+            backgroundPosition: isMobile ? 'center center' : 'center bottom',
           }}
         >
           {/* Overlay for better text visibility */}

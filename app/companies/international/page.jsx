@@ -156,7 +156,7 @@ export default function InternationalPage() {
       <HeroSection
         title=""
         subtitle="We drive progress with bold strategy, global reach, trusted networks, and transformative chemical solutions."
-        backgroundImage="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+        backgroundImage="https://www.shutterstock.com/image-photo/scientist-adding-liquid-test-tube-600nw-2493601121.jpg"
         sideText="IQ International"
         navTitle="COMPANIES"
       />

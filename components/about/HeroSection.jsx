@@ -177,8 +177,8 @@ const HeroSection = ({
         >
           {/* Overlay for better text visibility */}
           <div 
-            className="absolute inset-0 w-full h-full" 
-            style={{ backgroundColor: overlayColor }}
+            className="absolute inset-0 w-full h-full bg-black/50" 
+            
           ></div>
         </div>
         

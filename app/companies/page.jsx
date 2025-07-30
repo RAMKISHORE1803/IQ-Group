@@ -19,7 +19,7 @@ const companies = [
     id: 'minerals-metals',
     name: 'IQ Minerals & Metals',
     description: 'Powering industries across 20+ nations with high-quality minerals and metals backed by two decades of global supply expertise.',
-    image: 'https://images.pexels.com/photos/1267338/pexels-photo-1267338.jpeg?auto=compress&cs=tinysrgb&w=800&h=1200',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/e/e9/SiliconCroda.jpg',
     link: '/companies/minerals-metals'
   },
   {

@@ -24,8 +24,8 @@ const offices = [
   },
   {
     id: "hongkong",
-    city: "Hong Kong",
-    country: "China",
+    
+    country: "Hong Kong",
     address: "1611B, 16/F, HO KING COMMERCIAL CENTRE, 2-16 FA YUEN, STREET, MONGKOK, KOWLOON, HONGKONG",
     phone: "+91-9987998037",
     email: "hongkong@iqgroup.in",
@@ -41,6 +41,16 @@ const offices = [
     email: "china@iqgroup.in",
     isHeadquarters: false,
     mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3067.3925952562997!2d112.5665359!3d37.8706503!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3611a2d2d2d2d2d2%3A0x3611a2d2d2d2d2d2!2s296%2C%20Beida%20Street%2C%20Xinghualing%20District%20030009%2C%20Taiyuan%2C%20China!5e0!3m2!1sen!2sin!4v1654612031797!5m2!1sen!2sin"
+  },
+  {
+    id: "bhubaneshwar",
+  
+    country: "UAE",
+    address: "FDRK 1714 , Compass Building, Al Shohada Road, AL Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates",
+    phone: "",
+    email: "",
+    isHeadquarters: false,
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d884.5113918116481!2d85.82611452445246!3d20.342135867210306!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a190912f38d3af3%3A0x1f494ea2535cd4a0!2sPatia%20Rd%2C%20Kanan%20Vihar%2C%20Chandrasekharpur%2C%20Bhubaneswar%2C%20Odisha%20751017!5e0!3m2!1spt-PT!2sin!4v1753870894941!5m2!1spt-PT!2sin"
   }
 ];
 
@@ -282,7 +292,7 @@ export default function OfficeLocationsSection() {
               </div>
               <div className="bg-[#324390]/10 p-6 rounded-lg transition-all duration-300 ease-in-out">
                 <h3 className="font-lato font-bold text-[#324390] mb-4 lg:text-[24px] transition-opacity duration-300 ease-in-out">
-                  {displayedMap?.city}, {displayedMap?.country}
+                  {displayedMap?.city}{displayedMap?.city ? "," : ""} {displayedMap?.country}
                   {displayedMap?.isHeadquarters && " - Global Headquarters"}
                 </h3>
                 <p className="text-gray-700 font-onest font-light lg:text-[18px] transition-opacity duration-300 ease-in-out">

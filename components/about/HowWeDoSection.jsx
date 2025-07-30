@@ -15,7 +15,7 @@ const processSteps = [
     id: "direct-sourcing",
     title: "Direct Sourcing",
     description: "Mine to market. Zero intermediaries. Quality guaranteed.",
-    image: "https://images.unsplash.com/photo-1518085250887-2f903c200fee?q=80&w=2070&auto=format&fit=crop",
+    image: "/images/mineToMarket.jpg",
   },
   {
     id: "quality-verification",
@@ -27,7 +27,7 @@ const processSteps = [
     id: "logistics",
     title: "Logistics",
     description: "Global networks. Real-time tracking. Flawless execution.",
-    image: "https://images.unsplash.com/photo-1494412651409-8963ce7935a7?q=80&w=2070&auto=format&fit=crop",
+    image: "https://videos.openai.com/vg-assets/assets%2Ftask_01k1dm60g0eqtbjctqfdy8r7t3%2F1753877914_img_1.webp?st=2025-07-30T10%3A40%3A12Z&se=2025-08-05T11%3A40%3A12Z&sks=b&skt=2025-07-30T10%3A40%3A12Z&ske=2025-08-05T11%3A40%3A12Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=aa5ddad1-c91a-4f0a-9aca-e20682cc8969&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=haTM4RJCKmmAE%2BcjdgxEVQrMeywn6d71sxzH2K4hsUg%3D&az=oaivgprodscus",
   },
   {
     id: "warehousing",
@@ -52,7 +52,7 @@ function ProcessStep({ title, description, image, index, inView }) {
     >
       <div className="grid md:grid-cols-2 gap-6 md:gap-12 items-center">
         {/* Image - Full height on left side */}
-        <div className="relative h-[250px] md:h-[500px] w-full overflow-hidden rounded-lg shadow-md">
+        <div className="relative h-[250px] md:h-[500px] w-full overflow-hidden  shadow-md">
           <Image
             src={image}
             alt={title}

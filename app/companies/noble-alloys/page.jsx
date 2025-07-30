@@ -118,7 +118,7 @@ export default function NobleAlloysPage() {
         title=""
       subtitle="Precision meets progress — noble alloys delivered globally for the industries shaping tomorrow. Trusted. Elite.
 "
-      backgroundImage="https://images.unsplash.com/photo-1533613220915-609f661a6fe1?q=80&w=2070&auto=format&fit=crop"
+      backgroundImage="https://i0.wp.com/www.vardhmanferroalloys.com/wp-content/uploads/2021/09/Niobium3.jpg?fit=1200%2C880&ssl=1"
         sideText="IQ Noble Alloys"
       navTitle="COMPANIES"
       />

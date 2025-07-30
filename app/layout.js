@@ -69,9 +69,9 @@ export default function RootLayout({ children }) {
         
         {/* Main content */}
         <main className="relative flex-1">
-          <QueryProvider>
+         
             {children}
-          </QueryProvider>
+         
         </main>
         
         {/* Clear separator for debugging */}

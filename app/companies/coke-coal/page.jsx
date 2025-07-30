@@ -139,7 +139,7 @@ export default function CokeCoalPage() {
         subtitle="20+ years in carbon. Seamless supply. Global scale. Expertise that powers every industry forward.
 
 "
-        backgroundImage="https://images.unsplash.com/photo-1589007716619-42656585dd85?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Y29hbHxlbnwwfHwwfHx8MA%3D%3D"
+        backgroundImage="https://images.unsplash.com/photo-1587919968590-fbc98cea6c9a?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         sideText="IQ Coke & Coal"
         navTitle="COMPANIES"
       />

@@ -254,7 +254,7 @@ export default function LandingPage() {
            
            <InsightsSection/>
 
-           <HomepageTweetMarquee />
+           {/* <HomepageTweetMarquee /> */}
            
            {/* <div className="h-[5vh]"></div> */}
           <QualityCertificationsSection />

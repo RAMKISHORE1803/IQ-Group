@@ -64,6 +64,17 @@ const MultiplexNavbar = () => {
     }
   };
 
+  // Handle hover for desktop view
+  const handleMouseEnter = (itemName) => {
+    // Only handle hover if it's desktop view (screen width check can be added if needed)
+    setActiveDropdown(itemName);
+  };
+
+  const handleMouseLeave = () => {
+    // Close dropdown when mouse leaves
+    setActiveDropdown(null);
+  };
+
   // Check if current page matches nav item
   const isActivePage = (itemPath) => {
     if (itemPath === '/') return currentPage === '/';
@@ -300,6 +311,8 @@ const MultiplexNavbar = () => {
                         ease: 'easeOut'
                       }}
                       className="border-b border-gray-800"
+                      onMouseEnter={() => handleMouseEnter(item.name)}
+                      onMouseLeave={handleMouseLeave}
                     >
                       <motion.div
                         whileHover={{ 

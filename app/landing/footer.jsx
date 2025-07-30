@@ -1,6 +1,6 @@
 'use client'
 import React from 'react';
-import { Linkedin, Instagram, Youtube, Facebook, MapPin, Mail, Phone, ArrowRight, Twitter, X } from 'lucide-react';
+import { Linkedin, Instagram, Youtube, Facebook, MapPin, Mail, Phone, ArrowRight, Twitter, X, ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -63,7 +63,7 @@ const IQGroupFooter = () => {
                   </div>
                   
                   {/* Privacy Policy Checkbox with Adjacent Button */}
-                  <div className="flex items-start justify-between">
+                  <div className="flex items-start justify-between gap-4">
                     <div className="flex items-start space-x-3">
                       <input 
                         type="checkbox" 
@@ -81,9 +81,7 @@ const IQGroupFooter = () => {
                       className="bg-[#4a90e2] hover:bg-[#3a7bc2] text-[#fbfbfb] p-3 flex-shrink-0"
                       aria-label="Submit form"
                     >
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                      </svg>
+                      <ArrowUpRight size={18} className="text-[#fbfbfb]" />
                     </button>
                   </div>
                 </div>
@@ -138,22 +136,22 @@ const IQGroupFooter = () => {
           {/* Logos Section */}
           <div className="flex flex-col lg:flex-row justify-between items-center mb-8 pt-4 border-t border-[#fbfbfb]/10">
             {/* Left Side Logos - Custom logos */}
-            <div className="flex flex-wrap items-center gap-6 mb-6 lg:mb-0">
+            <div className="flex flex-wrap items-center gap-6 mb-6 grayscale lg:mb-0">
               {/* Logo 1 */}
-              <div className="h-12 w-auto">
+              <div className="h-24 w-auto">
                 <Image 
-                  src="https://usacamerica.us/website-file/all-img/logo.png" 
+                  src="/logo/7.webp" 
                   alt="Logo 1" 
-                  width={80} 
-                  height={40}
+                  width={160} 
+                  height={80}
                   className="h-full w-auto object-contain"
                 />
             </div>
 
               {/* Logo 2 */}
-              <div className="h-12 w-auto">
+              <div className="h-24 w-auto">
                 <Image 
-                  src="https://www.buafoodsplc.com/wp-content/uploads/2025/03/AQSR-LOGO.png" 
+                  src="/logo/8.png" 
                   alt="Logo 2" 
                   width={80} 
                   height={40}
@@ -162,9 +160,9 @@ const IQGroupFooter = () => {
               </div>
               
               {/* Logo 3 */}
-              <div className="h-12 w-auto">
+              <div className="h-24 w-auto">
                 <Image 
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTy1InRQG-B1jykQOW-rL94ujs9LD2q07ryXQ&s" 
+                  src="/logo/9.png" 
                   alt="Logo 3" 
                   width={100} 
                   height={50}
@@ -186,7 +184,7 @@ const IQGroupFooter = () => {
             </div>
 
             {/* Right Side - Company Logo */}
-            <div className="w-40 h-auto lg:w-48">
+            <div className="w-40 h-auto lg:w-48 grayscale">
               <Image 
                 src="/logo/2.png" 
                 alt="IQ Group" 
