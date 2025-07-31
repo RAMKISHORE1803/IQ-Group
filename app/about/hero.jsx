@@ -84,7 +84,7 @@ const HeroSection = ({
       // Initial animations when page loads
       if (sideBarElement) {
         gsap.fromTo(sideBarElement, 
-          { y: 300, height: 350 }, 
+          { y: 300, height: isMobile ? 100 : 350 }, 
           { y: 0, duration: 1.2, delay: 0.4, ease: 'power2.out' }
         );
       }
@@ -163,7 +163,7 @@ const HeroSection = ({
     <>
       <section 
         ref={heroRef} 
-        className={`relative w-full md:h-screen lg:min-h-[95vh]  bg-white overflow-hidden`}
+        className={`relative w-full max-h-[100vh] md:h-screen lg:min-h-[95vh]  bg-white overflow-hidden`}
       >
         {/* Fixed Background Image */}
         <div 
@@ -183,7 +183,7 @@ const HeroSection = ({
         </div>
         
         {/* Mobile Side Bar and Text (Vertical) */}
-        <div className="absolute left-[25vw] top-0 h-full md:hidden flex items-center z-10">
+        <div className="absolute left-[25vw] top-0 min-h-[100vh] md:h-full md:hidden flex items-center z-10">
           {/* Vertical white bar for mobile */}
           <div 
             ref={mobileSideBarRef} 
@@ -193,7 +193,7 @@ const HeroSection = ({
           {/* Vertical text for mobile */}
           <div 
             ref={mobileSideTextRef}
-            className="absolute bottom-[30%] left-[8vw] transform -translate-x-1/2 origin-bottom-left rotate-[-90deg] text-white font-bold text-[16px]"
+            className="absolute bottom-[315px] left-[8vw] transform -translate-x-1/2 origin-bottom-left rotate-[-90deg] text-white font-bold text-[16px]"
           >
             <span className="uppercase whitespace-nowrap">{displaySideText}</span>
           </div>
@@ -209,7 +209,7 @@ const HeroSection = ({
           {/* Vertical text */}
           <div 
             ref={sideTextRef}
-            className={`absolute bottom-[250px] min-w-[120px] left-[-25vw] md:left-[7vw] transform -translate-x-1/2 origin-bottom-left rotate-[-90deg] text-white font-semibold lg:text-[20px]`}
+            className={`absolute bottom-[250px] min-w-[120px] left-[-23vw] md:left-[7vw] transform -translate-x-1/2 origin-bottom-left rotate-[-90deg] text-white font-semibold lg:text-[20px]`}
           >
             <span className="uppercase">{displaySideText}</span>
           </div>
@@ -218,9 +218,9 @@ const HeroSection = ({
         {/* Content positioned at bottom */}
         <div 
           ref={contentRef}
-          className={`hero-content relative  z-10 h-[100svh] md:h-screen lg:bottom-[100px] max-w-[60vw] left-[27vw] lg:max-w-7xl lg:left-[180px] flex flex-col justify-end ${showContactOptions ? 'pb-8 md:pb-4' : 'pb-12 md:pb-4'} px-4 sm:px-8 md:px-16  lg:pb-[0px] lg:px-24 xl:px-32`}
+          className={`hero-content relative  z-10 h-[100vh] bottom-[115px] md:h-screen lg:bottom-[100px] max-w-[60vw] left-[27vw] lg:max-w-7xl lg:left-[180px] flex flex-col justify-end ${showContactOptions ? 'pb-0 md:pb-4' : 'pb-0 md:pb-4'} px-4 sm:px-8 md:px-16  lg:pb-[0px] lg:px-24 xl:px-32`}
         >
-          <div className="max-w-5xl mb-8 md:mb-16 lg:mb-24">
+          <div className="max-w-5xl mb-0 md:mb-16 lg:mb-24">
             <h1 
               ref={titleRef}
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-lato text-white mb-4 md:mb-8 leading-tight uppercase"
@@ -232,7 +232,7 @@ const HeroSection = ({
                 ref={subtitleRef}
                 className="mt-4 md:mt-6 lg:mt-12"
               >
-                <h2 className="text-[22px] leading-[24px] md:leading-tight lg:leading-tight md:text-2xl lg:text-[45px]  lg:max-w-4xl font-bold font-lato text-white">
+                <h2 className="text-[28px] leading-[29px] max-w-[250px] md:leading-tight lg:leading-tight md:text-2xl lg:text-[45px]  lg:max-w-4xl font-bold font-lato text-white">
                   {subtitle}
                 </h2>
               </div>
