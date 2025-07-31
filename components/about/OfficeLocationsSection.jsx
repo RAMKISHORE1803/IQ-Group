@@ -44,7 +44,7 @@ const offices = [
   },
   {
     id: "bhubaneshwar",
-  
+    city: "Ras Al Khaimah",
     country: "UAE",
     address: "FDRK 1714 , Compass Building, Al Shohada Road, AL Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates",
     phone: "",
@@ -66,7 +66,7 @@ function AccordionItem({ id, city, country, address, phone, email, isHeadquarter
       >
         <div className="flex items-center">
           <span className="font-lato lg:text-[28px] font-bold text-[#324390]">
-            {city}, {country}
+            {city} {city ? "," : ""} {country}
             {isHeadquarters && (
               <span className="ml-3 bg-[#324390] text-white text-xs px-2 py-1 rounded-full">
                 Headquarters
@@ -99,17 +99,17 @@ function AccordionItem({ id, city, country, address, phone, email, isHeadquarter
               <p className="text-gray-700 font-onest">{address}</p>
             </div>
             
-            <div className="flex items-center">
+            {/* <div className="flex items-center">
               <Phone size={18} className="text-[#324390] mr-3 flex-shrink-0" />
               <a href={`tel:${phone}`} className="text-gray-700 font-onest hover:text-[#324390]">
                 {phone}
               </a>
-            </div>
+            </div> */}
             
             <div className="flex items-center">
               <Mail size={18} className="text-[#324390] mr-3 flex-shrink-0" />
-              <a href={`mailto:${email}`} className="text-gray-700 font-onest hover:text-[#324390]">
-                {email}
+              <a href={`mailto:info@iqgroup.in`} className="text-gray-700 font-onest hover:text-[#324390]">
+                info@iqgroup.in
               </a>
             </div>
             

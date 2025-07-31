@@ -124,8 +124,10 @@ const IQGroupFooter = () => {
                     296, Beida Street<br />
                     Xinghualing District<br />
                     030009, Taiyuan, China
+                    
                   </p>
                   <p className="text-[#fbfbfb] text-sm font-onest mt-2">
+                    {typeof window !== 'undefined' && window.innerWidth < 1486 && <br/>}
                     T: +91-2235112519
                   </p>
                 </div>

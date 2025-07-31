@@ -5,7 +5,7 @@ export const companies = [
     name: 'IQ International',
     category: 'Chemicals',
     description: 'Supplying high-quality chemicals and raw materials to industries worldwide.',
-    image: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+    image: 'https://www.shutterstock.com/image-photo/scientist-adding-liquid-test-tube-600nw-2493601121.jpg',
     commodities: ['Industrial Chemicals', 'Specialty Chemicals', 'Pharmaceutical Intermediates', 'Agricultural Chemicals']
   },
   {
@@ -41,7 +41,7 @@ export const companiesSecondSet = [
     name: 'IQ Noble Alloys',
     category: 'Noble Alloys',
     description: 'exclusive raw material distribution company dealing in noble alloys.',
-    image: 'https://www.iqgroup.in/image/banner/nobel.jpg',
+    image: '/images/NobleAlloy.jpg',
     commodities: ['Ferro Titanium', 'Ferro Niobium', 'Ferro Vanadium', 'Molybdenum']
   },
   

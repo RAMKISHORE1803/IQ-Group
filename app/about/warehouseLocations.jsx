@@ -83,7 +83,7 @@ function AccordionItem({ id, city, country, address, phone, email, isPrimary, is
       >
         <div className="flex items-center">
           <span className="font-lato lg:text-[28px] font-bold text-[#324390]">
-            {city}, {country}
+            {city} {city ? "," : ""} {country}
             {isPrimary && (
               <span className="ml-3 bg-[#324390] text-white text-xs px-2 py-1 rounded-full">
                 Primary Warehouse
@@ -116,26 +116,21 @@ function AccordionItem({ id, city, country, address, phone, email, isPrimary, is
               <p className="text-gray-700 font-onest">{address}</p>
             </div>
             
-            <div className="flex items-center">
+            {/* <div className="flex items-center">
               <Phone size={18} className="text-[#324390] mr-3 flex-shrink-0" />
               <a href={`tel:${phone}`} className="text-gray-700 font-onest hover:text-[#324390]">
                 {phone}
               </a>
-            </div>
+            </div> */}
             
-            {/* <div className="flex items-center">
+            <div className="flex items-center">
               <Mail size={18} className="text-[#324390] mr-3 flex-shrink-0" />
-              <a href={`mailto:${email}`} className="text-gray-700 font-onest hover:text-[#324390]">
-                {email}
+              <a href={`mailto:info@iqgroup.in`} className="text-gray-700 font-onest hover:text-[#324390]">
+                info@iqgroup.in
               </a>
             </div>
 
-            <div className="flex items-center">
-              <Warehouse size={18} className="text-[#324390] mr-3 flex-shrink-0" />
-              <span className="text-gray-700 font-onest">
-                <strong>Capacity:</strong> {capacity} | <strong>Specialization:</strong> {specialization}
-              </span>
-            </div> */}
+          
             
             {/* Map iframe for mobile view */}
             <div className="lg:hidden mt-4">

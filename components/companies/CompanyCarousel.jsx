@@ -60,7 +60,7 @@ function CompanyCard({ company, isCenter, position, scale, xOffset, yOffset, onC
     if (!category) return '/iqwebsitevideos/Ferro Alloy Video.mp4'; // Default if category is undefined
     
     const categoryMap = {
-      'Ferro Alloys': '/iqwebsitevideos/Ferro Alloy.mp4',
+      'Ferro Alloys': '/iqwebsitevideos/FerroAlloy.mp4',
       'Metals': '/iqwebsitevideos/Metals Video.mp4',
       'Minerals': '/iqwebsitevideos/Minerals Video.mp4',
       'Chemicals': '/iqwebsitevideos/Chemical & Metal.mp4',
