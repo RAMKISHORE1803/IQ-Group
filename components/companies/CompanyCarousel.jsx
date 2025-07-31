@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Pause, Play, ChevronLeft, ChevronRight } from 'lucide-react';
 import { allCompanies } from './CompanyData';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 // Company Card Component
 function CompanyCard({ company, isCenter, position, scale, xOffset, yOffset, onClick, onHoverStart, onHoverEnd }) {
@@ -226,10 +227,11 @@ function CompanyCard({ company, isCenter, position, scale, xOffset, yOffset, onC
                 </div>
               ))}
             </div>
-            
-            <button className="inline-flex cursor-pointer items-center text-[16px] font-medium text-[#324390] hover:translate-x-1 transition-all duration-300">
-              → Learn More
-            </button>
+            <Link href={company.link}>
+              <button className="inline-flex cursor-pointer items-center text-[16px] font-medium text-[#324390] hover:translate-x-1 transition-all duration-300">
+                → Learn More
+              </button>
+            </Link>
           </motion.div>
         </motion.div>
       </div>

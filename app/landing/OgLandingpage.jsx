@@ -16,6 +16,8 @@ import QualityCertificationsSection from './QualityCertificationsSection';
 import CustomerMarqueeSection from '../../components/customer-marquee-section';
 import Associates from '../../components/associates';
 import HomepageTweetMarquee from '../../components/HomepageTweetMarquee';
+
+
 import HeroSection from './hero-section';
 
 const debounce = (func, wait) => {
@@ -254,7 +256,7 @@ export default function LandingPage() {
            
            <InsightsSection/>
 
-           {/* <HomepageTweetMarquee /> */}
+           <HomepageTweetMarquee />
            
            {/* <div className="h-[5vh]"></div> */}
           <QualityCertificationsSection />
