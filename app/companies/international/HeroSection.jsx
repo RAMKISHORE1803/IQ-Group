@@ -201,7 +201,7 @@ const HeroSection = ({
         </div>
 
         {/* Navigation */}
-        <div className="h-[50vh]"></div>
+        <div className="h-[43vh]"></div>
        
 
         {/* Main Content - Using Exact Structure with Flexbox Centering */}
@@ -219,7 +219,7 @@ const HeroSection = ({
                   <div className=" flex justify-end ml-[10vw] lg:ml-[6vw]">
                     <div 
                       ref={sideTextRef}
-                      className="writing-mode-vertical    text-white text-xs sm:text-sm md:text-base font-medium tracking-widest"
+                      className="    text-white text-xs sm:text-sm md:text-base font-medium tracking-widest rotate-[-180deg]"
                     >
                       <h1 data-name={sideText}>
                         <span className='font-onest uppercase font-medium text-[20px]  lg:text-[20px]' style={{ writingMode: 'vertical-rl', textOrientation: 'sideways' }}>
@@ -278,9 +278,9 @@ const HeroSection = ({
         </div>
 
         {/* Empty spacer to allow content to scroll over the fixed background */}
-        {/* <div className="h-[50vh] w-full"></div> */}
+        
       </section>
-
+      <div className="h-[5vh] bg-white w-full"></div>
       {/* Bottom White Section */}
     
 
@@ -308,7 +308,7 @@ const HeroSection = ({
         }
         .writing-mode-vertical {
           writing-mode: vertical-rl;
-          text-orientation: sideways
+          text-orientation: mixed;
         }
       `}</style>
     </>
