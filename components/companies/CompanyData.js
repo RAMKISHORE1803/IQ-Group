@@ -45,7 +45,7 @@ export const companiesSecondSet = [
     name: 'IQ Noble Alloys',
     category: 'Noble Alloys',
     link:'/companies/noble-alloys',
-    description: 'exclusive raw material distribution company dealing in noble alloys.',
+    description: 'exclusive raw material distribution company dealing in Noble alloys.',
     image: '/images/NobleAlloy.jpg',
     commodities: ['Ferro Titanium', 'Ferro Niobium', 'Ferro Vanadium', 'Molybdenum']
   },
