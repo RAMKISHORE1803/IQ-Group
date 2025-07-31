@@ -149,7 +149,7 @@ const HeroSection = ({
     <>
       <section 
         ref={heroRef} 
-        className="relative w-full h-[93vh] md:h-screen lg:max-h-[83vh] bg-white overflow-hidden"
+        className="relative w-full h-[93vh] md:h-screen lg:max-h-[77vh] bg-white overflow-hidden"
       >
         {/* Fixed Background Image */}
         <div 
@@ -163,8 +163,8 @@ const HeroSection = ({
         >
           {/* Overlay for better text visibility */}
           <div 
-            className="absolute inset-0 w-full h-full" 
-            style={{ backgroundColor: overlayColor }}
+            className="absolute inset-0  bg-black/20 w-full h-full" 
+           
           ></div>
         </div>
 
@@ -200,7 +200,7 @@ const HeroSection = ({
         {/* Content positioned at bottom */}
         <div 
           ref={contentRef}
-          className="hero-content relative z-10 h-[100svh] md:h-screen lg:left-[180px] flex flex-col justify-end pb-12 md:pb-4 px-4 sm:px-8 md:px-16 lg:pb-[75px] lg:max-w-5xl lg:px-24 xl:px-32"
+          className="hero-content relative z-10 h-[100svh] md:h-screen lg:left-[180px] flex flex-col justify-end pb-12 md:pb-4 px-4 sm:px-8 md:px-16 lg:pb-[135px] lg:max-w-5xl lg:px-24 xl:px-32"
         >
           <div className="max-w-5xl mb-8 md:mb-16 lg:mb-24">
             <h1 

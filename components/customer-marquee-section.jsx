@@ -9,13 +9,13 @@ export default function CustomerMarqueeSection() {
     <section className="bg-[#fbfbfb] py-16 md:pt-4">
       <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-[1350px]">
         <motion.h2 
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true , amount:0.4 }}
+          viewport={{ once: false , amount:0.4 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-[28px] md:text-4xl font-bold font-lato text-center text-[#203663] mb-12"
         >
-          WE ARE TRUSTED BY
+          TRUSTED BY
         </motion.h2>
       
         {/* First marquee strip - 7 logos */}

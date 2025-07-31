@@ -83,9 +83,9 @@ export default function QualityInsightsPage() {
     {
       id: "registration",
       title: "Company Registration",
-      description: "IQ Groups and Metals Company is officially registered at ICEGATE (Indian Customs Electronic Gateway), allowing us to engage in international trade with proper customs clearance and compliance with import/export regulations. This registration is essential for our global operations and ensures smooth cross-border transactions.",
+      description: "IQ Groups and Metals Company is officially registered with Legal Entity Identifier (LEI), allowing us to engage in international financial transactions with proper regulatory compliance and global identification standards. This registration is essential for our worldwide operations and ensures transparent cross-border business dealings.",
       imageUrl: "https://www.iqgroup.in/image/certificate/3.jpg",
-      issuedBy: "ICEGATE (Indian Customs Electronic Gateway)",
+      issuedBy: "LEI (Legal Entity Identifier)",
       validUntil: "Permanent Registration"
     },
     {
@@ -171,21 +171,38 @@ export default function QualityInsightsPage() {
 
   // Handle certificate accordion hover
   const handleCertificateHover = (id) => {
-    if (activeCertificate === id) return; // Don't transition if hovering the same item
-    
     setIsImageTransitioning(true);
     // Set the new active certificate
     setActiveCertificate(id);
   };
   
+  // Handle certificate accordion mouse leave
+  const handleCertificateLeave = () => {
+    setIsImageTransitioning(true);
+    // Close the accordion by setting active to null
+    setActiveCertificate(null);
+  };
+  
   // Find the active certificate
   const activeCertificateData = certificates.find(cert => cert.id === activeCertificate) || certificates[0];
   
+  // We're using hover-based accordions, so no default active state
+  useEffect(() => {
+    // Initially all accordions are closed
+    setActiveCertificate(null);
+  }, []);
+
   // Handle image preloading and transitions
   useEffect(() => {
     // Set the initial displayed certificate
-    if (!displayedCertificate) {
+    if (!displayedCertificate && activeCertificateData) {
       setDisplayedCertificate(activeCertificateData);
+      return;
+    }
+
+    // If no active certificate (all closed), show the last active one but faded
+    if (!activeCertificateData) {
+      setIsImageTransitioning(true);
       return;
     }
 
@@ -194,7 +211,7 @@ export default function QualityInsightsPage() {
       const timer = setTimeout(() => {
         setDisplayedCertificate(activeCertificateData);
         setIsImageTransitioning(false);
-      }, 300); // Match this with the CSS transition duration
+      }, 200); // Faster transition for hover responsiveness
       
       return () => clearTimeout(timer);
     }
@@ -293,53 +310,81 @@ export default function QualityInsightsPage() {
   }, []);
 
   // Certificate Accordion Item Component
-  function CertificateAccordionItem({ id, title, description, issuedBy, validUntil, isActive, onMouseEnter }) {
+  function CertificateAccordionItem({ id, title, description, issuedBy, isActive, onMouseEnter, onMouseLeave }) {
     return (
-      <div 
-        className="border-b border-gray-200 last:border-b-0"
+      <div
+        className="border-b border-gray-200 last:border-b-0 hover:bg-gray-50 transition-colors duration-300"
         onMouseEnter={() => onMouseEnter(id)}
-        onClick={() => onMouseEnter(id)}
+        onMouseLeave={onMouseLeave}
+        // onClick removed to rely only on hover
       >
         <div
           className="w-full py-6 flex cursor-pointer items-center justify-between text-left focus:outline-none"
         >
           <div className="flex items-center">
-            <span className="font-lato lg:text-[28px] font-bold text-[#324390]">
+            <motion.span 
+              animate={{ 
+                color: isActive ? "#1a365d" : "#324390",
+                x: isActive ? 4 : 0 
+              }}
+              transition={{ duration: 0.3 }}
+              className="font-lato lg:text-[28px] font-bold"
+            >
               {title}
-            </span>
+            </motion.span>
           </div>
           <motion.div
-            animate={{ rotate: isActive ? 180 : 0 }}
-            transition={{ duration: 0.3 }}
+            animate={{ 
+              rotate: isActive ? 180 : 0,
+              scale: isActive ? 1.1 : 1
+            }}
+            transition={{ 
+              duration: 0.25, 
+              ease: [0.16, 1, 0.3, 1]
+            }}
             className="flex-shrink-0 ml-2"
           >
             <ChevronDown className="w-6 h-6 text-[#324390]" />
           </motion.div>
         </div>
-        <motion.div
-          initial={false}
-          animate={{
-            height: isActive ? "auto" : 0,
-            opacity: isActive ? 1 : 0,
-            marginBottom: isActive ? 24 : 0,
-          }}
-          transition={{ duration: 0.3 }}
-          className="overflow-hidden"
-        >
-          <div className="pb-4 text-[17px] font-onest text-gray-700 leading-relaxed">
+                  <motion.div
+            initial={false}
+            animate={{
+              height: isActive ? "auto" : 0,
+              opacity: isActive ? 1 : 0,
+              marginBottom: isActive ? 24 : 0,
+              backgroundColor: isActive ? "rgba(242, 245, 250, 0.5)" : "rgba(255, 255, 255, 0)",
+            }}
+            transition={{ 
+              duration: 0.3, 
+              ease: [0.04, 0.62, 0.23, 0.98],
+              height: { duration: 0.3 },
+              opacity: { duration: isActive ? 0.25 : 0.15 },
+              backgroundColor: { duration: 0.3 }
+            }}
+            className="overflow-hidden rounded-md"
+          >
+          <div className="pb-4 px-3 text-[17px] font-onest text-gray-700 leading-relaxed">
             {/* Mobile Image - Only show on mobile when accordion is active */}
             <div className="lg:hidden mb-6">
               <div className="aspect-w-16 aspect-h-9 overflow-hidden rounded-lg relative h-[300px] sm:h-[400px]">
-                <Image
-                  src={certificates.find(cert => cert.id === id)?.imageUrl || ""}
-                  alt={`${title} Certificate`}
-                  fill
-                  className="object-contain"
-                  priority={isActive}
-                />
+                <motion.div 
+                  initial={{ scale: 0.95, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  className="w-full h-full"
+                >
+                  <Image
+                    src={certificates.find(cert => cert.id === id)?.imageUrl || ""}
+                    alt={`${title} Certificate`}
+                    fill
+                    className="object-contain"
+                    priority={isActive}
+                  />
+                </motion.div>
               </div>
             </div>
-            
+           
             <div className="space-y-3">
               <div className="flex items-start">
                 <svg xmlns="http://www.w3.org/2000/svg" className="text-[#324390] mt-1 mr-3 flex-shrink-0 h-[18px] w-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -347,20 +392,20 @@ export default function QualityInsightsPage() {
                 </svg>
                 <p className="text-gray-700 font-onest">{description}</p>
               </div>
-              
+             
               <div className="flex hidden md:flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" className="text-[#324390] mr-3 flex-shrink-0 h-[18px] w-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                 </svg>
                 <p className="text-gray-700 font-onest">Issued By: <span className="hover:text-[#324390]">{issuedBy}</span></p>
               </div>
-              
-              <div className="flex hidden md:flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="text-[#324390] mr-3 flex-shrink-0 h-[18px] w-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                <p className="text-gray-700 font-onest">Valid Until: <span className="hover:text-[#324390]">{validUntil}</span></p>
-              </div>
+             
+              {/* <div className="flex hidden md:flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="text-[#324390] mr-3 flex-shrink-0 h-[18px] w-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  <p className="text-gray-700 font-onest">Valid Until: <span className="hover:text-[#324390]">{validUntil}</span></p>
+                </div> */}
             </div>
           </div>
         </motion.div>
@@ -414,9 +459,18 @@ export default function QualityInsightsPage() {
                 <div ref={certificateLeftColRef} className="hidden lg:block lg:sticky lg:top-24 lg:self-start">
                   <div className="aspect-w-16 aspect-h-9 mb-8 overflow-hidden rounded-lg relative h-[580px]">
                     {displayedCertificate && (
-                      <div 
+                      <motion.div 
                         key={displayedCertificate.id}
-                        className={`relative w-full h-full transition-opacity duration-300 ease-in-out ${isImageTransitioning ? 'opacity-0' : 'opacity-100'}`}
+                        initial={{ opacity: 0, scale: 0.98 }}
+                        animate={{ 
+                          opacity: isImageTransitioning ? 0 : 1,
+                          scale: isImageTransitioning ? 0.98 : 1
+                        }}
+                        transition={{ 
+                          duration: 0.4,
+                          ease: "easeOut"
+                        }}
+                        className="relative w-full h-full"
                       >
                         <Image
                           src={displayedCertificate.imageUrl}
@@ -426,7 +480,7 @@ export default function QualityInsightsPage() {
                           priority
                           onLoad={() => setIsImageTransitioning(false)}
                         />
-                      </div>
+                      </motion.div>
                     )}
                   </div>
                 </div>
@@ -440,9 +494,10 @@ export default function QualityInsightsPage() {
                       title={certificate.title}
                       description={certificate.description}
                       issuedBy={certificate.issuedBy}
-                      validUntil={certificate.validUntil}
+                      // validUntil={certificate.validUntil}
                       isActive={activeCertificate === certificate.id}
                       onMouseEnter={handleCertificateHover}
+                      onMouseLeave={handleCertificateLeave}
                     />
                   ))}
                 </div>

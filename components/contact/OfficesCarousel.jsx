@@ -19,7 +19,7 @@ const offices = [
   {
     id: 2,
     city: "Hong Kong",
-    country: "China",
+    country: "",
     address: "1611B, 16/F, HO KING COMMERCIAL CENTRE, 2-16 FA YUEN, STREET, MONGKOK, KOWLOON, HONGKONG",
     phone: "+91-9987998037",
     email: "hongkong@iqgroup.in",
@@ -38,34 +38,34 @@ const offices = [
   },
   {
     id: 4,
-    city: "Visakhapatnam",
-    country: "India",
-    address: "5th Floor, Door No. 9-14-1, Suite No. 504, Kotu Empire, VIP Road, Siripuram, Visakhapatnam, Andhra Pradesh - 530006",
+    city: "Ras Al Khaimah",
+    country: "UAE",
+    address: "FDRK 1714 , Compass Building, Al Shohada Road ,AL Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates",
     phone: "+91-2235112520",
-    email: "vizag@iqgroup.in",
+    email: "uae@iqgroup.in",
     isHeadquarters: false,
-    image: "https://images.unsplash.com/photo-1677225165703-0db75739500a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjJ8fHZpc2FraGFwYXRuYW18ZW58MHx8MHx8fDA%3D"
+    image: "https://onhisowntrip.com/wp-content/uploads/2024/11/UAE-1024x683.jpg"
   },
-  {
-    id: 5,
-    city: "Chennai",
-    country: "India",
-    address: "NO.1/1A, UR NAGAR, ANNA NAGAR WEST EXTN, Chennai, Tamil Nadu, 600050",
-    phone: "+91-9987998036",
-    email: "chennai@iqgroup.in",
-    isHeadquarters: false,
-    image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?q=80&w=2070&auto=format&fit=crop"
-  },
-  {
-    id: 6,
-    city: "Kolkata",
-    country: "India",
-    address: "2nd floor, 89- Bonfield Lane, Kolkata - 700001",
-    phone: "+91-9987998037",
-    email: "kolkata@iqgroup.in",
-    isHeadquarters: false,
-    image: "https://images.unsplash.com/photo-1536421469767-80559bb6f5e1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aG93cmFoJTIwYnJpZGdlfGVufDB8fDB8fHww"
-  }
+  // {
+  //   id: 5,
+  //   city: "Chennai",
+  //   country: "India",
+  //   address: "NO.1/1A, UR NAGAR, ANNA NAGAR WEST EXTN, Chennai, Tamil Nadu, 600050",
+  //   phone: "+91-9987998036",
+  //   email: "chennai@iqgroup.in",
+  //   isHeadquarters: false,
+  //   image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?q=80&w=2070&auto=format&fit=crop"
+  // },
+  // {
+  //   id: 6,
+  //   city: "Kolkata",
+  //   country: "India",
+  //   address: "2nd floor, 89- Bonfield Lane, Kolkata - 700001",
+  //   phone: "+91-9987998037",
+  //   email: "kolkata@iqgroup.in",
+  //   isHeadquarters: false,
+  //   image: "https://images.unsplash.com/photo-1536421469767-80559bb6f5e1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aG93cmFoJTIwYnJpZGdlfGVufDB8fDB8fHww"
+  // }
 ];
 
 const OfficesCarousel = () => {
@@ -76,7 +76,7 @@ const OfficesCarousel = () => {
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
   const autoPlayRef = useRef(null);
-  
+  const [isExpanded, setIsExpanded] = useState(false);  
   // Card width in pixels
   const cardWidth = 320;
   const cardGap = 8; // 4px on each side
@@ -209,6 +209,9 @@ const OfficesCarousel = () => {
       
       {/* Floating Glassy overlay - small at bottom, full card on hover */}
       <motion.div
+        onClick={() => {
+          setIsExpanded(!isExpanded);
+        }}
         className="absolute bg-white/70 bg-opacity-40 backdrop-blur-md rounded-lg overflow-hidden"
         initial={{ 
           bottom: "16px",
@@ -217,6 +220,18 @@ const OfficesCarousel = () => {
           top: "auto",
           height: "120px"
         }}
+
+        animate={isExpanded ? { 
+          top: "0px",
+          bottom: "0px",
+          left: "0px",
+          right: "0px",
+          height: "100%",
+          borderRadius: "0px",
+          zIndex: 50,
+          opacity:1
+        } : {}}
+       
         whileHover={isMobile ? {} : { 
           top: "0px",
           bottom: "0px",
@@ -234,7 +249,7 @@ const OfficesCarousel = () => {
         }}
       >
         {/* Default content - always visible */}
-        <div className="relative z-10 p-4">
+        <div className="relative z-10 p-4 ">
           <p className="text-xs text-gray-600 font-medium mb-1">
             {office.isHeadquarters ? 'HEADQUARTERS' : 'OFFICE'}
           </p>
@@ -245,9 +260,9 @@ const OfficesCarousel = () => {
         
         {/* Expanded content - only visible on hover for desktop */}
         <div
-          className="px-4 pb-4 opacity-0 group-hover:opacity-100"
+          className="px-4 pb-4 opacity-0 w-full h-full group-hover:opacity-100"
         >
-          <p className="text-gray-800 text-[16px] font-onest font-light leading-relaxed mb-4">
+          <p className="text-gray-800 text-[16px] w-full h-full font-onest font-light leading-relaxed mb-4">
             {office.address}<br/>
             <span className="block mt-2">Phone: {office.phone}</span>
             <span className="block">Email: {office.email}</span>
@@ -268,20 +283,27 @@ const OfficesCarousel = () => {
   return (
     <div className="w-full max-w-7xl md:max-w-[1300px] mx-auto px-4 py-16 bg-[#ffffff]">
       {/* Section Title */}
-      <h2 className="text-4xl md:text-5xl font-lato uppercase font-bold text-gray-800 mb-12">
+      <motion.h2 
+        className="text-4xl md:text-5xl font-lato uppercase font-bold text-gray-800 mb-12"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount:0.4 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+      >
         Our Global Offices
-      </h2>
+      </motion.h2>
       
       {/* Desktop Carousel */}
       <div className="hidden md:block relative">
         <div className="overflow-hidden">
-          <div 
-            className={`flex transition-all ${isTransitioning ? 'duration-500' : 'duration-0'} ease-out`}
-            style={{ 
-              transform: `translateX(-${currentIndex * totalCardWidth}px)`,
-            }}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
+          <motion.div 
+            className={`flex `}
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, amount:0.4 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            
+            
           >
             {offices.map((office) => (
               <div 
@@ -292,7 +314,7 @@ const OfficesCarousel = () => {
                 <CardComponent office={office} />
               </div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
 
@@ -354,7 +376,7 @@ const OfficesCarousel = () => {
       </div>
       
       {/* Navigation buttons */}
-      <div className="flex justify-end mt-8 space-x-4">
+      {/* <div className="flex justify-end mt-8 space-x-4">
         <motion.button
           className="bg-white text-[#1E3157] border cursor-pointer border-gray-200 w-10 h-10 rounded-full flex items-center justify-center shadow-sm"
           whileHover={{ scale: 1.05 }}
@@ -371,7 +393,7 @@ const OfficesCarousel = () => {
         >
           <ChevronRight size={20} />
         </motion.button>
-      </div>
+      </div> */}
     </div>
   );
 };
