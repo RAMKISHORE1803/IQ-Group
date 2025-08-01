@@ -97,7 +97,7 @@ const areasOfInterest = [
   {
     title: "Financial Services",
     description: "FinTech innovations, payment solutions, and financial inclusion technologies.",
-    image: "/angel/finance-services.jpg"
+    image: "/finance-services.jpg"
   },
   {
     title: "Gaming",
@@ -107,7 +107,7 @@ const areasOfInterest = [
   {
     title: "Healthcare",
     description: "HealthTech innovations, medical devices, and healthcare delivery platforms.",
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+    image: "/healthcare.jpg"
   },
   {
     title: "Hospitality",
