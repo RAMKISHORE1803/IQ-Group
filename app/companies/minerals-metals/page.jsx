@@ -51,82 +51,102 @@ const products = {
   minerals: [
     {
       title: "Magnesite",
+      image: "/magnesium.webp",
       description: "High-grade magnesium carbonate mineral used in refractory materials, agriculture, and construction."
     },
     {
       title: "Chromite",
+      image: "/chromite.jpg",
       description: "Primary ore of chromium, essential for stainless steel production and various metallurgical applications."
     },
     {
       title: "Fluorspar",
+      image: "/fluorospar.webp",
       description: "Mineral composed of calcium fluoride, used in aluminum production, steel making, and chemical manufacturing."
     },
     {
       title: "Quick Lime",
+      image: "/quicklime.webp",
       description: "Calcium oxide produced by heating limestone, used in steel making, water treatment, and construction."
     },
     {
       title: "Silica Sand",
+      image: "/silicasand.avif",
       description: "High-purity quartz sand used in glass manufacturing, foundry molds, and construction materials."
     },
     {
       title: "Olivine",
+      image: "/olivine.jpg",
       description: "Magnesium iron silicate mineral used in refractory applications, foundry sand, and as a slag conditioner."
     },
     {
       title: "Bentonite",
+      image: "/bentonite.webp",
       description: "Clay mineral with excellent colloidal properties, used in drilling fluids, foundry sand, and environmental applications."
     },
     {
       title: "Kaolin",
+      image: "/kaolin.jpg",
       description: "Fine white clay used in paper production, ceramics, paint, and various industrial applications."
     },
     {
       title: "Calcined Lime",
+      image:"/calcinedlime.jpg",
       description: "Processed lime product used in steel making, flue gas treatment, and water purification."
     },
     {
       title: "Feldspar",
+      image: "/feldspar.jpeg",
       description: "Aluminosilicate mineral used in ceramics, glass production, and as a filler in paints and plastics."
     },
     {
       title: "Bauxite",
+      image: "/bauxite.jpg",
       description: "Primary ore of aluminum, essential for aluminum production and various industrial applications."
     },
     {
       title: "China Clay",
+      image: "/chinaclay.jpg",
       description: "High-quality kaolin clay used in ceramics, paper coating, and as a filler in various industries."
     },
     {
       title: "Lime Stone",
+      image: "/limestone.jpg",
       description: "Sedimentary rock primarily composed of calcium carbonate, used in construction, agriculture, and industrial processes."
     },
     {
       title: "Dolomite",
+      image: "/dolomitr.jpg",
       description: "Calcium magnesium carbonate mineral used in construction, agriculture, and as a flux in metal processing."
     },
     {
       title: "Fluxes",
+      image: "/fluxes.jpg",
       description: "Materials used to promote fusion in metallurgical processes, particularly in steel and iron production."
     },
     {
       title: "Calcium Carbonate",
+      image: "/calciumcarbonate.jpeg",
       description: "Versatile mineral used in paper, plastics, paints, and pharmaceutical industries."
     },
     {
       title: "Hydrated Lime",
+      image: "/hydratedlime.webp",
       description: "Calcium hydroxide used in water treatment, construction, and environmental applications."
     },
     {
       title: "Resin And Foundry Sand",
+      image: "/resinandsand.jpg",
       description: "Specially treated sand used in metal casting processes to create precise molds."
     },
     {
       title: "Olivine Sand",
+      image: "/olivinesand.jpg",
       description: "High-temperature resistant sand used in foundry applications and refractory materials."
     },
     {
       title: "Chromite Sand",
+      image: "/chromitesand.jpg",
       description: "Heat-resistant sand used in foundry applications, particularly for steel casting."
     },
     {

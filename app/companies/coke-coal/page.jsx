@@ -54,14 +54,17 @@ const capabilityCards = [
 const products = [
   {
     title: "Carbon Raiser",
+    image: "/carbonraiser.webp",
     description: "High-carbon additive used to increase carbon content in molten metal during steel and iron production."
   },
   {
     title: "Graphite",
+    image: "https://media.licdn.com/dms/image/v2/C5612AQH3zjl4v37pWQ/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1617000859630?e=2147483647&v=beta&t=ktiktQuprF1agv8GySh02nt3oTAIR68mPID0kgsSOY4",
     description: "Crystalline form of carbon with excellent electrical conductivity, heat resistance, and lubricating properties."
   },
   {
     title: "Metallurgical Coke",
+    image: "https://5.imimg.com/data5/KT/KC/TQ/SELLER-1855554/metallurgical-coke-500x500.jpg",
     description: "High-carbon fuel used primarily in iron and steel industry blast furnaces, with low ash content and high mechanical strength."
   },
   {
@@ -70,6 +73,7 @@ const products = [
   },
   {
     title: "Calcined Petroleum Coke",
+    image: "https://media.licdn.com/dms/image/v2/D5612AQGCNMIymY_WBw/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1699415502953?e=2147483647&v=beta&t=k-cyfX9oG0fDUHqfDHlFdMtdrwMVM6-PpOabyYcHPCg",
     description: "Petroleum coke processed at high temperatures to remove volatile matter, used in aluminum and steel industries."
   },
   {
