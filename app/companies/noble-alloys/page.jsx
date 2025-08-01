@@ -54,34 +54,42 @@ const capabilityCards = [
 const products = [
   {
     title: "Ferro Titanium",
+    image: "/ferrotitanium.webp",
     description: "High-quality ferro titanium alloy used as a deoxidizer and grain refiner in steel production, improving mechanical properties and corrosion resistance."
   },
   {
     title: "Ferro Niobium",
+    image: "/ferroniobium.webp",
     description: "Premium ferro niobium alloy that enhances strength and toughness in structural steels, particularly in pipeline steels and automotive components."
   },
   {
     title: "Ferro Boron",
+    image: "/ferroboron.webp",
     description: "Specialized ferro boron alloy used to improve hardenability in steel and as a microalloying element in high-strength steels."
   },
   {
     title: "Ferro Vanadium",
+    image: "/ferrovanadium.webp",
     description: "High-purity ferro vanadium alloy that adds strength, wear resistance, and high-temperature stability to steel, commonly used in tool steels and HSLA steels."
   },
   {
     title: "Ferro Tungsten",
+    image: "/ferrotungsten.webp",
     description: "Premium ferro tungsten alloy that provides exceptional hardness, wear resistance, and high-temperature strength in tool steels and high-speed steels."
   },
   {
     title: "Moly Oxide",
+    image: "/molyoxide.webp",
     description: "High-grade molybdenum oxide used in the production of molybdenum metal, ferro molybdenum, and various chemical applications."
   },
   {
     title: "Molybdenum",
+    image: "/molybdenum.webp",
     description: "Pure molybdenum metal with excellent high-temperature strength and corrosion resistance, used in aerospace, electronics, and specialty steel applications."
   },
   {
     title: "Ferro Molybdenum",
+    image: "/ferromolybdenum.webp",
     description: "Premium ferro molybdenum alloy that enhances strength, hardenability, and corrosion resistance in steel, particularly for high-temperature applications."
   }
 ];
@@ -118,7 +126,7 @@ export default function NobleAlloysPage() {
         title=""
       subtitle="Precision meets progress — noble alloys delivered globally for the industries shaping tomorrow. Trusted. Elite.
 "
-      backgroundImage="https://i0.wp.com/www.vardhmanferroalloys.com/wp-content/uploads/2021/09/Niobium3.jpg?fit=1200%2C880&ssl=1"
+      backgroundImage="/noblealloysbgq.webp"
         sideText="IQ Noble Alloys"
       navTitle="COMPANIES"
       />

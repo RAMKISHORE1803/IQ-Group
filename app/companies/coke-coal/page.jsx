@@ -64,11 +64,12 @@ const products = [
   },
   {
     title: "Metallurgical Coke",
-    image: "https://5.imimg.com/data5/KT/KC/TQ/SELLER-1855554/metallurgical-coke-500x500.jpg",
+    image: "/metallurgicalcoke.webp",
     description: "High-carbon fuel used primarily in iron and steel industry blast furnaces, with low ash content and high mechanical strength."
   },
   {
     title: "Foundry Coke",
+    image: "/foundrycoke.webp",
     description: "Specialized coke with controlled size and properties for foundry applications in metal casting processes."
   },
   {
@@ -78,38 +79,47 @@ const products = [
   },
   {
     title: "Graphitized Petroleum Coke",
+    image: "/graphitizedpetroleumcoke.webp",
     description: "Petroleum coke that has undergone graphitization, used in steel and aluminum production for carbon addition."
   },
   {
     title: "Amorphous Graphite",
+    image: "/amorphousgraphite.webp",
     description: "Natural graphite with microcrystalline structure, used in refractory applications, batteries, and lubricants."
   },
   {
     title: "Natural Flake Graphite",
+    image: "/naturalflakegraphite.webp",
     description: "High-purity graphite with flake structure, used in batteries, lubricants, and refractory applications."
   },
   {
-    title: "Coke Breeze",
+    title: "Coke Breeze", 
+    image: "/cokebreeze.webp",
     description: "Fine coke particles used in sintering processes, fuel applications, and as a carbon source in various industries."
   },
   {
     title: "LAM Coke",
+    image: "/lamcoke.webp",
     description: "Low ash metallurgical coke used in specialized steel production processes requiring minimal impurities."
   },
   {
     title: "Steam Coal",
+    image: "/steamcoal.webp",
     description: "Thermal coal grades optimized for power generation, cement production, and industrial applications requiring consistent heat value."
   },
   {
     title: "Coking Coal",
+    image: "/cokingcoal.webp",
     description: "High-quality coal used to produce coke for steel making, with specific chemical and physical properties."
   },
   {
     title: "Calcined Anthracite Coal",
+    image: "/calcinedanthracitecoal.webp",
     description: "Anthracite coal processed at high temperatures to increase carbon content and remove volatiles, used in steel and aluminum industries."
   },
   {
     title: "Nut Coke",
+    image: "/nutcoke.webp",
     description: "Sized coke product used in foundries, sugar processing, and other specialized industrial applications."
   }
 ];

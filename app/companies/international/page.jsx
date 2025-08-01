@@ -8,6 +8,7 @@ import SectionNavigation from '@/components/companies/SectionNavigation';
 import ProductRangeSection from '@/components/companies/ProductRangeSection';
 import HeroSection from './HeroSection';
 import QualityStandardsSection from '@/components/companies/QualityStandardsSection';
+import ContactSection from '@/components/companies/ContactSection';
 
 // Value cards data for "How We Deliver Value" section
 const valueCards = [
@@ -53,78 +54,97 @@ const capabilityCards = [
 const products = [
   {
     title: "Hydrofluoric Acid 70% (HF)",
+    image: "/hydroflouricacid.webp",
     description: "High-purity hydrofluoric acid used in glass etching, metal cleaning, and as a catalyst in petrochemical processes."
   },
   {
     title: "Glacial acetic acid",
+    image: "/glacialaceticacid.webp",
     description: "Concentrated form of acetic acid used in chemical synthesis, textile processing, and food preservation."
   },
   {
     title: "Phthalic anhydride",
+    image: "/phtalicanhydride.webp",
     description: "Organic compound used in the production of plasticizers, resins, and dyes."
   },
   {
-    title: "Caustic Soda",
+    title: "Caustic Soda",  
+    image: "/causticsoda.jpg",
     description: "Sodium hydroxide used in various industrial applications including paper production, textile processing, and chemical manufacturing."
   },
   {
     title: "Maleic Anhydride",
+    image: "/maleicanhydride.jpg",
     description: "Organic compound used in the production of unsaturated polyester resins, agricultural chemicals, and pharmaceuticals."
   },
   {
     title: "Aluminium Fluoride (HBD & LBD)",
+    image: "/aluminiumfluoride.webp",
     description: "Used primarily in aluminum production as a flux to lower the melting point of electrolytes."
   },
   {
     title: "Titanium Di Oxide",
+    image: "/titaniumdioxide.webp",
     description: "White pigment used in paints, coatings, plastics, paper, inks, foods, and cosmetics."
   },
   {
     title: "Edta Di Oxide",
+    image: "/edtadioxide.jpg",
     description: "Chelating agent used in various industrial applications including cleaning solutions and water treatment."
   },
   {
     title: "Chromium Oxide",
+    image: "/chromiumoxide.webp",
     description: "Used in pigments, ceramics, and as a polishing compound."
   },
   {
     title: "Caustic Soda Flakes/Lye",
+    image: "/causticsodaflakes.webp",
     description: "Solid form of sodium hydroxide used in soap making, food processing, and water treatment."
   },
   {
     title: "HYDROGEN PEROXIDE",
+    image: "/hydrogenperoxide.webp",
     description: "Strong oxidizing agent used for bleaching, disinfection, and as a propellant."
   },
   {
     title: "Electrolytic Manganese Dioxide (EMD)",
+    image: "/electrolyticmanganesedioxide.webp",
     description: "Used primarily in the production of batteries, especially alkaline and lithium-ion batteries."
   },
   {
     title: "Carbon Black",
+    image: "/carbonblack.jpg",
     description: "Fine carbon powder used as a reinforcing filler in tires and other rubber products, and as a pigment."
   },
   {
     title: "Cryolite",
+    image: "/cryolite.webp",
     description: "Used as a solvent for alumina in the Hall–Héroult process of aluminum production."
   },
   {
     title: "Isopropyl Alchol (IP)",
+    image: "/isopropylealchol.webp",
     description: "Commonly used solvent and cleaning fluid in industrial and consumer applications."
   },
   {
     title: "Potassium Sorbate",
+    image: "/pottasiumsorbate.webp",
     description: "Food preservative used to inhibit molds and yeasts in foods, wines, and personal care products."
   },
   {
     title: "Sorbic Acid",
+    image: "/sorbicacid.webp",
     description: "Preservative used to prevent the growth of mold, yeast, and fungi in foods."
   },
   {
     title: "Hy-Flo Super Cel",
+    image: "/hyflosupercel.webp",
     description: "Filter aid used in the clarification of liquids in food, beverage, and pharmaceutical industries."
   },
   {
     title: "Concentrated Sulphuric Acid",
+    image: "/concentratedsulphuricacid.webp",
     description: "Strong mineral acid used in chemical synthesis, mineral processing, and petroleum refining."
   }
 ];
@@ -156,7 +176,7 @@ export default function InternationalPage() {
       <HeroSection
         title=""
         subtitle="We drive progress with bold strategy, global reach, trusted networks, and transformative chemical solutions."
-        backgroundImage="https://www.shutterstock.com/image-photo/scientist-adding-liquid-test-tube-600nw-2493601121.jpg"
+        backgroundImage="/internationbg2.webp"
         sideText="IQ International"
         navTitle="COMPANIES"
       />
@@ -210,12 +230,8 @@ export default function InternationalPage() {
         />
         
         {/* Contact CTA */}
-        <ContentSection>
-          <ContactCTA 
-            title="Ready to discuss your chemical supply requirements?" 
-            description="Our global team is available to help you find the right solution for your business."
-          />
-        </ContentSection>
+        <ContactSection/>
+        
       </div>
     </div>
   );
