@@ -55,22 +55,22 @@ const products = [
   {
     title: "Ferro Silicon",
     description: "High-purity ferro silicon with silicon content ranging from 45% to 75%, used as a deoxidizer and alloying element in steel production.",
-    image: "https://images.unsplash.com/photo-1605557202138-077ef7c4fa7c?q=80&w=2000&auto=format&fit=crop"
+    image: "/ferrosilicon.jpg"
   },
   {
     title: "Ferro Silico Manganese",
     description: "Combined silicon and manganese alloy used for deoxidation and as an alloying element in steel production.",
-    image: "https://images.unsplash.com/photo-1533613220915-609f661a6fe1?q=80&w=2000&auto=format&fit=crop"
+    image: "/ferrosilicomanganese.webp"
   },
   {
     title: "Ferro Chrome",
     description: "Primary alloy (50–70 % Cr) for stainless and alloy steel—enhances corrosion resistance, hardness, and wear resistance, with carbon grades tailored to steel grade needs .",
-    image: "https://images.unsplash.com/photo-1535813547-99c456a41d4a?q=80&w=2000&auto=format&fit=crop"
+    image: "/ferrochrome.jpg"
   },
   {
     title: "Ferro Sulphur",
     description: "Supplies sulfur in controlled amounts to improve machinability, hardenability, and high-temperature strength via manganese sulfide formation.",
-    image: "https://images.unsplash.com/photo-1512618831669-521d4b375f5d?q=80&w=2000&auto=format&fit=crop"
+    image: "/ferrosulphur.webp"
   },
   {
     title: "Ferro Phosphorus",
@@ -79,14 +79,17 @@ const products = [
   },
   {
     title: "Inoculants",
+    image: "/incoulant.webp",
     description: "Silicon–iron inoculants added before casting promote finer graphite structure, improving grit formation, mechanical properties, and reducing defect"
   },
   {
     title: "Nodulants",
+    image: "/nodulant.webp",
     description: "Magnesium-based spheroidizers (e.g. FeSiMg) create rounded graphite nodules in ductile iron, boosting toughness, ductility, and impact resistance."
   },
   {
     title: "Low Carbon Ferro Chrome",
+    image: "/lowcarbonferrochrome.webp",
     description: "Low‑carbon (< 0.1–0.5 % C) ferrochrome (60–70 % Cr) used in high-grade stainless and specialty steels to enhance corrosion resistance without carbon contamination ."
   }
 ];
@@ -119,7 +122,7 @@ export default function FerroAlloysPage() {
         title=""
         subtitle="Powering global steel with premium Ferro Alloys fast, trusted, relentless, world-class delivery.
 "
-        backgroundImage="https://images.unsplash.com/photo-1726805868119-2520c00ab432?q=80&w=1190&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        backgroundImage="/ferroalloysbg.jpg"
         sideText="IQ Ferro Alloys"
         navTitle="COMPANIES"
       />

@@ -136,12 +136,12 @@ const products = {
     },
     {
       title: "Resin And Foundry Sand",
-      image: "/resinandsand.jpg",
+      image: "/foundrysand.webp",
       description: "Specially treated sand used in metal casting processes to create precise molds."
     },
     {
       title: "Olivine Sand",
-      image: "/olivinesand.jpg",
+      image: "/olivinesand.webp",
       description: "High-temperature resistant sand used in foundry applications and refractory materials."
     },
     {
@@ -157,34 +157,42 @@ const products = {
   metals: [
     {
       title: "Silicon Metal",
+      image: "/siliconmetal.jpg",
       description: "High-purity silicon used in aluminum alloys, silicones, and semiconductor production."
     },
     {
       title: "Magnesium Metal Ingot",
+      image: "/magnesiumingot.jpg",
       description: "Lightweight structural metal used in aerospace, automotive, and electronics industries."
     },
     {
       title: "Manganese Metal",
+      image: "/manganesemetal.jpg",
       description: "Essential alloying element used in steel production to improve hardness and wear resistance."
     },
     {
       title: "Calcium Metal",
+      image: "/calcium.jpg",
       description: "Reactive metal used as a reducing agent and alloying element in various metallurgical processes."
     },
     {
       title: "Iron Powder",
+      image: "/ironpowder.jpg",
       description: "Fine iron particles used in powder metallurgy, magnetic applications, and chemical processes."
     },
     {
       title: "Calcium Silicide",
+      image: "/calciumsilicide.webp",
       description: "Alloy used as a deoxidizer and desulfurizer in steel and cast iron production."
     },
     {
       title: "Nickel",
+      image: "/nickel.jpg",
       description: "Versatile metal used in stainless steel production, batteries, and various alloys."
     },
     {
       title: "Chromium",
+      image: "/chromium.webp",
       description: "Hard, corrosion-resistant metal essential for stainless steel and various alloy applications."
     }
   ]
