@@ -65,7 +65,8 @@ const MultiplexNavbar = () => {
         { name: 'How We Do', path: '/about#how-we-do' },
         { name: 'Our Values', path: '/about#our-values' },
         { name: 'Leadership Team', path: '/about#leadership' },
-        { name: 'Global Presence', path: '/about#office-locations' }
+        { name: 'Office Locations', path: '/about#office-locations' },
+        { name: 'Warehouse Network', path: '/about#warehouse-locations' }
       ]
     },
     {

@@ -11,6 +11,7 @@ import LeadershipSection from '@/components/about/LeadershipSection';
 import OfficeLocationsSection from '@/components/about/OfficeLocationsSection';
 import SectionNavigation from '@/components/companies/SectionNavigation';
 import WarehouseLocations from './warehouseLocations';
+import PageTransitionWrapper from '../../components/animation/wrapper';
 
 // Register GSAP plugins
 if (typeof window !== 'undefined') {
@@ -68,37 +69,44 @@ export default function AboutPage() {
   }, []);
 
   return (
-    <div className="about-page bg-white">
-      {/* Hero Section with Contact Options */}
-      <HeroSection 
-        subtitle="Powering industries with premium raw materials delivered with precision, integrity, and speed. Global reach, Mumbai roots."
-        backgroundImage="https://images.unsplash.com/photo-1598193957011-39b9f2916992?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        sideText="ABOUT US"
-        navTitle="ABOUT"
-        sectionLinks={sectionLinks}
-        showContactOptions={true}
-      />
+    <PageTransitionWrapper 
+      transitionKey="about-page"
+      duration={2}
+      overlayColor="from-blue-900 via-indigo-900 to-blue-800"
+      overlayImage="https://images.unsplash.com/photo-1598193957011-39b9f2916992?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    >
+      <div className="about-page bg-white">
+        {/* Hero Section with Contact Options */}
+        <HeroSection 
+          subtitle="Powering industries with premium raw materials delivered with precision, integrity, and speed. Global reach, Mumbai roots."
+          backgroundImage="https://images.unsplash.com/photo-1598193957011-39b9f2916992?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          sideText="ABOUT US"
+          navTitle="ABOUT"
+          sectionLinks={sectionLinks}
+          showContactOptions={true}
+        />
 
-      {/* Main Content */}
-      <div className="relative z-20 bg-white">
-      <SectionNavigation links={sectionLinks} title="IN THIS SECTION" />
-        {/* What We Do Section */}
-        <WhatWeDoSection />
-        
-        {/* How We Do Section */}
-        <HowWeDoSection />
-        
-        {/* Our Values Section */}
-       
+        {/* Main Content */}
+        <div className="relative z-20 bg-white">
+        <SectionNavigation links={sectionLinks} title="IN THIS SECTION" />
+          {/* What We Do Section */}
+          <WhatWeDoSection />
+          
+          {/* How We Do Section */}
+          <HowWeDoSection />
+          
+          {/* Our Values Section */}
+         
+        </div>
+        <div className="relative z-20 bg-white">
+        <OurValuesSection />
+          
+          <LeadershipSection />
+          <OfficeLocationsSection/>
+          <WarehouseLocations />
+          <div className="h-[20vh] md:hidden bg-[#fbfbfb]"></div>
+        </div>
       </div>
-      <div className="relative z-20 bg-white">
-      <OurValuesSection />
-        
-        <LeadershipSection />
-        <OfficeLocationsSection/>
-        <WarehouseLocations />
-        <div className="h-[20vh] md:hidden bg-[#fbfbfb]"></div>
-      </div>
-    </div>
+    </PageTransitionWrapper>
   );
 } 

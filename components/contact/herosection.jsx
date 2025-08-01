@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import SectionNavigation from '@/components/companies/SectionNavigation';
+import { Search, Menu } from 'lucide-react';
 
 // Register GSAP plugins
 if (typeof window !== 'undefined') {
@@ -10,7 +10,7 @@ if (typeof window !== 'undefined') {
 }
 
 /**
- * Hero Section component for About page with parallax scrolling effect
+ * Multiplex Hero Section component with word-by-word animation
  * 
  * @param {Object} props
  * @param {string} props.title - Main title for the hero section
@@ -20,28 +20,33 @@ if (typeof window !== 'undefined') {
  * @param {string} props.sideText - Optional vertical text on the side
  * @param {string} props.navTitle - Navigation title (for the vertical side text)
  * @param {Array} props.sectionLinks - Array of section links for "In This Section" navigation
+ * @param {boolean} props.showContactOptions - Whether to show the contact options section
+ * @param {string} props.bottomText - Text for the white bottom section
  */
 const HeroSection = ({ 
-  title = "", 
-  subtitle = "Powering industries with premium raw materials delivered with precision, integrity, and speed.",
+  title = "We create structures that endure, combining sustainable design with world-class construction expertise", 
+  subtitle = "",
   backgroundImage = "https://images.unsplash.com/photo-1661103391619-46e3175b3152?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  overlayColor = "rgba(0, 0, 0, 0.7)",
-  sideText,
-  navTitle = "",
-  sectionLinks = []
+  overlayColor = "rgba(0, 0, 0, 0.4)",
+  sideText = "About us",
+  navTitle = "MULTIPLEX",
+  sideTextHeight,
+  sectionLinks = [],
+  showContactOptions = false,
+  bottomText = "Established in Australia in 1962, we have delivered over"
 }) => {
   const heroRef = useRef(null);
   const backgroundRef = useRef(null);
   const contentRef = useRef(null);
-  const sideBarRef = useRef(null);
   const sideTextRef = useRef(null);
-  const mobileSideTextRef = useRef(null);
+  const verticalLineRef = useRef(null);
   const titleRef = useRef(null);
-  const subtitleRef = useRef(null);
+  const bottomSectionRef = useRef(null);
+  const wordsRef = useRef([]);
   const [isMobile, setIsMobile] = useState(false);
 
-  // Use navTitle as sideText if not provided
-  const displaySideText = sideText || navTitle;
+  // Split title into words for animation
+  const words = subtitle.split(' ');
 
   useEffect(() => {
     // Check if we're in the browser environment
@@ -57,16 +62,12 @@ const HeroSection = ({
 
     // Small delay to ensure DOM is fully rendered
     const timer = setTimeout(() => {
-      // Create the animation
       const heroElement = heroRef.current;
-      const contentElement = contentRef.current;
-      const sideBarElement = sideBarRef.current;
       const sideTextElement = sideTextRef.current;
-      const mobileSideTextElement = mobileSideTextRef.current;
-      const titleElement = titleRef.current;
-      const subtitleElement = subtitleRef.current;
+      const verticalLineElement = verticalLineRef.current;
+      const bottomSectionElement = bottomSectionRef.current;
 
-      if (!heroElement || !contentElement) return;
+      if (!heroElement) return;
 
       // Clear any existing ScrollTriggers for this section
       ScrollTrigger.getAll().forEach(trigger => {
@@ -76,36 +77,67 @@ const HeroSection = ({
       });
 
       // Initial animations when page loads
-      if (sideBarElement) {
-        gsap.fromTo(sideBarElement, 
-          { y: 300, height: 300 }, 
-          { y: 0, duration: 1.2, delay: 0.4, ease: 'power2.out' }
-        );
-      }
-      
+      // Side text animation (rising from below on mobile)
       if (sideTextElement) {
         gsap.fromTo(sideTextElement, 
-          { opacity: 0, y: 20 }, 
-          { opacity: 1, y: 0, duration: 1, delay: 0.8, ease: 'power2.out' }
+          { 
+            opacity: 0, 
+            y: isMobile ? 200 : '100%',
+          
+          }, 
+          { 
+            opacity: 1, 
+            y: 0, 
+            x: 0, 
+            duration: 0.8, 
+            delay: 0.4, 
+            ease: 'power2.out' 
+          }
         );
       }
-      
-      if (mobileSideTextElement) {
-        gsap.fromTo(mobileSideTextElement, 
-          { opacity: 0, x: -20 }, 
-          { opacity: 1, x: 0, duration: 1, delay: 0.8, ease: 'power2.out' }
+
+      // Vertical line animation
+      if (verticalLineElement) {
+        gsap.fromTo(verticalLineElement, 
+          { 
+            opacity: 0,
+            y: isMobile ? 200 : 0,
+            scaleY: isMobile ? 0 : 1
+          }, 
+          { 
+            opacity: 1, 
+            y: 0,
+            scaleY: 1,
+            duration: 0.9, 
+            delay: 0.5, 
+            ease: 'power2.out' 
+          }
         );
       }
-      
-      gsap.fromTo(titleElement, 
-        { opacity: 0, y: 30 }, 
-        { opacity: 1, y: 0, duration: 1.2, delay: 0.4, ease: 'power2.out' }
+
+      // Word-by-word animation for title
+      gsap.fromTo(wordsRef.current, 
+        {
+          opacity: 0,
+          y: isMobile ? 200 : 50,
+          rotationX: -90
+        },
+        {
+          opacity: 1,
+          y: 0,
+          rotationX: 0,
+          duration: 0.8,
+          stagger: 0.1,
+          delay: 0.8,
+          ease: "power2.out"
+        }
       );
-      
-      if (subtitleElement) {
-        gsap.fromTo(subtitleElement, 
+
+      // Bottom section animation
+      if (bottomSectionElement) {
+        gsap.fromTo(bottomSectionElement, 
           { opacity: 0, y: 30 }, 
-          { opacity: 1, y: 0, duration: 1.2, delay: 0.6, ease: 'power2.out' }
+          { opacity: 1, y: 0, duration: 0.8, delay: 1.2 }
         );
       }
 
@@ -116,13 +148,12 @@ const HeroSection = ({
           start: 'top top',
           end: 'bottom top',
           scrub: true,
-          // Don't pin the hero section, let it scroll naturally
           invalidateOnRefresh: true,
         }
       });
 
       // Content animation - fade out as it scrolls up
-      tl.to(contentElement, {
+      tl.to(contentRef.current, {
         opacity: 0,
         y: isMobile ? '-15%' : '-20%',
         ease: 'power1.in',
@@ -144,93 +175,144 @@ const HeroSection = ({
       clearTimeout(timer);
       window.removeEventListener('resize', checkMobile);
     };
-  }, [isMobile, subtitle, displaySideText]);
+  }, [isMobile, title, words]);
 
   return (
     <>
       <section 
         ref={heroRef} 
-        className="relative w-full h-[100svh] md:h-screen lg:max-h-[77vh] bg-white overflow-hidden"
+        className="relative  bg-gray-900 overflow-hidden flex flex-col"
       >
         {/* Fixed Background Image */}
         <div 
           ref={backgroundRef}
-          className="fixed inset-0 w-full  md:h-screen bg-cover bg-center z-0"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ 
             backgroundImage: `url(${backgroundImage})`,
             backgroundAttachment: isMobile ? 'scroll' : 'fixed',
-            backgroundPosition: isMobile ? 'center center' : 'center bottom',
+            backgroundPosition: 'center center',
           }}
         >
           {/* Overlay for better text visibility */}
           <div 
-            className="absolute inset-0 w-full h-full" 
+            className="absolute inset-0 bg-black/40"
             style={{ backgroundColor: overlayColor }}
           ></div>
         </div>
 
-        {/* Mobile Top Bar with Text (Horizontal) */}
-        <div 
-          ref={mobileSideTextRef}
-          className="absolute top-6 left-4 md:hidden z-10"
-        >
-          <div className="flex items-center">
-            <div className="w-8 h-[2px] bg-white mr-3"></div>
-            <span className="text-white text-sm tracking-widest font-medium">
-              {displaySideText}
-            </span>
-          </div>
-        </div>
+        {/* Navigation */}
+        <div className="h-[33vh]"></div>
+       
 
-        {/* Side Bar and Text (Vertical) - Desktop only */}
-        <div className="absolute left-[150px] top-0 h-full flex items-center z-10">
-          {/* Vertical white bar */}
-          <div 
-            ref={sideBarRef} 
-            className="w-[1px] hidden md:block bg-white absolute bottom-0 left-8 md:left-12"
-          ></div>
-          {/* Vertical text */}
-          <div 
-            ref={sideTextRef}
-            className="hidden md:block absolute bottom-[224px] min-w-[120px] left-8  md:left-[7vw] transform -translate-x-1/2 origin-bottom-left rotate-[-90deg] text-white font-bold   lg:text-[20px] "
-          >
-            <span className="uppercase ">{displaySideText}</span>
-          </div>
-        </div>
-
-        {/* Content positioned at bottom */}
+        {/* Main Content - Using Exact Structure with Flexbox Centering */}
         <div 
           ref={contentRef}
-          className="hero-content relative z-10 h-[100svh] md:h-screen lg:left-[180px] flex flex-col justify-end pb-12 md:pb-4 px-4 sm:px-8 md:px-16 lg:pb-[280px] lg:max-w-5xl lg:px-24 xl:px-32"
+          className="relative z-10  flex-1 flex items-center min-h-[28vh] pb-[7vh]  justify-center lg:min-w-[1294px]  "
         >
-          <div className="max-w-5xl mb-8 md:mb-16 lg:mb-24">
-            <h1 
-              ref={titleRef}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-lato text-white mb-4 md:mb-8 leading-tight uppercase"
-            >
-              {title}
-            </h1>
-            {subtitle && (
-              <div 
-                ref={subtitleRef}
-                className="mt-4 md:mt-6 lg:mt-12"
-              >
-                <h2 className="text-[16px] leading-[26px] md:leading-tight lg:leading-normal md:text-2xl lg:text-[45px]  lg:max-w-4xl font-bold font-lato text-white">
-                  {subtitle}
-                </h2>
+          <div className="container w-full max-w-[1300px] mx-auto px-4 sm:px-6 md:px-12">
+            <div className="row">
+              <div className="col-lg-7   w-full">
+                {/* Grid Layout for 3 columns: Side Text | Vertical Bar | Paragraph */}
+                <div className="grid grid-cols-12 items-start h-full max-h-[40vh]">
+                  
+                  {/* Column 1: About Us Vertical Text */}
+                  <div className=" flex justify-end ml-[10vw] lg:ml-[6vw]">
+                    <div 
+                      ref={sideTextRef}
+                      className="    text-white text-xs sm:text-sm md:text-base font-medium tracking-widest rotate-[-180deg]"
+                    >
+                      <h1 data-name={sideText}>
+                        <span className='font-onest uppercase font-medium text-[20px]  lg:text-[20px]' style={{ writingMode: 'vertical-rl', textOrientation: 'sideways' }}>
+                          {sideText}
+                        </span>
+                      </h1>
+                    </div>
+                  </div>
+
+                  {/* Column 2: Vertical Line */}
+                  <div className="col-span-1 flex justify-center">
+                    <div 
+                      ref={verticalLineRef}
+                      className="w-px bg-white/60 h-full min-h-[60vh] origin-bottom"
+                    ></div>
+                  </div>
+                  <div className="col-span-1"></div>
+
+                  {/* Column 3: Main Headline Paragraph */}
+                  <div className="col-span-9 lg:min-w-[800px]">
+                    <div className="page-header__statement">
+                      <h2 
+                        ref={titleRef}
+                        className="h2 text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-tight"
+                        data-split="0.5"
+                        style={{ opacity: 1, visibility: 'inherit' }}
+                      >
+                        <div className="split-row flex flex-wrap">
+                          {words.map((word, index) => (
+                            <div key={index} className="word font-bold font-lato text-[24px] sm:3text-[38px] md:text-[40px] lg:text-[50px] mr-2 ">
+                              <span 
+                                ref={el => wordsRef.current[index] = el}
+                                className="inline-block"
+                                style={{ 
+                                  translate: 'none', 
+                                  rotate: 'none', 
+                                  scale: 'none',
+                                  transform: 'translate(0px)',
+                                  opacity: 1,
+                                  transformOrigin: 'center bottom'
+                                }}
+                              >
+                                {word}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </h2>
+                    </div>
+                  </div>
+
+                </div>
               </div>
-            )}
+            </div>
           </div>
         </div>
 
         {/* Empty spacer to allow content to scroll over the fixed background */}
-        <div className="h-[100svh] md:h-screen w-full"></div>
+        
       </section>
-      
-      {/* Section Navigation */}
-      
+      <div className="h-[5vh] bg-white w-full"></div>
+      {/* Bottom White Section */}
+    
+
+      <style jsx>{`
+        .container {
+          width: 100%;
+        }
+        .row {
+          display: flex;
+          flex-wrap: wrap;
+        }
+        .col-lg-7 {
+          width: 100%;
+        }
+        .offset-lg-2 {
+          margin-left: 0;
+        }
+        @media (min-width: 992px) {
+          .col-lg-7 {
+            width: 58.333333%;
+          }
+          .offset-lg-2 {
+            margin-left: 16.666667%;
+          }
+        }
+        .writing-mode-vertical {
+          writing-mode: vertical-rl;
+          text-orientation: mixed;
+        }
+      `}</style>
     </>
   );
 };
 
-export default HeroSection; 
+export default HeroSection;

@@ -8,6 +8,7 @@ import { ChevronDown } from "lucide-react";
 import OpenPositionsCarousel from "@/components/careers/OpenPositionsCarousel";
 import Link from "next/link";
 import SectionNavigation from "@/components/companies/SectionNavigation";
+import PageTransitionWrapper from "@/components/animation/wrapper";
 
 // Register GSAP plugins
 if (typeof window !== "undefined") {
@@ -57,9 +58,11 @@ const FadeInSection = ({ children, delay = 0, className = "" }) => {
   }, [delay]);
   
   return (
-    <div ref={sectionRef} className={className}>
-      {children}
-    </div>
+    <PageTransitionWrapper transitionKey="careers-page" duration={2} overlayColor="from-blue-900 via-indigo-900 to-blue-800">
+      <div ref={sectionRef} className={className}>
+        {children}
+      </div>
+    </PageTransitionWrapper>
   );
 };
 

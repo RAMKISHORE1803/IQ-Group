@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from 'react';
 import IQGroupFooter from '../landing/footer';
+import PageTransitionWrapper from '@/components/animation/wrapper'; 
 
 export default function CompaniesLayout({ children }) {
   const contentWrapperRef = useRef(null);
@@ -58,6 +59,12 @@ export default function CompaniesLayout({ children }) {
   }, [handleScroll]);
 
   return (
+    <PageTransitionWrapper 
+      transitionKey="companies-page"
+      duration={2}
+      overlayColor="from-blue-900 via-indigo-900 to-blue-800"
+      overlayImage="/logo/3.png"
+    >
     <div className="relative bg-white">
       {/* Main content */}
       <div ref={contentWrapperRef} className="min-h-screen">
@@ -70,6 +77,7 @@ export default function CompaniesLayout({ children }) {
       <div 
         ref={footerRef} 
         className="fixed bottom-0 left-0 w-full z-40"
+        overlayImage="/logo/3.png"
         style={{ 
           transform: footerTransform,
           
@@ -80,5 +88,6 @@ export default function CompaniesLayout({ children }) {
         <IQGroupFooter />
       </div>
     </div>
+    </PageTransitionWrapper>
   );
 }

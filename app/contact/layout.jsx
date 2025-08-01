@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from 'react';
 import IQGroupFooter from '../landing/footer';
+import PageTransitionWrapper from '@/components/animation/wrapper'; 
 
 export default function ContactLayout({ children }) {
   const contentWrapperRef = useRef(null);
@@ -57,6 +58,7 @@ export default function ContactLayout({ children }) {
   }, [handleScroll]);
 
   return (
+    <PageTransitionWrapper transitionKey="contact-page" duration={2} overlayColor="from-blue-900 via-indigo-900 to-blue-800">
     <div className="relative bg-white">
       {/* Main content */}
       <div ref={contentWrapperRef} className="min-h-screen">
@@ -78,5 +80,6 @@ export default function ContactLayout({ children }) {
         <IQGroupFooter />
       </div>
     </div>
+    </PageTransitionWrapper>
   );
 }
