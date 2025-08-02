@@ -47,42 +47,42 @@ const chemicalMaterials = [
   {
     title: "Industrial Catalysts",
     description: "High-performance catalytic materials designed to accelerate specific chemical reactions, improve selectivity, and increase production efficiency.",
-    image: "https://images.unsplash.com/photo-1616661317361-b8a30bef3321?q=80&w=2000&auto=format&fit=crop"
+    image: "/industrialcatalyst.webp"
   },
   {
     title: "Process Minerals",
     description: "Specialized minerals with precise physical and chemical properties for filtration, adsorption, and process enhancement applications.",
-    image: "https://images.unsplash.com/photo-1563046383-7e25bc03e58f?q=80&w=2000&auto=format&fit=crop"
+    image: "/processminerals.webp"
   },
   {
     title: "Industrial Acids",
     description: "High-purity acids with tightly controlled concentrations for precise chemical processing, cleaning, and manufacturing applications.",
-    image: "https://images.unsplash.com/photo-1603126857599-f6e157fa2fe6?q=80&w=2000&auto=format&fit=crop"
+    image: "/industrialacids.webp"
   },
   {
     title: "Specialty Alkalis",
     description: "Premium alkaline compounds with controlled reactivity for neutralization, precipitation, and specialized chemical manufacturing processes.",
-    image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=2000&auto=format&fit=crop"
+    image: "/specialityalkalis.webp"
   },
   {
     title: "Industrial Solvents",
     description: "High-purity solvents with precise specifications for extraction, cleaning, and reaction medium applications across diverse industries.",
-    image: "https://images.unsplash.com/photo-1532634922-8fe0b757fb13?q=80&w=2000&auto=format&fit=crop"
+    image: "/industrialsolvents.webp"
   },
   {
     title: "Specialty Silicates",
     description: "Advanced silicon-based materials used in catalyst supports, detergents, and specialty chemical formulations requiring precise performance characteristics.",
-    image: "https://images.unsplash.com/photo-1598104358204-117bc812c6c1?q=80&w=2000&auto=format&fit=crop"
+    image: "/specialitysilicates.webp"
   },
   {
     title: "Industrial Salts",
     description: "High-purity inorganic compounds with controlled particle size and chemical composition for diverse chemical processing applications.",
-    image: "https://images.unsplash.com/photo-1519500528352-2d1460418d41?q=80&w=2000&auto=format&fit=crop"
+    image: "/industrialsalt.webp"
   },
   {
     title: "Chemical Additives",
     description: "Specialized performance enhancers designed to modify specific properties in chemical formulations, from pH control to viscosity modification.",
-    image: "https://images.unsplash.com/photo-1603126857599-f6e157fa2fe6?q=80&w=2000&auto=format&fit=crop"
+    image: "/chemicaladditives.webp"
   }
 ];
 

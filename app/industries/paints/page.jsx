@@ -47,42 +47,42 @@ const paintsMaterials = [
   {
     title: "Titanium Dioxide",
     description: "Ultra-pure white pigment with superior opacity, brightness and UV resistance, the foundation of high-performance white and light-colored paints.",
-    image: "https://images.unsplash.com/photo-1562789193-eac9d1db5a7d?q=80&w=2000&auto=format&fit=crop"
+    image: "/titaniumdioxide.webp"
   },
   {
     title: "Organic Pigments",
     description: "Vibrant, lightfast colorants with exceptional tinting strength and purity, designed for consistent color reproduction across production batches.",
-    image: "https://images.unsplash.com/photo-1515688594390-b649af70d282?q=80&w=2000&auto=format&fit=crop"
+    image: "/organicpigments.webp"
   },
   {
     title: "Specialty Resins",
     description: "Advanced binding polymers that provide superior adhesion, durability, and chemical resistance for premium architectural and industrial coatings.",
-    image: "https://images.unsplash.com/photo-1589398908284-12e22929df63?q=80&w=2000&auto=format&fit=crop"
+    image: "/specialityraisin.webp"
   },
   {
     title: "Rheology Modifiers",
     description: "Precision flow-control additives that optimize application properties, prevent sagging, and improve leveling for perfect finish quality.",
-    image: "https://images.unsplash.com/photo-1535850579364-952ef600d22e?q=80&w=2000&auto=format&fit=crop"
+    image: "/rheologymodifiers.webp"
   },
   {
     title: "Performance Extenders",
     description: "Engineered mineral fillers that enhance coating properties while optimizing cost, including improved scrub resistance and reduced material consumption.",
-    image: "https://images.unsplash.com/photo-1598449356475-b9f71db7d847?q=80&w=2000&auto=format&fit=crop"
+    image: "/performanceextenders.webp"
   },
   {
     title: "Specialty Solvents",
     description: "High-purity, low-VOC carriers designed for optimal film formation, flow characteristics, and environmental compliance in modern coating systems.",
-    image: "https://images.unsplash.com/photo-1532634922-8fe0b757fb13?q=80&w=2000&auto=format&fit=crop"
+    image: "/specialitysolvents.webp"
   },
   {
     title: "Functional Additives",
     description: "Advanced performance enhancers including dispersants, defoamers, and wetting agents that optimize manufacturing efficiency and coating quality.",
-    image: "https://images.unsplash.com/photo-1603126857599-f6e157fa2fe6?q=80&w=2000&auto=format&fit=crop"
+    image: "/functionaladditives.webp"
   },
   {
     title: "Biocides & Preservatives",
     description: "Specialized protection agents that ensure long-term coating stability and prevent microbial degradation in both the can and applied film.",
-    image: "https://images.unsplash.com/photo-1564419320461-6870880221ad?q=80&w=2000&auto=format&fit=crop"
+    image: "/biocides.webp"
   }
 ];
 

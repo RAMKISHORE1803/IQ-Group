@@ -47,42 +47,42 @@ const tyresMaterials = [
   {
     title: "Natural Rubber",
     description: "Premium-grade natural polymers with controlled impurity levels and consistent molecular weight, the foundation of high-performance tire treads.",
-    image: "https://images.unsplash.com/photo-1599709856828-7e3499eeef11?q=80&w=2000&auto=format&fit=crop"
+    image: "/naturalrubber.jpg"
   },
   {
     title: "Synthetic Rubber",
     description: "Advanced polymer formulations including SBR, BR, and EPDM with precise specifications for optimal tire performance characteristics.",
-    image: "https://images.unsplash.com/photo-1589982334414-c79c022d66e1?q=80&w=2000&auto=format&fit=crop"
+    image: "/syntheticrrubber.jpg"
   },
   {
     title: "Carbon Black",
     description: "High-performance reinforcing fillers with controlled particle size, structure, and surface chemistry for optimal tire strength and wear resistance.",
-    image: "https://images.unsplash.com/photo-1598970434795-0c5fe7c91c89?q=80&w=2000&auto=format&fit=crop"
+    image: "/carbonblack.jpg"
   },
   {
     title: "Silica",
     description: "Engineered precipitated silica designed specifically for low rolling resistance tire compounds while maintaining excellent wet grip performance.",
-    image: "https://images.unsplash.com/photo-1598449356475-b9f71db7d847?q=80&w=2000&auto=format&fit=crop"
+    image: "/silica.webp"
   },
   {
     title: "Processing Oils",
     description: "Specialized plasticizers and extender oils that improve processing characteristics while meeting strict environmental and performance requirements.",
-    image: "https://images.unsplash.com/photo-1532634922-8fe0b757fb13?q=80&w=2000&auto=format&fit=crop"
+    image: "/processingoil.webp"
   },
   {
     title: "Specialty Chemicals",
     description: "Advanced vulcanization agents, accelerators, and antidegradants that optimize curing profiles and provide long-term tire durability.",
-    image: "https://images.unsplash.com/photo-1603126857599-f6e157fa2fe6?q=80&w=2000&auto=format&fit=crop"
+    image: "/specialtychemicals.webp"
   },
   {
     title: "Steel Cord",
     description: "High-tensile steel reinforcement with precise diameter control and advanced brass coating for optimal rubber adhesion in tire belts.",
-    image: "https://images.unsplash.com/photo-1518391846015-55a9cc003b25?q=80&w=2000&auto=format&fit=crop"
+    image: "/steelchord.webp"
   },
   {
     title: "Textile Reinforcement",
     description: "Engineered polyester, nylon, and aramid fabrics with controlled tensile properties and optimized adhesion characteristics for tire carcass construction.",
-    image: "https://images.unsplash.com/photo-1620208923217-62e0f24f0277?q=80&w=2000&auto=format&fit=crop"
+    image: "/textilereinforcements.webp"
   }
 ];
 

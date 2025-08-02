@@ -26,6 +26,7 @@ const overviewCards = [
 const challengeCards = [
   {
     title: "Material Purity",
+  
     description: "Ultra-refined materials with contaminant levels measured in parts per million. Zero compromise for your most demanding applications."
   },
   {
@@ -47,42 +48,42 @@ const ceramicMaterials = [
   {
     title: "Kaolin Clay",
     description: "High-purity white clay essential for fine porcelain, whiteware, and advanced ceramic applications requiring excellent plasticity and firing properties.",
-    image: "https://images.unsplash.com/photo-1635452335210-3e7aaae8634b?q=80&w=2000&auto=format&fit=crop"
+    image: "/kaolinclay.webp"
   },
   {
     title: "Ball Clay",
     description: "Highly plastic sedimentary clay with fine particle size, used to improve workability and strength in ceramic bodies and glazes.",
-    image: "https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=2000&auto=format&fit=crop"
+    image: "/ballclay.webp"
   },
   {
     title: "Feldspar",
     description: "Natural flux material that lowers melting temperatures and promotes vitrification in ceramic bodies, essential for porcelain and glazes.",
-    image: "https://images.unsplash.com/photo-1557586043-40d37b9d3db0?q=80&w=2000&auto=format&fit=crop"
+    image: "/feldspar.jpeg"
   },
   {
     title: "Silica",
     description: "High-purity quartz material that provides structural stability, reduces shrinkage, and controls thermal expansion in ceramic formulations.",
-    image: "https://images.unsplash.com/photo-1598449356475-b9f71db7d847?q=80&w=2000&auto=format&fit=crop"
+    image: "/silica.webp"
   },
   {
     title: "Alumina",
     description: "Advanced ceramic material with exceptional hardness, thermal conductivity, and electrical insulation properties for technical ceramic applications.",
-    image: "https://images.unsplash.com/photo-1612521564730-95e6eaa9c2ec?q=80&w=2000&auto=format&fit=crop"
+    image: "/alumina.webp"
   },
   {
     title: "Zirconia",
     description: "Premium ceramic material offering superior strength, fracture toughness and thermal stability for advanced technical and medical applications.",
-    image: "https://images.unsplash.com/photo-1581093196277-9f608bb3b511?q=80&w=2000&auto=format&fit=crop"
+    image: "/zircon.webp"
   },
   {
     title: "Bentonite",
     description: "Highly plastic clay with excellent suspension and binding properties, used as an additive to improve workability in ceramic bodies.",
-    image: "https://images.unsplash.com/photo-1635452335210-3e7aaae8634b?q=80&w=2000&auto=format&fit=crop"
-  },
+        image: "/bentonite.webp"
+      },
   {
     title: "Talc",
     description: "Soft mineral that reduces thermal expansion, improves thermal shock resistance, and enhances machinability in ceramic formulations.",
-    image: "https://images.unsplash.com/photo-1558346547-8961a464dfb1?q=80&w=2000&auto=format&fit=crop"
+    image: "/talc.webp"
   }
 ];
 
