@@ -86,7 +86,7 @@ const products = {
     },
     {
       title: "Kaolin",
-      image: "/kaolin.jpg",
+      image: "/kaolin.webp",
       description: "Fine white clay used in paper production, ceramics, paint, and various industrial applications."
     },
     {
@@ -151,6 +151,7 @@ const products = {
     },
     {
       title: "Ballclay",
+      image: "/ballclay.webp",
       description: "Fine-grained plastic clay used in ceramic production and various industrial applications."
     }
   ],

@@ -47,42 +47,42 @@ const refractoryMaterials = [
   {
     title: "Alumina",
     description: "High-purity aluminum oxide material with excellent thermal resistance up to 1750°C, ideal for applications requiring chemical inertness and wear resistance.",
-    image: "https://images.unsplash.com/photo-1612521564730-95e6eaa9c2ec?q=80&w=2000&auto=format&fit=crop"
+    image: "/alumina.webp"
   },
   {
     title: "Magnesia",
     description: "Premium magnesium oxide material with superior high-temperature stability and excellent resistance to basic slags and alkaline environments.",
-    image: "https://images.unsplash.com/photo-1562789193-eac9d1db5a7d?q=80&w=2000&auto=format&fit=crop"
+    image: "/magnesia.webp"
   },
   {
     title: "Silicon Carbide",
     description: "Advanced technical ceramic with exceptional hardness, thermal conductivity and oxidation resistance, perfect for high-wear and thermal shock applications.",
-    image: "https://images.unsplash.com/photo-1629115916087-31b1a8ea7cd4?q=80&w=2000&auto=format&fit=crop"
+    image: "/siliconcarbide.webp"
   },
   {
     title: "Zircon",
     description: "Natural zirconium silicate with low thermal expansion and excellent chemical stability, ideal for glass-contact applications and precision casting.",
-    image: "https://images.unsplash.com/photo-1558346547-8961a464dfb1?q=80&w=2000&auto=format&fit=crop"
+    image: "/zircon.webp"
   },
   {
     title: "Fused Silica",
     description: "Ultra-pure silicon dioxide material with near-zero thermal expansion, providing exceptional thermal shock resistance for critical applications.",
-    image: "https://images.unsplash.com/photo-1598449356475-b9f71db7d847?q=80&w=2000&auto=format&fit=crop"
+    image: "/fusedsilica.webp"
   },
   {
     title: "Chrome Alumina",
     description: "Specialized material combining chromium oxide and alumina for superior corrosion resistance in aggressive environments, particularly in cement kilns.",
-    image: "https://images.unsplash.com/photo-1634467524884-897e69632ffb?q=80&w=2000&auto=format&fit=crop"
+    image: "/chromealumina.webp"
   },
   {
     title: "Bauxite",
     description: "High-alumina raw material essential for manufacturing abrasion-resistant refractories with excellent structural strength at elevated temperatures.",
-    image: "https://images.unsplash.com/photo-1643222379794-2564d4041ec5?q=80&w=2000&auto=format&fit=crop"
+    image: "/bauxite.jpg"
   },
   {
     title: "Graphite",
     description: "High-carbon material with outstanding thermal conductivity and chemical stability, used in crucibles and specialized high-temperature applications.",
-    image: "https://images.unsplash.com/photo-1631171426626-a90e3f7a8d98?q=80&w=2000&auto=format&fit=crop"
+    image: "/graphite.jpeg"
   }
 ];
 

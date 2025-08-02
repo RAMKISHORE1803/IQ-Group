@@ -59,27 +59,27 @@ const ferroAlloys = [
   {
     title: "Ferro Phosphorus",
     description: "High-purity ferro phosphorus with 18-26% phosphorus content, used as a deoxidizer and to improve machinability in steel production.",
-    image: "https://images.unsplash.com/photo-1605557202138-077ef7c4fa7c?q=80&w=2000&auto=format&fit=crop"
+   image: "/ferrophosphorous.webp"
   },
   {
     title: "Ferro Silicon",
     description: "High-purity ferro silicon with silicon content ranging from 45% to 75%, used as a deoxidizer and alloying element in steel production.",
-    image: "https://images.unsplash.com/photo-1605557202138-077ef7c4fa7c?q=80&w=2000&auto=format&fit=crop"
+    image: "/ferrosilicon.webp"
   },
   {
     title: "Ferro Chrome",
     description: "Primary alloy (50–70% Cr) for stainless and alloy steel—enhances corrosion resistance, hardness, and wear resistance.",
-    image: "https://images.unsplash.com/photo-1535813547-99c456a41d4a?q=80&w=2000&auto=format&fit=crop"
+    image: "/ferrochrome.jpg"
   },
   {
     title: "Ferro Titanium",
     description: "High-quality alloy used as a deoxidizer and grain refiner in steel production, improving mechanical properties and corrosion resistance.",
-    image: "https://images.unsplash.com/photo-1648193820372-1677480a84b1?q=80&w=2000&auto=format&fit=crop"
+    image: "/ferrotitanium.webp"
   },
   {
     title: "Ferro Manganese",
     description: "Essential alloy adding manganese to steel to improve strength, toughness, hardenability, and wear resistance.",
-    image: "https://images.unsplash.com/photo-1531088009183-5ff5b7c95f91?q=80&w=2000&auto=format&fit=crop"
+    image: "/ferromanganese.webp"
   }
 ];
 
@@ -88,22 +88,22 @@ const nobleAlloys = [
   {
     title: "Ferro Vanadium",
     description: "Premium alloy with 40-80% vanadium content, used to increase strength, toughness, and wear resistance in high-strength steels.",
-    image: "https://images.unsplash.com/photo-1518783211485-10fd3bfb2ce2?q=80&w=2000&auto=format&fit=crop"
+    image: "/ferrovanadium.webp"
   },
   {
     title: "Ferro Niobium",
     description: "Specialized alloy containing 60-70% niobium, used to improve strength, toughness, and weldability in HSLA steels.",
-    image: "https://images.unsplash.com/photo-1578575752670-bbc2a5adb58e?q=80&w=2000&auto=format&fit=crop"
+    image: "/ferroniobium.webp"
   },
   {
     title: "Ferro Boron",
     description: "High-purity alloy with 17-20% boron content, used as a microalloying element to enhance hardenability and grain refinement.",
-    image: "https://images.unsplash.com/photo-1535813547-99c456a41d4a?q=80&w=2000&auto=format&fit=crop"
+    image: "/ferroboron.webp"
   },
   {
     title: "Ferro Molybdenum",
     description: "Specialized alloy containing 60-70% molybdenum, used to enhance strength, hardenability, and corrosion resistance in steel.",
-    image: "https://images.unsplash.com/photo-1531088009183-5ff5b7c95f91?q=80&w=2000&auto=format&fit=crop"
+    image: "/ferromolybdenum.webp"
   }
 ];
 
@@ -112,22 +112,22 @@ const carbonMaterials = [
   {
     title: "Graphite",
     description: "High-carbon material with 99%+ carbon content, used as a carbon additive and for refractory applications in steel production.",
-    image: "https://images.unsplash.com/photo-1578575752670-bbc2a5adb58e?q=80&w=2000&auto=format&fit=crop"
+    image: "https://media.licdn.com/dms/image/v2/C5612AQH3zjl4v37pWQ/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1617000859630?e=2147483647&v=beta&t=ktiktQuprF1agv8GySh02nt3oTAIR68mPID0kgsSOY4"
   },
   {
     title: "Petroleum Coke",
     description: "High-grade carbon material with low sulfur and ash content, used as a carbon raiser in steel and foundry applications.",
-    image: "https://images.unsplash.com/photo-1605557202138-077ef7c4fa7c?q=80&w=2000&auto=format&fit=crop"
+    image: "/petroleumcoke.jpg"
   },
   {
     title: "Carbon Raisers",
     description: "Specialized carbon additives with 97-99% carbon content, used to precisely adjust carbon levels in steel production.",
-    image: "https://images.unsplash.com/photo-1531088009183-5ff5b7c95f91?q=80&w=2000&auto=format&fit=crop"
+    image: "/carbonraiser.webp"
   },
   {
     title: "Calcined Anthracite",
     description: "High-carbon material with low volatile content, used as a carbon additive and for electrode production in steelmaking.",
-    image: "https://images.unsplash.com/photo-1535813547-99c456a41d4a?q=80&w=2000&auto=format&fit=crop"
+    image: "/calcinedanthracitecoal.webp"
   }
 ];
 
@@ -136,32 +136,32 @@ const metalsMinerals = [
   {
     title: "Manganese Metal Flakes",
     description: "High-purity manganese (99%+) used for precise alloying in specialty steels and for manufacturing manganese-based chemicals.",
-    image: "https://images.unsplash.com/photo-1518783211485-10fd3bfb2ce2?q=80&w=2000&auto=format&fit=crop"
+    image: "/manganesemetalflakes.webp"
   },
   {
     title: "Silicon Metal",
     description: "High-purity silicon (98-99.5%) used as a deoxidizer and alloying element in steel and for manufacturing silicones.",
-    image: "https://images.unsplash.com/photo-1578575752670-bbc2a5adb58e?q=80&w=2000&auto=format&fit=crop"
+    image: "/siliconmetal.jpg"
   },
   {
     title: "Chromite",
     description: "Essential mineral ore containing chromium, used in the production of ferrochrome and ultimately in stainless steel manufacturing.",
-    image: "https://images.unsplash.com/photo-1605557202138-077ef7c4fa7c?q=80&w=2000&auto=format&fit=crop"
+    image: "/chromite.jpg"
   },
   {
     title: "Bauxite",
     description: "Primary ore for aluminum production, also used as a flux in steelmaking and for manufacturing refractories.",
-    image: "https://images.unsplash.com/photo-1531088009183-5ff5b7c95f91?q=80&w=2000&auto=format&fit=crop"
+    image: "/bauxite.jpg"
   },
   {
     title: "Dolomite",
     description: "Used in basic oxygen steelmaking to protect refractory linings and as a slag conditioner to improve steel quality.",
-    image: "https://images.unsplash.com/photo-1550047506-25b6cd9f0aad?q=80&w=2000&auto=format&fit=crop"
+    image: "/dolomitr.jpg"
   },
   {
     title: "Limestone",
     description: "Critical flux material used to remove impurities in the steelmaking process, forming slag that can be separated from the molten metal.",
-    image: "https://images.unsplash.com/photo-1598104358204-117bc812c6c1?q=80&w=2000&auto=format&fit=crop"
+    image: "/limestone.jpg"
   }
 ];
 

@@ -47,42 +47,42 @@ const foundriesMaterials = [
   {
     title: "Green Sand",
     description: "Premium foundry sand with precise grain size distribution and clay content for optimal moldability, permeability and casting finish quality.",
-    image: "https://images.unsplash.com/photo-1598970605070-a38a2a5c6a48?q=80&w=2000&auto=format&fit=crop"
+    image: "/greensand.webp"
   },
   {
     title: "Bentonite Clay",
     description: "High-quality binding clay with superior plasticity and green strength, essential for sand casting molds with excellent surface finish.",
-    image: "https://images.unsplash.com/photo-1635452335210-3e7aaae8634b?q=80&w=2000&auto=format&fit=crop"
+    image: "/bentoniteclay.webp"
   },
   {
     title: "Ferro Silicon",
     description: "High-purity ferro silicon with 45-75% silicon content, used as an inoculant and deoxidizer in iron and steel casting to improve mechanical properties.",
-    image: "https://images.unsplash.com/photo-1605557202138-077ef7c4fa7c?q=80&w=2000&auto=format&fit=crop"
+    image: "/ferrosilicon.jpg"
   },
   {
     title: "Chromite Sand",
     description: "Heat-resistant foundry sand with excellent thermal stability and chilling power, ideal for steel casting applications requiring superior surface finish.",
-    image: "https://images.unsplash.com/photo-1518391846015-55a9cc003b25?q=80&w=2000&auto=format&fit=crop"
+    image: "/chromitesand.jpg"
   },
   {
     title: "Graphite",
     description: "High-carbon material used for crucibles, molds, and as a carbon additive in iron casting to promote graphitization and improve machinability.",
-    image: "https://images.unsplash.com/photo-1631171426626-a90e3f7a8d98?q=80&w=2000&auto=format&fit=crop"
+    image: "/graphite.jpeg"
   },
   {
     title: "Ferro Manganese",
     description: "Essential alloy for controlling sulfur in cast iron and steel, improving strength, toughness, and wear resistance in the final casting.",
-    image: "https://images.unsplash.com/photo-1531088009183-5ff5b7c95f91?q=80&w=2000&auto=format&fit=crop"
+    image: "/ferromanganese.webp"
   },
   {
     title: "Ferro Phosphorus",
     description: "Specialized alloy for improving fluidity in cast iron, enhancing castability for thin-walled and intricate castings while improving wear resistance.",
-    image: "https://images.unsplash.com/photo-1518391846015-55a9cc003b25?q=80&w=2000&auto=format&fit=crop"
+    image: "/ferrophosphorous.webp"
   },
   {
     title: "Inoculants",
     description: "Precisely formulated silicon-iron materials that promote controlled graphite formation in cast iron, improving mechanical properties and reducing defects.",
-    image: "https://images.unsplash.com/photo-1605197384465-b93a3f3a16cb?q=80&w=2000&auto=format&fit=crop"
+    image: "/incoulant.webp"
   }
 ];
 
