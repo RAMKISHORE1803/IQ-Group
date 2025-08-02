@@ -47,42 +47,42 @@ const textileMaterials = [
   {
     title: "Specialty Dyes",
     description: "High-performance colorants with exceptional fastness properties, designed for specific fiber types and application methods.",
-    image: "https://images.unsplash.com/photo-1515688594390-b649af70d282?q=80&w=2000&auto=format&fit=crop"
+    image: "/specialtydye.webp"
   },
   {
     title: "Processing Auxiliaries",
     description: "Advanced wetting agents, detergents, and dispersants that optimize textile preparation processes while reducing water and energy consumption.",
-    image: "https://images.unsplash.com/photo-1620208923217-62e0f24f0277?q=80&w=2000&auto=format&fit=crop"
+    image: "/processingauxiliaries.webp"
   },
   {
     title: "Functional Finishes",
     description: "Specialized chemical treatments providing water repellency, flame retardancy, antimicrobial properties, and other performance enhancements.",
-    image: "https://images.unsplash.com/photo-1603126857599-f6e157fa2fe6?q=80&w=2000&auto=format&fit=crop"
+    image: "/functionalfinishes.webp"
   },
   {
     title: "Textile Softeners",
     description: "Premium fabric conditioners with controlled molecular structure for optimal softness, drape, and comfort without compromising other properties.",
-    image: "https://images.unsplash.com/photo-1620208923217-62e0f24f0277?q=80&w=2000&auto=format&fit=crop"
+    image: "/textilesofteners.webp"
   },
   {
     title: "Coating Polymers",
     description: "Advanced polymer systems for textile coating applications, providing water resistance, breathability, and enhanced durability.",
-    image: "https://images.unsplash.com/photo-1589398908284-12e22929df63?q=80&w=2000&auto=format&fit=crop"
+    image: "/coatingpolymers.webp"
   },
   {
     title: "Printing Binders",
     description: "Specialized binding agents for textile printing that provide excellent color yield, wash fastness, and soft hand feel.",
-    image: "https://images.unsplash.com/photo-1515688594390-b649af70d282?q=80&w=2000&auto=format&fit=crop"
+    image: "/printingbinders.webp"
   },
   {
     title: "Fiber Lubricants",
     description: "High-performance processing aids that improve fiber cohesion, reduce friction, and enhance processing efficiency in spinning and weaving.",
-    image: "https://images.unsplash.com/photo-1532634922-8fe0b757fb13?q=80&w=2000&auto=format&fit=crop"
+    image: "/fiberlubricants.webp"
   },
   {
     title: "Eco-Friendly Enzymes",
     description: "Specialized biological catalysts for textile processing that reduce energy consumption, improve fabric quality, and minimize environmental impact.",
-    image: "https://images.unsplash.com/photo-1564419320461-6870880221ad?q=80&w=2000&auto=format&fit=crop"
+    image: "/ecofriendlyenzymes.webp"
   }
 ];
 

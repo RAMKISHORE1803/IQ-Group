@@ -47,42 +47,42 @@ const batteryMaterials = [
   {
     title: "Cathode Materials",
     description: "High-performance lithium metal oxides with precise stoichiometry and particle morphology for optimal energy density and cycle stability.",
-    image: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?q=80&w=2000&auto=format&fit=crop"
+    image: "/cathodematerial.webp"
   },
   {
     title: "Anode Materials",
     description: "Engineered graphite, silicon composites, and next-generation anode materials with controlled particle size and surface characteristics.",
-    image: "https://images.unsplash.com/photo-1631171426626-a90e3f7a8d98?q=80&w=2000&auto=format&fit=crop"
+    image: "/graphite.jpeg"
   },
   {
     title: "Electrolyte Components",
     description: "Ultra-pure lithium salts, solvents, and additives formulated for optimal ionic conductivity, stability, and safety across operating conditions.",
-    image: "https://images.unsplash.com/photo-1603126857599-f6e157fa2fe6?q=80&w=2000&auto=format&fit=crop"
+    image: "/electrolytematerial.webp"
   },
   {
     title: "Separator Materials",
     description: "High-performance polymer and ceramic materials with precise porosity, thickness, and mechanical properties for battery safety and performance.",
-    image: "https://images.unsplash.com/photo-1620208923217-62e0f24f0277?q=80&w=2000&auto=format&fit=crop"
+    image: "/separatormaterial.webp"
   },
   {
     title: "Current Collectors",
     description: "Precision-engineered copper and aluminum foils with controlled surface treatment for optimal electrode adhesion and electrical conductivity.",
-    image: "https://images.unsplash.com/photo-1518391846015-55a9cc003b25?q=80&w=2000&auto=format&fit=crop"
+    image: "/currentcollectors.webp"
   },
   {
     title: "Conductive Additives",
     description: "High-purity carbon blacks and graphene materials that enhance electrode conductivity while minimizing inactive material content.",
-    image: "https://images.unsplash.com/photo-1598970434795-0c5fe7c91c89?q=80&w=2000&auto=format&fit=crop"
+    image: "/conductiveadditives.webp"
   },
   {
     title: "Binders & Adhesives",
     description: "Specialized polymer systems that provide mechanical integrity to electrodes while optimizing electrochemical performance and processability.",
-    image: "https://images.unsplash.com/photo-1589398908284-12e22929df63?q=80&w=2000&auto=format&fit=crop"
+    image: "/binders.webp"
   },
   {
     title: "Battery-Grade Metals",
     description: "Ultra-pure lithium, cobalt, nickel, and manganese compounds with strict control of impurities for consistent battery performance.",
-    image: "https://images.unsplash.com/photo-1563046383-7e25bc03e58f?q=80&w=2000&auto=format&fit=crop"
+    image: "/batterygrade.webp"
   }
 ];
 

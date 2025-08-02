@@ -47,42 +47,42 @@ const aluminumMaterials = [
   {
     title: "Alumina",
     description: "High-purity aluminum oxide with controlled chemistry and particle size distribution, the essential raw material for primary aluminum production.",
-    image: "https://images.unsplash.com/photo-1612521564730-95e6eaa9c2ec?q=80&w=2000&auto=format&fit=crop"
+    image: "/alumina.webp"
   },
   {
     title: "Alloying Elements",
     description: "Precision-grade copper, magnesium, silicon, zinc, and manganese for creating specific aluminum alloy compositions with tailored properties.",
-    image: "https://images.unsplash.com/photo-1563046383-7e25bc03e58f?q=80&w=2000&auto=format&fit=crop"
+    image: "/alloyingelements.webp"
   },
   {
     title: "Master Alloys",
     description: "Specialized pre-alloyed materials for precise chemistry control, grain refinement, and microstructure modification in aluminum casting.",
-    image: "https://images.unsplash.com/photo-1605001011156-cbf0b0f67a51?q=80&w=2000&auto=format&fit=crop"
+    image: "/masteralloy.webp"
   },
   {
     title: "Fluxes & Salts",
     description: "Advanced formulations for dross management, inclusion removal, and metal quality improvement in aluminum melting and casting operations.",
-    image: "https://images.unsplash.com/photo-1519500528352-2d1460418d41?q=80&w=2000&auto=format&fit=crop"
+    image: "/fluxes.webp"
   },
   {
     title: "Grain Refiners",
     description: "High-performance titanium-boron materials that control solidification structure, improving mechanical properties and surface quality.",
-    image: "https://images.unsplash.com/photo-1563046383-7e25bc03e58f?q=80&w=2000&auto=format&fit=crop"
+    image: "/titaniumboron.webp"
   },
   {
     title: "Modifiers & Hardeners",
     description: "Specialized additives that enhance specific aluminum properties, from strontium for silicon modification to hardeners for strength improvement.",
-    image: "https://images.unsplash.com/photo-1518391846015-55a9cc003b25?q=80&w=2000&auto=format&fit=crop"
+    image: "/modifiers.webp"
   },
   {
     title: "Degassing Materials",
     description: "Premium purification materials that remove hydrogen and inclusions from molten aluminum, improving casting quality and mechanical properties.",
-    image: "https://images.unsplash.com/photo-1598104358204-117bc812c6c1?q=80&w=2000&auto=format&fit=crop"
+    image: "/degrassing.webp"
   },
   {
     title: "Carbon Products",
     description: "High-performance anodes, cathodes, and other carbon materials essential for the electrolytic reduction process in primary aluminum production.",
-    image: "https://images.unsplash.com/photo-1631171426626-a90e3f7a8d98?q=80&w=2000&auto=format&fit=crop"
+    image: "/graphite.jpeg"
   }
 ];
 

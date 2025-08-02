@@ -47,42 +47,42 @@ const aerospaceMaterials = [
   {
     title: "Aerospace Alloys",
     description: "High-performance aluminum, titanium, and nickel-based superalloys with precise chemistry and microstructure for critical aerospace applications.",
-    image: "https://images.unsplash.com/photo-1605001011156-cbf0b0f67a51?q=80&w=2000&auto=format&fit=crop"
+    image: "/aerospacealloys.png"
   },
   {
     title: "Advanced Composites",
     description: "Carbon fiber, aramid, and glass reinforcements with aerospace-grade resins for exceptional strength-to-weight ratio and durability.",
-    image: "https://images.unsplash.com/photo-1517420704952-d9f39e95b43e?q=80&w=2000&auto=format&fit=crop"
+    image: "/advancedcomposites.webp"
   },
   {
     title: "Specialty Fasteners",
     description: "High-strength, lightweight fastening systems with superior fatigue resistance and corrosion protection for critical aerospace structures.",
-    image: "https://images.unsplash.com/photo-1518391846015-55a9cc003b25?q=80&w=2000&auto=format&fit=crop"
+    image: "/specialityfasteners.webp"
   },
   {
     title: "High-Temperature Materials",
     description: "Advanced ceramics and metal matrix composites designed for extreme temperature environments in propulsion systems and thermal protection.",
-    image: "https://images.unsplash.com/photo-1535868463750-c78d9543614f?q=80&w=2000&auto=format&fit=crop"
+    image: "/hightemperaturematerials.webp"
   },
   {
     title: "Aerospace Adhesives",
     description: "Specialized bonding solutions with exceptional strength, temperature resistance, and durability for critical aerospace assembly applications.",
-    image: "https://images.unsplash.com/photo-1589398908284-12e22929df63?q=80&w=2000&auto=format&fit=crop"
+    image: "/aerospaceadhesives.webp"
   },
   {
     title: "Specialty Coatings",
     description: "High-performance protective systems providing corrosion resistance, thermal protection, and specialized functionality for aerospace components.",
-    image: "https://images.unsplash.com/photo-1515688594390-b649af70d282?q=80&w=2000&auto=format&fit=crop"
+    image: "/specialtycoatings.webp"
   },
   {
     title: "Precision Machining Materials",
     description: "Ultra-pure materials with consistent machinability characteristics for aerospace components requiring exceptional dimensional precision.",
-    image: "https://images.unsplash.com/photo-1517420879524-86d64ac2f339?q=80&w=2000&auto=format&fit=crop"
+    image: "/precisionmachiningmaterials.webp"
   },
   {
     title: "Specialty Lubricants",
     description: "Advanced formulations for aerospace applications requiring extreme temperature stability, long service life, and compatibility with aerospace materials.",
-    image: "https://images.unsplash.com/photo-1532634922-8fe0b757fb13?q=80&w=2000&auto=format&fit=crop"
+    image: "/specialtylubricants.webp"
   }
 ];
 

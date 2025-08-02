@@ -47,42 +47,42 @@ const stainlessSteelMaterials = [
   {
     title: "Chromium",
     description: "High-purity chromium metal and ferroalloys with precise chemistry control, the essential element providing corrosion resistance to stainless steel.",
-    image: "https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?q=80&w=2000&auto=format&fit=crop"
+    image: "/chromium.webp"
   },
   {
     title: "Nickel",
     description: "Premium grade nickel in various forms, critical for austenitic stainless steels, providing enhanced corrosion resistance and formability.",
-    image: "https://images.unsplash.com/photo-1563046383-7e25bc03e58f?q=80&w=2000&auto=format&fit=crop"
+        image: "/nickel.jpg"
   },
   {
     title: "Molybdenum",
     description: "High-purity molybdenum and ferromolybdenum, enhancing pitting corrosion resistance and high-temperature strength in stainless steel alloys.",
-    image: "https://images.unsplash.com/photo-1518391846015-55a9cc003b25?q=80&w=2000&auto=format&fit=crop"
+    image: "/molybdenum.webp"
   },
   {
     title: "Manganese",
     description: "Specialized manganese alloys that improve hot workability and replace nickel in certain stainless steel grades for cost optimization.",
-    image: "https://images.unsplash.com/photo-1531088009183-5ff5b7c95f91?q=80&w=2000&auto=format&fit=crop"
+    image: "/manganesemetal.jpg"
   },
   {
     title: "Titanium & Niobium",
     description: "Ultra-pure stabilizing elements that prevent intergranular corrosion in stainless steels by controlling carbon and nitrogen behavior.",
-    image: "https://images.unsplash.com/photo-1605001011156-cbf0b0f67a51?q=80&w=2000&auto=format&fit=crop"
+    image: "/titaniumandniobium.webp"
   },
   {
     title: "Silicon",
     description: "High-grade ferrosilicon that improves oxidation resistance and is essential for the production of specialty stainless steel grades.",
-    image: "https://images.unsplash.com/photo-1605557202138-077ef7c4fa7c?q=80&w=2000&auto=format&fit=crop"
+    image: "/siliconmetal.jpg"
   },
   {
     title: "Nitrogen Additives",
     description: "Specialized nitrogen-bearing materials that enhance strength and corrosion resistance in modern lean duplex and high-performance stainless steels.",
-    image: "https://images.unsplash.com/photo-1563046383-7e25bc03e58f?q=80&w=2000&auto=format&fit=crop"
+    image: "/nitrogenadditive.webp"
   },
   {
     title: "Scrap Substitutes",
     description: "Premium processed materials that provide a clean, consistent alternative to scrap in electric arc furnace stainless steel production.",
-    image: "https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?q=80&w=2000&auto=format&fit=crop"
+    image: "/scrapsubstitutes.webp"
   }
 ];
 

@@ -47,42 +47,42 @@ const paperMaterials = [
   {
     title: "Retention Aids",
     description: "Advanced polymer systems that improve filler and fiber retention, enhancing formation quality while reducing raw material loss.",
-    image: "https://images.unsplash.com/photo-1589398908284-12e22929df63?q=80&w=2000&auto=format&fit=crop"
+    image: "/retentionaid.webp"
   },
   {
     title: "Sizing Agents",
     description: "Specialized materials that control water penetration and ink absorption, essential for printability and converting performance.",
-    image: "https://images.unsplash.com/photo-1603126857599-f6e157fa2fe6?q=80&w=2000&auto=format&fit=crop"
+    image: "/sizingadditive.webp"
   },
   {
     title: "Strength Additives",
     description: "Premium dry and wet strength resins that enhance paper durability, enabling weight reduction while maintaining performance.",
-    image: "https://images.unsplash.com/photo-1589398908284-12e22929df63?q=80&w=2000&auto=format&fit=crop"
+    image: "/strengthadditives.webp"
   },
   {
     title: "Specialty Fillers",
     description: "Engineered mineral products with controlled particle size and surface chemistry for optimal opacity, brightness, and printability.",
-    image: "https://images.unsplash.com/photo-1598449356475-b9f71db7d847?q=80&w=2000&auto=format&fit=crop"
+    image: "/specialtyfillers.webp"
   },
   {
     title: "Coating Chemicals",
     description: "Advanced formulations for paper coating applications, providing superior surface properties for premium printing and packaging.",
-    image: "https://images.unsplash.com/photo-1515688594390-b649af70d282?q=80&w=2000&auto=format&fit=crop"
+    image: "/coatingchemicals.webp"
   },
   {
     title: "Process Chemicals",
     description: "Specialized additives for deposit control, foam management, and machine cleanliness that optimize papermaking efficiency.",
-    image: "https://images.unsplash.com/photo-1603126857599-f6e157fa2fe6?q=80&w=2000&auto=format&fit=crop"
+    image: "/processchemicals.webp"
   },
   {
     title: "Functional Additives",
     description: "Innovative materials that impart specific properties like water resistance, oil and grease resistance, and antimicrobial functionality.",
-    image: "https://images.unsplash.com/photo-1564419320461-6870880221ad?q=80&w=2000&auto=format&fit=crop"
+    image: "/functionaladditives.webp"
   },
   {
     title: "Sustainable Solutions",
     description: "Eco-friendly alternatives to traditional paper chemicals, designed for biodegradability and reduced environmental impact.",
-    image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2000&auto=format&fit=crop"
+    image: "/sustainablesolutions.webp"
   }
 ];
 
