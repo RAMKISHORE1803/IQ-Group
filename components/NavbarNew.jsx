@@ -190,6 +190,7 @@ const NavbarNew = () => {
     path: '/resources',
     megaMenu: 'resources',
     dropdown: [
+      {name: 'media', path: '/resources#media'},
       { name: 'Insights', path: '/resources#INSIGHTS' },
       { name: 'News', path: '/resources#news' },
     ]

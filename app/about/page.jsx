@@ -73,7 +73,7 @@ export default function AboutPage() {
       transitionKey="about-page"
       duration={2}
       overlayColor="from-blue-900 via-indigo-900 to-blue-800"
-      overlayImage="https://images.unsplash.com/photo-1598193957011-39b9f2916992?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      overlayImage="/aboubg.avif"
     >
       <div className="about-page bg-white">
         {/* Hero Section with Contact Options */}

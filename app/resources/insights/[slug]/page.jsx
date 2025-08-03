@@ -227,7 +227,7 @@ export default function BlogPost({ params }) {
       <SocialShare />
       
       {/* Back navigation */}
-      <motion.div 
+      {/* <motion.div 
         className="fixed top-24 left-4 lg:left-8 z-40"
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
@@ -243,7 +243,7 @@ export default function BlogPost({ params }) {
             <span className="font-medium">Back to Insights</span>
           </motion.button>
         </Link>
-      </motion.div>
+      </motion.div> */}
       
       {/* Hero section with parallax */}
       <motion.section 

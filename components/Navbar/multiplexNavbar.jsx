@@ -172,6 +172,7 @@ const MultiplexNavbar = () => {
     megaMenu: 'resources',
     dropdown: [
       {name: 'Overview', path: '/resources'},
+      {name: 'Media' , path: '/resources#media'},
       { name: 'Insights', path: '/resources#INSIGHTS' },
       { name: 'News', path: '/resources#news' },
     ]
