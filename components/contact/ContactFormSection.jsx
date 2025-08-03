@@ -2,6 +2,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Script from 'next/script';
 
 // Register GSAP plugins
 if (typeof window !== "undefined") {
@@ -13,6 +14,9 @@ const ContactFormSection = () => {
   const titleRef = useRef(null);
   const formContentRef = useRef(null);
   const leftSideRef = useRef(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
+  const [scriptLoaded, setScriptLoaded] = useState(false);
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -26,18 +30,110 @@ const ContactFormSection = () => {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+    
+    // Map form field names to state property names
+    const fieldToStateMap = {
+      'first_name': 'firstName',
+      'surname': 'surname',
+      'company': 'company',
+      'email': 'email',
+      'telephone': 'telephone',
+      'message': 'message',
+      'newsletter': 'newsletter'
+    };
+    
+    // Use the mapped state property name or fallback to the original name
+    const stateProp = fieldToStateMap[name] || name;
+    
     setFormData(prev => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [stateProp]: type === 'checkbox' ? checked : value
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Here you would typically send the data to your backend
-    alert('Enquiry submitted successfully! We will contact you soon.');
+    setIsSubmitting(true);
+    setSubmitMessage('');
+
+    // Create a new FormData object directly from the form element
+    const form = e.target;
+    
+    // Debug: Log all form fields
+    const formFields = new FormData(form);
+    console.log("Form fields being submitted:");
+    for (let [name, value] of formFields.entries()) {
+      console.log(`${name}: ${value}`);
+    }
+    
+    // Use emailjs.sendForm which is more reliable for forms
+    if (window.emailjs) {
+      console.log("Attempting to send email with EmailJS...");
+      
+      window.emailjs
+        .sendForm('service_jk6ctg8', 'template_77hi5zv', form)
+        .then((result) => {
+          console.log('Email successfully sent!', result.text);
+          setSubmitMessage('Enquiry submitted successfully! We will contact you soon.');
+          
+          // Reset form
+          setFormData({
+            firstName: '',
+            surname: '',
+            company: '',
+            email: '',
+            telephone: '',
+            message: '',
+            newsletter: false
+          });
+        })
+        .catch((error) => {
+          console.error('Failed to send email:', error);
+          // Log more details about the error
+          if (error.text) console.error('Error text:', error.text);
+          if (error.status) console.error('Error status:', error.status);
+          
+          setSubmitMessage(`Failed to submit enquiry. Please try again or contact us directly at info@iqgroup.in`);
+        })
+        .finally(() => {
+          setIsSubmitting(false);
+        });
+    } else {
+      console.error('EmailJS not loaded');
+      setSubmitMessage('Email service not available. Please try again later or contact us directly at info@iqgroup.in');
+      setIsSubmitting(false);
+    }
   };
+
+  // Initialize EmailJS when the component mounts
+  useEffect(() => {
+    // Load EmailJS if it's not already loaded
+    if (typeof window !== 'undefined') {
+      const loadEmailJS = async () => {
+        try {
+          if (window.emailjs) {
+            console.log("EmailJS object found, initializing...");
+            window.emailjs.init("s6GdekZ52XdeNxl47");
+            console.log("EmailJS initialized successfully in useEffect");
+            setScriptLoaded(true);
+            
+            // Test if EmailJS is properly configured
+            if (typeof window.emailjs.sendForm === 'function') {
+              console.log("EmailJS sendForm function is available");
+            } else {
+              console.error("EmailJS sendForm function is not available");
+            }
+          } else {
+            console.error("EmailJS object not found in window");
+          }
+        } catch (error) {
+          console.error("Failed to initialize EmailJS:", error);
+        }
+      };
+      
+      loadEmailJS();
+    }
+  }, []);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -91,6 +187,35 @@ const ContactFormSection = () => {
 
   return (
     <div className="flex flex-col md:flex-row min-h-[100vh] md:max-h-[100vh] overflow-hidden" ref={formRef}>
+      {/* EmailJS Script */}
+      <Script
+        id="emailjs-sdk"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+        strategy="beforeInteractive"
+        onLoad={() => {
+          console.log("EmailJS script loaded via Next.js Script component");
+          try {
+            if (window.emailjs) {
+              console.log("EmailJS object available in Script onLoad");
+              window.emailjs.init("s6GdekZ52XdeNxl47");
+              setScriptLoaded(true);
+              console.log("EmailJS initialized successfully via Script onLoad");
+              
+              // Check if the sendForm function is available
+              if (typeof window.emailjs.sendForm === 'function') {
+                console.log("EmailJS sendForm function is available in Script onLoad");
+              } else {
+                console.error("EmailJS sendForm function is not available in Script onLoad");
+              }
+            } else {
+              console.error("EmailJS object not available after script load");
+            }
+          } catch (err) {
+            console.error("Error initializing EmailJS:", err);
+          }
+        }}
+      />
+      
       {/* Left side - Image */}
       <div className="w-full md:w-2/5 relative" ref={leftSideRef}>
         <div 
@@ -140,7 +265,7 @@ const ContactFormSection = () => {
                   <input
                     type="text"
                     id="firstName"
-                    name="firstName"
+                    name="first_name"
                     value={formData.firstName}
                     onChange={handleChange}
                     required
@@ -238,18 +363,40 @@ const ContactFormSection = () => {
                   </label>
                 </div>
 
+                {/* Hidden fields for additional data */}
+                <input type="hidden" name="to_name" value="IQ Group Team" />
+                <input type="hidden" name="submission_time" value={new Date().toLocaleString()} />
+                <input type="hidden" name="enquiry_type" value="General Contact Form" />
+
                 <div className="md:col-span-2 text-right">
                   <button
                     type="submit"
-                    className="bg-[#203663] border border-[#203663] hover:bg-[#fbfbfb] cursor-pointer hover:text-[#203663] text-white px-6 py-2 transition-colors flex items-center ml-auto"
+                    disabled={isSubmitting}
+                    className={`${
+                      isSubmitting 
+                        ? 'bg-gray-400 cursor-not-allowed' 
+                        : 'bg-[#203663] hover:bg-[#fbfbfb] hover:text-[#203663]'
+                    } border border-[#203663] text-white px-6 py-2 transition-colors flex items-center ml-auto`}
                   >
-                    <span>Send enquiry</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
+                    <span>{isSubmitting ? 'Sending...' : 'Send enquiry'}</span>
+                    {!isSubmitting && (
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
+                    )}
                   </button>
                 </div>
               </form>
+              {submitMessage && (
+                <div className="mt-4 text-center text-sm text-gray-700">
+                  {submitMessage}
+                </div>
+              )}
+              {/* emailJSError && ( // This state was removed
+                <div className="mt-4 text-center text-sm text-red-600">
+                  EmailJS Error: {emailJSError}
+                </div>
+              ) */}
             </div>
           </div>
         </div>

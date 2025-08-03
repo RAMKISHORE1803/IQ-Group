@@ -21,7 +21,7 @@ if (typeof window !== 'undefined') {
 // Section links for "In This Section" navigation
 const sectionLinks = [
   {
-    title: "Our Expertise",
+      title: "Our Expertise",
     link: "#what-we-do"
   },
   {
@@ -29,7 +29,7 @@ const sectionLinks = [
     link: "#how-we-do"
   },
   {
-    title: "Core Values",
+      title: "Guiding Principles",
     link: "#our-values"
   },
   {
@@ -79,7 +79,7 @@ export default function AboutPage() {
         {/* Hero Section with Contact Options */}
         <HeroSection 
           subtitle="Powering industries with premium raw materials delivered with precision, integrity, and speed. Global reach, Mumbai roots."
-          backgroundImage="https://images.unsplash.com/photo-1598193957011-39b9f2916992?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          backgroundImage="/aboubg.avif"
           sideText="ABOUT US"
           navTitle="ABOUT"
           sectionLinks={sectionLinks}
@@ -103,7 +103,9 @@ export default function AboutPage() {
           
           <LeadershipSection />
           <OfficeLocationsSection/>
+          <div id="warehouse-presence">
           <WarehouseLocations />
+          </div>
           <div className="h-[20vh] md:hidden bg-[#fbfbfb]"></div>
         </div>
       </div>

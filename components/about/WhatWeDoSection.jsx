@@ -201,7 +201,7 @@ export default function WhatWeDoSection() {
               ref={headingRef}
               className="text-3xl md:text-4xl lg:text-5xl font-bold font-lato text-[#324390] mb-6"
             >
-              Our Expertise
+                Our Expertise
             </h2>
             <div 
               ref={textRef}

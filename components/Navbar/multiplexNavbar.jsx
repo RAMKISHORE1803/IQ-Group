@@ -89,11 +89,12 @@ const MultiplexNavbar = () => {
       megaMenu: 'about',
       dropdown: [
         {name: 'Overview', path: '/about'},
-        { name: 'What We Do', path: '/about#what-we-do' },
-        { name: 'How We Do', path: '/about#how-we-do' },
-        { name: 'Our Values', path: '/about#our-values' },
-        { name: 'Leadership Team', path: '/about#leadership' },
-        { name: 'Global Presence', path: '/about#office-locations' }
+        { name: 'Our Expertise', path: '/about#what-we-do' },
+        { name: 'Our Approach', path: '/about#how-we-do' },
+        { name: 'Guiding Principles', path: '/about#our-values' },
+        { name: 'Our Leadership Team', path: '/about#leadership' },
+        { name: 'Global Presence', path: '/about#office-locations' },
+        {name: 'Warehouse Presence', path: '/about#warehouse-presence'}
       ]
     },
     {
@@ -153,10 +154,9 @@ const MultiplexNavbar = () => {
       megaMenu: 'careers',
       dropdown: [
         {name: 'Overview', path: '/careers'},
-        { name: 'Life at IQ Group', path: '/careers/life' },
-        { name: 'Why Join Us', path: '/careers/why-join' },
-        { name: 'Open Positions', path: '/careers/positions' },
-        { name: 'Application Portal', path: '/careers/apply' }
+        { name: 'Why Join Us', path: '/careers#why-join-us' },
+        { name: 'Open Positions', path: '/careers#open-positions' },
+        { name: 'Application Portal', path: '/careers#apply-now' }
       ]
     },
     {

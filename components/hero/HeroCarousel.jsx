@@ -63,7 +63,7 @@ const ButtonReveal = ({ startAnimation = false, delay = 0, duration = 800, ctaLi
 const slides = [
   {
     ariaLabel: 'Core Mission & Global Scale',
-    background: 'https://videos.openai.com/vg-assets/assets%2Ftask_01k1879599e9xv9vb0mamejvh5%2F1753696582_img_0.webp?st=2025-07-28T08%3A53%3A48Z&se=2025-08-03T09%3A53%3A48Z&sks=b&skt=2025-07-28T08%3A53%3A48Z&ske=2025-08-03T09%3A53%3A48Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=aa5ddad1-c91a-4f0a-9aca-e20682cc8969&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=h6OqLd6o4d0%2BZPPfVAtWoOJbZZmMJO1lPWCo1JImLs8%3D&az=oaivgprodscus',
+    background: '/herobg1.webp',
     isVideo: false,
     headline: 'Manufacturers Trust.\nEnd Users Thrive.',
     subtext: 'We enable raw material movement from source to industry—efficiently, reliably, worldwide.',
@@ -73,7 +73,7 @@ const slides = [
   },
   {
     ariaLabel: 'Quality & Certification Highlight',
-    background: 'https://videos.openai.com/vg-assets/assets%2Ftask_01k17n8pk6em3bz8gej9w84chp%2F1753677623_img_1.webp?st=2025-07-28T03%3A24%3A50Z&se=2025-08-03T04%3A24%3A50Z&sks=b&skt=2025-07-28T03%3A24%3A50Z&ske=2025-08-03T04%3A24%3A50Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=aa5ddad1-c91a-4f0a-9aca-e20682cc8969&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=dMGhy3Y6NixrcV2M6BUJ2gtPr68m1ws91JHR5tBHSVs%3D&az=oaivgprodscus',
+    background: '/herobg2.webp',
     isVideo: false,
     headline: 'Discover Quality Excellence.\nUnmatched Quality Control.',
     subtext: 'From sourcing to delivery, our dynamic quality policy ensures you receive only top-grade materials.',
@@ -83,7 +83,7 @@ const slides = [
   },
   {
     ariaLabel: 'Company Divisions Snapshot',
-    background: 'https://videos.openai.com/vg-assets/assets%2Ftask_01k17mzn4fe71tjvgsght9998d%2F1753677333_img_1.webp?st=2025-07-28T03%3A23%3A06Z&se=2025-08-03T04%3A23%3A06Z&sks=b&skt=2025-07-28T03%3A23%3A06Z&ske=2025-08-03T04%3A23%3A06Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=aa5ddad1-c91a-4f0a-9aca-e20682cc8969&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=Klpw5tu3DBcRXnpVbmrjuv3WUEG%2FC3HfHXT0w6QpAEA%3D&az=oaivgprodscus',
+    background: '/herobg33.webp',
     isVideo: false,
     headline: 'Eight Specialized Divisions.\nOne Unified Vision.',
     subtext: 'Explore how each IQ Group company delivers excellence in its niche.',
@@ -93,7 +93,7 @@ const slides = [
   },
   {
     ariaLabel:'Operating in 20+ Countries. Serving 15+ Industries.',
-    background: 'https://videos.openai.com/vg-assets/assets%2Ftask_01k187gcccextszkqf1n23hkqk%2F1753696840_img_1.webp?st=2025-07-28T08%3A55%3A49Z&se=2025-08-03T09%3A55%3A49Z&sks=b&skt=2025-07-28T08%3A55%3A49Z&ske=2025-08-03T09%3A55%3A49Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=aa5ddad1-c91a-4f0a-9aca-e20682cc8969&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=3YpprX0vap1PBumj3chf%2B97KLMIjsRjwDCU%2Bk1ZSTvI%3D&az=oaivgprodscus',
+    background: '/herobg4.webp',
     isVideo: false,
     headline: 'Operating in 20+ Countries.\nServing 15+ Industries.',
     subtext: 'Our global network and local expertise keep your supply chain agile.',

@@ -44,21 +44,24 @@ const IQGroupFooter = () => {
                   <div>
                     <label htmlFor="interests" className="sr-only">Areas of interest</label>
                     <div className="relative">
-                      <select 
+                    <select 
                         id="interests" 
-                        className="w-full appearance-none border-b border-[#fbfbfb] bg-transparent text-[#fbfbfb] py-2 focus:outline-none focus:border-[#4a90e2] font-onest"
-                        defaultValue="anything"
+                        className="w-full appearance-none border-b border-[#fbfbfb] bg-transparent text-[#fbfbfb] py-2 focus:outline-none focus:border-[#4a90e2] font-onest cursor-pointer"
+                        defaultValue=""
+                        style={{ border: 'none', borderBottom: '1px solid #fbfbfb' }}
                       >
-                        <option value="anything" disabled>Areas of interest (Please select)</option>
-                        <option value="option1">Option 1</option>
-                        <option value="option2">Option 2</option>
-                        <option value="option3">Option 3</option>
+                        <option value="" disabled>Select an option</option>
+                        <option value="Supply Chain Insights">Supply Chain Insights</option>
+                        <option value="Market Intelligence">Market Intelligence</option>
+                        <option value="Cost Optimization">Cost Optimization</option>
+                        <option value="Risk Analysis">Risk Analysis</option>
+                        <option value="Industry Trends">Industry Trends</option>
+                        <option value="Business Strategy">Business Strategy</option>
+                        <option value="Custom Consultation">Custom Consultation</option>
+                        <option value="Other">Other</option>
                       </select>
-                      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-[#fbfbfb]">
-                        <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                          <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
-                        </svg>
-                      </div>
+
+                      {/* Remove the SVG arrow since we're using background image */}
                     </div>
                   </div>
                   
@@ -261,6 +264,39 @@ const IQGroupFooter = () => {
           </div>
         </div>
       </div>
+      
+      {/* Custom styles for select dropdowns */}
+      <style jsx global>{`
+        select {
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          padding-right: 25px;
+        }
+        
+        select option {
+          background-color: #172747;
+          color: #fbfbfb;
+          padding: 10px;
+          font-family: 'Onest', sans-serif;
+        }
+          select:focus {
+          outline: none !important;
+          border: none !important;
+          box-shadow: none !important;
+        }
+        
+        /* For Firefox */
+        select:-moz-focusring {
+          color: transparent;
+          text-shadow: 0 0 0 #fbfbfb;
+        }
+        
+        /* For IE/Edge */
+        select::-ms-expand {
+          display: none;
+        }
+      `}</style>
     </footer>
   );
 };

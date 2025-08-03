@@ -17,31 +17,31 @@ const processSteps = [
     id: "direct-sourcing",
     title: "Direct Sourcing",
     description: "Mine to market. Zero intermediaries. Quality guaranteed.",
-    image: "https://www.innovationnewsnetwork.com/wp-content/uploads/2021/06/iStockugurhan-108352384.jpg",
+    image: "/wat1.jpg",
   },
   {
     id: "quality-verification",
     title: "Quality Verification At Loading Port",
     description: "Molecular precision. Rigorous standards. Certified excellence.",
-    image: "/images/QualityControl.png",
+    image: "/QualityControl.png",
   },
   {
     id: "logistics",
     title: "Logistics",
     description: "Global networks. Real-time tracking. Flawless execution.",
-    image: "https://online.uj.ac.za/hs-fs/hubfs/UJ%20Blog%20Logistics.jpeg?width=2700&height=1656&name=UJ%20Blog%20Logistics.jpeg",
+    image: "/wat3.webp",
   },
   {
     id: "warehousing",
     title: "Warehousing",
     description: "Strategic locations. Climate-controlled. Just-in-time readiness.",
-    image: "https://media.npr.org/assets/img/2021/11/15/gettyimages-1346760159-6499f7dea1922080d16a0758c7bab5a27364f042.jpg?s=900&c=85&f=webp",
+    image: "/wat4.webp",
   },
   {
     id: "end-users",
     title: "End Users",
     description: "Final mile perfection. Production-ready materials. When you need them.",
-    image: "/images/endUsers.png",
+    image: "/endUsers.png",
   }
 ];
 
@@ -187,7 +187,7 @@ export default function HowWeDoSection() {
         {/* Mobile Header - Only visible on mobile */}
         <div className="md:hidden mb-8">
           <h2 className="text-3xl font-bold font-lato text-[#172747] mb-4">
-            How We Do
+            Our Approach
           </h2>
           <p className="text-xl leading-tight font-onest font-light text-gray-700 mb-6">
             Material excellence. <br/>
@@ -215,7 +215,7 @@ export default function HowWeDoSection() {
             <div className="md:h-screen md:flex md:flex-col md:justify-center md:sticky md:top-0">
               <div className="max-w-xs">
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-lato text-[#fbfbfb] mb-6">
-                  How We Do
+                  Our Approach
                 </h2>
                 <p className="text-[24px] leading-tight font-onest font-light text-gray-200 mb-8">
                   Material excellence. <br/>

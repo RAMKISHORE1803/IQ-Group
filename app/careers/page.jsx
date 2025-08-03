@@ -9,6 +9,7 @@ import OpenPositionsCarousel from "@/components/careers/OpenPositionsCarousel";
 import Link from "next/link";
 import SectionNavigation from "@/components/companies/SectionNavigation";
 import PageTransitionWrapper from "@/components/animation/wrapper";
+import Script from "next/script";
 
 // Register GSAP plugins
 if (typeof window !== "undefined") {
@@ -355,12 +356,15 @@ const WhyJoinUs = () => {
   );
 };
 
+
 // Application Form Component
 const ApplicationForm = () => {
   const formRef = useRef(null);
   const titleRef = useRef(null);
   const formContentRef = useRef(null);
   const leftSideRef = useRef(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
   
   const [formData, setFormData] = useState({
     firstName: '',
@@ -375,11 +379,36 @@ const ApplicationForm = () => {
     newsletter: false
   });
 
+  // Initialize EmailJS
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.emailjs) {
+      window.emailjs.init({
+        publicKey: "s6GdekZ52XdeNxl47", // Your public key
+      });
+    }
+  }, []);
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+    
+    // Map form field names to state property names
+    const fieldToStateMap = {
+      'first_name': 'firstName',
+      'surname': 'surname',
+      'email': 'email',
+      'telephone': 'telephone',
+      'position_applying_for': 'position',
+      'years_of_experience': 'experience',
+      'cover_letter': 'message',
+      'newsletter': 'newsletter'
+    };
+    
+    // Use the mapped state property name or fallback to the original name
+    const stateProp = fieldToStateMap[name] || name;
+    
     setFormData(prev => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [stateProp]: type === 'checkbox' ? checked : value
     }));
   };
 
@@ -393,11 +422,71 @@ const ApplicationForm = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Here you would typically send the data to your backend
-    alert('Application submitted successfully! We will contact you soon.');
+    setIsSubmitting(true);
+    setSubmitMessage('');
+
+    try {
+      // Check if EmailJS is loaded
+      if (!window.emailjs) {
+        throw new Error('EmailJS not loaded');
+      }
+
+      // Create FormData for file upload
+      const formData = new FormData(e.target);
+      
+      // Get current date and time for submission timestamp
+      const now = new Date();
+      const submissionDate = now.toLocaleDateString();
+      const submissionTime = now.toLocaleTimeString();
+      
+      // Prepare form data for EmailJS
+      const templateParams = {
+        first_name: formData.get('first_name'),
+        surname: formData.get('surname'),
+        email: formData.get('email'),
+        telephone: formData.get('telephone'),
+        position_applying_for: formData.get('position_applying_for'),
+        years_of_experience: formData.get('years_of_experience'),
+        cover_letter: formData.get('cover_letter') || 'No cover letter provided',
+        submission_date: submissionDate,
+        submission_time: submissionTime
+      };
+
+      console.log('Sending application with params:', templateParams);
+
+      // Send email using EmailJS
+      const response = await window.emailjs.send(
+        'service_jk6ctg8', // Updated service ID
+        'template_rtegelh', // Updated template ID
+        templateParams
+      );
+
+      console.log('Email sent successfully:', response);
+      setSubmitMessage('Application submitted successfully! We will contact you soon.');
+      
+      // Reset form
+      e.target.reset();
+      setFormData({
+        firstName: '',
+        surname: '',
+        company: '',
+        email: '',
+        telephone: '',
+        position: '',
+        experience: '',
+        resume: null,
+        message: '',
+        newsletter: false
+      });
+
+    } catch (error) {
+      console.error('Error sending email:', error);
+      setSubmitMessage('Failed to submit application. Please try again or contact us directly at hr@iqgroup.in');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   
   useEffect(() => {
@@ -457,7 +546,7 @@ const ApplicationForm = () => {
         <div 
           className="h-full bg-cover bg-center"
           style={{ 
-            backgroundImage: `url('https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?q=80&w=2047&auto=format&fit=crop')`,
+            backgroundImage: `url('/jobapplicationsidebar.avif')`,
             position: 'sticky',
             top: 0
           }}
@@ -510,7 +599,7 @@ const ApplicationForm = () => {
                   <input
                     type="text"
                     id="firstName"
-                    name="firstName"
+                    name="first_name"
                     value={formData.firstName}
                     onChange={handleChange}
                     required
@@ -569,20 +658,21 @@ const ApplicationForm = () => {
                   </label>
                   <select
                     id="position"
-                    name="position"
+                    name="position_applying_for"
                     value={formData.position}
                     onChange={handleChange}
                     required
-                    className="w-full border-b border-gray-300 py-1 px-1 focus:outline-none focus:border-[#203663] transition-colors bg-transparent"
+                    className="w-full border-b border-gray-300 py-1 px-1 focus:outline-none focus:border-[#203663] transition-colors bg-transparent appearance-none cursor-pointer bg-[url('/dropdown-arrow.svg')] bg-no-repeat bg-[center_right_0.5rem]"
                   >
-                    <option value="" className="text-gray-600">Select a position</option>
-                    <option value="sales">Sales Manager</option>
-                    <option value="supply">Supply Chain Analyst</option>
-                    <option value="marketing">Marketing Specialist</option>
-                    <option value="quality">Quality Control Engineer</option>
-                    <option value="finance">Financial Analyst</option>
-                    <option value="business">Business Development Executive</option>
-                    <option value="other">Other</option>
+                    <option value="" className="text-gray-600">Select an option</option>
+                    <option value="Supply Chain Insights">Supply Chain Insights</option>
+                    <option value="Market Intelligence">Market Intelligence</option>
+                    <option value="Cost Optimization">Cost Optimization</option>
+                    <option value="Risk Analysis">Risk Analysis</option>
+                    <option value="Industry Trends">Industry Trends</option>
+                    <option value="Business Strategy">Business Strategy</option>
+                    <option value="Custom Consultation">Custom Consultation</option>
+                    <option value="Other">Other</option>
                   </select>
                 </div>
 
@@ -592,11 +682,11 @@ const ApplicationForm = () => {
                   </label>
                   <select
                     id="experience"
-                    name="experience"
+                    name="years_of_experience"
                     value={formData.experience}
                     onChange={handleChange}
                     required
-                    className="w-full border-b border-gray-300 py-1 px-1 focus:outline-none focus:border-[#203663] transition-colors bg-transparent"
+                    className="w-full border-b border-gray-300 py-1 px-1 focus:outline-none focus:border-[#203663] transition-colors bg-transparent appearance-none cursor-pointer bg-[url('/dropdown-arrow.svg')] bg-no-repeat bg-[center_right_0.5rem]"
                   >
                     <option value="">Select experience</option>
                     <option value="0-1">0-1 years</option>
@@ -628,7 +718,7 @@ const ApplicationForm = () => {
                   </label>
                   <textarea
                     id="message"
-                    name="message"
+                    name="cover_letter"
                     value={formData.message}
                     onChange={handleChange}
                     rows="2"
@@ -651,18 +741,40 @@ const ApplicationForm = () => {
                   </label>
                 </div>
 
+                {/* Hidden fields for additional data */}
+                <input type="hidden" name="to_email" value="hr@iqgroup.in" />
+                <input type="hidden" name="submission_date" value={new Date().toLocaleDateString()} />
+                <input type="hidden" name="submission_time" value={new Date().toLocaleTimeString()} />
+
                 <div className="md:col-span-2 text-right">
                   <button
                     type="submit"
-                    className="bg-[#203663] border border-[#203663] hover:bg-[#fbfbfb] cursor-pointer hover:text-[#203663] text-white px-6 py-2 transition-colors flex items-center ml-auto"
+                    disabled={isSubmitting}
+                    className={`${
+                      isSubmitting 
+                        ? 'bg-gray-400 cursor-not-allowed' 
+                        : 'bg-[#203663] hover:bg-[#fbfbfb] hover:text-[#203663]'
+                    } border border-[#203663] text-white px-6 py-2 transition-colors flex items-center ml-auto`}
                   >
-                    <span>Submit Application</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
+                    <span>{isSubmitting ? 'Submitting...' : 'Submit Application'}</span>
+                    {!isSubmitting && (
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
+                    )}
                   </button>
                 </div>
               </form>
+              {submitMessage && (
+                <div className="mt-6 text-center text-lg text-green-600">
+                  {submitMessage}
+                </div>
+              )}
+              {isSubmitting && (
+                <div className="mt-6 text-center text-lg text-blue-600">
+                  Submitting...
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -728,48 +840,94 @@ export default function CareerPage() {
   }, []);
   
   return (
-    <main>
-      <HeroSection 
-        subtitle="Join our team and shape the future of global trade"
-        backgroundImage="https://images.pexels.com/photos/4064840/pexels-photo-4064840.jpeg"
-        sideText="CAREER"
-        navTitle="CAREER"
+    <>
+      {/* EmailJS Script */}
+      <Script
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+        strategy="beforeInteractive"
+        onLoad={() => {
+          if (window.emailjs) {
+            try {
+              window.emailjs.init("s6GdekZ52XdeNxl47");
+              console.log("EmailJS initialized successfully from careers page");
+            } catch (err) {
+              console.error("Error initializing EmailJS:", err);
+            }
+          }
+        }}
       />
-      <div className="relative z-20 bg-white"> 
-        <div 
-          ref={introRef}
-          className="w-full max-w-7xl md:max-w-[1300px] flex flex-wrap justify-between mx-auto px-4 py-12  bg-[#ffffff]"
-        >
-          <div className="w-full md:w-1/2 lg:text-[38px] font-lato leading-[1.1] text-[#1a365d] font-bold animate-item">
-            There's nowhere like IQ Group to build your legacy.
-          </div>
-          <div className="w-full md:w-1/2 flex items-center text-[17px] font-onest text-[#1a365d] animate-item">
-            We don't just offer jobs. We craft careers. Develop skills that matter, gain experiences that count, and build a future that rewards.
-          </div>
-         </div>
+      
+      {/* Custom styles for select dropdowns */}
+      <style jsx global>{`
+        select {
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          padding-right: 25px;
+        }
+        
+        select option {
+          background-color: white;
+          color: #203663;
+          padding: 10px;
+          font-family: 'Lato', sans-serif;
+        }
+        
+        /* For Firefox */
+        select:-moz-focusring {
+          color: transparent;
+          text-shadow: 0 0 0 #203663;
+        }
+        
+        /* For IE/Edge */
+        select::-ms-expand {
+          display: none;
+        }
+      `}</style>
+      
+      <main>
+        <HeroSection 
+          subtitle="Join our team and shape the future of global trade"
+          backgroundImage="https://images.pexels.com/photos/4064840/pexels-photo-4064840.jpeg"
+          sideText="CAREER"
+          navTitle="CAREER"
+        />
+        <div className="relative z-20 bg-white"> 
+          <div 
+            ref={introRef}
+            className="w-full max-w-7xl md:max-w-[1300px] flex flex-wrap justify-between mx-auto px-4 py-12  bg-[#ffffff]"
+          >
+            <div className="w-full md:w-1/2 lg:text-[38px] font-lato leading-[1.1] text-[#1a365d] font-bold animate-item">
+              There's nowhere like IQ Group to build your legacy.
+            </div>
+            <div className="w-full md:w-1/2 flex items-center text-[17px] font-onest text-[#1a365d] animate-item">
+              We don't just offer jobs. We craft careers. Develop skills that matter, gain experiences that count, and build a future that rewards.
+            </div>
+           </div>
 
-         <SectionNavigation links={sectionLinks} title="IN THIS SECTION" />
-        
-        {/* Life at IQ Group Section */}
-       
-        
-        {/* Why Join Us Section */}
-        <div id="why-join-us">
-        <WhyJoinUs />
+           <SectionNavigation links={sectionLinks} title="IN THIS SECTION" />
+          
+          {/* Life at IQ Group Section */}
+         
+          
+          {/* Why Join Us Section */}
+          <div id="why-join-us">
+          <WhyJoinUs />
+          </div>
+          
+          {/* Open Positions Carousel */}
+          <FadeInSection>
+            <div id="open-positions">
+            <OpenPositionsCarousel />
+            </div>
+          </FadeInSection>
         </div>
         
-        {/* Open Positions Carousel */}
-        <FadeInSection>
-          <div id="open-positions">
-          <OpenPositionsCarousel />
-          </div>
-        </FadeInSection>
-      </div>
-      
-      {/* Application Form */}
-      <div id="apply-now">
-      <ApplicationForm />
-      </div>
-    </main>
+        {/* Application Form */}
+        <div id="apply-now">
+        <ApplicationForm />
+        </div>
+      </main>
+    </>
   );
 }
