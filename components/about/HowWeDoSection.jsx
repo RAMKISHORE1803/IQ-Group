@@ -41,7 +41,7 @@ const processSteps = [
     id: "end-users",
     title: "End Users",
     description: "Final mile perfection. Production-ready materials. When you need them.",
-    image: "/endUsers.png",
+    image: "/EndUsers.png",
   }
 ];
 
