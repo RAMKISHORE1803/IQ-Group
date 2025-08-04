@@ -126,7 +126,7 @@ export default function NobleAlloysPage() {
         title=""
       subtitle="Precision meets progress — noble alloys delivered globally for the industries shaping tomorrow. Trusted. Elite.
 "
-      backgroundImage="/noblealloysbgq.webp"
+      backgroundImage="/noblealloysbgq1.webp"
         sideText="IQ Noble Alloys"
       navTitle="COMPANIES"
       />

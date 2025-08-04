@@ -33,7 +33,7 @@ const companies = [
     id: 'noble-alloys',
     name: 'IQ Noble Alloys',
     description: 'Delivering high-grade noble alloys through an exclusive global distribution network for industries that shape the future.',
-    image: '/noblealloysbgq.webp',
+    image: '/noblealloysbgq1.webp',
     link: '/companies/noble-alloys'
   },
   {
