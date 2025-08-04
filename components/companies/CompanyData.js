@@ -60,7 +60,7 @@ export const companiesThirdSet = [
     category: 'Investments',
     link:'/companies/angel-investments',
     description: 'We are a venture intended to promote investments in various types of businesses at their beginning or developmental stage. We look for ventures with dedication and desire to develop extraordinary value in the concerned industry.',
-    image: 'https://www.iqgroup.in/image/banner/angel.jpg',
+    image: '/angelbg.avif',
     commodities: ['Early Stage Startups', 'Growth Capital', 'Strategic Investments', 'Business Development']
   },
   // {
