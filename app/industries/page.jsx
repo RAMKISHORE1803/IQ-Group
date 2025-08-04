@@ -127,7 +127,7 @@ export default function IndustriesPage() {
         title=""
         subtitle="We power industries with premium raw materials—precise, reliable, and tailored for every need.
 "
-        backgroundImage="https://videos.openai.com/vg-assets/assets%2Ftask_01k18h2hqwf08tgb7q2sh4ts6p%2F1753706979_img_0.webp?st=2025-07-28T11%3A40%3A07Z&se=2025-08-03T12%3A40%3A07Z&sks=b&skt=2025-07-28T11%3A40%3A07Z&ske=2025-08-03T12%3A40%3A07Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=aa5ddad1-c91a-4f0a-9aca-e20682cc8969&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=4CWYFUGjNRRo8Eld8QQ5vfa275q974kop5OO%2FTjolPg%3D&az=oaivgprodscus"
+        backgroundImage="/industriesbg.webp"
         sideText="INDUSTRIES"
         navTitle="INDUSTRIES"
       />
