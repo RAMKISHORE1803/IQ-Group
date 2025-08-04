@@ -109,7 +109,7 @@ export default function RefractoryIndustryPage() {
       successStoriesData={{
         subtitle: "Proven performance in the world's most demanding high-temperature applications"
       }}
-      showSuccessStories={true}
+      showSuccessStories={false}
     />
   );
 } 

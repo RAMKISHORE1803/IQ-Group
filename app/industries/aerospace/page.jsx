@@ -109,7 +109,7 @@ export default function AerospaceIndustryPage() {
       successStoriesData={{
         subtitle: "Real results from our partnerships with leading aerospace manufacturers worldwide"
       }}
-      showSuccessStories={true}
+      showSuccessStories={false}
     />
   );
 } 

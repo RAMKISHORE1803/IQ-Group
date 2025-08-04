@@ -91,7 +91,7 @@ export default function PaperIndustryPage() {
     <IndustryPageTemplate
       title="Paper Industry"
       subtitle="Supplying premium chemicals and additives for papermaking with exceptional quality and technical support."
-      backgroundImage="/industries/paper.jpg"
+      backgroundImage="/industries/paper.webp"
       sideText="PAPER INDUSTRY"
       overviewData={{
         subtitle: "Empowering paper innovation with precision-engineered materials and processing expertise",
@@ -109,7 +109,7 @@ export default function PaperIndustryPage() {
       successStoriesData={{
         subtitle: "Real results from our partnerships with leading paper manufacturers worldwide"
       }}
-      showSuccessStories={true}
+      showSuccessStories={false}
     />
   );
 } 

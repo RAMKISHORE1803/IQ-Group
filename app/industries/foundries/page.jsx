@@ -109,7 +109,7 @@ export default function FoundriesIndustryPage() {
       successStoriesData={{
         subtitle: "Real results from our partnerships with leading foundries worldwide"
       }}
-      showSuccessStories={true}
+      showSuccessStories={false}
     />
   );
 } 

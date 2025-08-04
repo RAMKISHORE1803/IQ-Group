@@ -19,35 +19,35 @@ const companies = [
     id: 'minerals-metals',
     name: 'IQ Minerals & Metals',
     description: 'Powering industries across 20+ nations with high-quality minerals and metals backed by two decades of global supply expertise.',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/e/e9/SiliconCroda.jpg',
+    image: '/Herobg/IQMinerals.jpg',
     link: '/companies/minerals-metals'
   },
   {
     id: 'ferro-alloys',
     name: 'IQ Ferro Alloys',
     description: 'Premium ferro alloys for steel and foundry industries with consistent quality and reliable supply.',
-    image: 'https://images.unsplash.com/photo-1547555706-54bcf05bbad1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8ZmVycm8lMjBhbGxveXxlbnwwfHwwfHx8MA%3D%3D',
+    image: '/ferroalloysbg.jpg',
     link: '/companies/ferro-alloys'
   },
   {
     id: 'noble-alloys',
     name: 'IQ Noble Alloys',
     description: 'Delivering high-grade noble alloys through an exclusive global distribution network for industries that shape the future.',
-    image: 'https://images.unsplash.com/photo-1535813547-99c456a41d4a?q=80&w=2000&auto=format&fit=crop',
+    image: '/noblealloysbgq.webp',
     link: '/companies/noble-alloys'
   },
   {
     id: 'coke-coal',
     name: 'IQ Coke & Coal',
     description: 'Carbon materials delivered with precision, power, and consistency for global industrial applications.',
-    image: 'https://images.unsplash.com/photo-1589007716619-42656585dd85?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Y29hbHxlbnwwfHwwfHx8MA%3D%3D',
+    image: 'https://images.unsplash.com/photo-1587919968590-fbc98cea6c9a?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     link: '/companies/coke-coal'
   },
   {
     id: 'international',
     name: 'IQ International',
     description: 'Leading the global chemical supply sector by combining bold entrepreneurship with modern strategy and a network built on trust.',
-    image: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+    image: '/internationbg2.webp',
     link: '/companies/international'
   },
   {

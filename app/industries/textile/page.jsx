@@ -91,7 +91,7 @@ export default function TextileIndustryPage() {
     <IndustryPageTemplate
       title="Textile Industry"
       subtitle="Supplying premium chemicals and additives for textile processing with exceptional quality and technical support."
-      backgroundImage="https://assets.lummi.ai/assets/QmNpyxgXoXt78SXLsfBTdqADVQzN7DBv9WFqu5bfkaRDGF?auto=format&w=1500"
+      backgroundImage="/industries/textile.webp"
       sideText="TEXTILE INDUSTRY"
       overviewData={{
         subtitle: "Empowering textile innovation with precision-engineered materials and processing expertise",
@@ -109,7 +109,7 @@ export default function TextileIndustryPage() {
       successStoriesData={{
         subtitle: "Real results from our partnerships with leading textile manufacturers worldwide"
       }}
-      showSuccessStories={true}
+      showSuccessStories={false}
     />
   );
 } 

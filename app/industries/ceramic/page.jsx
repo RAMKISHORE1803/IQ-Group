@@ -110,7 +110,7 @@ export default function CeramicIndustryPage() {
       successStoriesData={{
         subtitle: "Real results from our partnerships with leading ceramic manufacturers worldwide"
       }}
-      showSuccessStories={true}
+      showSuccessStories={false}
     />
   );
 } 

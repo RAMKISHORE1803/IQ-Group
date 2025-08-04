@@ -109,7 +109,7 @@ export default function AutomobileIndustryPage() {
       successStoriesData={{
         subtitle: "Real results from our partnerships with leading automotive manufacturers worldwide"
       }}
-      showSuccessStories={true}
+      showSuccessStories={false}
     />
   );
 } 

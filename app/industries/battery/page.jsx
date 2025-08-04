@@ -109,7 +109,7 @@ export default function BatteryIndustriesPage() {
       successStoriesData={{
         subtitle: "Real results from our partnerships with leading battery manufacturers worldwide"
       }}
-      showSuccessStories={true}
+      showSuccessStories={false}
     />
   );
 } 

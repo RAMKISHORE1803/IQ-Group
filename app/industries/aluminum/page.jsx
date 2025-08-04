@@ -109,7 +109,7 @@ export default function AluminumIndustryPage() {
       successStoriesData={{
         subtitle: "Real results from our partnerships with leading aluminum producers worldwide"
       }}
-      showSuccessStories={true}
+      showSuccessStories={false}
     />
   );
 }

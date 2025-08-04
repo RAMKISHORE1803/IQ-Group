@@ -109,7 +109,7 @@ export default function TyresIndustryPage() {
       successStoriesData={{
         subtitle: "Real results from our partnerships with leading tire manufacturers worldwide"
       }}
-      showSuccessStories={true}
+      showSuccessStories={false}
     />
   );
 } 

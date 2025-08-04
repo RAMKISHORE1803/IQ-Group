@@ -8,6 +8,7 @@ import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 import SectionNavigation from "@/components/companies/SectionNavigation";
 import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
+import { BentoGrid2, BentoGridItem2 } from "@/components/ui/2bento";
 // Register GSAP plugins
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -271,9 +272,9 @@ const newsCards = [
 // Insights section data
 const insightsCards = [
   {
-    type: "Scottlsdale, Arizona",
-    date: "2022",
-    title: "Speaking at Ferro Alloys USA 2022 Conference",
+    type: "Europe",
+    date: "",
+    title: "Speaking at Ferro Alloys Europe Connection Summit",
     description: "Decoding the transformation from fragile networks to unbreakable material pathways. Strategic insights that redefine how industry leaders secure critical resources.",
     image: "/conference/3.jpg",
     link: "/resources/insights"
@@ -356,6 +357,22 @@ const newspaperCards = [
     description: "Stamp collectors have written to finance minister Arun Jaitley asking him to spare their hobby from the steepest slab of 28% under the GST, which is expected to be rolled out on July 1.",
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZ_1J41ou4mAX4U6Qh9oJfv1xH_UnSHq0jYA&s",
     link: "https://economictimes.indiatimes.com/news/economy/policy/spare-us-from-steepest-slab-of-28-under-gst-stamp-collectors-to-arun-jaitley/articleshow/58651213.cms"
+  },
+  {
+    type: "Youtube",
+    date: "April 8,2021",
+    title: "Zero to Everything",
+    description: "Build your empire with nothing but vision. No handouts. No shortcuts. Just you against the impossible.",
+    image: "/conference/3.jpg",
+    link: "https://www.youtube.com/watch?v=derQvIrtnAE&ab_channel=SarthakVarshney"
+  },
+  {
+    type: "Youtube",
+    date: "April 8,2021",
+    title: "Balls Of Steel Show, Eps 45",
+    description: "From stamps to steel empires. When conviction beats data and relationships trump research. Pure entrepreneurial fire.",
+    image: "https://i.ytimg.com/vi/njGx8hoC4_g/maxresdefault.jpg",
+    link: "https://www.youtube.com/watch?v=njGx8hoC4_g"
   }
 ]
 
@@ -374,6 +391,44 @@ const sectionLinks = [
   }
   
 ];
+
+const galleryCards = [  
+  
+  {
+    type: "Amsterdam, Netherlands",
+    date: "2025",
+    title: "Paricipated as Panelist in CRU Europe Connection Summit 2025",
+    description: "Speaking at CRU Europe Ferro Alloys COnnection Summit 2025 at Amsterdam",
+    image: "/conference/8.jpg",
+    link: "/resources/insights"
+  },
+  {
+    type: "Amsterdam, Netherlands",
+    date: "2025",
+    title: "Speaking at CRU Europe Ferro Alloys Connection Summit 2025 at Amsterdam",
+    description: "",
+    image: "/conference/7.jpg", 
+    link: "/resources/insights"
+  },
+  {
+    type: "Cairo, Egypt",
+    date: "2023",
+    title: "Speaking at 16th Arab Steel Summit 2023",
+    description: "Speaking at 16th Arab Steel Summit 2023",
+    image: "/conference/9.jpg", 
+    link: "/resources/insights"
+  },
+  {
+    type: "",
+    date: "",
+    title: "",
+    description: "Speaking at 16th Arab Steel Summit 2023",
+    image: "/conference/10.jpg", 
+    link: "/resources/insights"
+  },
+  
+ 
+]
 
 export default function ResourcesPage() {
   const introRef = useRef(null);
@@ -430,7 +485,7 @@ export default function ResourcesPage() {
       `}</style>
       <HeroSection 
         subtitle="Explore a curated feed of IQ Group’s latest moments, market insights, and innovation in action."
-        backgroundImage="https://images.unsplash.com/photo-1529253355930-ddbe423a2ac7?q=80&w=1740&auto=format&fit=crop"
+        backgroundImage="https://images.unsplash.com/39/lIZrwvbeRuuzqOoWJUEn_Photoaday_CSD%20%281%20of%201%29-5.jpg?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         sideText="RESOURCES"
         navTitle="RESOURCES"
         sideTextHeight="290px"
@@ -471,7 +526,7 @@ export default function ResourcesPage() {
               ))}
             </BentoGrid>
 
-            <BentoGrid className="mx-auto transform scale-x-[-1]">
+            <BentoGrid className="mx-auto transform scale-x-[-1] mb-10">
               {insightsCards2.slice(0, 5).map((card, index) => (
                 <BentoGridItem
                   key={index}
@@ -496,6 +551,34 @@ export default function ResourcesPage() {
                 />
               ))}
             </BentoGrid>
+
+            <BentoGrid2 className="mx-auto ">
+              {galleryCards.slice(0, 4).map((card, index) => (
+                <BentoGridItem2
+                  key={index}
+                  variant="default"
+                 
+                  header={
+                    
+                      <img 
+                        src={card.image} 
+                        alt={card.title}
+                        className="w-full h-full  cursor-pointer object-cover transition-transform duration-500 group-hover/bento:scale-105"
+                      />
+                    
+                  }
+                  title={
+                    <div className="flex flex-col">
+                      <span className="text-xs font-medium text-white/90 mb-1">
+                        {card.type} 
+                      </span>
+                      <span className="text-lg md:text-xl">{card.title}</span>
+                    </div>
+                  }
+                  className={ "md:col-span-2"}
+                />
+              ))}
+            </BentoGrid2>
             
             
            
@@ -535,9 +618,6 @@ export default function ResourcesPage() {
         </FadeInSection>
         
         {/* latest Section */}
-        <FadeInSection className="py-16 md:py-24 px-2 md:px-4 bg-white" id="news">
-
-        </FadeInSection>
        
       </div>
     </main>

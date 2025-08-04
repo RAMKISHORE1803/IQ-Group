@@ -109,7 +109,7 @@ export default function PaintsIndustryPage() {
       successStoriesData={{
         subtitle: "Real results from our partnerships with leading paint manufacturers worldwide"
       }}
-      showSuccessStories={true}
+      showSuccessStories={false}
     />
   );
 } 

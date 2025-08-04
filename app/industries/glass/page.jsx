@@ -109,7 +109,7 @@ export default function GlassIndustryPage() {
       successStoriesData={{
         subtitle: "Real results from our partnerships with leading glass manufacturers worldwide"
       }}
-      showSuccessStories={true}
+      showSuccessStories={false}
     />
   );
 } 

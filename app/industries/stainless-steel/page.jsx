@@ -109,7 +109,7 @@ export default function StainlessSteelIndustryPage() {
       successStoriesData={{
         subtitle: "Real results from our partnerships with leading stainless steel producers worldwide"
       }}
-      showSuccessStories={true}
+      showSuccessStories={false}
     />
   );
 } 
