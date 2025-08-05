@@ -27,7 +27,7 @@ const industries = [
     category: 'MANUFACTURING',
     name: 'Steel',
     description: 'Supplying high-grade raw materials for steel production, including iron ore, coal, and alloys.',
-    image: 'https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3',
+    image: '/industries/steel.webp',
     link: '/industries/steel'
   },
   {

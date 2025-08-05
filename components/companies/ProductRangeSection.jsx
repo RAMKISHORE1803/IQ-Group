@@ -252,7 +252,7 @@ const ProductRangeSection = ({
       </div>
       
       {/* Right pane (25% width) - Fixed image */}
-      <div className="w-1/4 relative" ref={rightPaneRef}>
+      <div className="w-1/4 relative lg:mt-[-80px]" ref={rightPaneRef}>
         <div className="sticky top-1/4">
           <ProductCard product={selectedProduct} />
           {/* <p className="mt-4 text-sm text-gray-600">{selectedProduct.description}</p> */}
