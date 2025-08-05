@@ -1,36 +1,114 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# IQ Group Corporate Website
+
+![IQ Group Logo](public/logo/logo.png)
+
+## Overview
+
+The IQ Group corporate website is a modern, responsive Next.js application showcasing the company's global presence in raw materials distribution across various industries. The website features comprehensive information about the company's services, product range, industry expertise, and global operations.
+
+## Features
+
+- **Responsive Design**: Fully responsive layout optimized for desktop, tablet, and mobile devices
+- **Dynamic Content**: Interactive components including carousels, flip cards, and animated sections
+- **Global Presence Map**: Interactive visualization of IQ Group's international operations
+- **Industry-Specific Pages**: Dedicated sections for each industry vertical
+- **Company Divisions**: Detailed information about each business division
+- **Careers Portal**: Job listings and application system
+- **Resource Center**: News, insights, and industry updates
+
+## Technology Stack
+
+- **Framework**: Next.js
+- **Styling**: Tailwind CSS
+- **Animations**: GSAP (GreenSock Animation Platform)
+- **UI Components**: Custom React components
+- **Form Handling**: EmailJS
+- **Deployment**: [Deployment platform details]
+
+## Project Structure
+
+```
+iq/
+├── app/               # Next.js app directory (pages and layouts)
+├── components/        # Reusable React components
+├── data/              # Static data files
+├── lib/               # Utility functions
+├── public/            # Static assets
+└── [config files]     # Configuration files
+```
+
+## Key Sections
+
+- **Landing Page**: Features hero section, company overview, and key business areas
+- **About**: Company history, values, and leadership team
+- **Companies**: Different business divisions and their operations
+- **Industries**: Industry-specific solutions and expertise
+- **Quality Insights**: Quality standards, certifications, and procedures
+- **Resources**: News, insights, and industry updates
+- **Careers**: Job opportunities and application process
+- **Contact**: Global office locations and contact information
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js (v18 or later)
+- npm or yarn
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+1. Clone the repository:
+   ```
+   git clone https://github.com/[username]/iq-group.git
+   cd iq-group
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. Install dependencies:
+   ```
+   npm install
+   # or
+   yarn install
+   ```
 
-## Learn More
+3. Run the development server:
+   ```
+   npm run dev
+   # or
+   yarn dev
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the website.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Development
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Adding New Pages
 
-## Deploy on Vercel
+1. Create a new directory in the appropriate section under `app/`
+2. Add a `page.jsx` file with the page content
+3. Update navigation components if necessary
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Styling
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The project uses Tailwind CSS for styling. Custom styles can be added in the component files or in the global CSS file.
+
+## Deployment
+
+[Include deployment instructions based on your hosting platform]
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+[Include license information]
+
+## Contact
+
+IQ Group - [info@iqgroup.in](mailto:info@iqgroup.in)
+
+Project Link: [https://github.com/[username]/iq-group](https://github.com/[username]/iq-group)
