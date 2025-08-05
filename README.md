@@ -1,7 +1,5 @@
 # [IQ Group Website](https://iq-groups.vercel.app/)
 
-License: MIT
-
 ## ✨ Description
 Welcome to the official repository for the IQ Group website, Revamped their existing website <a href="https://www.iqgroup.in/">IQ Group</a> which was built about 10 years ago.
 
@@ -54,8 +52,5 @@ iq/
 └── [config files]     # Configuration files
 ```
 
-
-## 📜 License
-This project is licensed under the MIT License - see the LICENSE.md file for details.
 
 Made with ❤️ by Anirudh
