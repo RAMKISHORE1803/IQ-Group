@@ -30,7 +30,7 @@ const PageTransitionWrapper = ({
   return (
     <>
       {/* Blue overlay animation - Always starts first */}
-      <AnimatePresence onExitComplete={() => setAnimationComplete(true)}>
+      {/* <AnimatePresence onExitComplete={() => setAnimationComplete(true)}>
         {!animationComplete && (
           <motion.div
             key={`overlay-${transitionKey}`}
@@ -48,28 +48,28 @@ const PageTransitionWrapper = ({
             </div>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence> */}
 
       {/* Page Content with Entry Animation - Delayed */}
-      <AnimatePresence mode="wait">
+      {/* <AnimatePresence mode="wait"> */}
         <motion.div
-          key={transitionKey}
-          className={`min-h-screen ${className}`}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: isVisible ? 1 : 0 }}
-          exit={{ opacity: 0 }}
-          transition={{ 
-            duration: 0.3, 
-            delay: 1, // Longer delay to ensure blue animation is well underway
-            ease: [0.34, 1, 0.22, 1]
-          }}
-          style={{ 
-            visibility: initialLoad ? 'hidden' : 'visible' // Hide content completely on initial load
-          }}
+          // key={transitionKey}
+          // className={`min-h-screen ${className}`}
+          // initial={{ opacity: 0 }}
+          // animate={{ opacity: isVisible ? 1 : 0 }}
+          // exit={{ opacity: 0 }}
+          // transition={{ 
+          //   duration: 0.3, 
+          //   delay: 1, // Longer delay to ensure blue animation is well underway
+          //   ease: [0.34, 1, 0.22, 1]
+          // }}
+          // style={{ 
+          //   visibility: initialLoad ? 'hidden' : 'visible' // Hide content completely on initial load
+          // }}
         >
           {children}
         </motion.div>
-      </AnimatePresence>
+      {/* </AnimatePresence> */}
     </>
   );
 };
