@@ -2,7 +2,7 @@
 License: MIT
 
 ## ✨ Description
-Welcome to the official repository for the IQ Group website!
+Welcome to the official repository for the IQ Group website, Revamped their existing website <a href="https://www.iqgroup.in/">IQ Group</a> which was built 1- years ago as a freelancing project.
 
 This project showcases a modern, responsive corporate website built with Next.js and GSAP animations, designed to highlight IQ Group's global presence in raw materials distribution across various industries. The website features comprehensive information about the company's services, product range, industry expertise, and global operations with interactive components including carousels, flip cards, and animated sections.
 
@@ -67,11 +67,11 @@ The IQ Group website is organized into several key sections:
 - **Contact**: Global office locations and contact information
 
 ## 📸 Screenshots
-## 📸 Screenshots
 <p align="center">
   <img src="https://github.com/AnirudhS3110/IQ-Group/raw/main/public/readme/Screenshot%202025-08-05%20221823.png" width="45%" />
   <img src="https://github.com/AnirudhS3110/IQ-Group/raw/main/public/readme/Screenshot%202025-08-05%20222344.png" width="45%" />
 </p>
+
 
 
 ## 📖 Project Structure
