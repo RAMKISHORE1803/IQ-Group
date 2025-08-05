@@ -41,9 +41,6 @@ The IQ Group website is organized into several key sections:
 - **Contact**: Global office locations and contact information
 
 
-
-
-
 ## 📖 Project Structure
 ```
 iq/
@@ -55,29 +52,6 @@ iq/
 └── [config files]     # Configuration files
 ```
 
-## 🚀 Development
-
-### Adding New Pages
-1. Create a new directory in the appropriate section under `app/`
-2. Add a `page.jsx` file with the page content
-3. Update navigation components if necessary
-
-### Styling
-The project uses Tailwind CSS for styling. Custom styles can be added in the component files or in the global CSS file.
-
-## 🚀 Deploy
-[Include deployment instructions based on your hosting platform]
-
-## 🙌 Contributing
-Contributions are welcome! If you'd like to contribute, please follow these steps:
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-Please make sure to update tests as appropriate.
 
 ## 📜 License
 This project is licensed under the MIT License - see the LICENSE.md file for details.
