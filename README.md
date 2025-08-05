@@ -2,7 +2,7 @@
 License: MIT
 
 ## ✨ Description
-Welcome to the official repository for the IQ Group website, Revamped their existing website <a href="https://www.iqgroup.in/">IQ Group</a> which was built about 10 years ago as a freelancing project.
+Welcome to the official repository for the IQ Group website, Revamped their existing website <a href="https://www.iqgroup.in/">IQ Group</a> which was built about 10 years ago.
 
 A modern, responsive corporate website for IQ Group with smooth GSAP animations and glassy UI hover effects, showcasing services, products, and global presence with an interactive, premium user experience.
 
