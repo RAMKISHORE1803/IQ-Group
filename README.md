@@ -22,37 +22,6 @@ Our goal is to present IQ Group as a leading global distributor of raw materials
 - **Form Handling**: EmailJS for contact and career applications
 - **Deployment**: [Deployment platform details]
 
-## ⚙️ Getting Started
-
-### Prerequisites
-Make sure you have Node.js and npm (or yarn) installed.
-- Node.js (v18.x or higher recommended): https://nodejs.org/
-- npm comes with Node.js
-
-### Installation
-1. Clone the repository:
-```
-git clone https://github.com/[username]/iq-group.git
-cd iq-group
-```
-
-2. Install dependencies:
-```
-npm install
-# or
-yarn install
-```
-
-### Running the Development Server
-First, run the development server:
-
-```
-npm run dev
-# or
-yarn dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## 🎮 Usage
 The IQ Group website is organized into several key sections:
