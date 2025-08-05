@@ -67,8 +67,12 @@ The IQ Group website is organized into several key sections:
 - **Contact**: Global office locations and contact information
 
 ## 📸 Screenshots
-https://github.com/AnirudhS3110/IQ-Group/raw/main/public/readme/Screenshot%202025-08-05%20221823.png
-https://github.com/AnirudhS3110/IQ-Group/raw/main/public/readme/Screenshot%202025-08-05%20222344.png
+## 📸 Screenshots
+<p align="center">
+  <img src="https://github.com/AnirudhS3110/IQ-Group/raw/main/public/readme/Screenshot%202025-08-05%20221823.png" width="45%" />
+  <img src="https://github.com/AnirudhS3110/IQ-Group/raw/main/public/readme/Screenshot%202025-08-05%20222344.png" width="45%" />
+</p>
+
 
 ## 📖 Project Structure
 ```
