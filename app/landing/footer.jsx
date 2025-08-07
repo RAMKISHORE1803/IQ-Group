@@ -102,12 +102,27 @@ const IQGroupFooter = () => {
                     Off. New Link Road<br />
                     Andheri-W, Mumbai – 400053
                   </p>
-                  <p className="text-[#fbfbfb] text-sm font-onest mt-2">
-                    T: +91-9987998036
-                  </p>
                   <Link href="mailto:info@iqgroup.in" className="text-[#fbfbfb] text-sm font-onest mt-2">
                     info@iqgroup.in
                   </Link>
+                  <br/>
+                 
+                  <Link href="tel:+91-9987998036" className="text-[#fbfbfb] text-sm font-onest mt-2">
+                    +91-9987998036
+                  </Link>
+                  <br/>
+                  <Link href="tel:+91-9987998037" className="text-[#fbfbfb] text-sm font-onest mt-2">
+                    +91-9987998037
+                  </Link>
+                  <br/>
+                  <Link href="tel:+91-91-2235112519" className="text-[#fbfbfb] text-sm font-onest mt-2">
+                    +91-2235112519
+                  </Link>
+                  <br/>
+                  <Link href="tel:+91-91-2235112520" className="text-[#fbfbfb] text-sm font-onest mt-2">
+                    +91-2235112520
+                  </Link>
+                  
       </div>
 
                 {/* Hong Kong Office */}
@@ -117,10 +132,7 @@ const IQGroupFooter = () => {
                     1611B, 16/F<br />
                     HO KING COMMERCIAL CENTRE<br />
                     MONGKOK, KOWLOON
-                  </p>
-                  <p className="text-[#fbfbfb] text-sm font-onest mt-2">
-                    T: 91-9987998036
-                  </p>
+                  </p> 
                   <Link href="mailto:info@iqgroup.in" className="text-[#fbfbfb] text-sm font-onest mt-2">
                     info@iqgroup.in
                   </Link>
@@ -135,11 +147,8 @@ const IQGroupFooter = () => {
                     030009, Taiyuan, China
                     
                   </p>
-                  <p className="text-[#fbfbfb] text-sm font-onest mt-2">
-                    {typeof window !== 'undefined' && window.innerWidth < 1486 && <br/>}
-                    T: 91-9987998036
-                  </p>
                   <Link href="mailto:info@iqgroup.in" className="text-[#fbfbfb] text-sm font-onest mt-2">
+                  {typeof window !== 'undefined' && window.innerWidth < 1486 && <br/>}
                     info@iqgroup.in
                   </Link>
                 </div>
