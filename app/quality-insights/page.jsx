@@ -116,7 +116,7 @@ export default function QualityInsightsPage() {
       id:"ISSDA",
       title: "ISSDA Mebership",
       description:"IQ Minerals & Metals is now an Associate Member of the Indian Stainless Steel Development Association (ISSDA) for the year 2024–25.This membership isn't just a badge—it's a testament. A testament to our commitment to stainless steel excellence, innovation, and collaboration with India's leading minds in the industry.At IQ, we don't follow standards. We help shape them.Through this association, we step into a larger ecosystem of trust, quality, and transformative potential in stainless steel.",
-      imageUrl: "/images/QualityCertificate/ISSDAcert.png",
+      imageUrl: "/ISSDAcert.png",
       issuedBy: "ISSDA",
       validUntil: "Active Membership"
     }
