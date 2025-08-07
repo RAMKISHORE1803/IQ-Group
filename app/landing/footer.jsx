@@ -105,6 +105,9 @@ const IQGroupFooter = () => {
                   <p className="text-[#fbfbfb] text-sm font-onest mt-2">
                     T: +91-9987998036
                   </p>
+                  <Link href="mailto:info@iqgroup.in" className="text-[#fbfbfb] text-sm font-onest mt-2">
+                    info@iqgroup.in
+                  </Link>
       </div>
 
                 {/* Hong Kong Office */}
@@ -116,8 +119,11 @@ const IQGroupFooter = () => {
                     MONGKOK, KOWLOON
                   </p>
                   <p className="text-[#fbfbfb] text-sm font-onest mt-2">
-                    T: +91-9987998037
+                    T: 91-9987998036
                   </p>
+                  <Link href="mailto:info@iqgroup.in" className="text-[#fbfbfb] text-sm font-onest mt-2">
+                    info@iqgroup.in
+                  </Link>
                 </div>
                 
                 {/* Taiyuan Office */}
@@ -131,8 +137,11 @@ const IQGroupFooter = () => {
                   </p>
                   <p className="text-[#fbfbfb] text-sm font-onest mt-2">
                     {typeof window !== 'undefined' && window.innerWidth < 1486 && <br/>}
-                    T: +91-2235112519
+                    T: 91-9987998036
                   </p>
+                  <Link href="mailto:info@iqgroup.in" className="text-[#fbfbfb] text-sm font-onest mt-2">
+                    info@iqgroup.in
+                  </Link>
                 </div>
               </div>
               </div>

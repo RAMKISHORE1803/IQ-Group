@@ -65,7 +65,7 @@ const slides = [
     ariaLabel: 'Core Mission & Global Scale',
     background: '/herobg1.webp',
     isVideo: false,
-    headline: 'Manufacturers Trust.\nEnd Users Thrive.',
+    headline: 'Bridging Global Raw Materials to Users',
     subtext: 'We enable raw material movement from source to industry—efficiently, reliably, worldwide.',
     ctaText: 'Get a Quote',
     ctaLink: '/contact',

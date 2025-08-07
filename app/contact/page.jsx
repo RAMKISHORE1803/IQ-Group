@@ -3,6 +3,7 @@ import HeroSection from "./herosection";
 import ContactFormSection from "@/components/contact/ContactFormSection";
 import ContactOptionsSection from "@/components/about/ContactOptionsSection";
 import OfficesCarousel from "@/components/contact/OfficesCarousel";
+import WarehousesCarousel from "@/components/contact/WarehousesCarousel";
 import Script from "next/script";
 import { useEffect } from "react";
 
@@ -63,6 +64,9 @@ export default function ContactPage() {
           
           {/* Our Offices Section */}
             <OfficesCarousel />
+          
+          {/* Our Warehouses Section */}
+            <WarehousesCarousel />
           
           <div id="form">
             <ContactFormSection />

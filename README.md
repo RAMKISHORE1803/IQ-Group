@@ -67,7 +67,7 @@ The IQ Group website is organized into several key sections:
 - **Contact**: Global office locations and contact information
 
 ## 📸 Screenshots
-[Add screenshots of key website sections here]
+
 
 ## 📖 Project Structure
 ```
