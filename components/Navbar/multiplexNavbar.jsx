@@ -191,7 +191,7 @@ const MultiplexNavbar = () => {
       <motion.nav
         initial={{ y: 0 }}
         animate={{ 
-          y: isVisible ? 0 : -150,
+          y: isVisible ? 0 : -180,
           backgroundColor: isScrolled ? 'rgba(0, 0, 0, 0.95)' : 'rgba(0, 0, 0, 0)'
         }}
         transition={{ 
@@ -211,7 +211,7 @@ const MultiplexNavbar = () => {
             className='lg:pl-[4vw]'
           >
             <Link href="/">
-            <Image src="/logo/2.png" alt="logo" width={100} height={100} />
+            <Image src="/logo/11.webp" alt="logo" width={90} height={90} />
             </Link>
             
           </motion.div>
