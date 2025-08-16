@@ -293,7 +293,7 @@ const MultiplexNavbar = () => {
               </motion.span>
             </motion.button>
             </Link>
-                    <X size={24} className='hover:rotate-90 transition-all duration-300' />
+                    <X size={24} className='hover:rotate-90 transition-all duration-400' />
                     
                   </motion.button>
                 </div>
