@@ -15,7 +15,7 @@ const associates = [
   },
   {
     id: 3,
-    name: 'Customer 3',
+    name: 'Customer 4',
     logo: 'https://media.potatopro.com/ficci-logo-2025-1200x589.jpg?width=750&height=360&mode=fit',
   }
 ];

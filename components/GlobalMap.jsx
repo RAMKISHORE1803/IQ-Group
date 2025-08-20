@@ -81,7 +81,7 @@ const GlobalMap = () => {
             <p className="text-gray-300 text-lg leading-relaxed mb-8">
               With almost 2,800 people globally, we have a mobile workforce that 
               collaborates to share knowledge and apply world's best practice across 
-              our projects.
+              our projects
             </p>
             <p className="text-gray-400 text-base">
               Click the map to discover more about our locations across the world.
