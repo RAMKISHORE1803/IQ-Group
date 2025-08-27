@@ -6,17 +6,17 @@ const associates = [
   {
     id: 1,
     name: 'Customer 1',
-    logo: 'https://www.stainlessindia.org/assets/img/Logo-hd.png',
+    logo: '/icons/1.png',
   },
   {
     id: 2,
     name: 'Customer 2',
-    logo: 'https://www.assocham.org/assets/images/assocham-logo-new.jpg',
+    logo: '/icons/2.jpg',
   },
   {
     id: 3,
-    name: 'Customer 4',
-    logo: 'https://media.potatopro.com/ficci-logo-2025-1200x589.jpg?width=750&height=360&mode=fit',
+    name: 'Customer 3',
+    logo: '/icons/3.jpg',
   }
 ];
 

@@ -41,7 +41,7 @@ const leadershipTeam = [
     name: "Zhou Hao",
     role: "Chief Operating Officer (COO)",
     bio: "A master of International Business who turns global complexity into competitive advantage. Twenty-two years across Asia Pacific and EU forged his expertise—commanding Hong Kong and China operations with precision that reshapes markets. Deep commodity intelligence meets flawless logistics execution. He doesn't just expand footprints; he conquers territories. When others see borders, he sees bridges to boundless opportunity. Because global dominance demands more than vision—it demands execution.",
-    image: "https://www.iqgroup.in/image/team/5.jpg"
+    image: "/5.webp"
   }
 ];
 

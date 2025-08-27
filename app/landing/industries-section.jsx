@@ -21,7 +21,7 @@ const IndustriesSection = () => {
         {"id": 12, "name": "Aluminum", "image": "/industries/aluminium.jpg", "link": "/industries/aluminum"},
         {"id": 13, "name": "Textile", "image": "https://assets.lummi.ai/assets/QmNpyxgXoXt78SXLsfBTdqADVQzN7DBv9WFqu5bfkaRDGF?auto=format&w=1500", "link": "/industries/textile"},
         {"id": 14, "name": "Tyre", "image": "https://assets.lummi.ai/assets/QmeNHGPHEyi8Sjx25eaEwUE9JU3Ko2fZ3EWCpDfz6qd54E?auto=format&w=1500", "link": "/industries/tyres"},
-        {"id": 15, "name": "Paper", "image": "/industries/paper.jpg", "link": "/industries/paper"}
+        {"id": 15, "name": "Paper", "image": "/industries/paper.webp", "link": "/industries/paper"}
       ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
